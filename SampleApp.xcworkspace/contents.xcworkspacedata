@@ -5,6 +5,18 @@
       location = "group:ApplicationLayer">
    </FileRef>
    <FileRef
+      location = "group:NetworkLayer">
+   </FileRef>
+   <FileRef
+      location = "group:UILayer">
+   </FileRef>
+   <FileRef
+      location = "group:Settings">
+   </FileRef>
+   <FileRef
+      location = "group:UserProfile">
+   </FileRef>
+   <FileRef
       location = "group:SampleApp/SampleApp.xcodeproj">
    </FileRef>
 </Workspace>

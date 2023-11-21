@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		410D9A752B0D2A4E002B284E /* SampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410D9A742B0D2A4E002B284E /* SampleApp.swift */; };
 		410D9A772B0D2C76002B284E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410D9A762B0D2C76002B284E /* ContentView.swift */; };
+		410D9A792B0D3250002B284E /* UILayer in Frameworks */ = {isa = PBXBuildFile; productRef = 410D9A782B0D3250002B284E /* UILayer */; };
+		410D9A7B2B0D35CA002B284E /* NetworkLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 410D9A7A2B0D35CA002B284E /* NetworkLayer */; };
+		410D9A7D2B0D3721002B284E /* UserProfile in Frameworks */ = {isa = PBXBuildFile; productRef = 410D9A7C2B0D3721002B284E /* UserProfile */; };
+		410D9A7F2B0D394F002B284E /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = 410D9A7E2B0D394F002B284E /* Settings */; };
 		4162EC052B04233400E4E086 /* ApplicationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4162EC042B04233400E4E086 /* ApplicationLayer */; };
 		41F3A7452B0420DE0059BCB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F3A7442B0420DE0059BCB0 /* AppDelegate.swift */; };
 		41F3A7472B0420DE0059BCB0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F3A7462B0420DE0059BCB0 /* SceneDelegate.swift */; };
@@ -32,7 +36,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				410D9A7B2B0D35CA002B284E /* NetworkLayer in Frameworks */,
+				410D9A7F2B0D394F002B284E /* Settings in Frameworks */,
+				410D9A792B0D3250002B284E /* UILayer in Frameworks */,
 				4162EC052B04233400E4E086 /* ApplicationLayer in Frameworks */,
+				410D9A7D2B0D3721002B284E /* UserProfile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,13 +74,13 @@
 		41F3A7432B0420DE0059BCB0 /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				41F3A74D2B0420DF0059BCB0 /* Assets.xcassets */,
 				41F3A7442B0420DE0059BCB0 /* AppDelegate.swift */,
 				41F3A7462B0420DE0059BCB0 /* SceneDelegate.swift */,
 				410D9A742B0D2A4E002B284E /* SampleApp.swift */,
-				41F3A74D2B0420DF0059BCB0 /* Assets.xcassets */,
+				410D9A762B0D2C76002B284E /* ContentView.swift */,
 				41F3A74F2B0420DF0059BCB0 /* LaunchScreen.storyboard */,
 				41F3A7522B0420DF0059BCB0 /* Info.plist */,
-				410D9A762B0D2C76002B284E /* ContentView.swift */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -95,6 +103,10 @@
 			name = SampleApp;
 			packageProductDependencies = (
 				4162EC042B04233400E4E086 /* ApplicationLayer */,
+				410D9A782B0D3250002B284E /* UILayer */,
+				410D9A7A2B0D35CA002B284E /* NetworkLayer */,
+				410D9A7C2B0D3721002B284E /* UserProfile */,
+				410D9A7E2B0D394F002B284E /* Settings */,
 			);
 			productName = SampleApp;
 			productReference = 41F3A7412B0420DE0059BCB0 /* SampleApp.app */;
@@ -376,6 +388,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		410D9A782B0D3250002B284E /* UILayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UILayer;
+		};
+		410D9A7A2B0D35CA002B284E /* NetworkLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkLayer;
+		};
+		410D9A7C2B0D3721002B284E /* UserProfile */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UserProfile;
+		};
+		410D9A7E2B0D394F002B284E /* Settings */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Settings;
+		};
 		4162EC042B04233400E4E086 /* ApplicationLayer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ApplicationLayer;
