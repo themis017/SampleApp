@@ -1,7 +1,7 @@
 import XCTest
-@testable import Settings
+@testable import UserProfileFeature
 
-final class SettingsTests: XCTestCase {
+final class UserProfileFeatureTests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest
