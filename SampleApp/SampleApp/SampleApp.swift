@@ -11,9 +11,6 @@ import SwiftUI
 @main
 struct SampleApp: App {
     
-//    @UIApplicationDelegateAdaptor
-//    var delegate: AppDelegate
-    
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     
     var body: some Scene {
