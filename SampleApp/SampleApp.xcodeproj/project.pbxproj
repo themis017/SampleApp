@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		410506442B1113590015B2FA /* SettingsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 410506432B1113590015B2FA /* SettingsFeature */; };
 		410506462B1113BA0015B2FA /* UserProfileFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 410506452B1113BA0015B2FA /* UserProfileFeature */; };
+		410506492B111AB40015B2FA /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 410506482B111AB40015B2FA /* Resolver */; };
 		410D9A752B0D2A4E002B284E /* SampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410D9A742B0D2A4E002B284E /* SampleApp.swift */; };
 		410D9A772B0D2C76002B284E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410D9A762B0D2C76002B284E /* ContentView.swift */; };
 		410D9A792B0D3250002B284E /* UILayer in Frameworks */ = {isa = PBXBuildFile; productRef = 410D9A782B0D3250002B284E /* UILayer */; };
@@ -36,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				410506492B111AB40015B2FA /* Resolver in Frameworks */,
 				410506442B1113590015B2FA /* SettingsFeature in Frameworks */,
 				410D9A7B2B0D35CA002B284E /* NetworkLayer in Frameworks */,
 				410D9A792B0D3250002B284E /* UILayer in Frameworks */,
@@ -107,6 +109,7 @@
 				410D9A7A2B0D35CA002B284E /* NetworkLayer */,
 				410506432B1113590015B2FA /* SettingsFeature */,
 				410506452B1113BA0015B2FA /* UserProfileFeature */,
+				410506482B111AB40015B2FA /* Resolver */,
 			);
 			productName = SampleApp;
 			productReference = 41F3A7412B0420DE0059BCB0 /* SampleApp.app */;
@@ -136,6 +139,9 @@
 				Base,
 			);
 			mainGroup = 41F3A7382B0420DE0059BCB0;
+			packageReferences = (
+				410506472B111AB40015B2FA /* XCRemoteSwiftPackageReference "Resolver" */,
+			);
 			productRefGroup = 41F3A7422B0420DE0059BCB0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -389,6 +395,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		410506472B111AB40015B2FA /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver";
+			requirement = {
+				kind = exactVersion;
+				version = 1.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		410506432B1113590015B2FA /* SettingsFeature */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -397,6 +414,11 @@
 		410506452B1113BA0015B2FA /* UserProfileFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UserProfileFeature;
+		};
+		410506482B111AB40015B2FA /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 410506472B111AB40015B2FA /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
 		};
 		410D9A782B0D3250002B284E /* UILayer */ = {
 			isa = XCSwiftPackageProductDependency;

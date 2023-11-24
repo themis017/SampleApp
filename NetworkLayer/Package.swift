@@ -18,15 +18,14 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(name: "ApplicationLayer", path: "../ApplicationLayer"),
-//        .package(url: "https://github.com/hmlongco/Resolver.git", exact: "1.5.0"),
+        .package(url: "https://github.com/hmlongco/Resolver.git", exact: "1.5.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "NetworkLayer",
-            dependencies: ["ApplicationLayer"]),
-//            dependencies: ["ApplicationLayer", "Resolver"]),
+            dependencies: ["ApplicationLayer", "Resolver"]),
         .testTarget(
             name: "NetworkLayerTests",
             dependencies: ["NetworkLayer"]),
