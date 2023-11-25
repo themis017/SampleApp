@@ -8,7 +8,7 @@ public struct ApplicationLayer: AppFeatureModule {
     
     public var feature: AppFeature {
         AppFeature("ApplicationCore") { container in
-            
+            print("Registers - ApplicationLayer")
         }
     }
 }

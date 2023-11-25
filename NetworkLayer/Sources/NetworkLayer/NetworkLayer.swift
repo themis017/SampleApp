@@ -9,7 +9,7 @@ public struct NetworkLayer: AppFeatureModule {
     
     public var feature: AppFeature {
         AppFeature("NetworkLayer") { container in
-
+            print("Registers - NetworkLayer")
         }
     }
 }

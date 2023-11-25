@@ -16,7 +16,7 @@ struct iOSApplication: AppFeatureModule {
     init() {
         
 #if DEBUG
-        print("Loaded environment configuration.")
+        print("Loaded.")
 #endif
     }
     

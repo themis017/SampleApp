@@ -9,7 +9,7 @@ public struct SettingsFeature: AppFeatureModule {
     
     public var feature: AppFeature {
         AppFeature("SettingsFeature") { container in
-
+            print("Registers - SettingsFeature")
         }
     }
 }

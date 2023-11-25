@@ -9,7 +9,7 @@ public struct UILayer: AppFeatureModule {
     
     public var feature: AppFeature {
         AppFeature("UILayer") { container in
-
+            print("Registers - UILayer")
         }
     }
 }

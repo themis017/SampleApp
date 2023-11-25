@@ -9,7 +9,7 @@ public struct UserProfileFeature: AppFeatureModule {
     
     public var feature: AppFeature {
         AppFeature("UserProfileFeature") { container in
-
+            print("Registers - UserProfileFeature")
         }
     }
 }
