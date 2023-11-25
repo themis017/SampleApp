@@ -27,23 +27,10 @@ struct iOSApplication: AppFeatureModule {
     }
     
     func willLaunchApplication() {
-//        // Prewarm User Defaults
-//        UserDefaultsStorage.applicationLaunched()
+
     }
-    
-//    func registerSystemServices(into systemServiceExecutor: SystemServiceExecutor) {
-//        systemServiceExecutor.register(service: SystemMonitoringService())
-//    }
-//    
-//    func didLaunch(application: Application) {
-//        // Prewarm Dependencies
-//        let _ = Resolver.resolve(PrincipalUserResolverService.self)
-//        let _ = Resolver.resolve(BrazeEventsService.self)
-//        let _ = Resolver.resolve(UserTrackingService.self)
-//        let _ = Resolver.resolve(AppIdentityService.self)
-//        
-//        // Notify service executor that system composition is complete
-//        iOSSystemServiceExecutor.shared.willLaunch()
-//        DeveloperToolsInspectors.shared.notifyLaunched()
-//    }
+
+    func didLaunch(application: Application) {
+
+    }
 }

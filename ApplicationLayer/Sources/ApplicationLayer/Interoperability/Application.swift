@@ -12,8 +12,8 @@ public class Application {
     
     private let featureModules: [AppFeatureModule]
     
-    public init(@CollectionBuilder<AppFeatureModule> featureModules: () -> [AppFeatureModule]) {
-        self.featureModules = featureModules()
+    public init(featureModules: [AppFeatureModule]) {
+        self.featureModules = featureModules
     }
     
     public func launch() {
@@ -28,10 +28,6 @@ public class Application {
             print("Launched iOS Application.")
             
             DispatchQueue.main.async {
-                if let systemServiceExecutor = Resolver.optional(SystemServiceExecutor.self) {
-                    self.featureModules.forEach({ $0.registerSystemServices(into: systemServiceExecutor) })
-                }
-            
                 self.featureModules.forEach({ $0.didLaunch(application: self) })
             }
         }
