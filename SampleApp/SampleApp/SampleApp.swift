@@ -20,6 +20,8 @@ struct SampleApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self)
     private var appDelegate
     
+    private let appRootRouter: AppRootRouting
+    
     let application = Application(
         featureModules: [
             
@@ -38,16 +40,22 @@ struct SampleApp: App {
     )
     
     init() {
-        // Launch Application and Feature Modules
+        // MARK:  Launch Application and Feature Modules
         application.launch()
         
-        // UIViewAppearance Modifications
+        // MARK: UIViewAppearance Modifications
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .blue
+        
+        // MARK: App initial routing
+        let presentation = PushPresentation()
+        let appRootRouter = AppRootRouter(rootPresentation: presentation)
+        self.appRootRouter = appRootRouter
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(appRootRouter: appRootRouter)
+                .preferredColorScheme(.light)
         }
     }
 }

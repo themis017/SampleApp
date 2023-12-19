@@ -16,7 +16,7 @@ public class UserProfileViewModel: ObservableObject {
     
     private let userProfileUseCase: UserProfileUseCaseProviding
    
-    init(userProfileUseCase: UserProfileUseCaseProviding) {
+    public init(userProfileUseCase: UserProfileUseCaseProviding) {
         self.userProfileUseCase = userProfileUseCase
     }
     

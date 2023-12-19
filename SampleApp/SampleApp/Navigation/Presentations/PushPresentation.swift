@@ -33,6 +33,7 @@ extension PushPresentation: Presentation {
         self.from = from
         openCompletionHandler = completion
         navigationController?.delegate = self
+//        navigationController?.present(viewController, animated: isAnimated, completion: completion)
         navigationController?.pushViewController(viewController, animated: isAnimated)
     }
 

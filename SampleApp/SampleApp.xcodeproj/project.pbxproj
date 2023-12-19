@@ -21,10 +21,12 @@
 		411E1E302B31CE07008E6F49 /* ModalPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411E1E2F2B31CE07008E6F49 /* ModalPresentation.swift */; };
 		411E1E322B31CE29008E6F49 /* PushPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411E1E312B31CE29008E6F49 /* PushPresentation.swift */; };
 		412503E12B11E40C001DDCE5 /* iOSApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412503E02B11E40C001DDCE5 /* iOSApplication.swift */; };
+		412FF9252B3208ED00DCF929 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412FF9242B3208ED00DCF929 /* HomeRouter.swift */; };
 		4162EC052B04233400E4E086 /* ApplicationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4162EC042B04233400E4E086 /* ApplicationLayer */; };
 		41E490CA2B31E35F00A5BFFF /* UserProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E490C92B31E35F00A5BFFF /* UserProfileRouter.swift */; };
 		41E490CC2B31E47E00A5BFFF /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E490CB2B31E47E00A5BFFF /* SettingsRouter.swift */; };
 		41E490CE2B31FFDC00A5BFFF /* HomeFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 41E490CD2B31FFDC00A5BFFF /* HomeFeature */; };
+		41F1C2E32B320462002D60BD /* AppRootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F1C2E22B320462002D60BD /* AppRootRouter.swift */; };
 		41F3A7452B0420DE0059BCB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F3A7442B0420DE0059BCB0 /* AppDelegate.swift */; };
 		41F3A7472B0420DE0059BCB0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F3A7462B0420DE0059BCB0 /* SceneDelegate.swift */; };
 		41F3A74E2B0420DF0059BCB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41F3A74D2B0420DF0059BCB0 /* Assets.xcassets */; };
@@ -41,8 +43,10 @@
 		411E1E2F2B31CE07008E6F49 /* ModalPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentation.swift; sourceTree = "<group>"; };
 		411E1E312B31CE29008E6F49 /* PushPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushPresentation.swift; sourceTree = "<group>"; };
 		412503E02B11E40C001DDCE5 /* iOSApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApplication.swift; sourceTree = "<group>"; };
+		412FF9242B3208ED00DCF929 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		41E490C92B31E35F00A5BFFF /* UserProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRouter.swift; sourceTree = "<group>"; };
 		41E490CB2B31E47E00A5BFFF /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		41F1C2E22B320462002D60BD /* AppRootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootRouter.swift; sourceTree = "<group>"; };
 		41F3A7412B0420DE0059BCB0 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41F3A7442B0420DE0059BCB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41F3A7462B0420DE0059BCB0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 				411E1E272B31CAF5008E6F49 /* BaseRouter.swift */,
 				41E490C92B31E35F00A5BFFF /* UserProfileRouter.swift */,
 				41E490CB2B31E47E00A5BFFF /* SettingsRouter.swift */,
+				41F1C2E22B320462002D60BD /* AppRootRouter.swift */,
+				412FF9242B3208ED00DCF929 /* HomeRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -226,10 +232,12 @@
 				41F3A7452B0420DE0059BCB0 /* AppDelegate.swift in Sources */,
 				411E1E322B31CE29008E6F49 /* PushPresentation.swift in Sources */,
 				411E1E2E2B31CDE6008E6F49 /* EmptyPresentation.swift in Sources */,
+				412FF9252B3208ED00DCF929 /* HomeRouter.swift in Sources */,
 				411E1E282B31CAF5008E6F49 /* BaseRouter.swift in Sources */,
 				410D9A772B0D2C76002B284E /* ContentView.swift in Sources */,
 				41F3A7472B0420DE0059BCB0 /* SceneDelegate.swift in Sources */,
 				41E490CA2B31E35F00A5BFFF /* UserProfileRouter.swift in Sources */,
+				41F1C2E32B320462002D60BD /* AppRootRouter.swift in Sources */,
 				411E1E262B31BC8C008E6F49 /* Router.swift in Sources */,
 				411E1E2C2B31CDC6008E6F49 /* Presentation.swift in Sources */,
 				41E490CC2B31E47E00A5BFFF /* SettingsRouter.swift in Sources */,

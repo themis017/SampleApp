@@ -1,5 +1,5 @@
 //
-//  UserProfileView.swift
+//  HomeView.swift
 //
 //
 //  Created by Themis Makedas on 19/12/23.
@@ -8,25 +8,25 @@
 import Foundation
 import SwiftUI
 
-public struct UserProfileView: View {
+public struct HomeView: View {
     
     @ObservedObject
-    private var viewModel: UserProfileViewModel
+    private var viewModel: HomeViewModel
     
-    public init(viewModel: UserProfileViewModel) {
+    public init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
     }
     
     public var body: some View {
         
         VStack(spacing: 16) {
-            Text("UserProfileView")
+            Text("HomeView")
                 .padding(16)
                 .foregroundColor(.white)
-                .background(Color.blue)
+                .background(Color.yellow)
             
             Button {
-                viewModel.perform(.showFirstSettings)
+                viewModel.perform(.showProfile)
             } label: {
                 Text("Next")
                     .padding(24)
@@ -40,10 +40,10 @@ public struct UserProfileView: View {
 
 #if DEBUG
 
-struct UserProfileView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     
     static var previews: some View {
-        UserProfileView(viewModel: .previewViewModel())
+        HomeView(viewModel: .previewViewModel())
     }
 }
 
