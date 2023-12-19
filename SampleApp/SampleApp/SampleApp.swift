@@ -10,6 +10,7 @@ import SwiftUI
 import ApplicationLayer
 import NetworkLayer
 import UILayer
+import HomeFeature
 import UserProfileFeature
 import SettingsFeature
 
@@ -30,8 +31,9 @@ struct SampleApp: App {
             UILayer(),
             
             // Features
-            SettingsFeature(),
-            UserProfileFeature()
+            HomeFeature(),
+            UserProfileFeature(),
+            SettingsFeature()
         ]
     )
     

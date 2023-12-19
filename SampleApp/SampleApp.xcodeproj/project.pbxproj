@@ -24,6 +24,7 @@
 		4162EC052B04233400E4E086 /* ApplicationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4162EC042B04233400E4E086 /* ApplicationLayer */; };
 		41E490CA2B31E35F00A5BFFF /* UserProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E490C92B31E35F00A5BFFF /* UserProfileRouter.swift */; };
 		41E490CC2B31E47E00A5BFFF /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E490CB2B31E47E00A5BFFF /* SettingsRouter.swift */; };
+		41E490CE2B31FFDC00A5BFFF /* HomeFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 41E490CD2B31FFDC00A5BFFF /* HomeFeature */; };
 		41F3A7452B0420DE0059BCB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F3A7442B0420DE0059BCB0 /* AppDelegate.swift */; };
 		41F3A7472B0420DE0059BCB0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F3A7462B0420DE0059BCB0 /* SceneDelegate.swift */; };
 		41F3A74E2B0420DF0059BCB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41F3A74D2B0420DF0059BCB0 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				410506492B111AB40015B2FA /* Resolver in Frameworks */,
+				41E490CE2B31FFDC00A5BFFF /* HomeFeature in Frameworks */,
 				410506442B1113590015B2FA /* SettingsFeature in Frameworks */,
 				410D9A7B2B0D35CA002B284E /* NetworkLayer in Frameworks */,
 				410D9A792B0D3250002B284E /* UILayer in Frameworks */,
@@ -161,6 +163,7 @@
 				410506432B1113590015B2FA /* SettingsFeature */,
 				410506452B1113BA0015B2FA /* UserProfileFeature */,
 				410506482B111AB40015B2FA /* Resolver */,
+				41E490CD2B31FFDC00A5BFFF /* HomeFeature */,
 			);
 			productName = SampleApp;
 			productReference = 41F3A7412B0420DE0059BCB0 /* SampleApp.app */;
@@ -491,6 +494,10 @@
 		4162EC042B04233400E4E086 /* ApplicationLayer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ApplicationLayer;
+		};
+		41E490CD2B31FFDC00A5BFFF /* HomeFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HomeFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

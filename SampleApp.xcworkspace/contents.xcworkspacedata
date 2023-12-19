@@ -11,10 +11,13 @@
       location = "group:UILayer">
    </FileRef>
    <FileRef
-      location = "group:SettingsFeature">
+      location = "group:HomeFeature">
    </FileRef>
    <FileRef
       location = "group:UserProfileFeature">
+   </FileRef>
+   <FileRef
+      location = "group:SettingsFeature">
    </FileRef>
    <FileRef
       location = "group:SampleApp/SampleApp.xcodeproj">
