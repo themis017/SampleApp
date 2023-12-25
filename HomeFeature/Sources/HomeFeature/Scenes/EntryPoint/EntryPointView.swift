@@ -11,10 +11,11 @@ import ApplicationLayer
 
 public struct EntryPointView: View {
     
-    private var appRootRouter: AppRootRouting
+    @ObservedObject
+    private var viewModel: EntryPointViewModel
     
-    public init(appRootRouter: AppRootRouting) {
-        self.appRootRouter = appRootRouter
+    public init(viewModel: EntryPointViewModel) {
+        self.viewModel = viewModel
     }
     
     public var body: some View {
@@ -23,7 +24,9 @@ public struct EntryPointView: View {
             Color.gray
         }
         .onAppear {
-            appRootRouter.showHome()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                viewModel.perform(.showHome)
+            }
         }
     }
 }

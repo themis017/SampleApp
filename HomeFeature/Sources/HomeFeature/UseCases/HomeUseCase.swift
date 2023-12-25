@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ApplicationLayer
 
 public protocol HomeUseCaseProviding {
     
@@ -14,12 +15,14 @@ public protocol HomeUseCaseProviding {
 
 public class HomeUseCase: HomeUseCaseProviding {
     
-    public init() {
-        
+    private let homeRouter: HomeRouting
+    
+    public init(homeRouter: HomeRouting) {
+        self.homeRouter = homeRouter
     }
     
     public func showProfileScene() {
-        
+        homeRouter.showUserProfileScene()
     }
     
 }

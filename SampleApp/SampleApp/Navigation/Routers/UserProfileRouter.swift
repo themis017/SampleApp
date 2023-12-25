@@ -10,21 +10,21 @@ import SwiftUI
 import ApplicationLayer
 import SettingsFeature
 
-class UserProfileRouter: BaseRouter, UserProfileRouting {
+class UserProfileRouter: UserProfileRouting {
+    
+    let navigationController: UINavigationController
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
     
     @MainActor
     func showSettings() {
-        let presentation = PushPresentation()
-        let baseRouter = BaseRouter(rootPresentation: presentation)
-        
-        let useCase = FirstSettingsUseCase()
-        let viewModel = FirstSettingsViewModel(firstSettingsUseCase: useCase)
-        let view = FirstSettingsView(viewModel: viewModel)
+        let router = SettingsRouter(navigationController: navigationController)
+        let useCase = SettingsUseCase(settingsRouter: router)
+        let viewModel = SettingsViewModel(settingsUseCase: useCase)
+        let view = SettingsView(viewModel: viewModel)
         let viewController = UIHostingController(rootView: view)
-        
-        let navigationController = UINavigationController(rootViewController: viewController)
-        baseRouter.root = viewController
-        
-        route(to: navigationController, as: presentation)
+        self.navigationController.pushViewController(viewController, animated: true)
     }
 }

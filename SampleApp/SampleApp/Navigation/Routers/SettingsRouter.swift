@@ -6,9 +6,16 @@
 //
 
 import Foundation
+import SwiftUI
 import ApplicationLayer
 
-class SettingsRouter: BaseRouter, SettingsRouting {
+class SettingsRouter: SettingsRouting {
+    
+    let navigationController: UINavigationController
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
     
     func showFirstSettings() {
         

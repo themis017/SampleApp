@@ -1,5 +1,5 @@
 //
-//  FirstSettingsView.swift
+//  SettingsView.swift
 //
 //
 //  Created by Themis Makedas on 19/12/23.
@@ -8,18 +8,18 @@
 import Foundation
 import SwiftUI
 
-public struct FirstSettingsView: View {
+public struct SettingsView: View {
     
     @ObservedObject
-    private var viewModel: FirstSettingsViewModel
+    private var viewModel: SettingsViewModel
     
-    public init(viewModel: FirstSettingsViewModel) {
+    public init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
     }
     
     public var body: some View {
         VStack(spacing: 16) {
-            Text("FirstSettingsView")
+            Text("SettingsView")
                 .padding(16)
                 .foregroundColor(.white)
                 .background(Color.red)
@@ -39,10 +39,10 @@ public struct FirstSettingsView: View {
 
 #if DEBUG
 
-struct FirstSettingsView_Previews: PreviewProvider {
+struct SettingsView_Previews: PreviewProvider {
     
     static var previews: some View {
-        FirstSettingsView(viewModel: .previewViewModel())
+        SettingsView(viewModel: .previewViewModel())
     }
 }
 

@@ -8,23 +8,42 @@
 import Foundation
 import SwiftUI
 import ApplicationLayer
+import HomeFeature
 import UserProfileFeature
 
-class HomeRouter: BaseRouter, HomeRouting {
+class HomeRouter: HomeRouting {
+    
+    let navigationController: UINavigationController
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
     
     @MainActor
-    func showProfile() {
-        let presentation = PushPresentation()
-        let baseRouter = BaseRouter(rootPresentation: presentation)
-        
-        let useCase = UserProfileUseCase()
+    func showEntryPointScene() {
+        let useCase = EntryPointUseCase(homeRouter: self)
+        let viewModel = EntryPointViewModel(entryPointUseCase: useCase)
+        let view = EntryPointView(viewModel: viewModel)
+        let viewController = UIHostingController(rootView: view)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    @MainActor
+    func showHomeScene() {
+        let useCase = HomeUseCase(homeRouter: self)
+        let viewModel = HomeViewModel(homeUseCase: useCase)
+        let view = HomeView(viewModel: viewModel)
+        let viewController = UIHostingController(rootView: view)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    @MainActor
+    func showUserProfileScene() {
+        let router = UserProfileRouter(navigationController: navigationController)
+        let useCase = UserProfileUseCase(userProfileRouter: router)
         let viewModel = UserProfileViewModel(userProfileUseCase: useCase)
         let view = UserProfileView(viewModel: viewModel)
         let viewController = UIHostingController(rootView: view)
-        
-        let navigationController = UINavigationController(rootViewController: viewController)
-        baseRouter.root = viewController
-        
-        route(to: navigationController, as: presentation)
+        self.navigationController.pushViewController(viewController, animated: true)
     }
 }

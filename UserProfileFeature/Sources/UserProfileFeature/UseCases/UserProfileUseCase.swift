@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ApplicationLayer
 
 public protocol UserProfileUseCaseProviding {
     
@@ -14,12 +15,14 @@ public protocol UserProfileUseCaseProviding {
 
 public class UserProfileUseCase: UserProfileUseCaseProviding {
     
-    public init() {
-        
+    private let userProfileRouter: UserProfileRouting
+    
+    public init(userProfileRouter: UserProfileRouting) {
+        self.userProfileRouter = userProfileRouter
     }
     
     public func showSettingsScene() {
-        
+        userProfileRouter.showSettings()
     }
     
 }
