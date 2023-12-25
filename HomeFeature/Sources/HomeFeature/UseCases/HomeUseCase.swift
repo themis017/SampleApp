@@ -15,14 +15,15 @@ public protocol HomeUseCaseProviding {
 
 public class HomeUseCase: HomeUseCaseProviding {
     
-    private let homeRouter: HomeRouting
+    private let homeRouter: any HomeRouting
     
-    public init(homeRouter: HomeRouting) {
+    public init(homeRouter: any HomeRouting) {
         self.homeRouter = homeRouter
     }
     
     public func showProfileScene() {
-        homeRouter.showUserProfileScene()
+//        homeRouter.showUserProfileScene()
+        homeRouter.popScene()
     }
     
 }

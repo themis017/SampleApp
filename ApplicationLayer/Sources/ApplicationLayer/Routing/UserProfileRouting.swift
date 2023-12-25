@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol UserProfileRouting {
+public protocol UserProfileRouting: Routing {
     
     func showSettings()
 }

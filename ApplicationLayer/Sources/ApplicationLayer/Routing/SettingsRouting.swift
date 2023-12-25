@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol SettingsRouting {
+public protocol SettingsRouting: Routing {
     
     func showFirstSettings()
     func showSecondSettings()

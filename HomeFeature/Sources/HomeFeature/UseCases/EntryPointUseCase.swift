@@ -15,9 +15,9 @@ public protocol EntryPointUseCaseProviding {
 
 public class EntryPointUseCase: EntryPointUseCaseProviding {
     
-    private let homeRouter: HomeRouting
+    private let homeRouter: any HomeRouting
     
-    public init(homeRouter: HomeRouting) {
+    public init(homeRouter: any HomeRouting) {
         self.homeRouter = homeRouter
     }
     

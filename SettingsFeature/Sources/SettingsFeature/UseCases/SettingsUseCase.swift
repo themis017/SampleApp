@@ -15,9 +15,9 @@ public protocol SettingsUseCaseProviding {
 
 public class SettingsUseCase: SettingsUseCaseProviding {
     
-    private let settingsRouter: SettingsRouting
+    private let settingsRouter: any SettingsRouting
     
-    public init(settingsRouter: SettingsRouting) {
+    public init(settingsRouter: any SettingsRouting) {
         self.settingsRouter = settingsRouter
     }
     

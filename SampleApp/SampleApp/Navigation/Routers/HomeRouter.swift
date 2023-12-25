@@ -11,12 +11,10 @@ import ApplicationLayer
 import HomeFeature
 import UserProfileFeature
 
-class HomeRouter: HomeRouting {
-    
-    let navigationController: UINavigationController
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+class HomeRouter: BaseRouter, HomeRouting {
+        
+    override init(navigationController: UINavigationController) {
+        super.init(navigationController: navigationController)
     }
     
     @MainActor

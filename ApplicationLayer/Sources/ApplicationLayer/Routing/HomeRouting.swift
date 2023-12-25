@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol HomeRouting {
+public protocol HomeRouting: Routing {
     
     func showEntryPointScene()
     func showHomeScene()

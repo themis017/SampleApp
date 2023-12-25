@@ -17,6 +17,7 @@
 		412503E12B11E40C001DDCE5 /* iOSApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412503E02B11E40C001DDCE5 /* iOSApplication.swift */; };
 		412FF9252B3208ED00DCF929 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412FF9242B3208ED00DCF929 /* HomeRouter.swift */; };
 		4162EC052B04233400E4E086 /* ApplicationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4162EC042B04233400E4E086 /* ApplicationLayer */; };
+		41B4E93C2B3A3D4D00DFF8BB /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B4E93B2B3A3D4D00DFF8BB /* BaseRouter.swift */; };
 		41E490CA2B31E35F00A5BFFF /* UserProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E490C92B31E35F00A5BFFF /* UserProfileRouter.swift */; };
 		41E490CC2B31E47E00A5BFFF /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E490CB2B31E47E00A5BFFF /* SettingsRouter.swift */; };
 		41E490CE2B31FFDC00A5BFFF /* HomeFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 41E490CD2B31FFDC00A5BFFF /* HomeFeature */; };
@@ -31,6 +32,7 @@
 		410D9A762B0D2C76002B284E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		412503E02B11E40C001DDCE5 /* iOSApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApplication.swift; sourceTree = "<group>"; };
 		412FF9242B3208ED00DCF929 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		41B4E93B2B3A3D4D00DFF8BB /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		41E490C92B31E35F00A5BFFF /* UserProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRouter.swift; sourceTree = "<group>"; };
 		41E490CB2B31E47E00A5BFFF /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		41F3A7412B0420DE0059BCB0 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +67,7 @@
 				41E490C92B31E35F00A5BFFF /* UserProfileRouter.swift */,
 				41E490CB2B31E47E00A5BFFF /* SettingsRouter.swift */,
 				412FF9242B3208ED00DCF929 /* HomeRouter.swift */,
+				41B4E93B2B3A3D4D00DFF8BB /* BaseRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				410D9A752B0D2A4E002B284E /* SampleApp.swift in Sources */,
+				41B4E93C2B3A3D4D00DFF8BB /* BaseRouter.swift in Sources */,
 				41F3A7452B0420DE0059BCB0 /* AppDelegate.swift in Sources */,
 				412FF9252B3208ED00DCF929 /* HomeRouter.swift in Sources */,
 				410D9A772B0D2C76002B284E /* ContentView.swift in Sources */,

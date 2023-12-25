@@ -15,9 +15,9 @@ public protocol UserProfileUseCaseProviding {
 
 public class UserProfileUseCase: UserProfileUseCaseProviding {
     
-    private let userProfileRouter: UserProfileRouting
+    private let userProfileRouter: any UserProfileRouting
     
-    public init(userProfileRouter: UserProfileRouting) {
+    public init(userProfileRouter: any UserProfileRouting) {
         self.userProfileRouter = userProfileRouter
     }
     

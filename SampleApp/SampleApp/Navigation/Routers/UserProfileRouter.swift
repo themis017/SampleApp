@@ -10,12 +10,10 @@ import SwiftUI
 import ApplicationLayer
 import SettingsFeature
 
-class UserProfileRouter: UserProfileRouting {
+class UserProfileRouter: BaseRouter, UserProfileRouting {
     
-    let navigationController: UINavigationController
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    override init(navigationController: UINavigationController) {
+        super.init(navigationController: navigationController)
     }
     
     @MainActor
