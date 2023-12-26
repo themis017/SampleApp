@@ -11,10 +11,7 @@ import ApplicationLayer
 struct ContentView: View {
    
     var body: some View {
-        VStack {
-            
-        }
-        .preferredColorScheme(.light)
+        EmptyView()
     }
 }
 
