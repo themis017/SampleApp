@@ -13,6 +13,8 @@ public struct HomeView: View {
     @ObservedObject
     private var viewModel: HomeViewModel
     
+    public static let sceneIdentity = "HomeView"
+    
     public init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
     }

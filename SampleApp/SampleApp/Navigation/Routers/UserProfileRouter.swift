@@ -23,6 +23,7 @@ class UserProfileRouter: BaseRouter, UserProfileRouting {
         let viewModel = SettingsViewModel(settingsUseCase: useCase)
         let view = SettingsView(viewModel: viewModel)
         let viewController = UIHostingController(rootView: view)
+        viewController.title = SettingsView.sceneIdentity
         self.navigationController.pushViewController(viewController, animated: true)
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import HomeFeature
 
 extension UINavigationController: UIGestureRecognizerDelegate {
 
@@ -16,6 +17,15 @@ extension UINavigationController: UIGestureRecognizerDelegate {
     }
 
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return viewControllers.count > 1
+        guard viewControllers.count > 1 else {
+            return false
+        }
+        
+        guard let lastViewControllerTitle = viewControllers.last?.title,
+              lastViewControllerTitle != HomeView.sceneIdentity else {
+            return false
+        }
+        
+        return true
     }
 }

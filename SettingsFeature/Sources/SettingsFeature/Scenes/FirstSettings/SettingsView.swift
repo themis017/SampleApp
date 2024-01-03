@@ -13,6 +13,8 @@ public struct SettingsView: View {
     @ObservedObject
     private var viewModel: SettingsViewModel
     
+    public static let sceneIdentity = "SettingsView"
+    
     public init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
     }

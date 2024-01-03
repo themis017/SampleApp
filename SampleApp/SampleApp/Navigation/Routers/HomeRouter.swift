@@ -23,6 +23,7 @@ class HomeRouter: BaseRouter, HomeRouting {
         let viewModel = EntryPointViewModel(entryPointUseCase: useCase)
         let view = EntryPointView(viewModel: viewModel)
         let viewController = UIHostingController(rootView: view)
+        viewController.title = EntryPointView.sceneIdentity
         self.navigationController.viewControllers.removeAll()
         self.navigationController.pushViewController(viewController, animated: true)
     }
@@ -33,6 +34,7 @@ class HomeRouter: BaseRouter, HomeRouting {
         let viewModel = HomeViewModel(homeUseCase: useCase)
         let view = HomeView(viewModel: viewModel)
         let viewController = UIHostingController(rootView: view)
+        viewController.title = HomeView.sceneIdentity
         self.navigationController.viewControllers.removeAll()
         self.navigationController.pushViewController(viewController, animated: true)
     }
@@ -44,6 +46,7 @@ class HomeRouter: BaseRouter, HomeRouting {
         let viewModel = UserProfileViewModel(userProfileUseCase: useCase)
         let view = UserProfileView(viewModel: viewModel)
         let viewController = UIHostingController(rootView: view)
+        viewController.title = UserProfileView.sceneIdentity
         self.navigationController.pushViewController(viewController, animated: true)
     }
 }

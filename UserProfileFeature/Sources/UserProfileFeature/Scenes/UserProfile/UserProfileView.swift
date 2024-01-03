@@ -13,6 +13,8 @@ public struct UserProfileView: View {
     @ObservedObject
     private var viewModel: UserProfileViewModel
     
+    public static let sceneIdentity = "UserProfileView"
+    
     public init(viewModel: UserProfileViewModel) {
         self.viewModel = viewModel
     }
