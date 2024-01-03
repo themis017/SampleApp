@@ -22,8 +22,8 @@ public class HomeUseCase: HomeUseCaseProviding {
     }
     
     public func showProfileScene() {
-//        homeRouter.showUserProfileScene()
-        homeRouter.popScene()
+        homeRouter.showUserProfileScene()
+//        homeRouter.popScene()
     }
     
 }

@@ -17,6 +17,7 @@
 		412503E12B11E40C001DDCE5 /* iOSApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412503E02B11E40C001DDCE5 /* iOSApplication.swift */; };
 		412FF9252B3208ED00DCF929 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412FF9242B3208ED00DCF929 /* HomeRouter.swift */; };
 		4162EC052B04233400E4E086 /* ApplicationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4162EC042B04233400E4E086 /* ApplicationLayer */; };
+		417422B42B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417422B32B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift */; };
 		41B4E93C2B3A3D4D00DFF8BB /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B4E93B2B3A3D4D00DFF8BB /* BaseRouter.swift */; };
 		41E490CA2B31E35F00A5BFFF /* UserProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E490C92B31E35F00A5BFFF /* UserProfileRouter.swift */; };
 		41E490CC2B31E47E00A5BFFF /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E490CB2B31E47E00A5BFFF /* SettingsRouter.swift */; };
@@ -32,6 +33,7 @@
 		410D9A762B0D2C76002B284E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		412503E02B11E40C001DDCE5 /* iOSApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApplication.swift; sourceTree = "<group>"; };
 		412FF9242B3208ED00DCF929 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		417422B32B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+UIGestureRecognizer.swift"; sourceTree = "<group>"; };
 		41B4E93B2B3A3D4D00DFF8BB /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		41E490C92B31E35F00A5BFFF /* UserProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRouter.swift; sourceTree = "<group>"; };
 		41E490CB2B31E47E00A5BFFF /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 		411E1E292B31CBCD008E6F49 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				417422B32B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift */,
 				411E1E242B31BC26008E6F49 /* Routers */,
 			);
 			path = Navigation;
@@ -207,6 +210,7 @@
 				41F3A7452B0420DE0059BCB0 /* AppDelegate.swift in Sources */,
 				412FF9252B3208ED00DCF929 /* HomeRouter.swift in Sources */,
 				410D9A772B0D2C76002B284E /* ContentView.swift in Sources */,
+				417422B42B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift in Sources */,
 				41F3A7472B0420DE0059BCB0 /* SceneDelegate.swift in Sources */,
 				41E490CA2B31E35F00A5BFFF /* UserProfileRouter.swift in Sources */,
 				41E490CC2B31E47E00A5BFFF /* SettingsRouter.swift in Sources */,
