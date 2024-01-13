@@ -33,7 +33,7 @@ public class UserProfileUseCase: UserProfileUseCaseProviding {
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         
-        self.appDataUsername = Observable(initialValue: AppData.username)
+        self.appDataUsername = Observable(initialValue: AppData.shared.value(of: .username) ?? "")
         
         self.userProfileRouter = userProfileRouter
     }
@@ -47,7 +47,7 @@ public class UserProfileUseCase: UserProfileUseCaseProviding {
             appDataUsername.value = username
         }
         
-        AppData.username = username
+        AppData.shared.save(username, to: .username)
     }
     
 }

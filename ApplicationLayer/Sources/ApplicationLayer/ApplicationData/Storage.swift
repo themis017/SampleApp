@@ -13,17 +13,10 @@ public struct Storage<T: Codable> {
     
     private let storageType: AppData.StorageType
     private let defaultValue: T
-    
-    private let subject: PassthroughSubject<T, Never>
-    
-    public var publisher: AnyPublisher<T, Never> {
-        subject.eraseToAnyPublisher()
-    }
 
     init(storageType: AppData.StorageType, defaultValue: T) {
         self.storageType = storageType
         self.defaultValue = defaultValue
-        self.subject = PassthroughSubject()
     }
 
     public var wrappedValue: T {
@@ -38,7 +31,6 @@ public struct Storage<T: Codable> {
         set {
             let data = try? JSONEncoder().encode(newValue)
             UserDefaults.standard.set(data, forKey: storageType.key)
-            subject.send(newValue)
         }
     }
 }

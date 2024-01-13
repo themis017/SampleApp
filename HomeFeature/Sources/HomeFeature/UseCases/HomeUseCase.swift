@@ -35,13 +35,13 @@ public class HomeUseCase: HomeUseCaseProviding {
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         
-        self.appDataUsername = Observable(initialValue: AppData.username)
+//        self.appDataUsername = Observable(initialValue: AppData.username)
+        self.appDataUsername = Observable(initialValue: AppData.shared.value(of: .username) ?? "")
         
         self.homeRouter = homeRouter
         
-        AppData
-            .username
-            .publisher
+        AppData.shared
+            .usernamePublisher
             .sink { newValue in
                 print("# username: \(newValue)")
             }
