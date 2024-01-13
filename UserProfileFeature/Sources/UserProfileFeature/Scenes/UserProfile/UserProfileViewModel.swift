@@ -14,6 +14,7 @@ public class UserProfileViewModel: ViewModel {
     
     public enum Action {
         case showFirstSettings
+        case saveUsername
     }
     
     @Published
@@ -22,12 +23,17 @@ public class UserProfileViewModel: ViewModel {
     @Published
     var randomText: String = ""
     
+    @Published
+    var newUsername: String
+    
     private let userProfileUseCase: UserProfileUseCaseProviding
     
     private var subscriptions: Set<AnyCancellable> = []
    
     public init(userProfileUseCase: UserProfileUseCaseProviding) {
         self.randomProperty = userProfileUseCase.randomProperty.value
+        self.newUsername = userProfileUseCase.appDataUsername.value
+        
         self.userProfileUseCase = userProfileUseCase
         
         bind(\.randomProperty, to: userProfileUseCase.randomProperty)
@@ -35,12 +41,15 @@ public class UserProfileViewModel: ViewModel {
         
         forward($randomText, to: userProfileUseCase.randomText)
             .store(in: &subscriptions)
+
     }
     
     public func perform(_ action: Action) {
         switch action {
         case .showFirstSettings:
             userProfileUseCase.showSettingsScene()
+        case .saveUsername:
+            userProfileUseCase.saveUsername(to: newUsername)
         }
     }
 }

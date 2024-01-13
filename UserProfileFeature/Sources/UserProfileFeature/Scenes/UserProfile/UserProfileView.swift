@@ -27,7 +27,14 @@ public struct UserProfileView: View {
                 .foregroundColor(.white)
                 .background(Color.blue)
             
+            TextField("...", text: $viewModel.newUsername)
+                .padding(8)
+                .clipShape(
+                    RoundedRectangle(cornerRadius: 16)
+                )
+            
             Button {
+                viewModel.perform(.saveUsername)
                 viewModel.perform(.showFirstSettings)
             } label: {
                 Text("Next")

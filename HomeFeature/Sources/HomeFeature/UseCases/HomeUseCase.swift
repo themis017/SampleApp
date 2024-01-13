@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import ApplicationLayer
 import UILayer
 
@@ -26,6 +27,8 @@ public class HomeUseCase: HomeUseCaseProviding {
     
     public let appDataUsername: Observable<String>
     
+    private var subscriptions: Set<AnyCancellable> = []
+    
     private let homeRouter: any HomeRouting
     
     public init(homeRouter: any HomeRouting) {
@@ -35,6 +38,14 @@ public class HomeUseCase: HomeUseCaseProviding {
         self.appDataUsername = Observable(initialValue: AppData.username)
         
         self.homeRouter = homeRouter
+        
+        AppData
+            .username
+            .publisher
+            .sink { newValue in
+                print("# username: \(newValue)")
+            }
+            .store(in: &subscriptions)
     }
     
     public func showProfileScene() {
