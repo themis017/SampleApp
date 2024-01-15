@@ -16,14 +16,4 @@ class UserProfileRouter: BaseRouter, UserProfileRouting {
         super.init(navigationController: navigationController)
     }
     
-    @MainActor
-    func showSettings() {
-        let router = SettingsRouter(navigationController: navigationController)
-        let useCase = SettingsUseCase(settingsRouter: router)
-        let viewModel = SettingsViewModel(settingsUseCase: useCase)
-        let view = SettingsView(viewModel: viewModel)
-        let viewController = UIHostingController(rootView: view)
-        viewController.title = SettingsView.sceneIdentity
-        self.navigationController.pushViewController(viewController, animated: true)
-    }
 }

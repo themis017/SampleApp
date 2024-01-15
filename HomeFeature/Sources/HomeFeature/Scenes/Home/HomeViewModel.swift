@@ -13,7 +13,7 @@ import UILayer
 public class HomeViewModel: ViewModel {
     
     public enum Action {
-        case showProfile
+        case nextAction
     }
     
     @Published
@@ -39,8 +39,8 @@ public class HomeViewModel: ViewModel {
     
     public func perform(_ action: Action) {
         switch action {
-        case .showProfile:
-            homeUseCase.showProfileScene()
+        case .nextAction:
+            homeUseCase.nextAction()
         }
     }
 }

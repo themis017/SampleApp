@@ -27,7 +27,7 @@ public struct EntryPointView: View {
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                viewModel.perform(.showHome)
+                viewModel.perform(.showMain)
             }
         }
     }

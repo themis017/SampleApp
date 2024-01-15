@@ -15,11 +15,4 @@ class SettingsRouter: BaseRouter, SettingsRouting {
         super.init(navigationController: navigationController)
     }
     
-    func showFirstSettings() {
-        
-    }
-    
-    func showSecondSettings() {
-        
-    }
 }

@@ -17,7 +17,7 @@ public protocol HomeUseCaseProviding {
     
     var appDataUsername: Observable<String> { get }
     
-    func showProfileScene()
+    func nextAction()
 }
 
 public class HomeUseCase: HomeUseCaseProviding {
@@ -48,8 +48,7 @@ public class HomeUseCase: HomeUseCaseProviding {
             .store(in: &subscriptions)
     }
     
-    public func showProfileScene() {
-        homeRouter.showUserProfileScene()
+    public func nextAction() {
 //        homeRouter.popScene()
 //        randomProperty.value += 1
 //        print("randomText: \(randomText.value)")
@@ -66,14 +65,14 @@ public class PreviewHomeUseCase: HomeUseCaseProviding {
     
     public var appDataUsername: Observable<String>
     
-    init() {
+    public init() {
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         
         self.appDataUsername = Observable(initialValue: "")
     }
     
-    public func showProfileScene() {}
+    public func nextAction() {}
 }
 
 #endif

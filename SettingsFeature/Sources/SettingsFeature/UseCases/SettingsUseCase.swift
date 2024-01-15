@@ -44,7 +44,7 @@ public class PreviewSettingsUseCase: SettingsUseCaseProviding {
     public var randomProperty: Observable<Int>
     public var randomText: Observable<String>
     
-    init() {
+    public init() {
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import HomeFeature
+import MainFeature
 
 extension UINavigationController: UIGestureRecognizerDelegate {
 
@@ -22,7 +22,7 @@ extension UINavigationController: UIGestureRecognizerDelegate {
         }
         
         guard let lastViewControllerTitle = viewControllers.last?.title,
-              lastViewControllerTitle != HomeView.sceneIdentity else {
+              lastViewControllerTitle != MainView.sceneIdentity else {
             return false
         }
         

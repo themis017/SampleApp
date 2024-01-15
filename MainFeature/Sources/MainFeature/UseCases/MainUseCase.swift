@@ -1,15 +1,16 @@
 //
-//  UserProfileUseCase.swift
+//  MainUseCase.swift
 //
 //
-//  Created by Themis Makedas on 19/12/23.
+//  Created by Themis Makedas on 15/1/24.
 //
 
 import Foundation
+import Combine
 import ApplicationLayer
 import UILayer
 
-public protocol UserProfileUseCaseProviding {
+public protocol MainUseCaseProviding {
     
     var randomProperty: Observable<Int> { get }
     var randomText: Observable<String> { get }
@@ -17,51 +18,55 @@ public protocol UserProfileUseCaseProviding {
     var appDataUsername: Observable<String> { get }
     
     func nextAction()
-    func saveUsername(to username: String)
 }
 
-public class UserProfileUseCase: UserProfileUseCaseProviding {
+public class MainUseCase: MainUseCaseProviding {
     
-    public var randomProperty: Observable<Int>
-    public var randomText: Observable<String>
+    public let randomProperty: Observable<Int>
+    public let randomText: Observable<String>
     
     public let appDataUsername: Observable<String>
     
-    private let userProfileRouter: any UserProfileRouting
+    private var subscriptions: Set<AnyCancellable> = []
     
-    public init(userProfileRouter: any UserProfileRouting) {
+    private let mainRouter: any MainRouting
+    
+    public init(mainRouter: any MainRouting) {
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         
+//        self.appDataUsername = Observable(initialValue: AppData.username)
         self.appDataUsername = Observable(initialValue: AppData.shared.value(of: .username) ?? "")
         
-        self.userProfileRouter = userProfileRouter
+        self.mainRouter = mainRouter
+        
+        AppData.shared
+            .usernamePublisher
+            .sink { newValue in
+                print("# username: \(newValue)")
+            }
+            .store(in: &subscriptions)
     }
     
     public func nextAction() {
-        
-    }
-    
-    public func saveUsername(to username: String) {
-        defer {
-            appDataUsername.value = username
-        }
-        
-        AppData.shared.save(username, to: .username)
+//        mainRouter.showUserProfileScene()
+//        homeRouter.popScene()
+//        randomProperty.value += 1
+//        print("randomText: \(randomText.value)")
     }
     
 }
 
 #if DEBUG
 
-public class PreviewUserProfileUseCase: UserProfileUseCaseProviding {
+public class PreviewMainUseCase: MainUseCaseProviding {
     
     public var randomProperty: Observable<Int>
     public var randomText: Observable<String>
     
     public var appDataUsername: Observable<String>
     
-    public init() {
+    init() {
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         
@@ -69,7 +74,6 @@ public class PreviewUserProfileUseCase: UserProfileUseCaseProviding {
     }
     
     public func nextAction() {}
-    public func saveUsername(to username: String) {}
 }
 
 #endif

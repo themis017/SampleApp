@@ -29,8 +29,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
                         
-            let homeRouter = HomeRouter(navigationController: navigationController)
-            homeRouter.showEntryPointScene()
+            let mainRouter = MainRouter(navigationController: navigationController)
+            mainRouter.showEntryPointScene()
         }
     }
 

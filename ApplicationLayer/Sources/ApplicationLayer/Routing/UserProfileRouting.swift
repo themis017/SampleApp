@@ -9,5 +9,5 @@ import Foundation
 
 public protocol UserProfileRouting: Routing {
     
-    func showSettings()
+    
 }

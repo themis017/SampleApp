@@ -28,15 +28,18 @@ public struct HomeView: View {
                 .background(Color.yellow)
             
             Button {
-                viewModel.perform(.showProfile)
+                viewModel.perform(.nextAction)
             } label: {
                 Text("Next")
                     .padding(24)
                     .background(Color.orange)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
             }
+            
+            Spacer()
 
         }
+        .background(Color.green)
     }
 }
 

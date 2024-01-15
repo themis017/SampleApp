@@ -35,7 +35,7 @@ public struct UserProfileView: View {
             
             Button {
                 viewModel.perform(.saveUsername)
-                viewModel.perform(.showFirstSettings)
+                viewModel.perform(.nextAction)
             } label: {
                 Text("Next")
                     .padding(24)

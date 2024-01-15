@@ -13,7 +13,7 @@ import UILayer
 public class UserProfileViewModel: ViewModel {
     
     public enum Action {
-        case showFirstSettings
+        case nextAction
         case saveUsername
     }
     
@@ -46,8 +46,8 @@ public class UserProfileViewModel: ViewModel {
     
     public func perform(_ action: Action) {
         switch action {
-        case .showFirstSettings:
-            userProfileUseCase.showSettingsScene()
+        case .nextAction:
+            userProfileUseCase.nextAction()
         case .saveUsername:
             userProfileUseCase.saveUsername(to: newUsername)
         }

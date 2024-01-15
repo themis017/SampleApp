@@ -9,6 +9,4 @@ import Foundation
 
 public protocol SettingsRouting: Routing {
     
-    func showFirstSettings()
-    func showSecondSettings()
 }

@@ -10,19 +10,19 @@ import ApplicationLayer
 
 public protocol EntryPointUseCaseProviding {
     
-    func showHomeScene()
+    func showMainScene()
 }
 
 public class EntryPointUseCase: EntryPointUseCaseProviding {
     
-    private let homeRouter: any HomeRouting
+    private let mainRouter: any MainRouting
     
-    public init(homeRouter: any HomeRouting) {
-        self.homeRouter = homeRouter
+    public init(mainRouter: any MainRouting) {
+        self.mainRouter = mainRouter
     }
     
-    public func showHomeScene() {
-        homeRouter.showHomeScene()
+    public func showMainScene() {
+        mainRouter.showMainScene()
     }
     
 }
@@ -31,7 +31,7 @@ public class EntryPointUseCase: EntryPointUseCaseProviding {
 
 public class PreviewEntryPointUseCase: EntryPointUseCaseProviding {
     
-    public func showHomeScene() {}
+    public func showMainScene() {}
 }
 
 #endif

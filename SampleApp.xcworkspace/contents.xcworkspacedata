@@ -11,6 +11,9 @@
       location = "group:UILayer">
    </FileRef>
    <FileRef
+      location = "group:MainFeature">
+   </FileRef>
+   <FileRef
       location = "group:HomeFeature">
    </FileRef>
    <FileRef

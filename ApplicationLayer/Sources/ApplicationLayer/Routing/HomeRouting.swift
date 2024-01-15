@@ -9,7 +9,4 @@ import Foundation
 
 public protocol HomeRouting: Routing {
     
-    func showEntryPointScene()
-    func showHomeScene()
-    func showUserProfileScene()
 }
