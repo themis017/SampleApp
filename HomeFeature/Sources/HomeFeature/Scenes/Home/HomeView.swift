@@ -27,6 +27,8 @@ public struct HomeView: View {
                 .foregroundColor(.white)
                 .background(Color.yellow)
             
+            Spacer()
+            
             Button {
                 viewModel.perform(.nextAction)
             } label: {
@@ -36,10 +38,10 @@ public struct HomeView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 16))
             }
             
-            Spacer()
 
         }
         .background(Color.green)
+        .tabBar(selectedTab: .constant(.home))
     }
 }
 
