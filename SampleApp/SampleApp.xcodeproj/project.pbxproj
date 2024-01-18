@@ -21,6 +21,7 @@
 		41A5C67B2B55B9DE0057A14F /* MainFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 41A5C67A2B55B9DE0057A14F /* MainFeature */; };
 		41A5C67D2B55BB580057A14F /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A5C67C2B55BB580057A14F /* MainRouter.swift */; };
 		41B4E93C2B3A3D4D00DFF8BB /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B4E93B2B3A3D4D00DFF8BB /* BaseRouter.swift */; };
+		41DDA4CC2B59A8EA00EBD99A /* RoutingUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DDA4CB2B59A8EA00EBD99A /* RoutingUIHostingController.swift */; };
 		41E490CA2B31E35F00A5BFFF /* UserProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E490C92B31E35F00A5BFFF /* UserProfileRouter.swift */; };
 		41E490CC2B31E47E00A5BFFF /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E490CB2B31E47E00A5BFFF /* SettingsRouter.swift */; };
 		41E490CE2B31FFDC00A5BFFF /* HomeFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 41E490CD2B31FFDC00A5BFFF /* HomeFeature */; };
@@ -38,6 +39,7 @@
 		417422B32B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+UIGestureRecognizer.swift"; sourceTree = "<group>"; };
 		41A5C67C2B55BB580057A14F /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		41B4E93B2B3A3D4D00DFF8BB /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		41DDA4CB2B59A8EA00EBD99A /* RoutingUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingUIHostingController.swift; sourceTree = "<group>"; };
 		41E490C92B31E35F00A5BFFF /* UserProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRouter.swift; sourceTree = "<group>"; };
 		41E490CB2B31E47E00A5BFFF /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		41F3A7412B0420DE0059BCB0 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +84,7 @@
 		411E1E292B31CBCD008E6F49 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				41DDA4CB2B59A8EA00EBD99A /* RoutingUIHostingController.swift */,
 				417422B32B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift */,
 				411E1E242B31BC26008E6F49 /* Routers */,
 			);
@@ -217,6 +220,7 @@
 				412FF9252B3208ED00DCF929 /* HomeRouter.swift in Sources */,
 				410D9A772B0D2C76002B284E /* ContentView.swift in Sources */,
 				417422B42B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift in Sources */,
+				41DDA4CC2B59A8EA00EBD99A /* RoutingUIHostingController.swift in Sources */,
 				41F3A7472B0420DE0059BCB0 /* SceneDelegate.swift in Sources */,
 				41E490CA2B31E35F00A5BFFF /* UserProfileRouter.swift in Sources */,
 				41E490CC2B31E47E00A5BFFF /* SettingsRouter.swift in Sources */,

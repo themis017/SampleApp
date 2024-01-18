@@ -25,14 +25,14 @@ class MainRouter: BaseRouter, MainRouting {
         let viewModel = EntryPointViewModel(entryPointUseCase: useCase)
         let view = EntryPointView(viewModel: viewModel)
         let viewController = UIHostingController(rootView: view)
-        viewController.title = EntryPointView.sceneIdentity
         self.navigationController.viewControllers.removeAll()
         self.navigationController.pushViewController(viewController, animated: true)
     }
     
     @MainActor
     func showMainScene() {
-        let mainUseCase = MainUseCase(mainRouter: self)
+        let mainUseCase = MainUseCase(selectedTab: .home,
+                                      mainRouter: self)
         
         let homeUseCase = HomeUseCase(
             homeRouter: HomeRouter(
@@ -56,8 +56,11 @@ class MainRouter: BaseRouter, MainRouting {
             settingsUseCase: settingsUseCase)
         
         let view = MainView(viewModel: viewModel)
-        let viewController = UIHostingController(rootView: view)
-        viewController.title = MainView.sceneIdentity
+        let viewController = RoutingUIHostingController(
+            sceneIdentity: MainView.sceneIdentity,
+            isRoot: true,
+            tabCategory: .home,
+            view: view)
         self.navigationController.viewControllers.removeAll()
         self.navigationController.pushViewController(viewController, animated: true)
     }
@@ -68,8 +71,11 @@ class MainRouter: BaseRouter, MainRouting {
         let useCase = HomeUseCase(homeRouter: router)
         let viewModel = HomeViewModel(homeUseCase: useCase)
         let view = HomeView(viewModel: viewModel)
-        let viewController = UIHostingController(rootView: view)
-        viewController.title = HomeView.sceneIdentity
+        let viewController = RoutingUIHostingController(
+            sceneIdentity: HomeView.sceneIdentity,
+            isRoot: true,
+            tabCategory: .home,
+            view: view)
         self.navigationController.pushViewController(viewController, animated: true)
     }
     
@@ -79,8 +85,11 @@ class MainRouter: BaseRouter, MainRouting {
         let useCase = UserProfileUseCase(userProfileRouter: router)
         let viewModel = UserProfileViewModel(userProfileUseCase: useCase)
         let view = UserProfileView(viewModel: viewModel)
-        let viewController = UIHostingController(rootView: view)
-        viewController.title = UserProfileView.sceneIdentity
+        let viewController = RoutingUIHostingController(
+            sceneIdentity: UserProfileView.sceneIdentity,
+            isRoot: true,
+            tabCategory: .profile,
+            view: view)
         self.navigationController.pushViewController(viewController, animated: true)
     }
     
@@ -90,8 +99,11 @@ class MainRouter: BaseRouter, MainRouting {
         let useCase = SettingsUseCase(settingsRouter: router)
         let viewModel = SettingsViewModel(settingsUseCase: useCase)
         let view = SettingsView(viewModel: viewModel)
-        let viewController = UIHostingController(rootView: view)
-        viewController.title = SettingsView.sceneIdentity
+        let viewController = RoutingUIHostingController(
+            sceneIdentity: SettingsView.sceneIdentity,
+            isRoot: true,
+            tabCategory: .home,
+            view: view)
         self.navigationController.pushViewController(viewController, animated: true)
     }
 }

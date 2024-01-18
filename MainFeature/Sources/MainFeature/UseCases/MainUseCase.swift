@@ -12,6 +12,7 @@ import UILayer
 
 public protocol MainUseCaseProviding {
     
+    var selectedTab: Observable<TabBarCategory> { get }
     var randomProperty: Observable<Int> { get }
     var randomText: Observable<String> { get }
     
@@ -22,6 +23,7 @@ public protocol MainUseCaseProviding {
 
 public class MainUseCase: MainUseCaseProviding {
     
+    public let selectedTab: Observable<TabBarCategory>
     public let randomProperty: Observable<Int>
     public let randomText: Observable<String>
     
@@ -31,7 +33,10 @@ public class MainUseCase: MainUseCaseProviding {
     
     private let mainRouter: any MainRouting
     
-    public init(mainRouter: any MainRouting) {
+    public init(selectedTab: TabBarCategory,
+                mainRouter: any MainRouting) {
+        
+        self.selectedTab = Observable(initialValue: selectedTab)
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         
@@ -61,12 +66,14 @@ public class MainUseCase: MainUseCaseProviding {
 
 public class PreviewMainUseCase: MainUseCaseProviding {
     
+    public var selectedTab: Observable<TabBarCategory>
     public var randomProperty: Observable<Int>
     public var randomText: Observable<String>
     
     public var appDataUsername: Observable<String>
     
     init() {
+        self.selectedTab = Observable(initialValue: .home)
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         

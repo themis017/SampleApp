@@ -24,25 +24,19 @@ public struct MainView: View {
     
     public var body: some View {
         
-        TabView {
-            HomeView(viewModel: viewModel.homeViewModel)
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
-            
-            UserProfileView(viewModel: viewModel.userProfileViewModel)
-                .tabItem {
-                    Label("Profile", systemImage: "person.circle.fill")
-                }
-            
-            SettingsView(viewModel: viewModel.settingsViewModel)
-                .tabItem {
-                    Label("Settings", systemImage: "gearshape.fill")
-                }
+        VStack(spacing: 0) {
+            switch viewModel.selectedTab {
+            case .home:
+                HomeView(viewModel: viewModel.homeViewModel)
+            case .search:
+                Text("Search")
+            case .notifications:
+                Text("Notifications")
+            case .profile:
+                UserProfileView(viewModel: viewModel.userProfileViewModel)
+            }
         }
-        .toolbarBackground(.indigo, for: .tabBar)
-        .toolbarBackground(.visible, for: .tabBar)
-        .toolbarColorScheme(.dark, for: .tabBar)
+        .tabBar(selectedTab: $viewModel.selectedTab)
     }
 }
 

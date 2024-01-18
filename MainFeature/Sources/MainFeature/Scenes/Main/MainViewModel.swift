@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import ApplicationLayer
 import UILayer
 import HomeFeature
 import UserProfileFeature
@@ -18,6 +19,9 @@ public class MainViewModel: ViewModel {
     public enum Action {
         case nextAction
     }
+    
+    @Published
+    var selectedTab: TabBarCategory
     
     @Published
     var randomProperty: Int
@@ -38,12 +42,16 @@ public class MainViewModel: ViewModel {
                 userProfileUseCase: UserProfileUseCaseProviding,
                 settingsUseCase: SettingsUseCaseProviding) {
         
+        self.selectedTab = mainUseCase.selectedTab.value
         self.randomProperty = mainUseCase.randomProperty.value
         self.mainUseCase = mainUseCase
         
         self.homeViewModel = HomeViewModel(homeUseCase: homeUseCase)
         self.userProfileViewModel = UserProfileViewModel(userProfileUseCase: userProfileUseCase)
         self.settingsViewModel = SettingsViewModel(settingsUseCase: settingsUseCase)
+        
+        bind(\.selectedTab, to: mainUseCase.selectedTab)
+            .store(in: &subscriptions)
         
         bind(\.randomProperty, to: mainUseCase.randomProperty)
             .store(in: &subscriptions)
