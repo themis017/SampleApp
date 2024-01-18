@@ -23,6 +23,19 @@ open class BaseRouter {
     
     @MainActor
     public func popScene() {
+        if let routingController = navigationController.topViewController as? RoutingUIHostingController<AnyView> {
+            switch routingController.tabCategory {
+            case .home:
+                TabBarRoutes.shared.homeRoutingControllers = TabBarRoutes.shared.homeRoutingControllers.dropLast()
+            case .search:
+                TabBarRoutes.shared.searchRoutingControllers = TabBarRoutes.shared.searchRoutingControllers.dropLast()
+            case .notifications:
+                TabBarRoutes.shared.notificationsRoutingControllers = TabBarRoutes.shared.notificationsRoutingControllers.dropLast()
+            case .profile:
+                TabBarRoutes.shared.profileRoutingControllers = TabBarRoutes.shared.profileRoutingControllers.dropLast()
+            }
+        }
+        
         DispatchQueue.main.async {
             self.navigationController.popViewController(animated: true)
         }
