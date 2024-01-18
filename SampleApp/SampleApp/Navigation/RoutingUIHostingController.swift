@@ -30,5 +30,3 @@ class RoutingUIHostingController<Content>: UIHostingController<Content> where Co
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-//let ab: [RoutingUIHostingController<AnyView>] = []

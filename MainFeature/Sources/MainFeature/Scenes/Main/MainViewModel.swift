@@ -58,6 +58,12 @@ public class MainViewModel: ViewModel {
         
         forward($randomText, to: mainUseCase.randomText)
             .store(in: &subscriptions)
+        
+        $selectedTab
+            .sink { newValue in
+                print("### selectedTab: \(newValue)")
+            }
+            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {
