@@ -32,6 +32,7 @@ public class HomeUseCase: HomeUseCaseProviding {
     private let homeRouter: any HomeRouting
     
     public init(homeRouter: any HomeRouting) {
+        
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         

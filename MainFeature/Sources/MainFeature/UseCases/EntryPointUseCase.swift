@@ -22,7 +22,8 @@ public class EntryPointUseCase: EntryPointUseCaseProviding {
     }
     
     public func showMainScene() {
-        mainRouter.showMainScene()
+//        mainRouter.showMainScene()
+        mainRouter.showHomeScene()
     }
     
 }

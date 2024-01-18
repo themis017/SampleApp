@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import ApplicationLayer
 import UILayer
 
 @MainActor
@@ -15,6 +16,9 @@ public class HomeViewModel: ViewModel {
     public enum Action {
         case nextAction
     }
+    
+    @Published
+    var selectedTab: TabBarCategory = .home
     
     @Published
     var randomProperty: Int

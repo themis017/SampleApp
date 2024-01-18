@@ -10,8 +10,8 @@ import Foundation
 public enum TabBarCategory: CaseIterable {
     case home
     case search
+    case notifications
     case profile
-    case settings
     
     public var title: String {
         switch self {
@@ -19,10 +19,10 @@ public enum TabBarCategory: CaseIterable {
             return "Home"
         case .search:
             return "Search"
+        case .notifications:
+            return "Notifications"
         case .profile:
             return "Profile"
-        case .settings:
-            return "Settings"
         }
     }
     
@@ -32,10 +32,10 @@ public enum TabBarCategory: CaseIterable {
             return "house"
         case .search:
             return "magnifyingglass"
+        case .notifications:
+            return "bell"
         case .profile:
             return "person"
-        case .settings:
-            return "gearshape"
         }
     }
 }
