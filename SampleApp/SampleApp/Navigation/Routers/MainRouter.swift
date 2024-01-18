@@ -37,60 +37,60 @@ class MainRouter: BaseRouter, MainRouting {
             mainRouter: self)
         
         let homeViewController = mainSceneComposer.createViewController(for: .home)
-        let searchViewController = mainSceneComposer.createViewController(for: .search)
-        let notificationsViewController = mainSceneComposer.createViewController(for: .notifications)
-        let profileViewController = mainSceneComposer.createViewController(for: .profile)
+//        let searchViewController = mainSceneComposer.createViewController(for: .search)
+//        let notificationsViewController = mainSceneComposer.createViewController(for: .notifications)
+//        let profileViewController = mainSceneComposer.createViewController(for: .profile)
         
         TabBarRoutes.shared.homeRoutingControllers = [homeViewController]
-        TabBarRoutes.shared.searchRoutingControllers = [searchViewController]
-        TabBarRoutes.shared.notificationsRoutingControllers = [notificationsViewController]
-        TabBarRoutes.shared.profileRoutingControllers = [profileViewController]
+//        TabBarRoutes.shared.searchRoutingControllers = [searchViewController]
+//        TabBarRoutes.shared.notificationsRoutingControllers = [notificationsViewController]
+//        TabBarRoutes.shared.profileRoutingControllers = [profileViewController]
         
         self.navigationController.viewControllers.removeAll()
         self.navigationController.pushViewController(homeViewController, animated: true)
     }
     
-    @MainActor
-    func showMainScene(with selectedTab: TabBarCategory) {
-        
-        let mainSceneComposer = MainSceneComposer(
-            navigationController: navigationController,
-            mainRouter: self)
-        
-        switch selectedTab {
-        case .home:
-            let homeViewController = mainSceneComposer.createViewController(for: .home)
-            TabBarRoutes.shared.homeRoutingControllers = [homeViewController]
-            removeViewControllers(for: .home)
-            self.navigationController.pushViewController(homeViewController, animated: true)
-        case .search:
-            let searchViewController = mainSceneComposer.createViewController(for: .search)
-            TabBarRoutes.shared.searchRoutingControllers = [searchViewController]
-            removeViewControllers(for: .search)
-            self.navigationController.pushViewController(searchViewController, animated: true)
-        case .notifications:
-            let notificationsViewController = mainSceneComposer.createViewController(for: .notifications)
-            TabBarRoutes.shared.notificationsRoutingControllers = [notificationsViewController]
-            removeViewControllers(for: .notifications)
-            self.navigationController.pushViewController(notificationsViewController, animated: true)
-        case .profile:
-            let profileViewController = mainSceneComposer.createViewController(for: .profile)
-            TabBarRoutes.shared.profileRoutingControllers = [profileViewController]
-            removeViewControllers(for: .profile)
-            self.navigationController.pushViewController(profileViewController, animated: true)
-        }
-    }
+//    @MainActor
+//    func dismissToRoot(for selectedTab: TabBarCategory) {
+//        
+//        let mainSceneComposer = MainSceneComposer(
+//            navigationController: navigationController,
+//            mainRouter: self)
+//        
+//        switch selectedTab {
+//        case .home:
+//            let homeViewController = mainSceneComposer.createViewController(for: .home)
+//            TabBarRoutes.shared.homeRoutingControllers = [homeViewController]
+//            removeViewControllers(for: .home)
+//            self.navigationController.pushViewController(homeViewController, animated: true)
+//        case .search:
+//            let searchViewController = mainSceneComposer.createViewController(for: .search)
+//            TabBarRoutes.shared.searchRoutingControllers = [searchViewController]
+//            removeViewControllers(for: .search)
+//            self.navigationController.pushViewController(searchViewController, animated: true)
+//        case .notifications:
+//            let notificationsViewController = mainSceneComposer.createViewController(for: .notifications)
+//            TabBarRoutes.shared.notificationsRoutingControllers = [notificationsViewController]
+//            removeViewControllers(for: .notifications)
+//            self.navigationController.pushViewController(notificationsViewController, animated: true)
+//        case .profile:
+//            let profileViewController = mainSceneComposer.createViewController(for: .profile)
+//            TabBarRoutes.shared.profileRoutingControllers = [profileViewController]
+//            removeViewControllers(for: .profile)
+//            self.navigationController.pushViewController(profileViewController, animated: true)
+//        }
+//    }
     
-    private func removeViewControllers(for selectedTab: TabBarCategory) {
-        self.navigationController.viewControllers.removeAll { viewController in
-            guard let routingController = viewController as? RoutingUIHostingController<AnyView>,
-                  routingController.tabCategory == selectedTab  else {
-                return false
-            }
-            
-            return true
-        }
-    }
+//    private func removeViewControllers(for selectedTab: TabBarCategory) {
+//        self.navigationController.viewControllers.removeAll { viewController in
+//            guard let routingController = viewController as? RoutingUIHostingController<AnyView>,
+//                  routingController.tabCategory == selectedTab  else {
+//                return false
+//            }
+//            
+//            return true
+//        }
+//    }
     
 //    @MainActor
 //    func showHomeScene() {
