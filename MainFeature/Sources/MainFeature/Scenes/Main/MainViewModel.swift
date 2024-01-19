@@ -60,6 +60,7 @@ public class MainViewModel: ViewModel {
             .store(in: &subscriptions)
         
         $selectedTab
+            .dropFirst()
             .sink { newValue in
                 print("### selectedTab: \(newValue)")
             }
