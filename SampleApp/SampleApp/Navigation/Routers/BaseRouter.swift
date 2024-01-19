@@ -42,7 +42,7 @@ open class BaseRouter {
     }
     
     @MainActor
-    func dismissToRoot(for selectedTab: TabBarCategory) {
+    public func dismissToRoot(for selectedTab: TabBarCategory) {
         
         let mainRouter = MainRouter(navigationController: navigationController)
         let mainSceneComposer = MainSceneComposer(
@@ -70,6 +70,60 @@ open class BaseRouter {
             TabBarRoutes.shared.profileRoutingControllers = [profileViewController]
             removeViewControllers(for: .profile)
             self.navigationController.pushViewController(profileViewController, animated: true)
+        }
+    }
+    
+    @MainActor
+    public func showPath(for selectedTab: TabBarCategory) {
+        switch selectedTab {
+        case .home:
+            let homeViewControllers = TabBarRoutes.shared.homeRoutingControllers
+            self.navigationController.viewControllers.removeAll()
+//            self.navigationController.viewControllers = homeViewControllers
+            
+            if homeViewControllers.count > 1 {
+                self.navigationController.viewControllers = homeViewControllers
+            } else {
+                if let firstHomeViewController = homeViewControllers.first {
+                    self.navigationController.pushViewController(firstHomeViewController, animated: true)
+                }
+            }
+        case .search:
+            let searchViewControllers = TabBarRoutes.shared.searchRoutingControllers
+            self.navigationController.viewControllers.removeAll()
+//            self.navigationController.viewControllers = searchViewControllers
+            
+            if searchViewControllers.count > 1 {
+                self.navigationController.viewControllers = searchViewControllers
+            } else {
+                if let firstSearchViewController = searchViewControllers.first {
+                    self.navigationController.pushViewController(firstSearchViewController, animated: true)
+                }
+            }
+        case .notifications:
+            let notificationsViewControllers = TabBarRoutes.shared.notificationsRoutingControllers
+            self.navigationController.viewControllers.removeAll()
+//            self.navigationController.viewControllers = notificationsViewControllers
+            
+            if notificationsViewControllers.count > 1 {
+                self.navigationController.viewControllers = notificationsViewControllers
+            } else {
+                if let firstNotificationsViewController = notificationsViewControllers.first {
+                    self.navigationController.pushViewController(firstNotificationsViewController, animated: true)
+                }
+            }
+        case .profile:
+            let profileViewControllers = TabBarRoutes.shared.profileRoutingControllers
+            self.navigationController.viewControllers.removeAll()
+//            self.navigationController.viewControllers = profileViewControllers
+            
+            if profileViewControllers.count > 1 {
+                self.navigationController.viewControllers = profileViewControllers
+            } else {
+                if let firstProfileViewController = profileViewControllers.first {
+                    self.navigationController.pushViewController(firstProfileViewController, animated: true)
+                }
+            }
         }
     }
     

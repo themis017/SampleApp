@@ -41,6 +41,7 @@ public struct UserProfile_B_View: View {
 
         }
         .background(Color.green)
+        .tabBar(selectedTab: $viewModel.selectedTab)
     }
 }
 

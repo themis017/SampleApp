@@ -41,6 +41,7 @@ public struct HomeDetails_B_View: View {
 
         }
         .background(Color.green)
+        .tabBar(selectedTab: $viewModel.selectedTab)
     }
 }
 

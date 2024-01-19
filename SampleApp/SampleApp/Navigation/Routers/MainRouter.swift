@@ -37,14 +37,19 @@ class MainRouter: BaseRouter, MainRouting {
             mainRouter: self)
         
         let homeViewController = mainSceneComposer.createViewController(for: .home)
-        let searchViewController = mainSceneComposer.createViewController(for: .search)
-        let notificationsViewController = mainSceneComposer.createViewController(for: .notifications)
-        let profileViewController = mainSceneComposer.createViewController(for: .profile)
+//        let searchViewController = mainSceneComposer.createViewController(for: .search)
+//        let notificationsViewController = mainSceneComposer.createViewController(for: .notifications)
+//        let profileViewController = mainSceneComposer.createViewController(for: .profile)
+        
+//        TabBarRoutes.shared.homeRoutingControllers = [homeViewController]
+//        TabBarRoutes.shared.searchRoutingControllers = [searchViewController]
+//        TabBarRoutes.shared.notificationsRoutingControllers = [notificationsViewController]
+//        TabBarRoutes.shared.profileRoutingControllers = [profileViewController]
         
         TabBarRoutes.shared.homeRoutingControllers = [homeViewController]
-        TabBarRoutes.shared.searchRoutingControllers = [searchViewController]
-        TabBarRoutes.shared.notificationsRoutingControllers = [notificationsViewController]
-        TabBarRoutes.shared.profileRoutingControllers = [profileViewController]
+        TabBarRoutes.shared.searchRoutingControllers = [homeViewController]
+        TabBarRoutes.shared.notificationsRoutingControllers = [homeViewController]
+        TabBarRoutes.shared.profileRoutingControllers = [homeViewController]
         
         self.navigationController.viewControllers.removeAll()
         self.navigationController.pushViewController(homeViewController, animated: true)

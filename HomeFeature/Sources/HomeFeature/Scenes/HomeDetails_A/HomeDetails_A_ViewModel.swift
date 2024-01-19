@@ -28,11 +28,13 @@ public class HomeDetails_A_ViewModel: ViewModel {
         
         self.homeDetails_A_UseCase = homeDetails_A_UseCase
         
-//        $selectedTab
-//            .sink { newValue in
-//                print("### selectedTab: \(newValue)")
-//            }
-//            .store(in: &subscriptions)
+        $selectedTab
+            .dropFirst()
+            .sink { [weak self] newValue in
+                print("### selectedTab: \(newValue)")
+                self?.homeDetails_A_UseCase.showPath(for: newValue)
+            }
+            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {

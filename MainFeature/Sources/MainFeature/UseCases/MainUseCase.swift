@@ -19,6 +19,7 @@ public protocol MainUseCaseProviding {
     var appDataUsername: Observable<String> { get }
     
     func nextAction()
+    func showPath(for selectedTab: TabBarCategory)
 }
 
 public class MainUseCase: MainUseCaseProviding {
@@ -60,6 +61,10 @@ public class MainUseCase: MainUseCaseProviding {
 //        print("randomText: \(randomText.value)")
     }
     
+    public func showPath(for selectedTab: TabBarCategory) {
+        mainRouter.showPath(for: selectedTab)
+    }
+    
 }
 
 #if DEBUG
@@ -81,6 +86,7 @@ public class PreviewMainUseCase: MainUseCaseProviding {
     }
     
     public func nextAction() {}
+    public func showPath(for selectedTab: TabBarCategory) {}
 }
 
 #endif

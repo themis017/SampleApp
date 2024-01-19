@@ -1,6 +1,6 @@
 //
 //  UserProfile_B_UseCase.swift
-//  
+//
 //
 //  Created by Themis Makedas on 19/1/24.
 //
@@ -13,6 +13,7 @@ import UILayer
 public protocol UserProfile_B_UseCaseProviding {
     
     func nextAction()
+    func showPath(for selectedTab: TabBarCategory)
 }
 
 public class UserProfile_B_UseCase: UserProfile_B_UseCaseProviding {
@@ -27,6 +28,9 @@ public class UserProfile_B_UseCase: UserProfile_B_UseCaseProviding {
 //        userProfileRouter.popScene()
     }
     
+    public func showPath(for selectedTab: TabBarCategory) {
+        userProfileRouter.showPath(for: selectedTab)
+    }
 }
 
 #if DEBUG
@@ -38,6 +42,7 @@ public class PreviewUserProfile_B_UseCase: UserProfile_B_UseCaseProviding {
     }
     
     public func nextAction() {}
+    public func showPath(for selectedTab: TabBarCategory) {}
 }
 
 #endif

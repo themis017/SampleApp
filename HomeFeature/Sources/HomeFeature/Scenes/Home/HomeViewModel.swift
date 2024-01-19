@@ -18,9 +18,6 @@ public class HomeViewModel: ViewModel {
     }
     
     @Published
-    var selectedTab: TabBarCategory = .home
-    
-    @Published
     var randomProperty: Int
     
     @Published
@@ -39,12 +36,6 @@ public class HomeViewModel: ViewModel {
         
         forward($randomText, to: homeUseCase.randomText)
             .store(in: &subscriptions)
-        
-//        $selectedTab
-//            .sink { newValue in
-//                print("### selectedTab: \(newValue)")
-//            }
-//            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {

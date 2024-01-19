@@ -10,4 +10,6 @@ import Foundation
 public protocol Routing {
     
     func popScene()
+    func dismissToRoot(for selectedTab: TabBarCategory)
+    func showPath(for selectedTab: TabBarCategory)
 }

@@ -13,6 +13,7 @@ import UILayer
 public protocol HomeDetails_B_UseCaseProviding {
     
     func nextAction()
+    func showPath(for selectedTab: TabBarCategory)
 }
 
 public class HomeDetails_B_UseCase: HomeDetails_B_UseCaseProviding {
@@ -29,6 +30,10 @@ public class HomeDetails_B_UseCase: HomeDetails_B_UseCaseProviding {
 //        print("randomText: \(randomText.value)")
     }
     
+    public func showPath(for selectedTab: TabBarCategory) {
+        homeRouter.showPath(for: selectedTab)
+    }
+    
 }
 
 #if DEBUG
@@ -40,6 +45,7 @@ public class PreviewHomeDetails_B_UseCase: HomeDetails_B_UseCaseProviding {
     }
     
     public func nextAction() {}
+    public func showPath(for selectedTab: TabBarCategory) {}
 }
 
 #endif

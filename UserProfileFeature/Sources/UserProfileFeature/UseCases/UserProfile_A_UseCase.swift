@@ -13,6 +13,7 @@ import UILayer
 public protocol UserProfile_A_UseCaseProviding {
     
     func nextAction()
+    func showPath(for selectedTab: TabBarCategory)
 }
 
 public class UserProfile_A_UseCase: UserProfile_A_UseCaseProviding {
@@ -28,6 +29,9 @@ public class UserProfile_A_UseCase: UserProfile_A_UseCaseProviding {
 //        userProfileRouter.popScene()
     }
     
+    public func showPath(for selectedTab: TabBarCategory) {
+        userProfileRouter.showPath(for: selectedTab)
+    }
 }
 
 #if DEBUG
@@ -39,6 +43,7 @@ public class PreviewUserProfile_A_UseCase: UserProfile_A_UseCaseProviding {
     }
     
     public func nextAction() {}
+    public func showPath(for selectedTab: TabBarCategory) {}
 }
 
 #endif

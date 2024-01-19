@@ -61,8 +61,9 @@ public class MainViewModel: ViewModel {
         
         $selectedTab
             .dropFirst()
-            .sink { newValue in
+            .sink { [weak self] newValue in
                 print("### selectedTab: \(newValue)")
+                self?.mainUseCase.showPath(for: newValue)
             }
             .store(in: &subscriptions)
     }

@@ -41,7 +41,6 @@ public class UserProfileViewModel: ViewModel {
         
         forward($randomText, to: userProfileUseCase.randomText)
             .store(in: &subscriptions)
-
     }
     
     public func perform(_ action: Action) {

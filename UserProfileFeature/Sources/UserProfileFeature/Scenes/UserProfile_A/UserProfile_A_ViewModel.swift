@@ -18,7 +18,7 @@ public class UserProfile_A_ViewModel: ViewModel {
     }
     
     @Published
-    var selectedTab: TabBarCategory = .home
+    var selectedTab: TabBarCategory = .profile
     
     private let userProfile_A_UseCase: UserProfile_A_UseCaseProviding
     
@@ -28,11 +28,13 @@ public class UserProfile_A_ViewModel: ViewModel {
         
         self.userProfile_A_UseCase = userProfile_A_UseCase
         
-//        $selectedTab
-//            .sink { newValue in
-//                print("### selectedTab: \(newValue)")
-//            }
-//            .store(in: &subscriptions)
+        $selectedTab
+            .dropFirst()
+            .sink { [weak self] newValue in
+                print("### selectedTab: \(newValue)")
+                self?.userProfile_A_UseCase.showPath(for: newValue)
+            }
+            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {
