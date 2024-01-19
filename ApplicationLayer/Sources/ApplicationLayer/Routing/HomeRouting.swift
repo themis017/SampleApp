@@ -8,5 +8,6 @@
 import Foundation
 
 public protocol HomeRouting: Routing {
-    
+    func showHomeDetails_A_Scene()
+    func showHomeDetails_B_Scene()
 }

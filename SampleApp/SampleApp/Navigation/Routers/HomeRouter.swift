@@ -10,7 +10,6 @@ import SwiftUI
 import ApplicationLayer
 import MainFeature
 import HomeFeature
-import UserProfileFeature
 
 class HomeRouter: BaseRouter, HomeRouting {
         
@@ -18,4 +17,31 @@ class HomeRouter: BaseRouter, HomeRouting {
         super.init(navigationController: navigationController)
     }
     
+    @MainActor
+    func showHomeDetails_A_Scene() {
+        let homeRouter = HomeRouter(navigationController: navigationController)
+        let useCase = HomeDetails_A_UseCase(homeRouter: homeRouter)
+        let viewModel = HomeDetails_A_ViewModel(homeDetails_A_UseCase: useCase)
+        let view = HomeDetails_A_View(viewModel: viewModel)
+        let viewController = RoutingUIHostingController(
+            sceneIdentity: HomeDetails_A_View.sceneIdentity,
+            isRoot: false,
+            tabCategory: .home,
+            view: view)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    @MainActor
+    func showHomeDetails_B_Scene() {
+        let homeRouter = HomeRouter(navigationController: navigationController)
+        let useCase = HomeDetails_B_UseCase(homeRouter: homeRouter)
+        let viewModel = HomeDetails_B_ViewModel(homeDetails_B_UseCase: useCase)
+        let view = HomeDetails_B_View(viewModel: viewModel)
+        let viewController = RoutingUIHostingController(
+            sceneIdentity: HomeDetails_A_View.sceneIdentity,
+            isRoot: false,
+            tabCategory: .home,
+            view: view)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
 }

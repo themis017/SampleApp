@@ -21,10 +21,10 @@ extension UINavigationController: UIGestureRecognizerDelegate {
             return false
         }
         
-        guard let lastViewControllerTitle = viewControllers.last?.title,
-              lastViewControllerTitle != MainView.sceneIdentity else {
-            return false
-        }
+//        guard let lastViewControllerTitle = viewControllers.last?.title,
+//              lastViewControllerTitle != MainView.sceneIdentity else {
+//            return false
+//        }
         
         return true
     }

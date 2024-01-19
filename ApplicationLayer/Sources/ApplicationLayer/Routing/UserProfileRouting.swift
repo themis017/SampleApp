@@ -9,5 +9,6 @@ import Foundation
 
 public protocol UserProfileRouting: Routing {
     
-    
+    func showUserProfile_A_Scene()
+    func showUserProfile_B_Scene()
 }

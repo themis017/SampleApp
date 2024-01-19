@@ -39,7 +39,7 @@ public class UserProfileUseCase: UserProfileUseCaseProviding {
     }
     
     public func nextAction() {
-        
+        userProfileRouter.showUserProfile_A_Scene()
     }
     
     public func saveUsername(to username: String) {

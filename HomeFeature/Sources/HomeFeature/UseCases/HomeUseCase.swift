@@ -50,6 +50,7 @@ public class HomeUseCase: HomeUseCaseProviding {
     }
     
     public func nextAction() {
+        homeRouter.showHomeDetails_A_Scene()
 //        homeRouter.popScene()
 //        randomProperty.value += 1
 //        print("randomText: \(randomText.value)")
