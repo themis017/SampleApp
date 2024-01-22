@@ -46,10 +46,10 @@ class MainRouter: BaseRouter, MainRouting {
 //        TabBarRoutes.shared.notificationsRoutingControllers = [notificationsViewController]
 //        TabBarRoutes.shared.profileRoutingControllers = [profileViewController]
         
-        TabBarRoutes.shared.homeRoutingControllers = [homeViewController]
-        TabBarRoutes.shared.searchRoutingControllers = [homeViewController]
-        TabBarRoutes.shared.notificationsRoutingControllers = [homeViewController]
-        TabBarRoutes.shared.profileRoutingControllers = [homeViewController]
+//        TabBarRoutes.shared.homeRoutingControllers = [homeViewController]
+//        TabBarRoutes.shared.searchRoutingControllers = [homeViewController]
+//        TabBarRoutes.shared.notificationsRoutingControllers = [homeViewController]
+//        TabBarRoutes.shared.profileRoutingControllers = [homeViewController]
         
         self.navigationController.viewControllers.removeAll()
         self.navigationController.pushViewController(homeViewController, animated: true)

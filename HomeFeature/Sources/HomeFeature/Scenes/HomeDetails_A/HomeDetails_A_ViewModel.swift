@@ -14,6 +14,7 @@ import UILayer
 public class HomeDetails_A_ViewModel: ViewModel {
     
     public enum Action {
+        case selectedTab(TabBarCategory)
         case nextAction
     }
     
@@ -28,17 +29,19 @@ public class HomeDetails_A_ViewModel: ViewModel {
         
         self.homeDetails_A_UseCase = homeDetails_A_UseCase
         
-        $selectedTab
-            .dropFirst()
-            .sink { [weak self] newValue in
-                print("### selectedTab: \(newValue)")
-                self?.homeDetails_A_UseCase.showPath(for: newValue)
-            }
-            .store(in: &subscriptions)
+//        $selectedTab
+//            .dropFirst()
+//            .sink { [weak self] newValue in
+//                print("### selectedTab: \(newValue)")
+//                self?.homeDetails_A_UseCase.showPath(for: newValue)
+//            }
+//            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {
         switch action {
+        case .selectedTab(let tabCategory):
+            homeDetails_A_UseCase.showPath(for: tabCategory)
         case .nextAction:
             homeDetails_A_UseCase.nextAction()
         }

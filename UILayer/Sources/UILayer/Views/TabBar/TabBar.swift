@@ -13,9 +13,14 @@ public struct TabBar: View {
 
     @Binding
     var selectedTab: TabBarCategory
+    
+    let action: (TabBarCategory) -> Void
         
-    public init(selectedTab: Binding<TabBarCategory>) {
+    public init(selectedTab: Binding<TabBarCategory>,
+                action: @escaping (TabBarCategory) -> Void) {
+        
         self._selectedTab = selectedTab
+        self.action = action
     }
     
     public var body: some View {
@@ -29,6 +34,7 @@ public struct TabBar: View {
                     Button {
                         withAnimation {
                             selectedTab = tabBarCategory
+                            action(tabBarCategory)
                         }
                     } label: {
                         VStack(spacing: 4) {
@@ -54,7 +60,9 @@ public struct TabBar: View {
 struct TabBar_Previews: PreviewProvider {
     
     static var previews: some View {
-        TabBar(selectedTab: .constant(.home))
+        TabBar(selectedTab: .constant(.home)) { selectedTab in
+            
+        }
     }
 }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TabBarCategory: CaseIterable {
+public enum TabBarCategory: CaseIterable, Codable {
     case home
     case search
     case notifications

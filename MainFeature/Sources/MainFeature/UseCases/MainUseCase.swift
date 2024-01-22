@@ -18,6 +18,7 @@ public protocol MainUseCaseProviding {
     
     var appDataUsername: Observable<String> { get }
     
+    func refresh()
     func nextAction()
     func showPath(for selectedTab: TabBarCategory)
 }
@@ -52,6 +53,23 @@ public class MainUseCase: MainUseCaseProviding {
                 print("# username: \(newValue)")
             }
             .store(in: &subscriptions)
+        
+        AppData.shared
+            .selectedTabPublisher
+            .sink { [weak self] newValue in
+                print("# selectedTab: \(newValue)")
+                self?.selectedTab.value = newValue
+            }
+            .store(in: &subscriptions)
+    }
+    
+    public func refresh() {
+        guard let tabBarCategory: TabBarCategory? = AppData.shared.value(of: .selectedTab) else {
+            return
+        }
+
+        selectedTab.value = tabBarCategory ?? .home
+        print("## \(selectedTab.value)")
     }
     
     public func nextAction() {
@@ -85,6 +103,7 @@ public class PreviewMainUseCase: MainUseCaseProviding {
         self.appDataUsername = Observable(initialValue: "")
     }
     
+    public func refresh() {}
     public func nextAction() {}
     public func showPath(for selectedTab: TabBarCategory) {}
 }

@@ -17,6 +17,8 @@ import SettingsFeature
 public class MainViewModel: ViewModel {
     
     public enum Action {
+        case refresh
+        case selectedTab(TabBarCategory)
         case nextAction
     }
     
@@ -59,17 +61,27 @@ public class MainViewModel: ViewModel {
         forward($randomText, to: mainUseCase.randomText)
             .store(in: &subscriptions)
         
-        $selectedTab
-            .dropFirst()
-            .sink { [weak self] newValue in
-                print("### selectedTab: \(newValue)")
-                self?.mainUseCase.showPath(for: newValue)
-            }
-            .store(in: &subscriptions)
+//        $selectedTab
+////            .dropFirst()
+//            .sink { [weak self] newValue in
+//                print("### selectedTab: \(newValue)")
+////                self?.mainUseCase.showPath(for: newValue)
+//            }
+//            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {
         switch action {
+        case .refresh:
+            mainUseCase.refresh()
+//            guard let tabBarCategory: TabBarCategory? = AppData.shared.value(of: .selectedTab) else {
+//                return
+//            }
+//
+//            selectedTab = tabBarCategory ?? .home
+//            print("## \(selectedTab)")
+        case .selectedTab(let tabCategory):
+            mainUseCase.showPath(for: tabCategory)
         case .nextAction:
             mainUseCase.nextAction()
         }

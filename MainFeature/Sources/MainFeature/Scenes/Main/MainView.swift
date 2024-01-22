@@ -36,7 +36,15 @@ public struct MainView: View {
                 UserProfileView(viewModel: viewModel.userProfileViewModel)
             }
         }
-        .tabBar(selectedTab: $viewModel.selectedTab)
+        .tabBar(selectedTab: $viewModel.selectedTab) { selectedTab in
+            viewModel.perform(.selectedTab(selectedTab))
+        }
+        .onAppear {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                print("### MAIN")
+                viewModel.perform(.refresh)
+//            }
+        }
     }
 }
 

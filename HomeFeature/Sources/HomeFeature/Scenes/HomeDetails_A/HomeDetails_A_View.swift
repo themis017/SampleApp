@@ -41,7 +41,9 @@ public struct HomeDetails_A_View: View {
 
         }
         .background(Color.green)
-        .tabBar(selectedTab: $viewModel.selectedTab)
+        .tabBar(selectedTab: .constant(.home)) { selectedTab in
+            viewModel.perform(.selectedTab(selectedTab))
+        }
     }
 }
 

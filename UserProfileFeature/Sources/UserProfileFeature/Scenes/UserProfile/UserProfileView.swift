@@ -44,6 +44,9 @@ public struct UserProfileView: View {
             }
 
         }
+        .onAppear {
+            print("### UserProfile")
+        }
     }
 }
 
