@@ -25,7 +25,7 @@ class MainSceneComposer {
     }
     
     @MainActor 
-    func createViewController(for selectedTab: TabBarCategory) -> RoutingUIHostingController<AnyView> {
+    func createMainScene(for selectedTab: TabBarCategory) -> RoutingUIHostingController<AnyView> {
         let mainUseCase = MainUseCase(selectedTab: selectedTab,
                                       mainRouter: mainRouter)
         
@@ -54,7 +54,7 @@ class MainSceneComposer {
         let viewController = RoutingUIHostingController(
             sceneIdentity: MainView.sceneIdentity,
             isRoot: true,
-            tabCategory: selectedTab,
+            tabCategory: nil,
             view: view)
         
         return viewController

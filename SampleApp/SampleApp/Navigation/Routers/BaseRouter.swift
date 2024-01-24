@@ -43,6 +43,8 @@ open class BaseRouter {
                 if TabBarRoutes.shared.profileRoutingControllers.count > 0 {
                     TabBarRoutes.shared.profileRoutingControllers = TabBarRoutes.shared.profileRoutingControllers.dropLast()
                 }
+            case .none:
+                break
             }
             
             DispatchQueue.main.async {
@@ -54,32 +56,32 @@ open class BaseRouter {
     @MainActor
     public func dismissToRoot(for selectedTab: TabBarCategory) {
         
-        let mainRouter = MainRouter(navigationController: navigationController)
-        let mainSceneComposer = MainSceneComposer(
-            navigationController: navigationController,
-            mainRouter: mainRouter)
+//        let mainRouter = MainRouter(navigationController: navigationController)
+//        let mainSceneComposer = MainSceneComposer(
+//            navigationController: navigationController,
+//            mainRouter: mainRouter)
         
         switch selectedTab {
         case .home:
-            let homeViewController = mainSceneComposer.createViewController(for: .home)
-            TabBarRoutes.shared.homeRoutingControllers = [homeViewController]
+//            let homeViewController = mainSceneComposer.createViewController(for: .home)
+            TabBarRoutes.shared.homeRoutingControllers = []
             removeViewControllers(for: .home)
-            self.navigationController.pushViewController(homeViewController, animated: true)
+//            self.navigationController.pushViewController(homeViewController, animated: true)
         case .search:
-            let searchViewController = mainSceneComposer.createViewController(for: .search)
-            TabBarRoutes.shared.searchRoutingControllers = [searchViewController]
+//            let searchViewController = mainSceneComposer.createViewController(for: .search)
+            TabBarRoutes.shared.searchRoutingControllers = []
             removeViewControllers(for: .search)
-            self.navigationController.pushViewController(searchViewController, animated: true)
+//            self.navigationController.pushViewController(searchViewController, animated: true)
         case .notifications:
-            let notificationsViewController = mainSceneComposer.createViewController(for: .notifications)
-            TabBarRoutes.shared.notificationsRoutingControllers = [notificationsViewController]
+//            let notificationsViewController = mainSceneComposer.createViewController(for: .notifications)
+            TabBarRoutes.shared.notificationsRoutingControllers = []
             removeViewControllers(for: .notifications)
-            self.navigationController.pushViewController(notificationsViewController, animated: true)
+//            self.navigationController.pushViewController(notificationsViewController, animated: true)
         case .profile:
-            let profileViewController = mainSceneComposer.createViewController(for: .profile)
-            TabBarRoutes.shared.profileRoutingControllers = [profileViewController]
+//            let profileViewController = mainSceneComposer.createViewController(for: .profile)
+            TabBarRoutes.shared.profileRoutingControllers = []
             removeViewControllers(for: .profile)
-            self.navigationController.pushViewController(profileViewController, animated: true)
+//            self.navigationController.pushViewController(profileViewController, animated: true)
         }
     }
     

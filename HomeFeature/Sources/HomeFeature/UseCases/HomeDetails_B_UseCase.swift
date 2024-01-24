@@ -37,7 +37,12 @@ public class HomeDetails_B_UseCase: HomeDetails_B_UseCaseProviding {
     
     public func showPath(for selectedTab: TabBarCategory) {
         AppData.shared.save(selectedTab, to: .selectedTab)
-        homeRouter.showPath(for: selectedTab)
+        
+        if selectedTab == .home {
+            homeRouter.dismissToRoot(for: .home)
+        } else {
+            homeRouter.showPath(for: selectedTab)
+        }
     }
     
 }

@@ -13,11 +13,11 @@ class RoutingUIHostingController<Content>: UIHostingController<Content> where Co
     
     let sceneIdentity: String
     let isRoot: Bool
-    let tabCategory: TabBarCategory
+    let tabCategory: TabBarCategory?
     
     init(sceneIdentity: String,
          isRoot: Bool,
-         tabCategory: TabBarCategory,
+         tabCategory: TabBarCategory?,
          view: Content) {
         
         self.sceneIdentity = sceneIdentity

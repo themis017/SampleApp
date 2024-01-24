@@ -36,7 +36,7 @@ class MainRouter: BaseRouter, MainRouting {
             navigationController: navigationController,
             mainRouter: self)
         
-        let homeViewController = mainSceneComposer.createViewController(for: .home)
+        let homeViewController = mainSceneComposer.createMainScene(for: .home)
 //        let searchViewController = mainSceneComposer.createViewController(for: .search)
 //        let notificationsViewController = mainSceneComposer.createViewController(for: .notifications)
 //        let profileViewController = mainSceneComposer.createViewController(for: .profile)

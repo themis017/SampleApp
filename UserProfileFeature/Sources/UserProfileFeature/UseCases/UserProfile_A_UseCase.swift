@@ -36,7 +36,12 @@ public class UserProfile_A_UseCase: UserProfile_A_UseCaseProviding {
     
     public func showPath(for selectedTab: TabBarCategory) {
         AppData.shared.save(selectedTab, to: .selectedTab)
-        userProfileRouter.showPath(for: selectedTab)
+        
+        if selectedTab == .profile {
+            userProfileRouter.dismissToRoot(for: .profile)
+        } else {
+            userProfileRouter.showPath(for: selectedTab)
+        }
     }
 }
 
