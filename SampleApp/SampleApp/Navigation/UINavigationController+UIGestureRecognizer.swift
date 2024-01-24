@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 import MainFeature
 
 extension UINavigationController: UIGestureRecognizerDelegate {
@@ -21,10 +22,10 @@ extension UINavigationController: UIGestureRecognizerDelegate {
             return false
         }
         
-//        guard let lastViewControllerTitle = viewControllers.last?.title,
-//              lastViewControllerTitle != MainView.sceneIdentity else {
-//            return false
-//        }
+        guard let lastViewController = viewControllers.last as? RoutingUIHostingController<AnyView>,
+              lastViewController.tabCategory == nil else {
+            return false
+        }
         
         return true
     }

@@ -55,33 +55,20 @@ open class BaseRouter {
     
     @MainActor
     public func dismissToRoot(for selectedTab: TabBarCategory) {
-        
-//        let mainRouter = MainRouter(navigationController: navigationController)
-//        let mainSceneComposer = MainSceneComposer(
-//            navigationController: navigationController,
-//            mainRouter: mainRouter)
-        
+          
         switch selectedTab {
         case .home:
-//            let homeViewController = mainSceneComposer.createViewController(for: .home)
             TabBarRoutes.shared.homeRoutingControllers = []
             removeViewControllers(for: .home)
-//            self.navigationController.pushViewController(homeViewController, animated: true)
         case .search:
-//            let searchViewController = mainSceneComposer.createViewController(for: .search)
             TabBarRoutes.shared.searchRoutingControllers = []
             removeViewControllers(for: .search)
-//            self.navigationController.pushViewController(searchViewController, animated: true)
         case .notifications:
-//            let notificationsViewController = mainSceneComposer.createViewController(for: .notifications)
             TabBarRoutes.shared.notificationsRoutingControllers = []
             removeViewControllers(for: .notifications)
-//            self.navigationController.pushViewController(notificationsViewController, animated: true)
         case .profile:
-//            let profileViewController = mainSceneComposer.createViewController(for: .profile)
             TabBarRoutes.shared.profileRoutingControllers = []
             removeViewControllers(for: .profile)
-//            self.navigationController.pushViewController(profileViewController, animated: true)
         }
     }
     
@@ -89,7 +76,6 @@ open class BaseRouter {
     public func showPath(for selectedTab: TabBarCategory) {
         switch selectedTab {
         case .home:
-            print("### 1: \(self.navigationController.viewControllers.count)")
             let homeViewControllers = TabBarRoutes.shared.homeRoutingControllers
             self.navigationController.viewControllers.removeAll { uiViewController in
                 guard let routingController = uiViewController as? RoutingUIHostingController<AnyView>,
@@ -99,9 +85,7 @@ open class BaseRouter {
                 
                 return false
             }
-            
-            print("### 2: \(self.navigationController.viewControllers.count)")
-            
+                        
             let viewControllers = homeViewControllers.reversed()
             var viewControllersCount = viewControllers.count
             
@@ -128,9 +112,22 @@ open class BaseRouter {
                 
                 return false
             }
+                        
+            let viewControllers = searchViewControllers.reversed()
+            var viewControllersCount = viewControllers.count
             
-            if searchViewControllers.count > 1 {
-                self.navigationController.viewControllers = searchViewControllers
+            for searchViewController in viewControllers {
+                if viewControllersCount == searchViewControllers.count {
+                    self.navigationController.pushViewController(searchViewController, animated: false)
+                    viewControllersCount = viewControllersCount - 1
+                    continue
+                }
+                
+                if viewControllersCount == 0 {
+                    break
+                } else {
+                    self.navigationController.viewControllers.insert(searchViewController, at: viewControllersCount)
+                }
             }
         case .notifications:
             let notificationsViewControllers = TabBarRoutes.shared.notificationsRoutingControllers
@@ -142,13 +139,24 @@ open class BaseRouter {
                 
                 return false
             }
-            //            self.navigationController.viewControllers = notificationsViewControllers
+                        
+            let viewControllers = notificationsViewControllers.reversed()
+            var viewControllersCount = viewControllers.count
             
-            if notificationsViewControllers.count > 1 {
-                self.navigationController.viewControllers = notificationsViewControllers
+            for notificationViewController in viewControllers {
+                if viewControllersCount == notificationsViewControllers.count {
+                    self.navigationController.pushViewController(notificationViewController, animated: false)
+                    viewControllersCount = viewControllersCount - 1
+                    continue
+                }
+                
+                if viewControllersCount == 0 {
+                    break
+                } else {
+                    self.navigationController.viewControllers.insert(notificationViewController, at: viewControllersCount)
+                }
             }
         case .profile:
-            print("### 4: \(self.navigationController.viewControllers.count)")
             let profileViewControllers = TabBarRoutes.shared.profileRoutingControllers
             self.navigationController.viewControllers.removeAll { uiViewController in
                 guard let routingController = uiViewController as? RoutingUIHostingController<AnyView>,
@@ -158,9 +166,7 @@ open class BaseRouter {
                 
                 return false
             }
-            
-            print("### 5: \(self.navigationController.viewControllers.count)")
-            
+                        
             let viewControllers = profileViewControllers.reversed()
             var viewControllersCount = viewControllers.count
             

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import ApplicationLayer
 
-class RoutingUIHostingController<Content>: UIHostingController<Content> where Content: View {
+class RoutingUIHostingController<Content: View>: UIHostingController<Content> {
     
     let sceneIdentity: String
     let isRoot: Bool
