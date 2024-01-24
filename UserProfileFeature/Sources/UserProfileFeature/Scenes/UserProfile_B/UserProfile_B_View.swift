@@ -30,6 +30,15 @@ public struct UserProfile_B_View: View {
             Spacer()
             
             Button {
+                viewModel.perform(.dismiss)
+            } label: {
+                Text("Back")
+                    .padding(24)
+                    .background(Color.yellow)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+            }
+            
+            Button {
                 viewModel.perform(.nextAction)
             } label: {
                 Text("Next")

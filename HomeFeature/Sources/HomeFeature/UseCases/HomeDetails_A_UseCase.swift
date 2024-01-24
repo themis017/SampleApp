@@ -12,6 +12,7 @@ import UILayer
 
 public protocol HomeDetails_A_UseCaseProviding {
     
+    func dismiss()
     func nextAction()
     func showPath(for selectedTab: TabBarCategory)
 }
@@ -22,6 +23,10 @@ public class HomeDetails_A_UseCase: HomeDetails_A_UseCaseProviding {
     
     public init(homeRouter: any HomeRouting) {
         self.homeRouter = homeRouter
+    }
+    
+    public func dismiss() {
+        homeRouter.popScene()
     }
     
     public func nextAction() {
@@ -44,6 +49,7 @@ public class PreviewHomeDetails_A_UseCase: HomeDetails_A_UseCaseProviding {
     
     }
     
+    public func dismiss() {}
     public func nextAction() {}
     public func showPath(for selectedTab: TabBarCategory) {}
 }

@@ -15,6 +15,7 @@ public class UserProfile_B_ViewModel: ViewModel {
     
     public enum Action {
         case selectedTab(TabBarCategory)
+        case dismiss
         case nextAction
     }
     
@@ -42,6 +43,8 @@ public class UserProfile_B_ViewModel: ViewModel {
         switch action {
         case .selectedTab(let tabCategory):
             userProfile_B_UseCase.showPath(for: tabCategory)
+        case .dismiss:
+            userProfile_B_UseCase.dismiss()
         case .nextAction:
             userProfile_B_UseCase.nextAction()
         }

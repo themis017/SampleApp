@@ -40,16 +40,13 @@ open class BaseRouter {
                     TabBarRoutes.shared.notificationsRoutingControllers = TabBarRoutes.shared.notificationsRoutingControllers.dropLast()
                 }
             case .profile:
-                print("### 7; \(TabBarRoutes.shared.profileRoutingControllers)")
                 if TabBarRoutes.shared.profileRoutingControllers.count > 0 {
                     TabBarRoutes.shared.profileRoutingControllers = TabBarRoutes.shared.profileRoutingControllers.dropLast()
                 }
-                print("### 8; \(TabBarRoutes.shared.profileRoutingControllers)")
             }
             
             DispatchQueue.main.async {
                 self.navigationController.popViewController(animated: true)
-                self.showPath(for: routingController.tabCategory)
             }
         }
     }
@@ -103,20 +100,12 @@ open class BaseRouter {
             
             print("### 2: \(self.navigationController.viewControllers.count)")
             
-            //            self.navigationController.viewControllers.removeAll()
-            //            self.navigationController.viewControllers = homeViewControllers
-            
-//            if homeViewControllers.count > 1 {
-//                self.navigationController.viewControllers = homeViewControllers
-//                print("### 3: \(self.navigationController.viewControllers.count)")
-//            }
-            
             let viewControllers = homeViewControllers.reversed()
             var viewControllersCount = viewControllers.count
             
             for homeViewController in viewControllers {
                 if viewControllersCount == homeViewControllers.count {
-                    self.navigationController.pushViewController(homeViewController, animated: true)
+                    self.navigationController.pushViewController(homeViewController, animated: false)
                     viewControllersCount = viewControllersCount - 1
                     continue
                 }
@@ -126,9 +115,6 @@ open class BaseRouter {
                 } else {
                     self.navigationController.viewControllers.insert(homeViewController, at: viewControllersCount)
                 }
-                
-                //            let lastVC = self.navigationController.viewControllers.last
-//                print("### 6: \(self.navigationController.viewControllers.count)")
             }
         case .search:
             let searchViewControllers = TabBarRoutes.shared.searchRoutingControllers
@@ -140,7 +126,6 @@ open class BaseRouter {
                 
                 return false
             }
-            //            self.navigationController.viewControllers = searchViewControllers
             
             if searchViewControllers.count > 1 {
                 self.navigationController.viewControllers = searchViewControllers
@@ -173,22 +158,13 @@ open class BaseRouter {
             }
             
             print("### 5: \(self.navigationController.viewControllers.count)")
-            //            self.navigationController.viewControllers = profileViewControllers
-            
-            //            profileViewControllers.forEach { profileViewController in
-            //                self.navigationController.pushViewController(profileViewController, animated: true)
-            //            }
-            //            if profileViewControllers.count > 1 {
-            //                self.navigationController.viewControllers = profileViewControllers
-            //                print("### 6: \(self.navigationController.viewControllers.count)")
-            //            }
             
             let viewControllers = profileViewControllers.reversed()
             var viewControllersCount = viewControllers.count
             
             for profileViewController in viewControllers {
                 if viewControllersCount == profileViewControllers.count {
-                    self.navigationController.pushViewController(profileViewController, animated: true)
+                    self.navigationController.pushViewController(profileViewController, animated: false)
                     viewControllersCount = viewControllersCount - 1
                     continue
                 }
@@ -198,9 +174,6 @@ open class BaseRouter {
                 } else {
                     self.navigationController.viewControllers.insert(profileViewController, at: viewControllersCount)
                 }
-                
-                //            let lastVC = self.navigationController.viewControllers.last
-//                print("### 6: \(self.navigationController.viewControllers.count)")
             }
         }
     }

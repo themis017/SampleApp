@@ -39,12 +39,12 @@ public struct MainView: View {
         .tabBar(selectedTab: $viewModel.selectedTab) { selectedTab in
             viewModel.perform(.selectedTab(selectedTab))
         }
-        .onAppear {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                print("### MAIN")
-                viewModel.perform(.refresh)
-//            }
-        }
+//        .onAppear {
+////            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//                print("### MAIN")
+//                viewModel.perform(.refresh)
+////            }
+//        }
     }
 }
 
