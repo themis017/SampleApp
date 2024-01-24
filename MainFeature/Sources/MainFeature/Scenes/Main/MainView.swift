@@ -8,8 +8,9 @@
 import Foundation
 import SwiftUI
 import HomeFeature
+import SearchFeature
+import NotificationsFeature
 import UserProfileFeature
-import SettingsFeature
 
 public struct MainView: View {
     
@@ -29,22 +30,16 @@ public struct MainView: View {
             case .home:
                 HomeView(viewModel: viewModel.homeViewModel)
             case .search:
-                Text("Search")
+                SearchView(viewModel: viewModel.searchViewModel)
             case .notifications:
-                Text("Notifications")
+                NotificationsView(viewModel: viewModel.notificationsViewModel)
             case .profile:
                 UserProfileView(viewModel: viewModel.userProfileViewModel)
             }
         }
-        .tabBar(selectedTab: $viewModel.selectedTab) { selectedTab in
+        .tabBar(selectedTab: viewModel.selectedTab) { selectedTab in
             viewModel.perform(.selectedTab(selectedTab))
         }
-//        .onAppear {
-////            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//                print("### MAIN")
-//                viewModel.perform(.refresh)
-////            }
-//        }
     }
 }
 

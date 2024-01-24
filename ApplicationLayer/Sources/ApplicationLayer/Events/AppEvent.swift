@@ -8,7 +8,6 @@
 import Foundation
 
 public protocol AppEvent {
-    
     var id: UUID { get }
     var name: String { get }
     var type: EventType { get }

@@ -50,8 +50,11 @@ public struct UserProfile_A_View: View {
 
         }
         .background(Color.green)
-        .tabBar(selectedTab: .constant(.profile)) { selectedTab in
+        .tabBar(selectedTab: viewModel.selectedTab) { selectedTab in
             viewModel.perform(.selectedTab(selectedTab))
+        }
+        .onAppear {
+            viewModel.selectedTab = .profile
         }
     }
 }

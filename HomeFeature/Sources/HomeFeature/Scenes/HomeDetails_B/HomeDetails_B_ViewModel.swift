@@ -29,14 +29,6 @@ public class HomeDetails_B_ViewModel: ViewModel {
     public init(homeDetails_B_UseCase: HomeDetails_B_UseCaseProviding) {
         
         self.homeDetails_B_UseCase = homeDetails_B_UseCase
-        
-//        $selectedTab
-//            .dropFirst()
-//            .sink { [weak self] newValue in
-//                print("### selectedTab: \(newValue)")
-//                self?.homeDetails_B_UseCase.showPath(for: newValue)
-//            }
-//            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {

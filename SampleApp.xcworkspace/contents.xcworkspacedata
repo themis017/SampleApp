@@ -17,6 +17,12 @@
       location = "group:HomeFeature">
    </FileRef>
    <FileRef
+      location = "group:SearchFeature">
+   </FileRef>
+   <FileRef
+      location = "group:NotificationsFeature">
+   </FileRef>
+   <FileRef
       location = "group:UserProfileFeature">
    </FileRef>
    <FileRef

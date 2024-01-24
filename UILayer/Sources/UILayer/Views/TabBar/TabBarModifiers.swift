@@ -11,15 +11,13 @@ import ApplicationLayer
 
 struct TabBarModifier: ViewModifier {
     
-    @Binding
     var selectedTab: TabBarCategory
-    
     let action: (TabBarCategory) -> Void
     
-    init(selectedTab: Binding<TabBarCategory>,
+    init(selectedTab: TabBarCategory,
          action: @escaping (TabBarCategory) -> Void) {
         
-        self._selectedTab = selectedTab
+        self.selectedTab = selectedTab
         self.action = action
     }
     
@@ -29,7 +27,7 @@ struct TabBarModifier: ViewModifier {
             
             Spacer()
             
-            TabBar(selectedTab: $selectedTab) { selectedTab in
+            TabBar(selectedTab: selectedTab) { selectedTab in
                 action(selectedTab)
             }
         }
@@ -38,7 +36,7 @@ struct TabBarModifier: ViewModifier {
 
 public extension View {
     
-    func tabBar(selectedTab: Binding<TabBarCategory>, action: @escaping (TabBarCategory) -> Void) -> some View {
+    func tabBar(selectedTab: TabBarCategory, action: @escaping (TabBarCategory) -> Void) -> some View {
         self.modifier(TabBarModifier(selectedTab: selectedTab) { selectedTab in
             action(selectedTab)
         }

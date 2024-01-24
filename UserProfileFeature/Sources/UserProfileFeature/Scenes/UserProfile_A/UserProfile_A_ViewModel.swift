@@ -29,14 +29,6 @@ public class UserProfile_A_ViewModel: ViewModel {
     public init(userProfile_A_UseCase: UserProfile_A_UseCaseProviding) {
         
         self.userProfile_A_UseCase = userProfile_A_UseCase
-        
-//        $selectedTab
-//            .dropFirst()
-//            .sink { [weak self] newValue in
-//                print("### selectedTab: \(newValue)")
-//                self?.userProfile_A_UseCase.showPath(for: newValue)
-//            }
-//            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {

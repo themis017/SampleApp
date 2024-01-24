@@ -50,8 +50,11 @@ public struct HomeDetails_A_View: View {
 
         }
         .background(Color.green)
-        .tabBar(selectedTab: .constant(.home)) { selectedTab in
+        .tabBar(selectedTab: viewModel.selectedTab) { selectedTab in
             viewModel.perform(.selectedTab(selectedTab))
+        }
+        .onAppear {
+            viewModel.selectedTab = .home
         }
     }
 }

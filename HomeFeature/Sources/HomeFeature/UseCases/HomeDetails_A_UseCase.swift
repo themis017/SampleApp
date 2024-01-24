@@ -34,12 +34,14 @@ public class HomeDetails_A_UseCase: HomeDetails_A_UseCaseProviding {
 //        homeRouter.popScene()
     }
     
-    public func showPath(for selectedTab: TabBarCategory) {
-        AppData.shared.save(selectedTab, to: .selectedTab)
-        
+    public func showPath(for selectedTab: TabBarCategory) {        
         if selectedTab == .home {
             homeRouter.dismissToRoot(for: .home)
         } else {
+            let selectedTabEvent = SelectedTabEvent()
+            selectedTabEvent.userInfo["tab"] = selectedTab
+            EventPipeline.shared.send(selectedTabEvent)
+            
             homeRouter.showPath(for: selectedTab)
         }
     }

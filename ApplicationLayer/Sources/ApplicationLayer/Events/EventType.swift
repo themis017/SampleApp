@@ -8,7 +8,5 @@
 import Foundation
 
 public enum EventType {
-    case applicationStateEvent
-    case userInteractionEvent
     case selectedTab
 }

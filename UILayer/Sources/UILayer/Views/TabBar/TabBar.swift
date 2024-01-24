@@ -11,15 +11,13 @@ import ApplicationLayer
 
 public struct TabBar: View {
 
-    @Binding
     var selectedTab: TabBarCategory
-    
     let action: (TabBarCategory) -> Void
         
-    public init(selectedTab: Binding<TabBarCategory>,
+    public init(selectedTab: TabBarCategory,
                 action: @escaping (TabBarCategory) -> Void) {
         
-        self._selectedTab = selectedTab
+        self.selectedTab = selectedTab
         self.action = action
     }
     
@@ -33,7 +31,6 @@ public struct TabBar: View {
                 ForEach(TabBarCategory.allCases, id: \.self) { tabBarCategory in
                     Button {
                         withAnimation {
-                            selectedTab = tabBarCategory
                             action(tabBarCategory)
                         }
                     } label: {
@@ -60,7 +57,7 @@ public struct TabBar: View {
 struct TabBar_Previews: PreviewProvider {
     
     static var previews: some View {
-        TabBar(selectedTab: .constant(.home)) { selectedTab in
+        TabBar(selectedTab: .home) { selectedTab in
             
         }
     }

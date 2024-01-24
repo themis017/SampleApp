@@ -34,12 +34,14 @@ public class UserProfile_A_UseCase: UserProfile_A_UseCaseProviding {
 //        userProfileRouter.popScene()
     }
     
-    public func showPath(for selectedTab: TabBarCategory) {
-        AppData.shared.save(selectedTab, to: .selectedTab)
-        
+    public func showPath(for selectedTab: TabBarCategory) {        
         if selectedTab == .profile {
             userProfileRouter.dismissToRoot(for: .profile)
         } else {
+            let selectedTabEvent = SelectedTabEvent()
+            selectedTabEvent.userInfo["tab"] = selectedTab
+            EventPipeline.shared.send(selectedTabEvent)
+            
             userProfileRouter.showPath(for: selectedTab)
         }
     }

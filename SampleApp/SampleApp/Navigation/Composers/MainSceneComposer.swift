@@ -10,8 +10,9 @@ import SwiftUI
 import ApplicationLayer
 import MainFeature
 import HomeFeature
+import SearchFeature
+import NotificationsFeature
 import UserProfileFeature
-import SettingsFeature
 
 class MainSceneComposer {
     let navigationController: UINavigationController
@@ -34,21 +35,27 @@ class MainSceneComposer {
                 navigationController: navigationController)
         )
         
-        let userProfileUseCase = UserProfileUseCase(
-            userProfileRouter: UserProfileRouter(
+        let searchUseCase = SearchUseCase(
+            searchRouter: SearchRouter(
                 navigationController: navigationController)
         )
         
-        let settingsUseCase = SettingsUseCase(
-            settingsRouter: SettingsRouter(
+        let notificationsUseCase = NotificationsUseCase(
+            notificationsRouter: NotificationsRouter(
+                navigationController: navigationController)
+        )
+        
+        let userProfileUseCase = UserProfileUseCase(
+            userProfileRouter: UserProfileRouter(
                 navigationController: navigationController)
         )
         
         let viewModel = MainViewModel(
             mainUseCase: mainUseCase,
             homeUseCase: homeUseCase,
-            userProfileUseCase: userProfileUseCase,
-            settingsUseCase: settingsUseCase)
+            searchUseCase: searchUseCase,
+            notificationsUseCase: notificationsUseCase,
+            userProfileUseCase: userProfileUseCase)
         
         let view = AnyView(MainView(viewModel: viewModel))
         let viewController = RoutingUIHostingController(

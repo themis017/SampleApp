@@ -10,14 +10,14 @@ import Combine
 import ApplicationLayer
 import UILayer
 import HomeFeature
+import SearchFeature
+import NotificationsFeature
 import UserProfileFeature
-import SettingsFeature
 
 @MainActor
 public class MainViewModel: ViewModel {
     
     public enum Action {
-        case refresh
         case selectedTab(TabBarCategory)
         case nextAction
     }
@@ -34,23 +34,26 @@ public class MainViewModel: ViewModel {
     private let mainUseCase: MainUseCaseProviding
     
     public let homeViewModel: HomeViewModel
+    public let searchViewModel: SearchViewModel
+    public let notificationsViewModel: NotificationsViewModel
     public let userProfileViewModel: UserProfileViewModel
-    public let settingsViewModel: SettingsViewModel
     
     private var subscriptions: Set<AnyCancellable> = []
     
     public init(mainUseCase: MainUseCaseProviding,
                 homeUseCase: HomeUseCaseProviding,
-                userProfileUseCase: UserProfileUseCaseProviding,
-                settingsUseCase: SettingsUseCaseProviding) {
+                searchUseCase: SearchUseCaseProviding,
+                notificationsUseCase: NotificationsUseCaseProviding,
+                userProfileUseCase: UserProfileUseCaseProviding) {
         
         self.selectedTab = mainUseCase.selectedTab.value
         self.randomProperty = mainUseCase.randomProperty.value
         self.mainUseCase = mainUseCase
         
         self.homeViewModel = HomeViewModel(homeUseCase: homeUseCase)
+        self.searchViewModel = SearchViewModel(searchUseCase: searchUseCase)
+        self.notificationsViewModel = NotificationsViewModel(notificationsUseCase: notificationsUseCase)
         self.userProfileViewModel = UserProfileViewModel(userProfileUseCase: userProfileUseCase)
-        self.settingsViewModel = SettingsViewModel(settingsUseCase: settingsUseCase)
         
         bind(\.selectedTab, to: mainUseCase.selectedTab)
             .store(in: &subscriptions)
@@ -61,26 +64,25 @@ public class MainViewModel: ViewModel {
         forward($randomText, to: mainUseCase.randomText)
             .store(in: &subscriptions)
         
-//        $selectedTab
-////            .dropFirst()
-//            .sink { [weak self] newValue in
-//                print("### selectedTab: \(newValue)")
-////                self?.mainUseCase.showPath(for: newValue)
-//            }
-//            .store(in: &subscriptions)
+        EventPipeline.shared
+            .eventPublisher
+            .receive(on: DispatchQueue.main)
+            .filter({ $0.type == .selectedTab })
+            .sink { [weak self] newValue in
+                guard newValue.userInfo.keys.contains("tab"),
+                   let tabBarCategory = newValue.userInfo["tab"] as? TabBarCategory else {
+                    return
+                }
+                
+                self?.selectedTab = tabBarCategory
+            }
+            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {
         switch action {
-        case .refresh:
-            mainUseCase.refresh()
-//            guard let tabBarCategory: TabBarCategory? = AppData.shared.value(of: .selectedTab) else {
-//                return
-//            }
-//
-//            selectedTab = tabBarCategory ?? .home
-//            print("## \(selectedTab)")
         case .selectedTab(let tabCategory):
+            selectedTab = tabCategory
             mainUseCase.showPath(for: tabCategory)
         case .nextAction:
             mainUseCase.nextAction()
@@ -95,14 +97,16 @@ public extension MainViewModel {
     static func previewViewModel() -> MainViewModel {
         let previewMainUseCase = PreviewMainUseCase()
         let previewHomeUseCase = PreviewHomeUseCase()
+        let previewSearchUseCase = PreviewSearchUseCase()
+        let previewNotificationsUseCase = PreviewNotificationsUseCase()
         let previewUserProfileUseCase = PreviewUserProfileUseCase()
-        let previewSettingsUseCase = PreviewSettingsUseCase()
         
         return MainViewModel(
             mainUseCase: previewMainUseCase,
             homeUseCase: previewHomeUseCase,
-            userProfileUseCase: previewUserProfileUseCase,
-            settingsUseCase: previewSettingsUseCase)
+            searchUseCase: previewSearchUseCase,
+            notificationsUseCase: previewNotificationsUseCase,
+            userProfileUseCase: previewUserProfileUseCase)
     }
 }
 

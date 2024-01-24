@@ -35,12 +35,14 @@ public class HomeDetails_B_UseCase: HomeDetails_B_UseCaseProviding {
 //        print("randomText: \(randomText.value)")
     }
     
-    public func showPath(for selectedTab: TabBarCategory) {
-        AppData.shared.save(selectedTab, to: .selectedTab)
-        
+    public func showPath(for selectedTab: TabBarCategory) {        
         if selectedTab == .home {
             homeRouter.dismissToRoot(for: .home)
         } else {
+            let selectedTabEvent = SelectedTabEvent()
+            selectedTabEvent.userInfo["tab"] = selectedTab
+            EventPipeline.shared.send(selectedTabEvent)
+            
             homeRouter.showPath(for: selectedTab)
         }
     }
