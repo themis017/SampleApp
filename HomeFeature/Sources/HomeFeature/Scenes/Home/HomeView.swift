@@ -40,6 +40,7 @@ public struct HomeView: View {
             
 
         }
+        .flexible()
         .background(Color.green)
     }
 }

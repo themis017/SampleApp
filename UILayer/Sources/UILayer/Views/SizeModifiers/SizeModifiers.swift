@@ -26,6 +26,13 @@ struct FlexibleViewModifier: ViewModifier {
 
 public extension View {
     
+    func flexible() -> some View {
+        
+        self
+            .flexible(.horizontal)
+            .flexible(.vertical)
+    }
+    
     func flexible(_ axis: Axis.Set,
                   alignment: Alignment = .center) -> some View {
         

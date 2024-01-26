@@ -15,7 +15,7 @@ public class HomeDetails_B_ViewModel: ViewModel {
     
     public enum Action {
         case selectedTab(TabBarCategory)
-        case dismiss
+        case dismiss(animated: Bool)
         case nextAction
     }
     
@@ -41,8 +41,8 @@ public class HomeDetails_B_ViewModel: ViewModel {
             
             selectedTab = tabCategory
             homeDetails_B_UseCase.showPath(for: tabCategory)
-        case .dismiss:
-            homeDetails_B_UseCase.dismiss()
+        case .dismiss(let animated):
+            homeDetails_B_UseCase.dismiss(animated: animated)
         case .nextAction:
             homeDetails_B_UseCase.nextAction()
         }

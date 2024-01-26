@@ -12,7 +12,7 @@ import UILayer
 
 public protocol UserProfile_A_UseCaseProviding {
     
-    func dismiss()
+    func dismiss(animated: Bool)
     func nextAction()
     func showUpload()
     func showPath(for selectedTab: TabBarCategory)
@@ -26,8 +26,8 @@ public class UserProfile_A_UseCase: UserProfile_A_UseCaseProviding {
         self.userProfileRouter = userProfileRouter
     }
     
-    public func dismiss() {
-        userProfileRouter.popScene()
+    public func dismiss(animated: Bool) {
+        userProfileRouter.popScene(animated: animated)
     }
     
     public func nextAction() {
@@ -59,7 +59,7 @@ public class PreviewUserProfile_A_UseCase: UserProfile_A_UseCaseProviding {
     
     }
     
-    public func dismiss() {}
+    public func dismiss(animated: Bool) {}
     public func nextAction() {}
     public func showUpload() {}
     public func showPath(for selectedTab: TabBarCategory) {}

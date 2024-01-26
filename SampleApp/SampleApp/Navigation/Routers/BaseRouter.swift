@@ -27,7 +27,7 @@ open class BaseRouter {
     }
     
     @MainActor
-    public func popScene() {
+    public func popScene(animated: Bool) {
         if let routingController = navigationController.topViewController as? RoutingUIHostingController<AnyView>,
            !routingController.isRoot {
             
@@ -39,7 +39,7 @@ open class BaseRouter {
             }
 
             DispatchQueue.main.async {
-                self.navigationController.popViewController(animated: true)
+                self.navigationController.popViewController(animated: animated)
             }
         }
     }

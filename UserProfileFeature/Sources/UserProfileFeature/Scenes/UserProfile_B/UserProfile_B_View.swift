@@ -30,7 +30,7 @@ public struct UserProfile_B_View: View {
             Spacer()
             
             Button {
-                viewModel.perform(.dismiss)
+                viewModel.perform(.dismiss(animated: true))
             } label: {
                 Text("Back")
                     .padding(24)
@@ -49,7 +49,10 @@ public struct UserProfile_B_View: View {
             
 
         }
-        .background(Color.green)
+        .background(Color.blue)
+        .slideBack {
+            viewModel.perform(.dismiss(animated: false))
+        }
         .tabBar(selectedTab: viewModel.selectedTab) { selectedTab in
             viewModel.perform(.selectedTab(selectedTab))
         }
