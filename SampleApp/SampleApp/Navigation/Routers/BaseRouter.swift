@@ -22,6 +22,11 @@ open class BaseRouter {
     }
     
     @MainActor
+    public func showUploadScene() {
+       
+    }
+    
+    @MainActor
     public func popScene() {
         if let routingController = navigationController.topViewController as? RoutingUIHostingController<AnyView>,
            !routingController.isRoot {

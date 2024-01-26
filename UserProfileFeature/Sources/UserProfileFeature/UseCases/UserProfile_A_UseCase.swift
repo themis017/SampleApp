@@ -35,7 +35,7 @@ public class UserProfile_A_UseCase: UserProfile_A_UseCaseProviding {
 //        userProfileRouter.popScene()
     }
     public func showUpload() {
-        
+        userProfileRouter.showUploadScene()
     }
     
     public func showPath(for selectedTab: TabBarCategory) {

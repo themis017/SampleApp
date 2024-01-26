@@ -62,7 +62,7 @@ public class MainUseCase: MainUseCaseProviding {
     }
     
     public func showUpload() {
-        
+        mainRouter.showUploadScene()
     }
     
     public func showPath(for selectedTab: TabBarCategory) {

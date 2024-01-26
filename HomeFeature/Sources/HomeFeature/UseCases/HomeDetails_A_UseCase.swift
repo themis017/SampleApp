@@ -36,7 +36,7 @@ public class HomeDetails_A_UseCase: HomeDetails_A_UseCaseProviding {
     }
     
     public func showUpload() {
-        
+        homeRouter.showUploadScene()
     }
     
     public func showPath(for selectedTab: TabBarCategory) {        
