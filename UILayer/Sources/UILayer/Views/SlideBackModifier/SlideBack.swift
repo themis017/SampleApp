@@ -31,15 +31,18 @@ struct SlideBackViewModifier: ViewModifier {
                 DragGesture()
                     .onChanged { value in
                         withAnimation(.spring()) {
-                            offset = value.translation
+                            if value.translation.width > 0 {
+                                offset = value.translation
+                            }
                         }
                     }
                     .onEnded { value in
                         withAnimation(.spring()) {
-                            if abs(value.translation.width) < (UIScreen.main.bounds.width / 2) {
-                                offset = .zero
-                            } else {
+                            if value.translation.width > 0,
+                               abs(value.translation.width) > (UIScreen.main.bounds.width / 2) {
                                 onDismiss()
+                            } else {
+                                offset = .zero
                             }
                         }
                     }
