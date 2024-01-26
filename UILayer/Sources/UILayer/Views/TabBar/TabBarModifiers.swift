@@ -24,9 +24,8 @@ struct TabBarModifier: ViewModifier {
     func body(content: Content) -> some View {
         VStack(spacing: 0) {
             content
-            
-            Spacer()
-            
+                .flexible(.vertical)
+                        
             TabBar(selectedTab: selectedTab) { selectedTab in
                 action(selectedTab)
             }
