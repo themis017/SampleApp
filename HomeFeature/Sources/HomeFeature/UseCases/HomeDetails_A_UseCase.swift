@@ -14,6 +14,7 @@ public protocol HomeDetails_A_UseCaseProviding {
     
     func dismiss()
     func nextAction()
+    func showUpload()
     func showPath(for selectedTab: TabBarCategory)
 }
 
@@ -34,6 +35,10 @@ public class HomeDetails_A_UseCase: HomeDetails_A_UseCaseProviding {
 //        homeRouter.popScene()
     }
     
+    public func showUpload() {
+        
+    }
+    
     public func showPath(for selectedTab: TabBarCategory) {        
         if selectedTab == .home {
             homeRouter.dismissToRoot(for: .home)
@@ -45,19 +50,17 @@ public class HomeDetails_A_UseCase: HomeDetails_A_UseCaseProviding {
             homeRouter.showPath(for: selectedTab)
         }
     }
-    
 }
 
 #if DEBUG
 
 public class PreviewHomeDetails_A_UseCase: HomeDetails_A_UseCaseProviding {
     
-    public init() {
-    
-    }
+    public init() {}
     
     public func dismiss() {}
     public func nextAction() {}
+    public func showUpload() {}
     public func showPath(for selectedTab: TabBarCategory) {}
 }
 

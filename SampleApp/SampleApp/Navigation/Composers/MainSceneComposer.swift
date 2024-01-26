@@ -11,7 +11,7 @@ import ApplicationLayer
 import MainFeature
 import HomeFeature
 import SearchFeature
-import NotificationsFeature
+import FavouritesFeature
 import UserProfileFeature
 
 class MainSceneComposer {
@@ -40,8 +40,8 @@ class MainSceneComposer {
                 navigationController: navigationController)
         )
         
-        let notificationsUseCase = NotificationsUseCase(
-            notificationsRouter: NotificationsRouter(
+        let favouritesUseCase = FavouritesUseCase(
+            favouritesRouter: FavouritesRouter(
                 navigationController: navigationController)
         )
         
@@ -54,7 +54,7 @@ class MainSceneComposer {
             mainUseCase: mainUseCase,
             homeUseCase: homeUseCase,
             searchUseCase: searchUseCase,
-            notificationsUseCase: notificationsUseCase,
+            favouritesUseCase: favouritesUseCase,
             userProfileUseCase: userProfileUseCase)
         
         let view = AnyView(MainView(viewModel: viewModel))

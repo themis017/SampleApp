@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import HomeFeature
 import SearchFeature
-import NotificationsFeature
+import FavouritesFeature
 import UserProfileFeature
 
 public struct MainView: View {
@@ -31,8 +31,10 @@ public struct MainView: View {
                 HomeView(viewModel: viewModel.homeViewModel)
             case .search:
                 SearchView(viewModel: viewModel.searchViewModel)
-            case .notifications:
-                NotificationsView(viewModel: viewModel.notificationsViewModel)
+            case .upload:
+                EmptyView()
+            case .favourites:
+                FavouritesView(viewModel: viewModel.favouritesViewModel)
             case .profile:
                 UserProfileView(viewModel: viewModel.userProfileViewModel)
             }

@@ -11,7 +11,7 @@ import ApplicationLayer
 import UILayer
 import HomeFeature
 import SearchFeature
-import NotificationsFeature
+import FavouritesFeature
 import UserProfileFeature
 
 @MainActor
@@ -35,7 +35,7 @@ public class MainViewModel: ViewModel {
     
     public let homeViewModel: HomeViewModel
     public let searchViewModel: SearchViewModel
-    public let notificationsViewModel: NotificationsViewModel
+    public let favouritesViewModel: FavouritesViewModel
     public let userProfileViewModel: UserProfileViewModel
     
     private var subscriptions: Set<AnyCancellable> = []
@@ -43,7 +43,7 @@ public class MainViewModel: ViewModel {
     public init(mainUseCase: MainUseCaseProviding,
                 homeUseCase: HomeUseCaseProviding,
                 searchUseCase: SearchUseCaseProviding,
-                notificationsUseCase: NotificationsUseCaseProviding,
+                favouritesUseCase: FavouritesUseCaseProviding,
                 userProfileUseCase: UserProfileUseCaseProviding) {
         
         self.selectedTab = mainUseCase.selectedTab.value
@@ -52,7 +52,7 @@ public class MainViewModel: ViewModel {
         
         self.homeViewModel = HomeViewModel(homeUseCase: homeUseCase)
         self.searchViewModel = SearchViewModel(searchUseCase: searchUseCase)
-        self.notificationsViewModel = NotificationsViewModel(notificationsUseCase: notificationsUseCase)
+        self.favouritesViewModel = FavouritesViewModel(favouritesUseCase: favouritesUseCase)
         self.userProfileViewModel = UserProfileViewModel(userProfileUseCase: userProfileUseCase)
         
         bind(\.selectedTab, to: mainUseCase.selectedTab)
@@ -82,6 +82,11 @@ public class MainViewModel: ViewModel {
     public func perform(_ action: Action) {
         switch action {
         case .selectedTab(let tabCategory):
+            guard tabCategory != .upload else {
+                mainUseCase.showUpload()
+                return
+            }
+            
             selectedTab = tabCategory
             mainUseCase.showPath(for: tabCategory)
         case .nextAction:
@@ -98,14 +103,14 @@ public extension MainViewModel {
         let previewMainUseCase = PreviewMainUseCase()
         let previewHomeUseCase = PreviewHomeUseCase()
         let previewSearchUseCase = PreviewSearchUseCase()
-        let previewNotificationsUseCase = PreviewNotificationsUseCase()
+        let previewFavouritesUseCase = PreviewFavouritesUseCase()
         let previewUserProfileUseCase = PreviewUserProfileUseCase()
         
         return MainViewModel(
             mainUseCase: previewMainUseCase,
             homeUseCase: previewHomeUseCase,
             searchUseCase: previewSearchUseCase,
-            notificationsUseCase: previewNotificationsUseCase,
+            favouritesUseCase: previewFavouritesUseCase,
             userProfileUseCase: previewUserProfileUseCase)
     }
 }

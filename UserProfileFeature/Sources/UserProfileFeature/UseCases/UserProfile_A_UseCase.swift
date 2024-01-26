@@ -14,6 +14,7 @@ public protocol UserProfile_A_UseCaseProviding {
     
     func dismiss()
     func nextAction()
+    func showUpload()
     func showPath(for selectedTab: TabBarCategory)
 }
 
@@ -33,8 +34,11 @@ public class UserProfile_A_UseCase: UserProfile_A_UseCaseProviding {
         userProfileRouter.showUserProfile_B_Scene()
 //        userProfileRouter.popScene()
     }
+    public func showUpload() {
+        
+    }
     
-    public func showPath(for selectedTab: TabBarCategory) {        
+    public func showPath(for selectedTab: TabBarCategory) {
         if selectedTab == .profile {
             userProfileRouter.dismissToRoot(for: .profile)
         } else {
@@ -57,6 +61,7 @@ public class PreviewUserProfile_A_UseCase: UserProfile_A_UseCaseProviding {
     
     public func dismiss() {}
     public func nextAction() {}
+    public func showUpload() {}
     public func showPath(for selectedTab: TabBarCategory) {}
 }
 

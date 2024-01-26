@@ -34,6 +34,12 @@ public class HomeDetails_B_ViewModel: ViewModel {
     public func perform(_ action: Action) {
         switch action {
         case .selectedTab(let tabCategory):
+            guard tabCategory != .upload else {
+                homeDetails_B_UseCase.showUpload()
+                return
+            }
+            
+            selectedTab = tabCategory
             homeDetails_B_UseCase.showPath(for: tabCategory)
         case .dismiss:
             homeDetails_B_UseCase.dismiss()

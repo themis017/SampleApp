@@ -10,7 +10,8 @@ import Foundation
 public enum TabBarCategory: CaseIterable, Codable {
     case home
     case search
-    case notifications
+    case upload
+    case favourites
     case profile
     
     public var title: String {
@@ -19,8 +20,10 @@ public enum TabBarCategory: CaseIterable, Codable {
             return "Home"
         case .search:
             return "Search"
-        case .notifications:
-            return "Notifications"
+        case .upload:
+            return "Upload"
+        case .favourites:
+            return "Favourites"
         case .profile:
             return "Profile"
         }
@@ -32,8 +35,10 @@ public enum TabBarCategory: CaseIterable, Codable {
             return "house"
         case .search:
             return "magnifyingglass"
-        case .notifications:
-            return "bell"
+        case .upload:
+            return "fork.knife.circle.fill"
+        case .favourites:
+            return "star"
         case .profile:
             return "person"
         }

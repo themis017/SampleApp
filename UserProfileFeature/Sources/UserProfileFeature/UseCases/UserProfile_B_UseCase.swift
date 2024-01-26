@@ -14,6 +14,7 @@ public protocol UserProfile_B_UseCaseProviding {
     
     func dismiss()
     func nextAction()
+    func showUpload() 
     func showPath(for selectedTab: TabBarCategory)
 }
 
@@ -31,6 +32,10 @@ public class UserProfile_B_UseCase: UserProfile_B_UseCaseProviding {
     
     public func nextAction() {
 //        userProfileRouter.popScene()
+    }
+    
+    public func showUpload() {
+        
     }
     
     public func showPath(for selectedTab: TabBarCategory) {        
@@ -56,6 +61,7 @@ public class PreviewUserProfile_B_UseCase: UserProfile_B_UseCaseProviding {
     
     public func dismiss() {}
     public func nextAction() {}
+    public func showUpload() {}
     public func showPath(for selectedTab: TabBarCategory) {}
 }
 

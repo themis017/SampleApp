@@ -1,8 +1,8 @@
 //
-//  MainUseCase.swift
+//  FavouritesUseCase.swift
 //
 //
-//  Created by Themis Makedas on 15/1/24.
+//  Created by Themis Makedas on 26/1/24.
 //
 
 import Foundation
@@ -10,22 +10,18 @@ import Combine
 import ApplicationLayer
 import UILayer
 
-public protocol MainUseCaseProviding {
+public protocol FavouritesUseCaseProviding {
     
-    var selectedTab: Observable<TabBarCategory> { get }
     var randomProperty: Observable<Int> { get }
     var randomText: Observable<String> { get }
     
     var appDataUsername: Observable<String> { get }
     
     func nextAction()
-    func showUpload()
-    func showPath(for selectedTab: TabBarCategory)
 }
 
-public class MainUseCase: MainUseCaseProviding {
+public class FavouritesUseCase: FavouritesUseCaseProviding {
     
-    public let selectedTab: Observable<TabBarCategory>
     public let randomProperty: Observable<Int>
     public let randomText: Observable<String>
     
@@ -33,18 +29,17 @@ public class MainUseCase: MainUseCaseProviding {
     
     private var subscriptions: Set<AnyCancellable> = []
     
-    private let mainRouter: any MainRouting
+    private let favouritesRouter: any FavouritesRouting
     
-    public init(selectedTab: TabBarCategory,
-                mainRouter: any MainRouting) {
+    public init(favouritesRouter: any FavouritesRouting) {
         
-        self.selectedTab = Observable(initialValue: selectedTab)
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         
+//        self.appDataUsername = Observable(initialValue: AppData.username)
         self.appDataUsername = Observable(initialValue: AppData.shared.value(of: .username) ?? "")
         
-        self.mainRouter = mainRouter
+        self.favouritesRouter = favouritesRouter
         
         AppData.shared
             .usernamePublisher
@@ -53,35 +48,25 @@ public class MainUseCase: MainUseCaseProviding {
             }
             .store(in: &subscriptions)
     }
-
+    
     public func nextAction() {
-//        mainRouter.showUserProfileScene()
-//        homeRouter.popScene()
+//        favouritesRouter.popScene()
 //        randomProperty.value += 1
 //        print("randomText: \(randomText.value)")
     }
     
-    public func showUpload() {
-        
-    }
-    
-    public func showPath(for selectedTab: TabBarCategory) {
-        mainRouter.showPath(for: selectedTab)
-    }
 }
 
 #if DEBUG
 
-public class PreviewMainUseCase: MainUseCaseProviding {
+public class PreviewFavouritesUseCase: FavouritesUseCaseProviding {
     
-    public var selectedTab: Observable<TabBarCategory>
     public var randomProperty: Observable<Int>
     public var randomText: Observable<String>
     
     public var appDataUsername: Observable<String>
     
-    init() {
-        self.selectedTab = Observable(initialValue: .home)
+    public init() {
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         
@@ -89,8 +74,6 @@ public class PreviewMainUseCase: MainUseCaseProviding {
     }
     
     public func nextAction() {}
-    public func showUpload() {}
-    public func showPath(for selectedTab: TabBarCategory) {}
 }
 
 #endif

@@ -14,6 +14,7 @@ public protocol HomeDetails_B_UseCaseProviding {
     
     func dismiss()
     func nextAction()
+    func showUpload()
     func showPath(for selectedTab: TabBarCategory)
 }
 
@@ -35,6 +36,10 @@ public class HomeDetails_B_UseCase: HomeDetails_B_UseCaseProviding {
 //        print("randomText: \(randomText.value)")
     }
     
+    public func showUpload() {
+        
+    }
+    
     public func showPath(for selectedTab: TabBarCategory) {        
         if selectedTab == .home {
             homeRouter.dismissToRoot(for: .home)
@@ -53,12 +58,11 @@ public class HomeDetails_B_UseCase: HomeDetails_B_UseCaseProviding {
 
 public class PreviewHomeDetails_B_UseCase: HomeDetails_B_UseCaseProviding {
     
-    public init() {
-    
-    }
+    public init() {}
     
     public func dismiss() {}
     public func nextAction() {}
+    public func showUpload() {}
     public func showPath(for selectedTab: TabBarCategory) {}
 }
 
