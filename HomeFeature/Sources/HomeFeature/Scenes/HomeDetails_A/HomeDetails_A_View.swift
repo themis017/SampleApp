@@ -56,9 +56,9 @@ public struct HomeDetails_A_View: View {
         .tabBar(selectedTab: viewModel.selectedTab) { selectedTab in
             viewModel.perform(.selectedTab(selectedTab))
         }
-        .onAppear {
-            viewModel.selectedTab = .home
-        }
+//        .onAppear {
+//            viewModel.selectedTab = .home
+//        }
     }
 }
 

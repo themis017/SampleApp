@@ -39,7 +39,7 @@ public class UserProfile_A_ViewModel: ViewModel {
                 return
             }
             
-            selectedTab = tabCategory
+//            selectedTab = tabCategory
             userProfile_A_UseCase.showPath(for: tabCategory)
         case .dismiss(let animated):
             userProfile_A_UseCase.dismiss(animated: animated)

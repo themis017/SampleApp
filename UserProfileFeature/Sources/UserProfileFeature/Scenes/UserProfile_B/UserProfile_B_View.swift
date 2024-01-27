@@ -56,9 +56,9 @@ public struct UserProfile_B_View: View {
         .tabBar(selectedTab: viewModel.selectedTab) { selectedTab in
             viewModel.perform(.selectedTab(selectedTab))
         }
-        .onAppear {
-            viewModel.selectedTab = .profile
-        }
+//        .onAppear {
+//            viewModel.selectedTab = .profile
+//        }
     }
 }
 

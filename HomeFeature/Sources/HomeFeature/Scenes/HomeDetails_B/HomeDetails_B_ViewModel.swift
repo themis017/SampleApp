@@ -39,7 +39,7 @@ public class HomeDetails_B_ViewModel: ViewModel {
                 return
             }
             
-            selectedTab = tabCategory
+//            selectedTab = tabCategory
             homeDetails_B_UseCase.showPath(for: tabCategory)
         case .dismiss(let animated):
             homeDetails_B_UseCase.dismiss(animated: animated)
