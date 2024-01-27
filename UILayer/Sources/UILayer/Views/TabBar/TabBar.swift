@@ -48,7 +48,7 @@ public struct TabBar: View {
                                 }
                                 .foregroundColor(selectedTab == tabBarCategory ? .blue : .gray)
                             } else {
-                                Rectangle()
+                                Circle()
                                     .frame(width: 36, height: 36)
                                 //  .background(.red)
                                     .opacity(0)
@@ -65,6 +65,14 @@ public struct TabBar: View {
             Button {
                 action(.upload)
             } label: {
+//                Image("chef-hat")
+//                    .resizable()
+//                    .frame(width: 50, height: 50)
+//                    .padding(14)
+//                    .background(.gray.opacity(0.03))
+//                    .foregroundColor(.black)
+//                    .clipShape(Circle())
+                
                 Image(systemName: TabBarCategory.upload.iconTitle)
                     .resizable()
                     .frame(width: 64, height: 64)
