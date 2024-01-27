@@ -25,11 +25,7 @@ public struct EntryPointView: View {
         VStack(spacing: 0) {
             Color.gray
         }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                viewModel.perform(.showMain)
-            }
-        }
+        .ignoresSafeArea()
     }
 }
 

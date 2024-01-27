@@ -32,7 +32,6 @@ public class HomeDetails_A_UseCase: HomeDetails_A_UseCaseProviding {
     
     public func nextAction() {
         homeRouter.showHomeDetails_B_Scene()
-//        homeRouter.popScene()
     }
     
     public func showUpload() {

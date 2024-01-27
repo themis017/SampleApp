@@ -19,6 +19,10 @@ public class EntryPointUseCase: EntryPointUseCaseProviding {
     
     public init(mainRouter: any MainRouting) {
         self.mainRouter = mainRouter
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.mainRouter.showMainScene()
+        }
     }
     
     public func showMainScene() {

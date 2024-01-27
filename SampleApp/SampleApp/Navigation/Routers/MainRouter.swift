@@ -20,6 +20,16 @@ class MainRouter: BaseRouter, MainRouting {
     }
     
     @MainActor
+    func showLandingScene() {
+        let useCase = LandingUseCase(mainRouter: self)
+        let viewModel = LandingViewModel(landingUseCase: useCase)
+        let view = LandingView(viewModel: viewModel)
+        let viewController = UIHostingController(rootView: view)
+        self.navigationController.viewControllers.removeAll()
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    @MainActor
     func showEntryPointScene() {
         let useCase = EntryPointUseCase(mainRouter: self)
         let viewModel = EntryPointViewModel(entryPointUseCase: useCase)

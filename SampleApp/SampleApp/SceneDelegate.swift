@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible()
                         
             let mainRouter = MainRouter(navigationController: navigationController)
-            mainRouter.showEntryPointScene()
+            mainRouter.showLandingScene()
         }
     }
 
