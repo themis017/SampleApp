@@ -11,7 +11,8 @@ import Foundation
 public class EntryPointViewModel: ObservableObject {
     
     public enum Action {
-        case showMain
+        case showSignup
+        case showLogin
     }
     
     private let entryPointUseCase: EntryPointUseCaseProviding
@@ -22,8 +23,10 @@ public class EntryPointViewModel: ObservableObject {
     
     public func perform(_ action: Action) {
         switch action {
-        case .showMain:
-            entryPointUseCase.showMainScene()
+        case .showSignup:
+            entryPointUseCase.showSignupScene()
+        case .showLogin:
+            entryPointUseCase.showLoginScene()
         }
     }
 }

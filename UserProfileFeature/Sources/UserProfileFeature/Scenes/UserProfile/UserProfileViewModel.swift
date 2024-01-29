@@ -15,6 +15,7 @@ public class UserProfileViewModel: ViewModel {
     public enum Action {
         case nextAction
         case saveUsername
+        case logout
     }
     
     @Published
@@ -49,6 +50,8 @@ public class UserProfileViewModel: ViewModel {
             userProfileUseCase.nextAction()
         case .saveUsername:
             userProfileUseCase.saveUsername(to: newUsername)
+        case .logout:
+            userProfileUseCase.logout()
         }
     }
 }

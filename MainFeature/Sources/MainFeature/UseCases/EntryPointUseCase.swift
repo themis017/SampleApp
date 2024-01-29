@@ -10,7 +10,8 @@ import ApplicationLayer
 
 public protocol EntryPointUseCaseProviding {
     
-    func showMainScene()
+    func showSignupScene()
+    func showLoginScene()
 }
 
 public class EntryPointUseCase: EntryPointUseCaseProviding {
@@ -19,15 +20,14 @@ public class EntryPointUseCase: EntryPointUseCaseProviding {
     
     public init(mainRouter: any MainRouting) {
         self.mainRouter = mainRouter
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.mainRouter.showMainScene()
-        }
     }
     
-    public func showMainScene() {
-        mainRouter.showMainScene()
-//        mainRouter.showHomeScene()
+    public func showSignupScene() {
+        mainRouter.showSignupScene()
+    }
+    
+    public func showLoginScene() {
+        mainRouter.showLoginScene()
     }
     
 }
@@ -36,7 +36,8 @@ public class EntryPointUseCase: EntryPointUseCaseProviding {
 
 public class PreviewEntryPointUseCase: EntryPointUseCaseProviding {
     
-    public func showMainScene() {}
+    public func showSignupScene() {}
+    public func showLoginScene() {}
 }
 
 #endif

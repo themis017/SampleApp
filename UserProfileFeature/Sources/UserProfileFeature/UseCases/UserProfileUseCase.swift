@@ -18,6 +18,7 @@ public protocol UserProfileUseCaseProviding {
     
     func nextAction()
     func saveUsername(to username: String)
+    func logout()
 }
 
 public class UserProfileUseCase: UserProfileUseCaseProviding {
@@ -50,6 +51,10 @@ public class UserProfileUseCase: UserProfileUseCaseProviding {
         AppData.shared.save(username, to: .username)
     }
     
+    public func logout() {
+        AppData.shared.save(false, to: .enableAutoLogin)
+        userProfileRouter.showEntryPointScene()
+    }
 }
 
 #if DEBUG
@@ -70,6 +75,7 @@ public class PreviewUserProfileUseCase: UserProfileUseCaseProviding {
     
     public func nextAction() {}
     public func saveUsername(to username: String) {}
+    public func logout() {}
 }
 
 #endif

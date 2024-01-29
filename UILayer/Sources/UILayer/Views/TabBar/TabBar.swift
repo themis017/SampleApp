@@ -65,19 +65,16 @@ public struct TabBar: View {
             Button {
                 action(.upload)
             } label: {
-//                Image("chef-hat")
-//                    .resizable()
-//                    .frame(width: 50, height: 50)
-//                    .padding(14)
-//                    .background(.gray.opacity(0.03))
-//                    .foregroundColor(.black)
-//                    .clipShape(Circle())
-                
-                Image(systemName: TabBarCategory.upload.iconTitle)
+                Image("colorful_bowl")
                     .resizable()
                     .frame(width: 64, height: 64)
-                //                .background(.blue)
-                    .foregroundColor(.cyan)
+                    .clipShape(Circle())
+                
+//                Image(systemName: TabBarCategory.upload.iconTitle)
+//                    .resizable()
+//                    .frame(width: 64, height: 64)
+//                //                .background(.blue)
+//                    .foregroundColor(.cyan)
             }
         }
     }

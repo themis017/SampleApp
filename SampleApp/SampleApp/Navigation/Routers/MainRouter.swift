@@ -8,10 +8,11 @@
 import Foundation
 import SwiftUI
 import ApplicationLayer
+import SignupFeature
+import LoginFeature
 import MainFeature
 import HomeFeature
 import UserProfileFeature
-import SettingsFeature
 
 class MainRouter: BaseRouter, MainRouting {
         
@@ -23,19 +24,55 @@ class MainRouter: BaseRouter, MainRouting {
     func showLandingScene() {
         let useCase = LandingUseCase(mainRouter: self)
         let viewModel = LandingViewModel(landingUseCase: useCase)
-        let view = LandingView(viewModel: viewModel)
-        let viewController = UIHostingController(rootView: view)
+        let view = AnyView(LandingView(viewModel: viewModel))
+        let viewController = RoutingUIHostingController(
+            sceneIdentity: LandingView.sceneIdentity,
+            isRoot: false,
+            tabCategory: nil,
+            view: view)
         self.navigationController.viewControllers.removeAll()
         self.navigationController.pushViewController(viewController, animated: true)
     }
     
     @MainActor
     func showEntryPointScene() {
-        let useCase = EntryPointUseCase(mainRouter: self)
-        let viewModel = EntryPointViewModel(entryPointUseCase: useCase)
-        let view = EntryPointView(viewModel: viewModel)
-        let viewController = UIHostingController(rootView: view)
+        let entryPointSceneComposer = EntryPointComposer(
+            navigationController: navigationController,
+            mainRouter: self)
+        
+        let entryPointViewController = entryPointSceneComposer.createEntryPointScene()
+        
         self.navigationController.viewControllers.removeAll()
+        self.navigationController.pushViewController(entryPointViewController, animated: true)
+    }
+    
+    @MainActor
+    func showSignupScene() {
+        let signupRouter = SignupRouter(navigationController: navigationController)
+        let useCase = SignupUseCase(signupRouter: signupRouter)
+        let viewModel = SignupViewModel(signupUseCase: useCase)
+        let view = AnyView(SignupView(viewModel: viewModel))
+        let viewController = RoutingUIHostingController(
+            sceneIdentity: SignupView.sceneIdentity,
+            isRoot: false,
+            tabCategory: nil,
+            view: view)
+        
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    @MainActor
+    func showLoginScene() {
+        let loginRouter = LoginRouter(navigationController: navigationController)
+        let useCase = LoginUseCase(loginRouter: loginRouter)
+        let viewModel = LoginViewModel(loginUseCase: useCase)
+        let view = AnyView(LoginView(viewModel: viewModel))
+        let viewController = RoutingUIHostingController(
+            sceneIdentity: LoginView.sceneIdentity,
+            isRoot: false,
+            tabCategory: nil,
+            view: view)
+        
         self.navigationController.pushViewController(viewController, animated: true)
     }
     

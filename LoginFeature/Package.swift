@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "MainFeature",
+    name: "LoginFeature",
     defaultLocalization: "en",
     platforms: [
         .iOS(.v16)
@@ -12,29 +12,25 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "MainFeature",
-            targets: ["MainFeature"]),
+            name: "LoginFeature",
+            targets: ["LoginFeature"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(name: "ApplicationLayer", path: "../ApplicationLayer"),
         .package(name: "NetworkLayer", path: "../NetworkLayer"),
         .package(name: "UILayer", path: "../UILayer"),
-        .package(name: "HomeFeature", path: "../HomeFeature"),
-        .package(name: "SearchFeature", path: "../SearchFeature"),
-        .package(name: "FavouritesFeature", path: "../FavouritesFeature"),
-        .package(name: "NotificationsFeature", path: "../NotificationsFeature"),
-        .package(name: "UserProfileFeature", path: "../UserProfileFeature"),
         .package(url: "https://github.com/hmlongco/Resolver.git", exact: "1.5.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "MainFeature",
-            dependencies: ["ApplicationLayer", "NetworkLayer", "UILayer", "HomeFeature", "SearchFeature", "FavouritesFeature", "NotificationsFeature", "UserProfileFeature", "Resolver"]),
+            name: "LoginFeature",
+            dependencies: ["ApplicationLayer", "NetworkLayer", "UILayer", "Resolver"]),
         .testTarget(
-            name: "MainFeatureTests",
-            dependencies: ["MainFeature"]),
+            name: "LoginFeatureTests",
+            dependencies: ["LoginFeature"]),
     ]
 )
+

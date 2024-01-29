@@ -18,6 +18,11 @@
 		412FF9252B3208ED00DCF929 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412FF9242B3208ED00DCF929 /* HomeRouter.swift */; };
 		4162EC052B04233400E4E086 /* ApplicationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4162EC042B04233400E4E086 /* ApplicationLayer */; };
 		417422B42B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417422B32B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift */; };
+		417B7C9A2B681EA8001E2F21 /* EntryPointComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417B7C992B681EA8001E2F21 /* EntryPointComposer.swift */; };
+		417B7C9C2B682D18001E2F21 /* LoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 417B7C9B2B682D18001E2F21 /* LoginFeature */; };
+		417B7C9E2B682DC8001E2F21 /* SignupFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 417B7C9D2B682DC8001E2F21 /* SignupFeature */; };
+		417B7CA02B682FC2001E2F21 /* SignupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417B7C9F2B682FC2001E2F21 /* SignupRouter.swift */; };
+		417B7CA22B68302D001E2F21 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417B7CA12B68302D001E2F21 /* LoginRouter.swift */; };
 		41A5C67B2B55B9DE0057A14F /* MainFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 41A5C67A2B55B9DE0057A14F /* MainFeature */; };
 		41A5C67D2B55BB580057A14F /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A5C67C2B55BB580057A14F /* MainRouter.swift */; };
 		41B4E93C2B3A3D4D00DFF8BB /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B4E93B2B3A3D4D00DFF8BB /* BaseRouter.swift */; };
@@ -45,6 +50,9 @@
 		412503E02B11E40C001DDCE5 /* iOSApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApplication.swift; sourceTree = "<group>"; };
 		412FF9242B3208ED00DCF929 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		417422B32B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+UIGestureRecognizer.swift"; sourceTree = "<group>"; };
+		417B7C992B681EA8001E2F21 /* EntryPointComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointComposer.swift; sourceTree = "<group>"; };
+		417B7C9F2B682FC2001E2F21 /* SignupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRouter.swift; sourceTree = "<group>"; };
+		417B7CA12B68302D001E2F21 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		41A5C67C2B55BB580057A14F /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		41B4E93B2B3A3D4D00DFF8BB /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		41D23B912B643BB500624010 /* FavouritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesRouter.swift; sourceTree = "<group>"; };
@@ -77,7 +85,9 @@
 				410D9A7B2B0D35CA002B284E /* NetworkLayer in Frameworks */,
 				41A5C67B2B55B9DE0057A14F /* MainFeature in Frameworks */,
 				410D9A792B0D3250002B284E /* UILayer in Frameworks */,
+				417B7C9C2B682D18001E2F21 /* LoginFeature in Frameworks */,
 				410506462B1113BA0015B2FA /* UserProfileFeature in Frameworks */,
+				417B7C9E2B682DC8001E2F21 /* SignupFeature in Frameworks */,
 				4162EC052B04233400E4E086 /* ApplicationLayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +106,8 @@
 				41DF41E72B6198F6009A9033 /* SearchRouter.swift */,
 				41DF41E92B61991C009A9033 /* NotificationsRouter.swift */,
 				41D23B912B643BB500624010 /* FavouritesRouter.swift */,
+				417B7C9F2B682FC2001E2F21 /* SignupRouter.swift */,
+				417B7CA12B68302D001E2F21 /* LoginRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -123,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				41DDA4D02B59B20400EBD99A /* MainSceneComposer.swift */,
+				417B7C992B681EA8001E2F21 /* EntryPointComposer.swift */,
 			);
 			path = Composers;
 			sourceTree = "<group>";
@@ -188,6 +201,8 @@
 				41DF41E32B6192F4009A9033 /* SearchFeature */,
 				41DF41E52B6192FC009A9033 /* NotificationsFeature */,
 				41D23B8F2B643AC100624010 /* FavouritesFeature */,
+				417B7C9B2B682D18001E2F21 /* LoginFeature */,
+				417B7C9D2B682DC8001E2F21 /* SignupFeature */,
 			);
 			productName = SampleApp;
 			productReference = 41F3A7412B0420DE0059BCB0 /* SampleApp.app */;
@@ -255,6 +270,8 @@
 				41DDA4CE2B59AFE800EBD99A /* TabBarRoutes.swift in Sources */,
 				41DF41E82B6198F6009A9033 /* SearchRouter.swift in Sources */,
 				417422B42B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift in Sources */,
+				417B7CA02B682FC2001E2F21 /* SignupRouter.swift in Sources */,
+				417B7C9A2B681EA8001E2F21 /* EntryPointComposer.swift in Sources */,
 				41DDA4CC2B59A8EA00EBD99A /* RoutingUIHostingController.swift in Sources */,
 				41F3A7472B0420DE0059BCB0 /* SceneDelegate.swift in Sources */,
 				41DDA4D12B59B20400EBD99A /* MainSceneComposer.swift in Sources */,
@@ -262,6 +279,7 @@
 				41E490CC2B31E47E00A5BFFF /* SettingsRouter.swift in Sources */,
 				41A5C67D2B55BB580057A14F /* MainRouter.swift in Sources */,
 				412503E12B11E40C001DDCE5 /* iOSApplication.swift in Sources */,
+				417B7CA22B68302D001E2F21 /* LoginRouter.swift in Sources */,
 				41DF41EA2B61991C009A9033 /* NotificationsRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,6 +542,14 @@
 		4162EC042B04233400E4E086 /* ApplicationLayer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ApplicationLayer;
+		};
+		417B7C9B2B682D18001E2F21 /* LoginFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LoginFeature;
+		};
+		417B7C9D2B682DC8001E2F21 /* SignupFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SignupFeature;
 		};
 		41A5C67A2B55B9DE0057A14F /* MainFeature */ = {
 			isa = XCSwiftPackageProductDependency;

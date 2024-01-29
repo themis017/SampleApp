@@ -17,6 +17,20 @@ class UserProfileRouter: BaseRouter, UserProfileRouting {
     }
     
     @MainActor
+    func showEntryPointScene() {
+        let mainRouter = MainRouter(navigationController: navigationController)
+        let entryPointSceneComposer = EntryPointComposer(
+            navigationController: navigationController,
+            mainRouter: mainRouter)
+        
+        let entryPointViewController = entryPointSceneComposer.createEntryPointScene()
+        
+        self.navigationController.viewControllers.removeAll()
+        self.navigationController.pushViewController(entryPointViewController, animated: true)
+    }
+    
+    
+    @MainActor
     func showUserProfile_A_Scene() {
         let userProfileRouter = UserProfileRouter(navigationController: navigationController)
         let useCase = UserProfile_A_UseCase(userProfileRouter: userProfileRouter)

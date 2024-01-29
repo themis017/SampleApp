@@ -11,8 +11,6 @@ public protocol MainRouting: Routing {
     
     func showEntryPointScene()
     func showMainScene()
-//    func dismissToRoot(for selectedTab: TabBarCategory)
-//    func showHomeScene()
-//    func showUserProfileScene()
-//    func showSettingsScene()
+    func showSignupScene()
+    func showLoginScene()
 }

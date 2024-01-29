@@ -42,6 +42,16 @@ public struct UserProfileView: View {
                     .background(Color.orange)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
             }
+            
+            Button {
+                viewModel.perform(.logout)
+            } label: {
+                Text("Log out")
+                    .padding(24)
+                    .background(Color.cyan)
+                    .foregroundColor(.red)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+            }
 
         }
     }

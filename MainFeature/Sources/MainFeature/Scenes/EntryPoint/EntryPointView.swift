@@ -22,10 +22,53 @@ public struct EntryPointView: View {
     
     public var body: some View {
         
-        VStack(spacing: 0) {
-            Color.gray
+        ZStack {
+            Color.cyan.opacity(0.3)
+            
+            VStack(spacing: 0) {
+                Text("Welcome to SampleApp")
+                    .font(.title)
+                    .foregroundStyle(.black)
+                    .flexible(.horizontal)
+                
+                Text("Find out what will you cook today!")
+                    .font(.title3)
+                    .foregroundStyle(.black)
+                    .flexible(.horizontal)
+                    .padding(.top, 8)
+                
+                Button {
+                    viewModel.perform(.showSignup)
+                } label: {
+                    Text("Sign up")
+                        .flexible(.horizontal)
+                }
+                .buttonStyle(.primary)
+                .padding(.top, 48)
+                
+                Button {
+                    viewModel.perform(.showLogin)
+                } label: {
+                    Text("Log in")
+                        .flexible(.horizontal)
+                }
+                .buttonStyle(.secondary)
+                .padding(.top, 16)
+
+            }
+            .padding(.horizontal, 16)
         }
         .ignoresSafeArea()
     }
 }
 
+#if DEBUG
+
+struct EntryPointView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        EntryPointView(viewModel: .previewViewModel())
+    }
+}
+
+#endif
