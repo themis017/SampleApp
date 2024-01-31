@@ -23,7 +23,7 @@ public struct EntryPointView: View {
     public var body: some View {
         
         ZStack {
-            Color.cyan.opacity(0.3)
+            Color.white
             
             VStack(spacing: 0) {
                 Text("Welcome to SampleApp")

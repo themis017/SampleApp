@@ -33,4 +33,13 @@ public extension ViewModel {
                 observable.value = newValue
             }
     }
+    
+    func forward<V: Equatable>(_ publishedValue: AnyPublisher<V, Never>, to observable: Observable<V>) -> AnyCancellable {
+        publishedValue
+            .receive(on: DispatchQueue.main)
+            .removeDuplicates()
+            .sink { newValue in
+                observable.value = newValue
+            }
+    }
 }

@@ -24,23 +24,83 @@ public struct SignupView: View {
     public var body: some View {
         
         NavigationView {
-            ZStack {
-                Color.cyan.opacity(0.3)
+            
+            VStack(alignment: .leading, spacing: 0) {
                 
-                VStack(spacing: 0) {
+                ScrollView {
                     
-                    Spacer()
-                    
-                    Text("SignupView")
-                        .font(.title)
-                        .foregroundStyle(.black)
-                        .flexible(.horizontal)
-                    
-                    Spacer()
-                    
+                    VStack(alignment: .leading, spacing: 24) {
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Email")
+                                .font(.body)
+                            
+                            TextField("Add your email address", text: $viewModel.email)
+                                .textFieldStyle(.plain)
+                            
+                            Divider()
+                                .foregroundColor(.black)
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Username")
+                                .font(.body)
+                            
+                            TextField("Add your username", text: $viewModel.username)
+                                .textFieldStyle(.plain)
+                            
+                            Divider()
+                                .foregroundColor(.black)
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Name")
+                                .font(.body)
+                            
+                            TextField("Add your name", text: $viewModel.name)
+                                .textFieldStyle(.plain)
+                            
+                            Divider()
+                                .foregroundColor(.black)
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Password")
+                                .font(.body)
+                            
+                            SecureField("Add your password", text: $viewModel.password)
+                                .textFieldStyle(.plain)
+                            
+                            Divider()
+                                .foregroundColor(.black)
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Confirm Password")
+                                .font(.body)
+                            
+                            SecureField("Confirm your password", text: $viewModel.retypedPassword)
+                                .textFieldStyle(.plain)
+                            
+                            Divider()
+                                .foregroundColor(.black)
+                        }
+                    }
                 }
-                .padding(.horizontal, 16)
+                .padding(.bottom, 16)
+                
+                Spacer()
+                
+                Button(action: {
+                    viewModel.perform(.signup)
+                }) {
+                    Text("Sign up")
+                        .flexible(.horizontal)
+                }
+                .buttonStyle(.primary)
             }
+            .padding(16)
+            .background(.white)
             .navigationTitle("Sign up")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -54,21 +114,23 @@ public struct SignupView: View {
                     }
                 }
                 
-//                ToolbarItemGroup(placement: .navigationBarTrailing) {
-//                    Button(action: {
-//                        // handle tap
-//                    }) {
-//                        Image(systemName: "plus")
-//                    }
-//                    Button(action: {
-//                        // handle tap
-//                    }) {
-//                        Image(systemName: "ellipsis")
-//                    }
-//                }
+                //                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                //                    Button(action: {
+                //                        // handle tap
+                //                    }) {
+                //                        Image(systemName: "plus")
+                //                    }
+                //                    Button(action: {
+                //                        // handle tap
+                //                    }) {
+                //                        Image(systemName: "ellipsis")
+                //                    }
+                //                }
             }
-//            .ignoresSafeArea(edges: .all)
-            .ignoresSafeArea(edges: .bottom)
+            //            .ignoresSafeArea(edges: .bottom)
+        }
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
 }

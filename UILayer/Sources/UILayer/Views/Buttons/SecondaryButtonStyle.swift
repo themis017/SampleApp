@@ -16,8 +16,9 @@ public struct SecondaryButtonStyle: ButtonStyle {
             .foregroundColor(.blue)
             .padding(16)
             .background(.white)
-            .clipShape(
+            .overlay(
                 RoundedRectangle(cornerRadius: 16)
+                    .stroke(.blue, lineWidth: 2)
             )
     }
 }
