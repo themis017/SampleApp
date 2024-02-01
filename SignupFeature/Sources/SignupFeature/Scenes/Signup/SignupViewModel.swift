@@ -30,8 +30,11 @@ public class SignupViewModel: ViewModel {
     @Published
     var usernameError: UsernameValueError? = .emptyValue
     
-    @Published
+    @NameValidated
     var name: String = ""
+    
+    @Published
+    var nameError: NameValueError? = .emptyValue
     
     @Published
     var password: String = ""
@@ -40,7 +43,7 @@ public class SignupViewModel: ViewModel {
     var retypedPassword: String = ""
     
     public var isSignupEnabled: Bool {
-        emailError == nil && usernameError == nil
+        emailError == nil && usernameError == nil && nameError == nil
     }
     
     private let signupUseCase: SignupUseCaseProviding
@@ -56,7 +59,7 @@ public class SignupViewModel: ViewModel {
         forward(_username.usernamePublisher, to: signupUseCase.username)
             .store(in: &subscriptions)
         
-        forward($name, to: signupUseCase.name)
+        forward(_name.namePublisher, to: signupUseCase.name)
             .store(in: &subscriptions)
         
         forward($password, to: signupUseCase.password)
@@ -75,6 +78,14 @@ public class SignupViewModel: ViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] usernameValueError in
                 self?.usernameError = usernameValueError
+            }
+            .store(in: &subscriptions)
+        
+        _name.nameErrorPublisher
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] nameValueError in
+                self?.nameError = nameValueError
             }
             .store(in: &subscriptions)
     }
