@@ -17,6 +17,12 @@ public struct SignupView: View {
     
     public static let sceneIdentity = "SignupView"
     
+    @State
+    private var showPasswordText: Bool = false
+    
+    @State
+    private var showRetypedPasswordText: Bool = false
+    
     public init(viewModel: SignupViewModel) {
         self.viewModel = viewModel
     }
@@ -35,7 +41,7 @@ public struct SignupView: View {
                             Text("Email")
                                 .font(.body)
                             
-                            TextField("Add your email address", text: $viewModel.email)
+                            TextField("Enter email address", text: $viewModel.email)
                                 .textFieldStyle(.plain)
                             
                             Divider()
@@ -52,7 +58,7 @@ public struct SignupView: View {
                             Text("Username")
                                 .font(.body)
                             
-                            TextField("Add your username", text: $viewModel.username)
+                            TextField("Enter username", text: $viewModel.username)
                                 .textFieldStyle(.plain)
                             
                             Divider()
@@ -69,7 +75,7 @@ public struct SignupView: View {
                             Text("Name")
                                 .font(.body)
                             
-                            TextField("Add your name", text: $viewModel.name)
+                            TextField("Enter name", text: $viewModel.name)
                                 .textFieldStyle(.plain)
                             
                             Divider()
@@ -86,11 +92,17 @@ public struct SignupView: View {
                             Text("Password")
                                 .font(.body)
                             
-                            SecureField("Add your password", text: $viewModel.password)
+                            SecureField("Enter password", text: $viewModel.password)
                                 .textFieldStyle(.plain)
                             
                             Divider()
                                 .foregroundColor(.black)
+                            
+                            if let passwordError = viewModel.passwordError {
+                                Text(passwordError.errorDescription)
+                                    .font(.caption)
+                                    .foregroundColor(.red)
+                            }
                         }
                         
                         VStack(alignment: .leading, spacing: 4) {
@@ -102,6 +114,12 @@ public struct SignupView: View {
                             
                             Divider()
                                 .foregroundColor(.black)
+                            
+                            if let retypedPasswordError = viewModel.retypedPasswordError {
+                                Text(retypedPasswordError.errorDescription)
+                                    .font(.caption)
+                                    .foregroundColor(.red)
+                            }
                         }
                     }
                 }

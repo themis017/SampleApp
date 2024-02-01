@@ -36,14 +36,25 @@ public class SignupViewModel: ViewModel {
     @Published
     var nameError: NameValueError? = .emptyValue
     
-    @Published
+    @PasswordValidated
     var password: String = ""
     
     @Published
+    var passwordError: PasswordValueError? = .emptyValue
+    
+    @PasswordValidated
     var retypedPassword: String = ""
     
+    @Published
+    var retypedPasswordError: PasswordValueError? = .emptyValue
+    
     public var isSignupEnabled: Bool {
-        emailError == nil && usernameError == nil && nameError == nil
+        emailError == nil &&
+        usernameError == nil &&
+        nameError == nil &&
+        passwordError == nil &&
+        retypedPasswordError == nil &&
+        password == retypedPassword
     }
     
     private let signupUseCase: SignupUseCaseProviding
@@ -62,7 +73,7 @@ public class SignupViewModel: ViewModel {
         forward(_name.namePublisher, to: signupUseCase.name)
             .store(in: &subscriptions)
         
-        forward($password, to: signupUseCase.password)
+        forward(_password.passwordPublisher, to: signupUseCase.password)
             .store(in: &subscriptions)
         
         _email.emailErrorPublisher
@@ -86,6 +97,43 @@ public class SignupViewModel: ViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] nameValueError in
                 self?.nameError = nameValueError
+            }
+            .store(in: &subscriptions)
+        
+        _password.passwordErrorPublisher
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] passwordValueError in
+                self?.passwordError = passwordValueError
+            }
+            .store(in: &subscriptions)
+        
+        _retypedPassword.passwordErrorPublisher
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] passwordValueError in
+                self?.retypedPasswordError = passwordValueError
+            }
+            .store(in: &subscriptions)
+        
+        _password.passwordPublisher
+            .combineLatest(_retypedPassword.passwordPublisher)
+            .map( {($0, $1)} )
+            .sink { [weak self] passwordValues in
+                
+                guard let self = self,
+                      self.passwordError == nil,
+                      self.retypedPasswordError == nil else {
+                    
+                    return
+                }
+                
+                guard passwordValues.0 != passwordValues.1 else {
+                    return
+                }
+                
+                self.passwordError = .passwordNotMatch
+                self.retypedPasswordError = .passwordNotMatch
             }
             .store(in: &subscriptions)
     }
