@@ -57,6 +57,12 @@ public struct SignupView: View {
                             
                             Divider()
                                 .foregroundColor(.black)
+                            
+                            if let usernameError = viewModel.usernameError {
+                                Text(usernameError.errorDescription)
+                                    .font(.caption)
+                                    .foregroundColor(.red)
+                            }
                         }
                         
                         VStack(alignment: .leading, spacing: 4) {

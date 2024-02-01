@@ -23,7 +23,7 @@ public struct Email: RawRepresentable, Equatable {
     }
     
     static func validateEmail(_ email: String) -> EmailValueError? {
-        guard !email.isEmpty() else {
+        guard email.isNotEmpty() else {
             return .emptyValue
         }
         

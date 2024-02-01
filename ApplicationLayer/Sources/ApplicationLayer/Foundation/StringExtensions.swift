@@ -14,6 +14,10 @@ public extension String {
         self.count == 0 ? true : false
     }
     
+    func isNotEmpty() -> Bool {
+        self.count > 0 ? true : false
+    }
+    
     func matches(_ pattern: String) -> Bool {
         do {
             let range = NSRange(location: 0, length: self.utf16.count)
@@ -22,5 +26,13 @@ public extension String {
         } catch {
             return false
         }
+    }
+    
+    func length(isLessThan count: Int) -> Bool {
+        self.count < count ? true : false
+    }
+    
+    func length(isMoreThan count: Int) -> Bool {
+        self.count > count ? true : false
     }
 }
