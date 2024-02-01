@@ -9,13 +9,17 @@ import Foundation
 import SwiftUI
 
 public struct PrimaryButtonStyle: ButtonStyle {
+    
+    @Environment(\.isEnabled)
+    private var isEnabled: Bool
+    
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.title3)
             .bold()
             .foregroundColor(.white)
             .padding(16)
-            .background(.blue)
+            .background(isEnabled ? .blue : .gray)
             .clipShape(
                 RoundedRectangle(cornerRadius: 16)
             )

@@ -40,6 +40,12 @@ public struct SignupView: View {
                             
                             Divider()
                                 .foregroundColor(.black)
+                            
+                            if let emailError = viewModel.emailError {
+                                Text(emailError.errorDescription)
+                                    .font(.caption)
+                                    .foregroundColor(.red)
+                            }
                         }
                         
                         VStack(alignment: .leading, spacing: 4) {
@@ -98,6 +104,7 @@ public struct SignupView: View {
                         .flexible(.horizontal)
                 }
                 .buttonStyle(.primary)
+                .disabled(!viewModel.isSignupEnabled)
             }
             .padding(16)
             .background(.white)

@@ -22,6 +22,9 @@ public class SignupViewModel: ViewModel {
     var email: String = ""
     
     @Published
+    var emailError: EmailValueError? = .emptyValue
+    
+    @Published
     var username: String = ""
     
     @Published
@@ -32,6 +35,10 @@ public class SignupViewModel: ViewModel {
     
     @Published
     var retypedPassword: String = ""
+    
+    public var isSignupEnabled: Bool {
+        emailError == nil
+    }
     
     private let signupUseCase: SignupUseCaseProviding
     
@@ -50,6 +57,14 @@ public class SignupViewModel: ViewModel {
             .store(in: &subscriptions)
         
         forward($password, to: signupUseCase.password)
+            .store(in: &subscriptions)
+        
+        _email.emailErrorPublisher
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] emailValueError in
+                self?.emailError = emailValueError
+            }
             .store(in: &subscriptions)
     }
     
