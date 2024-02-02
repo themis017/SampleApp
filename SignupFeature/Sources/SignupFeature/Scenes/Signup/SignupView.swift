@@ -12,10 +12,16 @@ import UILayer
 
 public struct SignupView: View {
     
+    @Environment(\.scenePhase)
+    private var scenePhase
+    
     @ObservedObject
     private var viewModel: SignupViewModel
     
     public static let sceneIdentity = "SignupView"
+    
+    @FocusState
+    private var focusedField: SignupViewModel.FocusedField?
     
     @State
     private var showPasswordText: Bool = false
@@ -43,6 +49,7 @@ public struct SignupView: View {
                             
                             TextField("Enter email address", text: $viewModel.email)
                                 .textFieldStyle(.plain)
+                                .focused($focusedField, equals: .email)
                             
                             Divider()
                                 .foregroundColor(.black)
@@ -60,6 +67,7 @@ public struct SignupView: View {
                             
                             TextField("Enter username", text: $viewModel.username)
                                 .textFieldStyle(.plain)
+                                .focused($focusedField, equals: .username)
                             
                             Divider()
                                 .foregroundColor(.black)
@@ -77,6 +85,7 @@ public struct SignupView: View {
                             
                             TextField("Enter name", text: $viewModel.name)
                                 .textFieldStyle(.plain)
+                                .focused($focusedField, equals: .name)
                             
                             Divider()
                                 .foregroundColor(.black)
@@ -92,8 +101,22 @@ public struct SignupView: View {
                             Text("Password")
                                 .font(.body)
                             
-                            SecureField("Enter password", text: $viewModel.password)
-                                .textFieldStyle(.plain)
+                            HStack(spacing: 16) {
+                                if showPasswordText {
+                                    TextField("Enter password", text: $viewModel.password)
+                                        .focused($focusedField, equals: .password)
+                                } else {
+                                    SecureField("Enter password", text: $viewModel.password)
+                                        .focused($focusedField, equals: .password)
+                                }
+                                
+                                Button {
+                                    showPasswordText.toggle()
+                                } label: {
+                                    Image(systemName: showPasswordText ? "eye.slash.fill" : "eye.fill")
+                                        .foregroundStyle(Color.black)
+                                }
+                            }
                             
                             Divider()
                                 .foregroundColor(.black)
@@ -109,8 +132,22 @@ public struct SignupView: View {
                             Text("Confirm Password")
                                 .font(.body)
                             
-                            SecureField("Confirm your password", text: $viewModel.retypedPassword)
-                                .textFieldStyle(.plain)
+                            HStack(spacing: 16) {
+                                if showRetypedPasswordText {
+                                    TextField("Confirm your password", text: $viewModel.retypedPassword)
+                                        .focused($focusedField, equals: .retypedPassword)
+                                } else {
+                                    SecureField("Confirm your password", text: $viewModel.retypedPassword)
+                                        .focused($focusedField, equals: .retypedPassword)
+                                }
+                                
+                                Button {
+                                    showRetypedPasswordText.toggle()
+                                } label: {
+                                    Image(systemName: showRetypedPasswordText ? "eye.slash.fill" : "eye.fill")
+                                        .foregroundStyle(Color.black)
+                                }
+                            }
                             
                             Divider()
                                 .foregroundColor(.black)
@@ -124,6 +161,19 @@ public struct SignupView: View {
                     }
                 }
                 .padding(.bottom, 16)
+                .onSubmit {
+                    if focusedField == .email {
+                        focusedField = .username
+                    } else if focusedField == .username {
+                        focusedField = .name
+                    } else if focusedField == .name {
+                        focusedField = .password
+                    } else if focusedField == .password {
+                        focusedField = .retypedPassword
+                    } else {
+                        focusedField = nil
+                    }
+                }
                 
                 Spacer()
                 
@@ -150,21 +200,16 @@ public struct SignupView: View {
                             .frame(width: 24, height: 24)
                     }
                 }
-                
-                //                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                //                    Button(action: {
-                //                        // handle tap
-                //                    }) {
-                //                        Image(systemName: "plus")
-                //                    }
-                //                    Button(action: {
-                //                        // handle tap
-                //                    }) {
-                //                        Image(systemName: "ellipsis")
-                //                    }
-                //                }
             }
-            //            .ignoresSafeArea(edges: .bottom)
+        }
+        .onChange(of: scenePhase) { newValue in
+            if newValue != .active {
+                showPasswordText = false
+                showRetypedPasswordText = false
+            }
+        }
+        .onChange(of: focusedField) { newValue in
+            viewModel.perform(.focusedField(of: newValue))
         }
         .onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

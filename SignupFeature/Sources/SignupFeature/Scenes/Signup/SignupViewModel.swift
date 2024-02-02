@@ -16,37 +16,45 @@ public class SignupViewModel: ViewModel {
     public enum Action {
         case signup
         case dismiss
+        case focusedField(of: FocusedField?)
     }
+    
+    public enum FocusedField: CaseIterable {
+        case email, username, name, password, retypedPassword
+    }
+    
+    @Published
+    var focusedFields: Set<FocusedField> = Set()
     
     @EmailValidated
     var email: String = ""
     
     @Published
-    var emailError: EmailValueError? = .emptyValue
+    var emailError: EmailValueError?
     
     @UsernameValidated
     var username: String = ""
     
     @Published
-    var usernameError: UsernameValueError? = .emptyValue
+    var usernameError: UsernameValueError?
     
     @NameValidated
     var name: String = ""
     
     @Published
-    var nameError: NameValueError? = .emptyValue
+    var nameError: NameValueError?
     
     @PasswordValidated
     var password: String = ""
     
     @Published
-    var passwordError: PasswordValueError? = .emptyValue
+    var passwordError: PasswordValueError?
     
     @PasswordValidated
     var retypedPassword: String = ""
     
     @Published
-    var retypedPasswordError: PasswordValueError? = .emptyValue
+    var retypedPasswordError: PasswordValueError? 
     
     public var isSignupEnabled: Bool {
         emailError == nil &&
@@ -54,7 +62,8 @@ public class SignupViewModel: ViewModel {
         nameError == nil &&
         passwordError == nil &&
         retypedPasswordError == nil &&
-        password == retypedPassword
+        password == retypedPassword &&
+        focusedFields.count == FocusedField.allCases.count
     }
     
     private let signupUseCase: SignupUseCaseProviding
@@ -144,6 +153,12 @@ public class SignupViewModel: ViewModel {
             signupUseCase.signup()
         case .dismiss:
             signupUseCase.dismiss()
+        case .focusedField(let focusField):
+            guard let focusField = focusField else {
+                return
+            }
+            
+            focusedFields.insert(focusField)
         }
     }
 }
