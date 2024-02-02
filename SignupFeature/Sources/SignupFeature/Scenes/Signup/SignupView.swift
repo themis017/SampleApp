@@ -12,9 +12,6 @@ import UILayer
 
 public struct SignupView: View {
     
-    @Environment(\.scenePhase)
-    private var scenePhase
-    
     @ObservedObject
     private var viewModel: SignupViewModel
     
@@ -22,12 +19,6 @@ public struct SignupView: View {
     
     @FocusState
     private var focusedField: SignupViewModel.FocusedField?
-    
-    @State
-    private var showPasswordText: Bool = false
-    
-    @State
-    private var showRetypedPasswordText: Bool = false
     
     public init(viewModel: SignupViewModel) {
         self.viewModel = viewModel
@@ -43,121 +34,45 @@ public struct SignupView: View {
                     
                     VStack(alignment: .leading, spacing: 24) {
                         
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Email")
-                                .font(.body)
-                            
-                            TextField("Enter email address", text: $viewModel.email)
-                                .textFieldStyle(.plain)
-                                .focused($focusedField, equals: .email)
-                            
-                            Divider()
-                                .foregroundColor(.black)
-                            
-                            if let emailError = viewModel.emailError {
-                                Text(emailError.errorDescription)
-                                    .font(.caption)
-                                    .foregroundColor(.red)
-                            }
-                        }
+                        InputField(
+                            inputPrompt: "Email",
+                            inputPlaceholder: "Enter email address",
+                            value: $viewModel.email,
+                            errorValue: $viewModel.emailError
+                        )
+                        .focused($focusedField, equals: .email)
                         
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Username")
-                                .font(.body)
-                            
-                            TextField("Enter username", text: $viewModel.username)
-                                .textFieldStyle(.plain)
-                                .focused($focusedField, equals: .username)
-                            
-                            Divider()
-                                .foregroundColor(.black)
-                            
-                            if let usernameError = viewModel.usernameError {
-                                Text(usernameError.errorDescription)
-                                    .font(.caption)
-                                    .foregroundColor(.red)
-                            }
-                        }
+                        InputField(
+                            inputPrompt: "Username",
+                            inputPlaceholder: "Enter username",
+                            value: $viewModel.username,
+                            errorValue: $viewModel.usernameError
+                        )
+                        .focused($focusedField, equals: .username)
                         
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Name")
-                                .font(.body)
-                            
-                            TextField("Enter name", text: $viewModel.name)
-                                .textFieldStyle(.plain)
-                                .focused($focusedField, equals: .name)
-                            
-                            Divider()
-                                .foregroundColor(.black)
-                            
-                            if let nameError = viewModel.nameError {
-                                Text(nameError.errorDescription)
-                                    .font(.caption)
-                                    .foregroundColor(.red)
-                            }
-                        }
+                        InputField(
+                            inputPrompt: "Name",
+                            inputPlaceholder: "Enter name",
+                            value: $viewModel.name,
+                            errorValue: $viewModel.nameError
+                        )
+                        .focused($focusedField, equals: .name)
                         
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Password")
-                                .font(.body)
-                            
-                            HStack(spacing: 16) {
-                                if showPasswordText {
-                                    TextField("Enter password", text: $viewModel.password)
-                                        .focused($focusedField, equals: .password)
-                                } else {
-                                    SecureField("Enter password", text: $viewModel.password)
-                                        .focused($focusedField, equals: .password)
-                                }
-                                
-                                Button {
-                                    showPasswordText.toggle()
-                                } label: {
-                                    Image(systemName: showPasswordText ? "eye.slash.fill" : "eye.fill")
-                                        .foregroundStyle(Color.black)
-                                }
-                            }
-                            
-                            Divider()
-                                .foregroundColor(.black)
-                            
-                            if let passwordError = viewModel.passwordError {
-                                Text(passwordError.errorDescription)
-                                    .font(.caption)
-                                    .foregroundColor(.red)
-                            }
-                        }
+                        PasswordInputField(
+                            inputPrompt: "Password",
+                            inputPlaceholder: "Enter password",
+                            value: $viewModel.password,
+                            errorValue: $viewModel.passwordError
+                        )
+                        .focused($focusedField, equals: .password)
                         
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Confirm Password")
-                                .font(.body)
-                            
-                            HStack(spacing: 16) {
-                                if showRetypedPasswordText {
-                                    TextField("Confirm your password", text: $viewModel.retypedPassword)
-                                        .focused($focusedField, equals: .retypedPassword)
-                                } else {
-                                    SecureField("Confirm your password", text: $viewModel.retypedPassword)
-                                        .focused($focusedField, equals: .retypedPassword)
-                                }
-                                
-                                Button {
-                                    showRetypedPasswordText.toggle()
-                                } label: {
-                                    Image(systemName: showRetypedPasswordText ? "eye.slash.fill" : "eye.fill")
-                                        .foregroundStyle(Color.black)
-                                }
-                            }
-                            
-                            Divider()
-                                .foregroundColor(.black)
-                            
-                            if let retypedPasswordError = viewModel.retypedPasswordError {
-                                Text(retypedPasswordError.errorDescription)
-                                    .font(.caption)
-                                    .foregroundColor(.red)
-                            }
-                        }
+                        PasswordInputField(
+                            inputPrompt: "Confirm Password",
+                            inputPlaceholder: "Confirm your password",
+                            value: $viewModel.retypedPassword,
+                            errorValue: $viewModel.retypedPasswordError
+                        )
+                        .focused($focusedField, equals: .retypedPassword)
                     }
                 }
                 .padding(.bottom, 16)
@@ -200,12 +115,6 @@ public struct SignupView: View {
                             .frame(width: 24, height: 24)
                     }
                 }
-            }
-        }
-        .onChange(of: scenePhase) { newValue in
-            if newValue != .active {
-                showPasswordText = false
-                showRetypedPasswordText = false
             }
         }
         .onChange(of: focusedField) { newValue in

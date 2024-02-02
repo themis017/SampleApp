@@ -7,13 +7,13 @@
 
 import Foundation
 
-public enum NameValueError: LocalizedError {
+public enum NameValueError: DomainValueError {
     case emptyValue
     case shortValue
     case longValue
     case invalidFormat
     
-    public var errorDescription: String {
+    public var localizedErrorTitle: String {
         switch self {
         case .emptyValue:
             return "Name must not be empty"

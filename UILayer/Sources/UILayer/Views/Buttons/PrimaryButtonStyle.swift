@@ -19,7 +19,7 @@ public struct PrimaryButtonStyle: ButtonStyle {
             .bold()
             .foregroundColor(.white)
             .padding(16)
-            .background(isEnabled ? .blue : .gray)
+            .background(isEnabled ? .blue : Color(UIColor.lightGray))
             .clipShape(
                 RoundedRectangle(cornerRadius: 16)
             )

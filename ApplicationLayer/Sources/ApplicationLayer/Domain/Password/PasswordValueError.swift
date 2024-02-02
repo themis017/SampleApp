@@ -7,14 +7,14 @@
 
 import Foundation
 
-public enum PasswordValueError: LocalizedError {
+public enum PasswordValueError: DomainValueError {
     case emptyValue
     case shortValue
     case longValue
     case invalidFormat
     case passwordNotMatch
     
-    public var errorDescription: String {
+    public var localizedErrorTitle: String {
         switch self {
         case .emptyValue:
             return "Password must not be empty"
