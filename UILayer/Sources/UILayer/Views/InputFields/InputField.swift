@@ -20,15 +20,20 @@ public struct InputField<ErrorValue: DomainValueError>: View {
     @Binding
     var errorValue: ErrorValue?
     
+    @Binding
+    var isValidating: Bool
+    
     public init(inputPrompt: String,
                 inputPlaceholder: String,
                 value: Binding<String>,
-                errorValue: Binding<ErrorValue?>) {
+                errorValue: Binding<ErrorValue?>,
+                isValidating: Binding<Bool> = .constant(false)) {
         
         self.inputPrompt = inputPrompt
         self.inputPlaceholder = inputPlaceholder
         self._value = value
         self._errorValue = errorValue
+        self._isValidating = isValidating
     }
     
     public var body: some View {
@@ -36,8 +41,16 @@ public struct InputField<ErrorValue: DomainValueError>: View {
             Text(inputPrompt)
                 .font(.body)
             
-            TextField(inputPlaceholder, text: $value)
-                .textFieldStyle(.plain)
+            HStack(spacing: 0) {
+                TextField(inputPlaceholder, text: $value)
+                    .textFieldStyle(.plain)
+                
+                Spacer()
+                
+                if isValidating {
+                    ProgressView()
+                }
+            }
             
             Divider()
                 .foregroundColor(.black)

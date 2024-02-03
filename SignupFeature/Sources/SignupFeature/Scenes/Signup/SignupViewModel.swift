@@ -32,11 +32,17 @@ public class SignupViewModel: ViewModel {
     @Published
     var emailError: EmailValueError?
     
+    @Published
+    var isValidatingEmail: Bool
+    
     @UsernameValidated
     var username: String = ""
     
     @Published
     var usernameError: UsernameValueError?
+    
+    @Published
+    var isValidatingUsername: Bool
     
     @NameValidated
     var name: String = ""
@@ -63,7 +69,9 @@ public class SignupViewModel: ViewModel {
         passwordError == nil &&
         retypedPasswordError == nil &&
         password == retypedPassword &&
-        focusedFields.count == FocusedField.allCases.count
+        focusedFields.count == FocusedField.allCases.count &&
+        !isValidatingEmail &&
+        !isValidatingUsername
     }
     
     private let signupUseCase: SignupUseCaseProviding
@@ -72,6 +80,14 @@ public class SignupViewModel: ViewModel {
    
     public init(signupUseCase: SignupUseCaseProviding) {
         self.signupUseCase = signupUseCase
+        self.isValidatingEmail = signupUseCase.isValidatingEmail.value
+        self.isValidatingUsername = signupUseCase.isValidatingUsername.value
+        
+        bind(\.isValidatingEmail, to: signupUseCase.isValidatingEmail)
+            .store(in: &subscriptions)
+        
+        bind(\.isValidatingUsername, to: signupUseCase.isValidatingUsername)
+            .store(in: &subscriptions)
         
         forward(_email.emailPublisher, to: signupUseCase.email)
             .store(in: &subscriptions)
@@ -143,6 +159,23 @@ public class SignupViewModel: ViewModel {
                 
                 self.passwordError = .passwordNotMatch
                 self.retypedPasswordError = .passwordNotMatch
+            }
+            .store(in: &subscriptions)
+        
+        
+        _email.emailPublisher
+            .removeDuplicates()
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.signupUseCase.validateEmail()
+            }
+            .store(in: &subscriptions)
+        
+        _username.usernamePublisher
+            .removeDuplicates()
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.signupUseCase.validateUsername()
             }
             .store(in: &subscriptions)
     }

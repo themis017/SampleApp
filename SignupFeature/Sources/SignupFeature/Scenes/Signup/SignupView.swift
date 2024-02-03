@@ -38,7 +38,8 @@ public struct SignupView: View {
                             inputPrompt: "Email",
                             inputPlaceholder: "Enter email address",
                             value: $viewModel.email,
-                            errorValue: $viewModel.emailError
+                            errorValue: $viewModel.emailError,
+                            isValidating: $viewModel.isValidatingEmail
                         )
                         .focused($focusedField, equals: .email)
                         
@@ -46,7 +47,8 @@ public struct SignupView: View {
                             inputPrompt: "Username",
                             inputPlaceholder: "Enter username",
                             value: $viewModel.username,
-                            errorValue: $viewModel.usernameError
+                            errorValue: $viewModel.usernameError,
+                            isValidating: $viewModel.isValidatingUsername
                         )
                         .focused($focusedField, equals: .username)
                         
