@@ -17,29 +17,82 @@ public struct LoginView: View {
     
     public static let sceneIdentity = "LoginView"
     
+    @FocusState
+    private var focusedField: LoginViewModel.FocusedField?
+    
     public init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
     }
     
     public var body: some View {
         
-        ZStack {
-            Color.cyan.opacity(0.3)
+        NavigationView {
             
-            VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
+                
+                ScrollView {
+                    
+                    VStack(alignment: .leading, spacing: 24) {
+                        
+                        InputField(
+                            inputPrompt: "Username",
+                            inputPlaceholder: "Enter username",
+                            value: $viewModel.username,
+                            errorValue: $viewModel.usernameError
+                        )
+                        .focused($focusedField, equals: .username)
+                        
+                        PasswordInputField(
+                            inputPrompt: "Password",
+                            inputPlaceholder: "Enter password",
+                            value: $viewModel.password,
+                            errorValue: $viewModel.passwordError
+                        )
+                        .focused($focusedField, equals: .password)
+                    }
+                }
+                .padding(.bottom, 16)
+                .onSubmit {
+                    if focusedField == .username {
+                        focusedField = .password
+                    } else {
+                        focusedField = nil
+                    }
+                }
+                
                 Spacer()
                 
-                Text("LoginView")
-                    .font(.title)
-                    .foregroundStyle(.black)
-                    .flexible(.horizontal)
-                
-                Spacer()
-
+                Button(action: {
+                    viewModel.perform(.login)
+                }) {
+                    Text("Log in")
+                        .flexible(.horizontal)
+                }
+                .buttonStyle(.primary)
+                .disabled(!viewModel.isLoginEnabled)
             }
-            .padding(.horizontal, 16)
+            .padding(16)
+            .background(.white)
+            .navigationTitle("Log in")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        viewModel.perform(.dismiss)
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.black)
+                            .frame(width: 24, height: 24)
+                    }
+                }
+            }
         }
-        .ignoresSafeArea()
+        .onChange(of: focusedField) { newValue in
+            viewModel.perform(.focusedField(of: newValue))
+        }
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
     }
 }
 
@@ -53,3 +106,4 @@ struct LoginView_Previews: PreviewProvider {
 }
 
 #endif
+

@@ -7,22 +7,33 @@
 
 import Foundation
 import ApplicationLayer
+import UILayer
 
 public protocol LoginUseCaseProviding {
     
-    func showMainScene()
+    var username: Observable<String> { get }
+    var password: Observable<String> { get }
+    
+    func login()
     func dismiss()
 }
 
 public class LoginUseCase: LoginUseCaseProviding {
     
+    public let username: Observable<String>
+    public let password: Observable<String>
+    
     private let loginRouter: any LoginRouting
     
     public init(loginRouter: any LoginRouting) {
         self.loginRouter = loginRouter
+        
+        self.username = Observable(initialValue: "")
+        self.password = Observable(initialValue: "")
     }
     
-    public func showMainScene() {
+    public func login() {
+        AppData.shared.save(true, to: .enableAutoLogin)
         loginRouter.showMainScene()
     }
     
@@ -36,7 +47,15 @@ public class LoginUseCase: LoginUseCaseProviding {
 
 public class PreviewLoginUseCase: LoginUseCaseProviding {
     
-    public func showMainScene() {}
+    public let username: Observable<String>
+    public let password: Observable<String>
+    
+    init() {
+        self.username = Observable(initialValue: "")
+        self.password = Observable(initialValue: "")
+    }
+    
+    public func login() {}
     public func dismiss() {}
 }
 

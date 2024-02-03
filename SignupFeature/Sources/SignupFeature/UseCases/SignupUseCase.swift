@@ -39,6 +39,7 @@ public class SignupUseCase: SignupUseCaseProviding {
     }
     
     public func signup() {
+        AppData.shared.save(true, to: .enableAutoLogin)
         signupRouter.showMainScene()
     }
     
