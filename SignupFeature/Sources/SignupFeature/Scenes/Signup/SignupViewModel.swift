@@ -141,27 +141,24 @@ public class SignupViewModel: ViewModel {
             }
             .store(in: &subscriptions)
         
-        _password.passwordPublisher
-            .combineLatest(_retypedPassword.passwordPublisher)
+        Publishers
+            .CombineLatest(_password.passwordPublisher, _retypedPassword.passwordPublisher)
             .map( {($0, $1)} )
             .sink { [weak self] passwordValues in
-                
+                                
                 guard let self = self,
                       self.passwordError == nil,
                       self.retypedPasswordError == nil else {
-                    
                     return
                 }
-                
+                                
                 guard passwordValues.0 != passwordValues.1 else {
                     return
                 }
                 
-                self.passwordError = .passwordNotMatch
                 self.retypedPasswordError = .passwordNotMatch
             }
             .store(in: &subscriptions)
-        
         
         _email.emailPublisher
             .removeDuplicates()
