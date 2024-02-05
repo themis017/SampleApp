@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import ApplicationLayer
 
 public struct HomeView: View {
     
@@ -21,27 +22,16 @@ public struct HomeView: View {
     
     public var body: some View {
         
-        VStack(spacing: 16) {
-            Text("HomeView")
-                .padding(16)
-                .foregroundColor(.white)
-                .background(Color.yellow)
-            
-            Spacer()
-            
-            Button {
-                viewModel.perform(.nextAction)
-            } label: {
-                Text("Next")
-                    .padding(24)
-                    .background(Color.orange)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
+        NavigationView {
+            ScrollView {
+                LazyVStack(spacing: 16) {
+                    ForEach(Recipe.previewExamples) { recipe in
+                        Text(recipe.title)
+                    }
+                }
             }
-            
-
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .flexible()
-        .background(Color.green)
     }
 }
 
