@@ -8,7 +8,7 @@
 import Foundation
 
 public enum RecipeDifficulty: Int, CustomStringConvertible {
-    case veryEasy = 0, easy, medium, difficult, verydifficult
+    case veryEasy = 1, easy, medium, difficult, verydifficult
     
     public var description: String {
         switch self {

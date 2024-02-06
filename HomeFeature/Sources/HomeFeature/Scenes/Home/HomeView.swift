@@ -25,12 +25,29 @@ public struct HomeView: View {
         NavigationView {
             ScrollView {
                 LazyVStack(spacing: 16) {
-                    ForEach(Recipe.previewExamples) { recipe in
-                        Text(recipe.title)
+                    ForEach(viewModel.recipes) { recipe in
+                        
+                        Button {
+                            viewModel.perform(.showRecipe(recipe))
+                        } label: {
+                            Image(recipe.iconAsseTitle)
+                                .resizable()
+                                .aspectRatio(16 / 9, contentMode: .fit)
+                                .overlay(alignment: .bottomLeading) {
+                                    Text(recipe.title)
+                                        .font(.title2)
+                                        .foregroundStyle(Color.black)
+                                        .background(Color.white.opacity(0.8))
+                                }
+                        }
                     }
                 }
             }
+//            .navigationBarHidden(false)
             .navigationBarTitleDisplayMode(.inline)
+            .refreshable {
+                viewModel.perform(.refresh)
+            }
         }
     }
 }

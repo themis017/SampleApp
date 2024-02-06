@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct Recipe: Identifiable {
+public struct Recipe: Identifiable, Equatable {
     
     public var id: String
     public var iconAsseTitle: String
@@ -19,6 +19,9 @@ public struct Recipe: Identifiable {
     public var serves: Int
     public var timeInSeconds: Int
     public var difficulty: RecipeDifficulty?
+    public var chefId: String
+    public var chefUsername: String
+    public var chefName: String
     
     public var totalTime: String {
         
@@ -30,11 +33,13 @@ public struct Recipe: Identifiable {
         let minutes = (clampedTime % 3600) / 60
 
         if hours > 0 {
-            time = "\(String(hours)) Hours"
+            let hoursText = hours == 1 ? "Hour" : "Hours"
+            time = hours == 1 ? "\(String(hours)) \(hoursText)" : "\(String(hours)) \(hoursText)"
         }
         
         if minutes > 0 {
-            time += " \(String(minutes)) Minutes"
+            let minutesText = minutes == 1 ? "Minute" : "Minutes"
+            time += " \(String(minutes)) \(minutesText)"
         }
         
         return time
@@ -65,7 +70,10 @@ public struct Recipe: Identifiable {
                 """,
                 serves: 2,
                 timeInSeconds: 3700,
-                difficulty: .init(rawValue: 0)
+                difficulty: .init(rawValue: 4),
+                chefId: "1",
+                chefUsername: "Username_1",
+                chefName: "Name_1"
             ),
             Recipe(
                 id: "2",
@@ -90,7 +98,10 @@ public struct Recipe: Identifiable {
                 """,
                 serves: 3,
                 timeInSeconds: 3000,
-                difficulty: .init(rawValue: 1)
+                difficulty: .init(rawValue: 1),
+                chefId: "2",
+                chefUsername: "Username_2",
+                chefName: "Name_2"
             ),
             Recipe(
                 id: "3",
@@ -115,7 +126,10 @@ public struct Recipe: Identifiable {
                 """,
                 serves: 4,
                 timeInSeconds: 4500,
-                difficulty: .init(rawValue: 2)
+                difficulty: .init(rawValue: 2),
+                chefId: "3",
+                chefUsername: "Username_3",
+                chefName: "Name_3"
             ),
             Recipe(
                 id: "4",
@@ -140,7 +154,10 @@ public struct Recipe: Identifiable {
                 """,
                 serves: 5,
                 timeInSeconds: 6000,
-                difficulty: .init(rawValue: 3)
+                difficulty: .init(rawValue: 3),
+                chefId: "4",
+                chefUsername: "Username_4",
+                chefName: "Name_4"
             ),
             Recipe(
                 id: "5",
@@ -165,7 +182,10 @@ public struct Recipe: Identifiable {
                 """,
                 serves: 2,
                 timeInSeconds: 8000,
-                difficulty: .init(rawValue: 4)
+                difficulty: .init(rawValue: 4),
+                chefId: "5",
+                chefUsername: "Username_5",
+                chefName: "Name_5"
             ),
             Recipe(
                 id: "6",
@@ -190,7 +210,10 @@ public struct Recipe: Identifiable {
                 """,
                 serves: 3,
                 timeInSeconds: 4500,
-                difficulty: .init(rawValue: 2)
+                difficulty: .init(rawValue: 2),
+                chefId: "6",
+                chefUsername: "Username_6",
+                chefName: "Name_6"
             ),
             Recipe(
                 id: "7",
@@ -215,7 +238,10 @@ public struct Recipe: Identifiable {
                 """,
                 serves: 4,
                 timeInSeconds: 3600,
-                difficulty: .init(rawValue: 1)
+                difficulty: .init(rawValue: 1),
+                chefId: "7",
+                chefUsername: "Username_7",
+                chefName: "Name_7"
             ),
             Recipe(
                 id: "8",
@@ -240,7 +266,10 @@ public struct Recipe: Identifiable {
                 """,
                 serves: 5,
                 timeInSeconds: 10000,
-                difficulty: .init(rawValue: 0)
+                difficulty: .init(rawValue: 5),
+                chefId: "8",
+                chefUsername: "Username_8",
+                chefName: "Name_8"
             ),
             Recipe(
                 id: "9",
@@ -265,7 +294,10 @@ public struct Recipe: Identifiable {
                 """,
                 serves: 2,
                 timeInSeconds: 9500,
-                difficulty: .init(rawValue: 2)
+                difficulty: .init(rawValue: 2),
+                chefId: "9",
+                chefUsername: "Username_9",
+                chefName: "Name_9"
             ),
             Recipe(
                 id: "10",
@@ -290,7 +322,10 @@ public struct Recipe: Identifiable {
                 """,
                 serves: 4,
                 timeInSeconds: 11000,
-                difficulty: .init(rawValue: 0)
+                difficulty: .init(rawValue: 5),
+                chefId: "10",
+                chefUsername: "Username_10",
+                chefName: "Name_10"
             )
         ]
     }

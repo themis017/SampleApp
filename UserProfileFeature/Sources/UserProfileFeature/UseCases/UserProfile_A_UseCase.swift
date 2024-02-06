@@ -34,6 +34,7 @@ public class UserProfile_A_UseCase: UserProfile_A_UseCaseProviding {
         userProfileRouter.showUserProfile_B_Scene()
 //        userProfileRouter.popScene()
     }
+    
     public func showUpload() {
         userProfileRouter.showUploadScene()
     }

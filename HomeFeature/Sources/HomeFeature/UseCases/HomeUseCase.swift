@@ -12,19 +12,40 @@ import UILayer
 
 public protocol HomeUseCaseProviding {
 
-    func randomAction()
+    var recipes: Observable<[Recipe]> { get }
+    
+    func refresh()
+    func showRecipe(_ recipe: Recipe)
 }
 
 public class HomeUseCase: HomeUseCaseProviding {
         
+    public let recipes: Observable<[Recipe]>
+    
     private let homeRouter: any HomeRouting
     
     public init(homeRouter: any HomeRouting) {
         self.homeRouter = homeRouter
+        
+        self.recipes = Observable(initialValue: [])
+        
+        findRecipes()
     }
     
-    public func randomAction() {
+    private func findRecipes() {
         
+        // MARK: Perform request to find recipes
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.recipes.value = Recipe.previewExamples
+        }
+    }
+    
+    public func refresh() {
+        findRecipes()
+    }
+    
+    public func showRecipe(_ recipe: Recipe) {
+        homeRouter.showRecipe(recipe)
     }
     
 }
@@ -33,9 +54,14 @@ public class HomeUseCase: HomeUseCaseProviding {
 
 public class PreviewHomeUseCase: HomeUseCaseProviding {
     
-    public init() {}
+    public var recipes: Observable<[Recipe]>
     
-    public func randomAction() {}
+    public init() {
+        self.recipes = .init(initialValue: Recipe.previewExamples)
+    }
+    
+    public func refresh() {}
+    public func showRecipe(_ recipe: Recipe) {}
 }
 
 #endif

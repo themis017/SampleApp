@@ -14,19 +14,32 @@ import UILayer
 public class HomeViewModel: ViewModel {
     
     public enum Action {
-        case randomAction
+        case refresh
+        case showRecipe(Recipe)
     }
+    
+    @Published
+    var recipes: [Recipe]
     
     private let homeUseCase: HomeUseCaseProviding
     
+    private var subscriptions: Set<AnyCancellable> = []
+    
     public init(homeUseCase: HomeUseCaseProviding) {
         self.homeUseCase = homeUseCase
+        
+        self.recipes = homeUseCase.recipes.value
+        
+        bind(\.recipes, to: homeUseCase.recipes)
+            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {
         switch action {
-        case .randomAction:
-            homeUseCase.randomAction()
+        case .refresh:
+            homeUseCase.refresh()
+        case .showRecipe(let recipe):
+            homeUseCase.showRecipe(recipe)
         }
     }
 }
