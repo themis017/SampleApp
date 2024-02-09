@@ -31,7 +31,7 @@ public struct Username: RawRepresentable, Equatable {
             return .shortValue
         }
         
-        guard !username.length(isMoreThan: 10) else {
+        guard !username.length(isMoreThan: 15) else {
             return .longValue
         }
         

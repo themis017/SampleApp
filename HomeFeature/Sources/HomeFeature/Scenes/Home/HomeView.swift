@@ -45,6 +45,13 @@ public struct HomeView: View {
             }
 //            .navigationBarHidden(false)
             .navigationBarTitleDisplayMode(.inline)
+            .safeAreaInset(edge: .top,
+                           content: {
+                Color.clear
+                    .frame(height: 0)
+                    .background(.bar)
+                    .border(.black)
+            })
             .refreshable {
                 viewModel.perform(.refresh)
             }

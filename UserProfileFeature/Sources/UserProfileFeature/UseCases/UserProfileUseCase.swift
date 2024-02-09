@@ -11,44 +11,32 @@ import UILayer
 
 public protocol UserProfileUseCaseProviding {
     
-    var randomProperty: Observable<Int> { get }
-    var randomText: Observable<String> { get }
+    var userProfile: Observable<UserProfile?> { get }
     
-    var appDataUsername: Observable<String> { get }
-    
-    func nextAction()
-    func saveUsername(to username: String)
+    func showEditProfile()
     func logout()
 }
 
 public class UserProfileUseCase: UserProfileUseCaseProviding {
     
-    public var randomProperty: Observable<Int>
-    public var randomText: Observable<String>
-    
-    public let appDataUsername: Observable<String>
+    public let userProfile: Observable<UserProfile?>
     
     private let userProfileRouter: any UserProfileRouting
     
     public init(userProfileRouter: any UserProfileRouting) {
-        self.randomProperty = Observable(initialValue: 0)
-        self.randomText = Observable(initialValue: "")
-        
-        self.appDataUsername = Observable(initialValue: AppData.shared.value(of: .username) ?? "")
         
         self.userProfileRouter = userProfileRouter
-    }
-    
-    public func nextAction() {
-        userProfileRouter.showUserProfile_A_Scene()
-    }
-    
-    public func saveUsername(to username: String) {
-        defer {
-            appDataUsername.value = username
-        }
+        self.userProfile = Observable(initialValue: nil)
         
-        AppData.shared.save(username, to: .username)
+        loadUserProfile()
+    }
+    
+    private func loadUserProfile() {
+        userProfile.value = UserProfile.user_1
+    }
+    
+    public func showEditProfile() {
+        
     }
     
     public func logout() {
@@ -61,20 +49,13 @@ public class UserProfileUseCase: UserProfileUseCaseProviding {
 
 public class PreviewUserProfileUseCase: UserProfileUseCaseProviding {
     
-    public var randomProperty: Observable<Int>
-    public var randomText: Observable<String>
-    
-    public var appDataUsername: Observable<String>
+    public var userProfile: Observable<UserProfile?>
     
     public init() {
-        self.randomProperty = Observable(initialValue: 0)
-        self.randomText = Observable(initialValue: "")
-        
-        self.appDataUsername = Observable(initialValue: "")
+        self.userProfile = Observable(initialValue: UserProfile.user_1)
     }
     
-    public func nextAction() {}
-    public func saveUsername(to username: String) {}
+    public func showEditProfile() {}
     public func logout() {}
 }
 

@@ -20,8 +20,8 @@ public struct Recipe: Identifiable, Equatable {
     public var timeInSeconds: Int
     public var difficulty: RecipeDifficulty?
     public var chefId: String
-    public var chefUsername: String
-    public var chefName: String
+    public var chefUsername: Username
+    public var chefName: Name
     
     public var totalTime: String {
         
@@ -72,8 +72,8 @@ public struct Recipe: Identifiable, Equatable {
                 timeInSeconds: 3700,
                 difficulty: .init(rawValue: 4),
                 chefId: "1",
-                chefUsername: "Username_1",
-                chefName: "Name_1"
+                chefUsername: Username(rawValue: "Username_1")!,
+                chefName: Name(rawValue: "Name_1")!
             ),
             Recipe(
                 id: "2",
@@ -100,8 +100,8 @@ public struct Recipe: Identifiable, Equatable {
                 timeInSeconds: 3000,
                 difficulty: .init(rawValue: 1),
                 chefId: "2",
-                chefUsername: "Username_2",
-                chefName: "Name_2"
+                chefUsername: Username(rawValue: "Username_2")!,
+                chefName: Name(rawValue: "Name_2")!
             ),
             Recipe(
                 id: "3",
@@ -128,8 +128,8 @@ public struct Recipe: Identifiable, Equatable {
                 timeInSeconds: 4500,
                 difficulty: .init(rawValue: 2),
                 chefId: "3",
-                chefUsername: "Username_3",
-                chefName: "Name_3"
+                chefUsername: Username(rawValue: "Username_3")!,
+                chefName: Name(rawValue: "Name_3")!
             ),
             Recipe(
                 id: "4",
@@ -156,8 +156,8 @@ public struct Recipe: Identifiable, Equatable {
                 timeInSeconds: 6000,
                 difficulty: .init(rawValue: 3),
                 chefId: "4",
-                chefUsername: "Username_4",
-                chefName: "Name_4"
+                chefUsername: Username(rawValue: "Username_4")!,
+                chefName: Name(rawValue: "Name_4")!
             ),
             Recipe(
                 id: "5",
@@ -184,8 +184,8 @@ public struct Recipe: Identifiable, Equatable {
                 timeInSeconds: 8000,
                 difficulty: .init(rawValue: 4),
                 chefId: "5",
-                chefUsername: "Username_5",
-                chefName: "Name_5"
+                chefUsername: Username(rawValue: "Username_5")!,
+                chefName: Name(rawValue: "Name_5")!
             ),
             Recipe(
                 id: "6",
@@ -212,8 +212,8 @@ public struct Recipe: Identifiable, Equatable {
                 timeInSeconds: 4500,
                 difficulty: .init(rawValue: 2),
                 chefId: "6",
-                chefUsername: "Username_6",
-                chefName: "Name_6"
+                chefUsername: Username(rawValue: "Username_6")!,
+                chefName: Name(rawValue: "Name_6")!
             ),
             Recipe(
                 id: "7",
@@ -240,8 +240,8 @@ public struct Recipe: Identifiable, Equatable {
                 timeInSeconds: 3600,
                 difficulty: .init(rawValue: 1),
                 chefId: "7",
-                chefUsername: "Username_7",
-                chefName: "Name_7"
+                chefUsername: Username(rawValue: "Username_7")!,
+                chefName: Name(rawValue: "Name_7")!
             ),
             Recipe(
                 id: "8",
@@ -268,8 +268,8 @@ public struct Recipe: Identifiable, Equatable {
                 timeInSeconds: 10000,
                 difficulty: .init(rawValue: 5),
                 chefId: "8",
-                chefUsername: "Username_8",
-                chefName: "Name_8"
+                chefUsername: Username(rawValue: "Username_8")!,
+                chefName: Name(rawValue: "Name_8")!
             ),
             Recipe(
                 id: "9",
@@ -296,8 +296,8 @@ public struct Recipe: Identifiable, Equatable {
                 timeInSeconds: 9500,
                 difficulty: .init(rawValue: 2),
                 chefId: "9",
-                chefUsername: "Username_9",
-                chefName: "Name_9"
+                chefUsername: Username(rawValue: "Username_9")!,
+                chefName: Name(rawValue: "Name_9")!
             ),
             Recipe(
                 id: "10",
@@ -324,8 +324,8 @@ public struct Recipe: Identifiable, Equatable {
                 timeInSeconds: 11000,
                 difficulty: .init(rawValue: 5),
                 chefId: "10",
-                chefUsername: "Username_10",
-                chefName: "Name_10"
+                chefUsername: Username(rawValue: "Username_10")!,
+                chefName: Name(rawValue: "Name_10")!
             )
         ]
     }

@@ -25,13 +25,14 @@ public struct RecipeView: View {
         NavigationView {
             
             if let recipe = viewModel.recipe {
+                
                 VStack(spacing: 8) {
                     
-                    Text(recipe.title)
-                        .font(.title)
-                        .foregroundStyle(Color.black)
-                    
                     ScrollView {
+                        
+                        Text(recipe.title)
+                            .font(.title)
+                            .foregroundStyle(Color.black)
                         
                         Image(recipe.iconAsseTitle)
                             .resizable()
@@ -39,11 +40,11 @@ public struct RecipeView: View {
                             .frame(width: 300, height: 170)
                         
                         VStack(spacing: 4) {
-                            Text(recipe.chefName)
+                            Text(recipe.chefName.rawValue)
                                 .font(.body)
                                 .foregroundStyle(Color.black)
 
-                            Text(recipe.chefUsername)
+                            Text(recipe.chefUsername.rawValue)
                                 .font(.body)
                                 .foregroundStyle(Color.black)
                         }
@@ -151,6 +152,13 @@ public struct RecipeView: View {
                         }
                     }
                 }
+                .safeAreaInset(edge: .top,
+                               content: {
+                    Color.clear
+                        .frame(height: 0)
+                        .background(.bar)
+                        .border(.black)
+                })
                 .slideBack {
                     viewModel.perform(.dismiss(animated: true))
                 }
