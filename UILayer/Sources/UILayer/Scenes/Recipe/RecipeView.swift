@@ -42,7 +42,7 @@ public struct RecipeView: View {
                             Text(recipe.chefName)
                                 .font(.body)
                                 .foregroundStyle(Color.black)
-                            
+
                             Text(recipe.chefUsername)
                                 .font(.body)
                                 .foregroundStyle(Color.black)
@@ -51,73 +51,85 @@ public struct RecipeView: View {
                         .padding(.horizontal, 16)
                         
                         VStack(alignment: .leading, spacing: 16) {
-                            
-                            Text(recipe.description)
-                                .font(.body)
-                                .foregroundStyle(Color.black)
-                            
-                            Divider()
-                            
-                            HStack(spacing: 4) {
-                                Text("Serves:")
+
+                            Group {
+                                Text(recipe.description)
                                     .font(.body)
                                     .foregroundStyle(Color.black)
                                 
-                                Text(String(recipe.serves))
-                                    .font(.body)
-                                    .foregroundStyle(Color.black)
+                                Divider()
                             }
-                            
-                            Divider()
-                            
-                            HStack(spacing: 4) {
-                                Text("Time:")
-                                    .font(.body)
-                                    .foregroundStyle(Color.black)
+
+                            Group {
+                                HStack(spacing: 4) {
+                                    Text("Serves:")
+                                        .font(.body)
+                                        .foregroundStyle(Color.black)
+                                    
+                                    Text(String(recipe.serves))
+                                        .font(.body)
+                                        .foregroundStyle(Color.black)
+                                }
                                 
-                                Text(String(recipe.totalTime))
-                                    .font(.body)
-                                    .foregroundStyle(Color.black)
+                                Divider()
                             }
-                            
-                            Divider()
-                            
-                            HStack(spacing: 4) {
-                                Text("Difficulty:")
-                                    .font(.body)
-                                    .foregroundStyle(Color.black)
+
+                            Group {
+                                HStack(spacing: 4) {
+                                    Text("Time:")
+                                        .font(.body)
+                                        .foregroundStyle(Color.black)
+                                    
+                                    Text(String(recipe.totalTime))
+                                        .font(.body)
+                                        .foregroundStyle(Color.black)
+                                }
                                 
-                                if let difficulty = recipe.difficulty {
-                                    HStack(spacing: 2) {
-                                        ForEach(1..<6) { number in
-                                            Image(systemName: "star.fill")
-                                                .foregroundColor(number > difficulty.rawValue ? Color.white : Color.yellow)
+                                Divider()
+                            }
+
+                            Group {
+                                HStack(spacing: 4) {
+                                    Text("Difficulty:")
+                                        .font(.body)
+                                        .foregroundStyle(Color.black)
+                                    
+                                    if let difficulty = recipe.difficulty {
+                                        HStack(spacing: 2) {
+                                            ForEach(1..<6) { number in
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(number > difficulty.rawValue ? Color.white : Color.yellow)
+                                            }
                                         }
                                     }
                                 }
+                                
+                                Divider()
                             }
-                            
-                            Divider()
-                            
-                            Text("Ingredients:")
-                                .font(.headline)
-                                .foregroundStyle(Color.black)
-                            
-                            Text(recipe.ingredients)
-                                .font(.body)
-                                .foregroundStyle(Color.black)
-                            
-                            Divider()
-                            
-                            Text("Method:")
-                                .font(.headline)
-                                .foregroundStyle(Color.black)
-                            
-                            Text(recipe.method)
-                                .font(.body)
-                                .foregroundStyle(Color.black)
-                            
-                            Divider()
+
+                            Group {
+                                Text("Ingredients:")
+                                    .font(.headline)
+                                    .foregroundStyle(Color.black)
+                                
+                                Text(recipe.ingredients)
+                                    .font(.body)
+                                    .foregroundStyle(Color.black)
+                                
+                                Divider()
+                            }
+
+                            Group {
+                                Text("Method:")
+                                    .font(.headline)
+                                    .foregroundStyle(Color.black)
+                                
+                                Text(recipe.method)
+                                    .font(.body)
+                                    .foregroundStyle(Color.black)
+                                
+                                Divider()
+                            }
                         }
                         .padding(.horizontal, 16)
                     }
