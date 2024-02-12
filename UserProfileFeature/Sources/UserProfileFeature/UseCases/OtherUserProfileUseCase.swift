@@ -13,7 +13,7 @@ public protocol OtherUserProfileUseCaseProviding {
     
     var userProfile: Observable<UserProfile?> { get }
     
-    func logout()
+    func dismiss()
 }
 
 public class OtherUserProfileUseCase: OtherUserProfileUseCaseProviding {
@@ -45,9 +45,8 @@ public class OtherUserProfileUseCase: OtherUserProfileUseCaseProviding {
         }
     }
     
-    public func logout() {
-        AppData.shared.save(false, to: .enableAutoLogin)
-        userProfileRouter.showEntryPointScene()
+    public func dismiss() {
+        userProfileRouter.popScene(animated: true)
     }
 }
 
@@ -61,7 +60,7 @@ public class PreviewOtherUserProfileUseCase: OtherUserProfileUseCaseProviding {
         self.userProfile = Observable(initialValue: UserProfile.user_1)
     }
     
-    public func logout() {}
+    public func dismiss() {}
 }
 
 #endif

@@ -40,6 +40,8 @@ public struct HomeView: View {
                                         .background(Color.white.opacity(0.8))
                                 }
                         }
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                        .padding(.horizontal, 16)
                     }
                 }
             }

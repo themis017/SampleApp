@@ -21,6 +21,9 @@ public class UserProfileViewModel: ViewModel {
     @Published
     var userProfile: UserProfile?
     
+    @Published
+    var showingLogoutAlert = false
+    
     private let userProfileUseCase: UserProfileUseCaseProviding
     
     private var subscriptions: Set<AnyCancellable> = []

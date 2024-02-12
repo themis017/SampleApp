@@ -1,21 +1,21 @@
 //
-//  UserProfileView.swift
+//  OtherUserProfileView.swift
 //
 //
-//  Created by Themis Makedas on 19/12/23.
+//  Created by Themis Makedas on 12/2/24.
 //
 
 import Foundation
 import SwiftUI
 
-public struct UserProfileView: View {
+public struct OtherUserProfileView: View {
     
     @ObservedObject
-    private var viewModel: UserProfileViewModel
+    private var viewModel: OtherUserProfileViewModel
     
-    public static let sceneIdentity = "UserProfileView"
+    public static let sceneIdentity = "OtherUserProfileView"
     
-    public init(viewModel: UserProfileViewModel) {
+    public init(viewModel: OtherUserProfileViewModel) {
         self.viewModel = viewModel
         
         let appearance = UINavigationBarAppearance()
@@ -84,102 +84,25 @@ public struct UserProfileView: View {
                                 .flexible(.horizontal)
                             }
                             .padding(.top, 16)
-                            
-                            profileOptions
-                            
+                                                        
                             Spacer()
                         }
                     }
                     .background(Color(UIColor.systemGray6))
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button {
-                                withAnimation {
-                                    viewModel.showingLogoutAlert = true
-                                }
-                            } label: {
-                                Image(systemName: "rectangle.portrait.and.arrow.right")
-                                    .foregroundColor(.black)
-                                    .frame(width: 24, height: 24)
-                            }
-                        }
-                    }
                 }
             }
             .padding(.horizontal, 16)
             .flexible()
         }
-        .alert(isPresented: $viewModel.showingLogoutAlert) {
-            Alert(
-                title: Text("Log Out"),
-                message: Text("Are you sure you want to log out?"),
-                primaryButton: .default(Text("Cancel")),
-                secondaryButton: .destructive(Text("Log Out"), action: {
-                    viewModel.perform(.logout)
-                })
-            )
-        }
-    }
-    
-    private var profileOptions: some View {
-        VStack(spacing: 16) {
-            Button {
-                viewModel.perform(.editProfile)
-            } label: {
-                HStack {
-                    Label("Edit Profile", systemImage: "pencil")
-                    
-                    Spacer()
-                    
-                    Image(systemName: "chevron.forward")
-                }
-                .foregroundStyle(Color.black)
-            }
-            
-            Divider()
-            
-            Button {
-                
-            } label: {
-                HStack {
-                    Label("Notifications", systemImage: "message")
-                    
-                    Spacer()
-                    
-                    Image(systemName: "chevron.forward")
-                }
-                .foregroundStyle(Color.black)
-            }
-            
-            Divider()
-            
-            Button {
-                
-            } label: {
-                HStack {
-                    Label("Invite friends", systemImage: "person.2")
-                    
-                    Spacer()
-                    
-                    Image(systemName: "chevron.forward")
-                }
-                .foregroundStyle(Color.black)
-            }
-            
-        }
-        .padding(16)
-        .background(Color.white)
-        .padding(.vertical, 24)
-        .clipShape(RoundedRectangle(cornerRadius: 24))
     }
 }
 
 #if DEBUG
 
-struct UserProfileView_Previews: PreviewProvider {
+struct OtherUserProfileView_Previews: PreviewProvider {
     
     static var previews: some View {
-        UserProfileView(viewModel: .previewViewModel())
+        OtherUserProfileView(viewModel: .previewViewModel())
     }
 }
 
