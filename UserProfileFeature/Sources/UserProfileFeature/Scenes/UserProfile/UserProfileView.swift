@@ -142,7 +142,7 @@ public struct UserProfileView: View {
                 
             } label: {
                 HStack {
-                    Label("Notifications", systemImage: "message")
+                    Label("Notifications", systemImage: "bell")
                     
                     Spacer()
                     
@@ -169,8 +169,9 @@ public struct UserProfileView: View {
         }
         .padding(16)
         .background(Color.white)
+        .cornerRadius(10)
+        .shadow(radius: 5)
         .padding(.vertical, 24)
-        .clipShape(RoundedRectangle(cornerRadius: 24))
     }
 }
 
