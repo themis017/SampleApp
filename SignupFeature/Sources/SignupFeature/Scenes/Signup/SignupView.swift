@@ -94,9 +94,9 @@ public struct SignupView: View {
                 
                 Spacer()
                 
-                Button(action: {
+                Button {
                     viewModel.perform(.signup)
-                }) {
+                } label: {
                     Text("Sign up")
                         .flexible(.horizontal)
                 }

@@ -36,7 +36,7 @@ public class UserProfileUseCase: UserProfileUseCaseProviding {
     }
     
     public func showEditProfile() {
-        
+        userProfileRouter.showEditProfileScene()
     }
     
     public func logout() {

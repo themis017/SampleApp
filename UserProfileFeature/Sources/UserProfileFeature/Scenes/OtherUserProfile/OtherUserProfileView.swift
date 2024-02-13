@@ -49,7 +49,7 @@ public struct OtherUserProfileView: View {
                         }
                         .padding(.vertical, 8)
                         
-                        Text(userProfile.description)
+                        Text(userProfile.description.rawValue)
                             .font(.body)
                             .flexible(.horizontal, alignment: .leading)
                             .padding(.vertical, 16)

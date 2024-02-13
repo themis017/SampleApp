@@ -13,9 +13,10 @@ public struct UserProfile: Identifiable, Equatable {
     public var id: String
     public var profileImage: String
     public var backgroundImage: String
+    public var email: Email
     public var username: Username
     public var name: Name
-    public var description: String
+    public var description: Description
     public var recipesCount: Int
     public var followersCount: Int
     
@@ -23,9 +24,10 @@ public struct UserProfile: Identifiable, Equatable {
         UserProfile(id: "1",
                     profileImage: "",
                     backgroundImage: "",
+                    email: Email(rawValue: "user_1@gmail.com")!,
                     username: Username(rawValue: "username_1")!,
                     name: Name(rawValue: "name_1")!,
-                    description: "Description_1",
+                    description: Description(rawValue: "Description_1")!,
                     recipesCount: 100,
                     followersCount: 20)
     
@@ -33,9 +35,10 @@ public struct UserProfile: Identifiable, Equatable {
         UserProfile(id: "2",
                     profileImage: "",
                     backgroundImage: "",
+                    email: Email(rawValue: "user_2@gmail.com")!,
                     username: Username(rawValue: "username_2")!,
                     name: Name(rawValue: "name_2")!,
-                    description: "Description_2",
+                    description: Description(rawValue: "Description_2")!,
                     recipesCount: 50,
                     followersCount: 120)
     
@@ -43,9 +46,10 @@ public struct UserProfile: Identifiable, Equatable {
         UserProfile(id: "3",
                     profileImage: "",
                     backgroundImage: "",
+                    email: Email(rawValue: "user_3@gmail.com")!,
                     username: Username(rawValue: "username_3")!,
                     name: Name(rawValue: "name_3")!,
-                    description: "Description_3",
+                    description: Description(rawValue: "Description_3")!,
                     recipesCount: 200,
                     followersCount: 240)
     
@@ -53,9 +57,10 @@ public struct UserProfile: Identifiable, Equatable {
         UserProfile(id: "4",
                     profileImage: "",
                     backgroundImage: "",
+                    email: Email(rawValue: "user_4@gmail.com")!,
                     username: Username(rawValue: "username_4")!,
                     name: Name(rawValue: "name_4")!,
-                    description: "Description_4",
+                    description: Description(rawValue: "Description_4")!,
                     recipesCount: 180,
                     followersCount: 300)
     
@@ -63,9 +68,10 @@ public struct UserProfile: Identifiable, Equatable {
         UserProfile(id: "5",
                     profileImage: "",
                     backgroundImage: "",
+                    email: Email(rawValue: "user_5@gmail.com")!,
                     username: Username(rawValue: "username_5")!,
                     name: Name(rawValue: "name_5")!,
-                    description: "Description_5",
+                    description: Description(rawValue: "Description_5")!,
                     recipesCount: 270,
                     followersCount: 190)
 

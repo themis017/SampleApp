@@ -10,6 +10,7 @@ import Foundation
 public protocol UserProfileRouting: Routing {
     
     func showEntryPointScene()
+    func showEditProfileScene()
     func showUserProfile_A_Scene()
     func showUserProfile_B_Scene()
 }

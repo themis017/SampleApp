@@ -49,7 +49,7 @@ public struct UserProfileView: View {
                         }
                         .padding(.vertical, 8)
                         
-                        Text(userProfile.description)
+                        Text(userProfile.description.rawValue)
                             .font(.body)
                             .flexible(.horizontal, alignment: .leading)
                             .padding(.vertical, 16)
@@ -87,7 +87,6 @@ public struct UserProfileView: View {
                         Spacer()
                     }
                     .padding(.horizontal, 16)
-                    //                        .background(Color(UIColor.green))
                 }
                 .background(Color(UIColor.systemGray6))
                 .toolbar {

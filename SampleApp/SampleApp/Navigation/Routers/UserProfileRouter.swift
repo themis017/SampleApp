@@ -29,6 +29,22 @@ class UserProfileRouter: BaseRouter, UserProfileRouting {
         self.navigationController.pushViewController(entryPointViewController, animated: true)
     }
     
+    @MainActor
+    func showEditProfileScene() {
+        let userProfileRouter = UserProfileRouter(navigationController: navigationController)
+        let useCase = EditProfileUseCase(userProfileRouter: userProfileRouter)
+        let viewModel = EditProfileViewModel(editProfileUseCase: useCase)
+        let view = EditProfileView(viewModel: viewModel)
+        
+        let viewController = RoutingUIHostingController(
+            sceneIdentity: EditProfileView.sceneIdentity,
+            isRoot: false,
+            tabCategory: .profile,
+            view: AnyView(view))
+        
+        append(viewController, for: .profile)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
     
     @MainActor
     func showUserProfile_A_Scene() {
