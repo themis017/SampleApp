@@ -18,96 +18,92 @@ public struct UserProfileView: View {
     public init(viewModel: UserProfileViewModel) {
         self.viewModel = viewModel
         
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.systemGray6
-        
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        //        let appearance = UINavigationBarAppearance()
+        //        appearance.configureWithOpaqueBackground()
+        //        appearance.backgroundColor = UIColor.systemGray6
+        //        
+        //        UINavigationBar.appearance().standardAppearance = appearance
+        //        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
     public var body: some View {
         
-        ZStack {
-            Color(UIColor.systemGray6).edgesIgnoringSafeArea(.all)
-            
-            NavigationView {
-                if let userProfile = viewModel.userProfile {
-                    ScrollView {
-                        VStack(spacing: 0) {
-                            HStack(spacing: 16) {
-                                Image("user")
-                                    .resizable()
-                                    .frame(width: 100, height: 100)
+        NavigationView {
+            if let userProfile = viewModel.userProfile {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        HStack(spacing: 16) {
+                            Image("user")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                            
+                            VStack(spacing: 4) {
+                                Text(userProfile.name.rawValue)
+                                    .font(.title)
                                 
-                                VStack(spacing: 4) {
-                                    Text(userProfile.name.rawValue)
-                                        .font(.title)
-                                    
-                                    Text(userProfile.username.rawValue)
-                                        .font(.title3)
-                                }
-                                
-                                Spacer()
+                                Text(userProfile.username.rawValue)
+                                    .font(.title3)
                             }
-                            .padding(.vertical, 8)
-                            
-                            Text(userProfile.description)
-                                .font(.body)
-                                .flexible(.horizontal, alignment: .leading)
-                                .padding(.vertical, 16)
-                            
-                            Divider()
-                            
-                            HStack(spacing: 0) {
-                                
-                                VStack(spacing: 4) {
-                                    Text(String(userProfile.recipesCount))
-                                        .font(.body)
-                                        .foregroundStyle(Color.blue)
-                                    
-                                    Text("Recipes")
-                                        .font(.body)
-                                        .foregroundStyle(Color.blue)
-                                }
-                                .flexible(.horizontal)
-                                
-                                VStack(spacing: 4) {
-                                    Text(String(userProfile.followersCount))
-                                        .font(.body)
-                                        .foregroundStyle(Color.blue)
-                                    
-                                    Text("Followers")
-                                        .font(.body)
-                                        .foregroundStyle(Color.blue)
-                                }
-                                .flexible(.horizontal)
-                            }
-                            .padding(.top, 16)
-                            
-                            profileOptions
                             
                             Spacer()
                         }
-                    }
-                    .background(Color(UIColor.systemGray6))
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button {
-                                withAnimation {
-                                    viewModel.showingLogoutAlert = true
-                                }
-                            } label: {
-                                Image(systemName: "rectangle.portrait.and.arrow.right")
-                                    .foregroundColor(.black)
-                                    .frame(width: 24, height: 24)
+                        .padding(.vertical, 8)
+                        
+                        Text(userProfile.description)
+                            .font(.body)
+                            .flexible(.horizontal, alignment: .leading)
+                            .padding(.vertical, 16)
+                        
+                        Divider()
+                        
+                        HStack(spacing: 0) {
+                            
+                            VStack(spacing: 4) {
+                                Text(String(userProfile.recipesCount))
+                                    .font(.body)
+                                    .foregroundStyle(Color.blue)
+                                
+                                Text("Recipes")
+                                    .font(.body)
+                                    .foregroundStyle(Color.blue)
                             }
+                            .flexible(.horizontal)
+                            
+                            VStack(spacing: 4) {
+                                Text(String(userProfile.followersCount))
+                                    .font(.body)
+                                    .foregroundStyle(Color.blue)
+                                
+                                Text("Followers")
+                                    .font(.body)
+                                    .foregroundStyle(Color.blue)
+                            }
+                            .flexible(.horizontal)
+                        }
+                        .padding(.top, 16)
+                        
+                        profileOptions
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal, 16)
+                    //                        .background(Color(UIColor.green))
+                }
+                .background(Color(UIColor.systemGray6))
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            withAnimation {
+                                viewModel.showingLogoutAlert = true
+                            }
+                        } label: {
+                            Image(systemName: "rectangle.portrait.and.arrow.right")
+                                .foregroundColor(.black)
+                                .frame(width: 24, height: 24)
                         }
                     }
                 }
             }
-            .padding(.horizontal, 16)
-            .flexible()
         }
         .alert(isPresented: $viewModel.showingLogoutAlert) {
             Alert(
