@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Username: RawRepresentable, Equatable {
+public struct Username: RawRepresentable, Equatable, Codable {
         
     public var rawValue: String
     

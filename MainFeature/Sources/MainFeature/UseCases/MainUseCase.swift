@@ -16,7 +16,7 @@ public protocol MainUseCaseProviding {
     var randomProperty: Observable<Int> { get }
     var randomText: Observable<String> { get }
     
-    var appDataUsername: Observable<String> { get }
+    var userProfile: Observable<UserProfile?> { get }
     
     func nextAction()
     func showUpload()
@@ -29,7 +29,7 @@ public class MainUseCase: MainUseCaseProviding {
     public let randomProperty: Observable<Int>
     public let randomText: Observable<String>
     
-    public let appDataUsername: Observable<String>
+    public let userProfile: Observable<UserProfile?>
     
     private var subscriptions: Set<AnyCancellable> = []
     
@@ -42,14 +42,14 @@ public class MainUseCase: MainUseCaseProviding {
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         
-        self.appDataUsername = Observable(initialValue: AppData.shared.value(of: .username) ?? "")
+        self.userProfile = Observable(initialValue: AppData.shared.value(of: .userProfile))
         
         self.mainRouter = mainRouter
         
         AppData.shared
-            .usernamePublisher
+            .userProfilePublisher
             .sink { newValue in
-                print("# username: \(newValue)")
+                print("# userProfile: \(newValue)")
             }
             .store(in: &subscriptions)
     }
@@ -78,14 +78,14 @@ public class PreviewMainUseCase: MainUseCaseProviding {
     public var randomProperty: Observable<Int>
     public var randomText: Observable<String>
     
-    public var appDataUsername: Observable<String>
+    public var userProfile: Observable<UserProfile?>
     
     init() {
         self.selectedTab = Observable(initialValue: .home)
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         
-        self.appDataUsername = Observable(initialValue: "")
+        self.userProfile = Observable(initialValue: UserProfile.user_1)
     }
     
     public func nextAction() {}

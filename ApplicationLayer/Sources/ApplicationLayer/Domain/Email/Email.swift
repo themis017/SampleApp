@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Email: RawRepresentable, Equatable {
+public struct Email: RawRepresentable, Equatable, Codable {
         
     public var rawValue: String
     

@@ -12,17 +12,17 @@ import Combine
 public struct Storage<T: Codable> {
     
     private let storageType: AppData.StorageType
-    private let defaultValue: T
+    private let defaultValue: T?
 
-    init(storageType: AppData.StorageType, defaultValue: T) {
+    init(storageType: AppData.StorageType, defaultValue: T?) {
         self.storageType = storageType
         self.defaultValue = defaultValue
     }
 
-    public var wrappedValue: T {
+    public var wrappedValue: T? {
         get {
             guard let data = UserDefaults.standard.object(forKey: storageType.key) as? Data else {
-                return defaultValue
+                return nil
             }
 
             let value = try? JSONDecoder().decode(T.self, from: data)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Description: RawRepresentable, Equatable {
+public struct Description: RawRepresentable, Equatable, Codable {
         
     public var rawValue: String
         

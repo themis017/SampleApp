@@ -15,7 +15,7 @@ public protocol SearchUseCaseProviding {
     var randomProperty: Observable<Int> { get }
     var randomText: Observable<String> { get }
     
-    var appDataUsername: Observable<String> { get }
+    var userProfile: Observable<UserProfile?> { get }
     
     func nextAction()
 }
@@ -25,7 +25,7 @@ public class SearchUseCase: SearchUseCaseProviding {
     public let randomProperty: Observable<Int>
     public let randomText: Observable<String>
     
-    public let appDataUsername: Observable<String>
+    public let userProfile: Observable<UserProfile?>
     
     private var subscriptions: Set<AnyCancellable> = []
     
@@ -36,15 +36,14 @@ public class SearchUseCase: SearchUseCaseProviding {
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         
-//        self.appDataUsername = Observable(initialValue: AppData.username)
-        self.appDataUsername = Observable(initialValue: AppData.shared.value(of: .username) ?? "")
+        self.userProfile = Observable(initialValue: AppData.shared.value(of: .userProfile))
         
         self.searchRouter = searchRouter
         
         AppData.shared
-            .usernamePublisher
+            .userProfilePublisher
             .sink { newValue in
-                print("# username: \(newValue)")
+                print("# userProfile: \(newValue)")
             }
             .store(in: &subscriptions)
     }
@@ -64,13 +63,13 @@ public class PreviewSearchUseCase: SearchUseCaseProviding {
     public var randomProperty: Observable<Int>
     public var randomText: Observable<String>
     
-    public var appDataUsername: Observable<String>
+    public var userProfile: Observable<UserProfile?>
     
     public init() {
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         
-        self.appDataUsername = Observable(initialValue: "")
+        self.userProfile = Observable(initialValue: UserProfile.user_1)
     }
     
     public func nextAction() {}

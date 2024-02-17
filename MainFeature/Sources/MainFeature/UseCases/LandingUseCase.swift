@@ -29,8 +29,13 @@ public class LandingUseCase: LandingUseCaseProviding {
                 return
             }
                         
+            self.loadUserProfile()
             self.mainRouter.showMainScene()
         }
+    }
+    
+    private func loadUserProfile() {
+        AppData.shared.save(UserProfile.user_1, to: .userProfile)
     }
 }
 
