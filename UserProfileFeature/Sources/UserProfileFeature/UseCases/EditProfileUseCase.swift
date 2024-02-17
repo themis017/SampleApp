@@ -43,19 +43,23 @@ public class EditProfileUseCase: EditProfileUseCaseProviding {
     public init(userProfileRouter: any UserProfileRouting) {
         
         self.userProfileRouter = userProfileRouter
-        self.userProfile = Observable(initialValue: nil)
-        self.email = Observable(initialValue: "")
-        self.isValidatingEmail = Observable(initialValue: false)
-        self.username = Observable(initialValue: "")
-        self.isValidatingUsername = Observable(initialValue: false)
-        self.name = Observable(initialValue: "")
-        self.description = Observable(initialValue: "")
+        let userProfile: UserProfile? = AppData.shared.value(of: .userProfile)
         
-        loadUserProfile()
+        self.userProfile = Observable(initialValue: userProfile)
+        self.email = Observable(initialValue: userProfile?.email.rawValue ?? "")
+        self.isValidatingEmail = Observable(initialValue: false)
+        self.username = Observable(initialValue: userProfile?.username.rawValue ?? "")
+        self.isValidatingUsername = Observable(initialValue: false)
+        self.name = Observable(initialValue: userProfile?.name.rawValue ?? "")
+        self.description = Observable(initialValue: userProfile?.description.rawValue ?? "")
+        
+        if userProfile == nil {
+            loadUserProfile()
+        }
     }
     
     private func loadUserProfile() {
-        userProfile.value = UserProfile.user_1
+        userProfile.value = UserProfile.principalUser
         email.value = userProfile.value?.email.rawValue ?? ""
         username.value = userProfile.value?.username.rawValue ?? ""
         name.value = userProfile.value?.name.rawValue ?? ""
@@ -132,7 +136,7 @@ public class PreviewEditProfileUseCase: EditProfileUseCaseProviding {
     public var description: Observable<String>
     
     public init() {
-        self.userProfile = Observable(initialValue: UserProfile.user_1)
+        self.userProfile = Observable(initialValue: UserProfile.principalUser)
         self.email = Observable(initialValue: userProfile.value?.email.rawValue ?? "")
         self.isValidatingEmail = Observable(initialValue: false)
         self.username = Observable(initialValue: userProfile.value?.username.rawValue ?? "")

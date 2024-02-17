@@ -17,10 +17,10 @@ public class LandingUseCase: LandingUseCaseProviding {
     public init(mainRouter: any MainRouting) {
         self.mainRouter = mainRouter
         
-        loadRegisterInfo()
+        loadLandingInfo()
     }
     
-    private func loadRegisterInfo() {
+    private func loadLandingInfo() {
         let enableAutoLogin = AppData.shared.value(of: .enableAutoLogin) ?? false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
@@ -30,12 +30,23 @@ public class LandingUseCase: LandingUseCaseProviding {
             }
                         
             self.loadUserProfile()
+            self.loadFavourites()
             self.mainRouter.showMainScene()
         }
     }
     
     private func loadUserProfile() {
-        AppData.shared.save(UserProfile.user_1, to: .userProfile)
+        let userProfile: UserProfile? = AppData.shared.value(of: .userProfile)
+        if userProfile == nil {
+            AppData.shared.save(UserProfile.principalUser, to: .userProfile)
+        }
+    }
+    
+    private func loadFavourites() {
+        let favourites: [Recipe]? = AppData.shared.value(of: .favourites)
+        if favourites == nil {
+            AppData.shared.save(Recipe.previewFavouritesExamples, to: .favourites)
+        }
     }
 }
 

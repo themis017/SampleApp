@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import ApplicationLayer
 import UILayer
 
@@ -23,16 +24,27 @@ public class UserProfileUseCase: UserProfileUseCaseProviding {
     
     private let userProfileRouter: any UserProfileRouting
     
+    private var subscriptions: Set<AnyCancellable> = []
+    
     public init(userProfileRouter: any UserProfileRouting) {
         
         self.userProfileRouter = userProfileRouter
-        self.userProfile = Observable(initialValue: nil)
+        self.userProfile = Observable(initialValue: AppData.shared.value(of: .userProfile))
         
-        loadUserProfile()
+        AppData.shared
+            .userProfilePublisher
+            .sink { [weak self] newValue in
+                self?.userProfile.value = newValue
+            }
+            .store(in: &subscriptions)
+        
+        if userProfile.value == nil {
+            loadUserProfile()
+        }
     }
     
     private func loadUserProfile() {
-        userProfile.value = UserProfile.user_1
+        userProfile.value = UserProfile.principalUser
     }
     
     public func showEditProfile() {
@@ -52,7 +64,7 @@ public class PreviewUserProfileUseCase: UserProfileUseCaseProviding {
     public var userProfile: Observable<UserProfile?>
     
     public init() {
-        self.userProfile = Observable(initialValue: UserProfile.user_1)
+        self.userProfile = Observable(initialValue: UserProfile.principalUser)
     }
     
     public func showEditProfile() {}

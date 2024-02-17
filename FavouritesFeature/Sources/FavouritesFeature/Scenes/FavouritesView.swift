@@ -17,30 +17,42 @@ public struct FavouritesView: View {
     
     public init(viewModel: FavouritesViewModel) {
         self.viewModel = viewModel
+        
+        //        let appearance = UINavigationBarAppearance()
+        //        appearance.configureWithOpaqueBackground()
+        //        appearance.backgroundColor = UIColor.systemGray6
+        //
+        //        UINavigationBar.appearance().standardAppearance = appearance
+        //        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
     public var body: some View {
         
-        VStack(spacing: 16) {
-            Text("FavouritesView")
-                .padding(16)
-                .foregroundColor(.white)
-                .background(Color.yellow)
-            
-            Spacer()
-            
-            Button {
-                viewModel.perform(.nextAction)
-            } label: {
-                Text("Next")
-                    .padding(24)
-                    .background(Color.orange)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
+        NavigationView {
+            if let recipes = viewModel.recipes {
+                ScrollView {
+                    VStack(spacing: 0) {
+                                                
+                        Spacer()
+                    }
+                    .padding(.horizontal, 16)
+                }
+                .flexible()
+                .background(Color(UIColor.systemGray6))
+                .navigationTitle("Favourite recipes")
+                .navigationBarTitleDisplayMode(.inline)
             }
-            
-
         }
-        .background(Color.green)
+        .alert(isPresented: $viewModel.showingRemovalAlert) {
+            Alert(
+                title: Text("Remove favourite recipe"),
+                message: Text("Are you sure you want to remove this recipe?"),
+                primaryButton: .default(Text("Cancel")),
+                secondaryButton: .destructive(Text("Remove"), action: {
+                    viewModel.perform(.removeRecipe)
+                })
+            )
+        }
     }
 }
 

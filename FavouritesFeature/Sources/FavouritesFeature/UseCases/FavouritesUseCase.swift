@@ -12,20 +12,17 @@ import UILayer
 
 public protocol FavouritesUseCaseProviding {
     
-    var randomProperty: Observable<Int> { get }
-    var randomText: Observable<String> { get }
-    
     var userProfile: Observable<UserProfile?> { get }
+    var recipes: Observable<[Recipe]?> { get }
     
-    func nextAction()
+    func showRecipe()
+    func removeRecipe()
 }
 
 public class FavouritesUseCase: FavouritesUseCaseProviding {
     
-    public let randomProperty: Observable<Int>
-    public let randomText: Observable<String>
-    
     public let userProfile: Observable<UserProfile?>
+    public let recipes: Observable<[Recipe]?>
     
     private var subscriptions: Set<AnyCancellable> = []
     
@@ -33,25 +30,48 @@ public class FavouritesUseCase: FavouritesUseCaseProviding {
     
     public init(favouritesRouter: any FavouritesRouting) {
         
-        self.randomProperty = Observable(initialValue: 0)
-        self.randomText = Observable(initialValue: "")
-        
         self.userProfile = Observable(initialValue: AppData.shared.value(of: .userProfile))
+        self.recipes = Observable(initialValue: AppData.shared.value(of: .favourites))
         
         self.favouritesRouter = favouritesRouter
         
         AppData.shared
             .userProfilePublisher
-            .sink { newValue in
-                print("# userProfile: \(newValue)")
+            .sink { [weak self] newValue in
+                self?.userProfile.value = newValue
             }
             .store(in: &subscriptions)
+        
+        AppData.shared
+            .favouritesPublisher
+            .sink { [weak self] newValue in
+                self?.recipes.value = newValue
+            }
+            .store(in: &subscriptions)
+        
+        if userProfile.value == nil {
+            loadUserProfile()
+        }
+        
+        if recipes.value == nil {
+            loadFavourites()
+        }
     }
     
-    public func nextAction() {
-//        favouritesRouter.popScene()
-//        randomProperty.value += 1
-//        print("randomText: \(randomText.value)")
+    private func loadUserProfile() {
+        userProfile.value = UserProfile.principalUser
+    }
+    
+    private func loadFavourites() {
+        recipes.value = Recipe.previewFavouritesExamples
+    }
+    
+    public func showRecipe() {
+        
+    }
+    
+    public func removeRecipe() {
+        
     }
     
 }
@@ -60,19 +80,16 @@ public class FavouritesUseCase: FavouritesUseCaseProviding {
 
 public class PreviewFavouritesUseCase: FavouritesUseCaseProviding {
     
-    public var randomProperty: Observable<Int>
-    public var randomText: Observable<String>
-    
     public var userProfile: Observable<UserProfile?>
+    public var recipes: Observable<[Recipe]?>
     
     public init() {
-        self.randomProperty = Observable(initialValue: 0)
-        self.randomText = Observable(initialValue: "")
-        
-        self.userProfile = Observable(initialValue: UserProfile.user_1)
+        self.userProfile = Observable(initialValue: UserProfile.principalUser)
+        self.recipes = Observable(initialValue: Recipe.previewFavouritesExamples)
     }
     
-    public func nextAction() {}
+    public func showRecipe() {}
+    public func removeRecipe() {}
 }
 
 #endif

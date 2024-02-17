@@ -19,8 +19,22 @@ public struct UserProfile: Identifiable, Equatable, Codable {
     public var description: Description
     public var recipesCount: Int
     public var followersCount: Int
+    public var isFollowing: Bool?
     
-    public static var user_1: UserProfile =
+    public static var principalUser: UserProfile {
+        UserProfile(id: "0",
+                    profileImage: "",
+                    backgroundImage: "",
+                    email: Email(rawValue: "prncipal_user@gmail.com")!,
+                    username: Username(rawValue: "principal_username")!,
+                    name: Name(rawValue: "principal_name")!,
+                    description: Description(rawValue: "principal_description")!,
+                    recipesCount: 400,
+                    followersCount: 1000,
+                    isFollowing: nil)
+    }
+    
+    public static var user_1: UserProfile {
         UserProfile(id: "1",
                     profileImage: "",
                     backgroundImage: "",
@@ -29,9 +43,11 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     name: Name(rawValue: "name_1")!,
                     description: Description(rawValue: "Description_1")!,
                     recipesCount: 100,
-                    followersCount: 20)
+                    followersCount: 20,
+                    isFollowing: true)
+    }
     
-    public static var user_2: UserProfile =
+    public static var user_2: UserProfile {
         UserProfile(id: "2",
                     profileImage: "",
                     backgroundImage: "",
@@ -40,9 +56,11 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     name: Name(rawValue: "name_2")!,
                     description: Description(rawValue: "Description_2")!,
                     recipesCount: 50,
-                    followersCount: 120)
+                    followersCount: 120,
+                    isFollowing: false)
+    }
     
-    public static var user_3: UserProfile =
+    public static var user_3: UserProfile {
         UserProfile(id: "3",
                     profileImage: "",
                     backgroundImage: "",
@@ -51,9 +69,11 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     name: Name(rawValue: "name_3")!,
                     description: Description(rawValue: "Description_3")!,
                     recipesCount: 200,
-                    followersCount: 240)
+                    followersCount: 240,
+                    isFollowing: true)
+    }
     
-    public static var user_4: UserProfile =
+    public static var user_4: UserProfile {
         UserProfile(id: "4",
                     profileImage: "",
                     backgroundImage: "",
@@ -62,9 +82,11 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     name: Name(rawValue: "name_4")!,
                     description: Description(rawValue: "Description_4")!,
                     recipesCount: 180,
-                    followersCount: 300)
+                    followersCount: 300,
+                    isFollowing: false)
+    }
     
-    public static var user_5: UserProfile =
+    public static var user_5: UserProfile {
         UserProfile(id: "5",
                     profileImage: "",
                     backgroundImage: "",
@@ -73,6 +95,7 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     name: Name(rawValue: "name_5")!,
                     description: Description(rawValue: "Description_5")!,
                     recipesCount: 270,
-                    followersCount: 190)
-
+                    followersCount: 190,
+                    isFollowing: false)
+    }
 }

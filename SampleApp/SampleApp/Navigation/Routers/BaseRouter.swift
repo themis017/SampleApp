@@ -8,10 +8,6 @@
 import Foundation
 import SwiftUI
 import ApplicationLayer
-import MainFeature
-import HomeFeature
-import UserProfileFeature
-import SettingsFeature
 
 open class BaseRouter {
     

@@ -12,7 +12,6 @@
 //import UILayer
 //import HomeFeature
 //import UserProfileFeature
-//import SettingsFeature
 //
 //@main
 //struct SampleApp: App {

@@ -36,7 +36,7 @@ public class HomeUseCase: HomeUseCaseProviding {
         
         // MARK: Perform request to find recipes
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.recipes.value = Recipe.previewExamples
+            self.recipes.value = Recipe.previewHomeExamples
         }
     }
     
@@ -57,7 +57,7 @@ public class PreviewHomeUseCase: HomeUseCaseProviding {
     public var recipes: Observable<[Recipe]>
     
     public init() {
-        self.recipes = .init(initialValue: Recipe.previewExamples)
+        self.recipes = .init(initialValue: Recipe.previewHomeExamples)
     }
     
     public func refresh() {}

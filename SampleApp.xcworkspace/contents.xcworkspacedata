@@ -29,13 +29,7 @@
       location = "group:FavouritesFeature">
    </FileRef>
    <FileRef
-      location = "group:NotificationsFeature">
-   </FileRef>
-   <FileRef
       location = "group:UserProfileFeature">
-   </FileRef>
-   <FileRef
-      location = "group:SettingsFeature">
    </FileRef>
    <FileRef
       location = "group:SampleApp/SampleApp.xcodeproj">

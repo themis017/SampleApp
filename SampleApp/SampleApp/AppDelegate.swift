@@ -38,9 +38,13 @@ import UIKit
 import ApplicationLayer
 import NetworkLayer
 import UILayer
+import MainFeature
+import SignupFeature
+import LoginFeature
 import HomeFeature
+import SearchFeature
+import FavouritesFeature
 import UserProfileFeature
-import SettingsFeature
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -56,9 +60,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UILayer(),
             
             // Features
+            MainFeature(),
+            SignupFeature(),
+            LoginFeature(),
             HomeFeature(),
-            UserProfileFeature(),
-            SettingsFeature()
+            SearchFeature(),
+            FavouritesFeature(),
+            UserProfileFeature()
         ]
     )
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum RecipeDifficulty: Int, CustomStringConvertible {
+public enum RecipeDifficulty: Int, CustomStringConvertible, Codable {
     case veryEasy = 1, easy, medium, difficult, verydifficult
     
     public var description: String {

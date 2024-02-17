@@ -42,8 +42,8 @@ public class SearchUseCase: SearchUseCaseProviding {
         
         AppData.shared
             .userProfilePublisher
-            .sink { newValue in
-                print("# userProfile: \(newValue)")
+            .sink { [weak self] newValue in
+                self?.userProfile.value = newValue
             }
             .store(in: &subscriptions)
     }
@@ -69,7 +69,7 @@ public class PreviewSearchUseCase: SearchUseCaseProviding {
         self.randomProperty = Observable(initialValue: 0)
         self.randomText = Observable(initialValue: "")
         
-        self.userProfile = Observable(initialValue: UserProfile.user_1)
+        self.userProfile = Observable(initialValue: UserProfile.principalUser)
     }
     
     public func nextAction() {}

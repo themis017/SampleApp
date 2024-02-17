@@ -71,7 +71,7 @@ public class PreviewRecipeUseCase: RecipeUseCaseProviding {
     
     public init() {
         self.selectedTab = .init(initialValue: .home)
-        self.recipe = .init(initialValue: Recipe.previewExamples.first)
+        self.recipe = .init(initialValue: Recipe.previewHomeExamples.first)
     }
     
     public func dismiss(animated: Bool) {}

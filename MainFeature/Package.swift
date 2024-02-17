@@ -23,7 +23,6 @@ let package = Package(
         .package(name: "HomeFeature", path: "../HomeFeature"),
         .package(name: "SearchFeature", path: "../SearchFeature"),
         .package(name: "FavouritesFeature", path: "../FavouritesFeature"),
-        .package(name: "NotificationsFeature", path: "../NotificationsFeature"),
         .package(name: "UserProfileFeature", path: "../UserProfileFeature"),
         .package(url: "https://github.com/hmlongco/Resolver.git", exact: "1.5.0")
     ],
@@ -32,7 +31,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "MainFeature",
-            dependencies: ["ApplicationLayer", "NetworkLayer", "UILayer", "HomeFeature", "SearchFeature", "FavouritesFeature", "NotificationsFeature", "UserProfileFeature", "Resolver"]),
+            dependencies: ["ApplicationLayer", "NetworkLayer", "UILayer", "HomeFeature", "SearchFeature", "FavouritesFeature", "UserProfileFeature", "Resolver"]),
         .testTarget(
             name: "MainFeatureTests",
             dependencies: ["MainFeature"]),
