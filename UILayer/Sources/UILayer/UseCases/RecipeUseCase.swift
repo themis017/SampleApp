@@ -18,6 +18,7 @@ public protocol RecipeUseCaseProviding {
     func showUpload()
     func showPath(for selectedTab: TabBarCategory)
     func showChef()
+    func favourite(_ recipe: Recipe)
 }
 
 public class RecipeUseCase: RecipeUseCaseProviding {
@@ -60,6 +61,31 @@ public class RecipeUseCase: RecipeUseCaseProviding {
         
     }
     
+    public func favourite(_ updatedRecipe: Recipe) {
+        
+        guard var recipe = recipe.value else {
+            return
+        }
+        
+        recipe = recipe.chaningIsFavourite()
+        self.recipe.value = recipe
+        
+        guard var favouriteRecipes: [Recipe] = AppData.shared.value(of: .favourites) else {
+            return
+        }
+        
+        if recipe.isFavourite {
+            if favouriteRecipes.firstIndex(where: { $0.id == recipe.id }) == nil {
+                favouriteRecipes.insert(recipe, at: 0)
+            }
+        } else {
+            if let removedRecipeIndex = favouriteRecipes.firstIndex(where: { $0.id == recipe.id }) {
+                favouriteRecipes.remove(at: removedRecipeIndex)
+            }
+        }
+        
+        AppData.shared.save(favouriteRecipes, to: .favourites)
+    }
 }
 
 #if DEBUG
@@ -78,6 +104,7 @@ public class PreviewRecipeUseCase: RecipeUseCaseProviding {
     public func showUpload() {}
     public func showPath(for selectedTab: TabBarCategory) {}
     public func showChef() {}
+    public func favourite(_ recipe: Recipe) {}
 }
 
 #endif

@@ -16,6 +16,7 @@ public class RecipeViewModel: ViewModel {
         case selectedTab(TabBarCategory)
         case dismiss(animated: Bool)
         case showChef
+        case favourite(Recipe)
     }
     
     var selectedTab: TabBarCategory
@@ -50,6 +51,8 @@ public class RecipeViewModel: ViewModel {
             recipeUseCase.dismiss(animated: animated)
         case .showChef:
             recipeUseCase.showChef()
+        case .favourite(let recipe):
+            recipeUseCase.favourite(recipe)
         }
     }
 }

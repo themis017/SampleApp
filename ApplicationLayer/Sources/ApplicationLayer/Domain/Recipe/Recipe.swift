@@ -46,6 +46,12 @@ public struct Recipe: Identifiable, Equatable, Codable {
         return time
     }
     
+    public func chaningIsFavourite() -> Recipe {
+        var mutableSelf = self
+        mutableSelf.isFavourite.toggle()
+        return mutableSelf
+    }
+    
     public static var recipe_1: Recipe {
         Recipe(
             id: "1",

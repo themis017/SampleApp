@@ -34,25 +34,44 @@ public struct RecipeView: View {
                             .font(.title)
                             .foregroundStyle(Color.black)
                         
-                        Image(recipe.iconAsseTitle)
-                            .resizable()
-//                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 300, height: 170)
-                        
-                        VStack(spacing: 4) {
-                            Text(recipe.chefName.rawValue)
-                                .font(.body)
-                                .foregroundStyle(Color.black)
-
-                            Text(recipe.chefUsername.rawValue)
-                                .font(.body)
-                                .foregroundStyle(Color.black)
+                        VStack(alignment: .leading, spacing: 8) {
+                            
+                            HStack(spacing: 0) {
+                                Image(recipe.iconAsseTitle)
+                                    .resizable()
+                                    .frame(width: 300, height: 170)
+                                
+                                Spacer()
+                                
+                                Button {
+                                    viewModel.perform(.favourite(recipe))
+                                } label: {
+                                    Image(systemName: recipe.isFavourite ? "star.fill" : "star")
+                                        .resizable()
+                                        .frame(width: 48, height: 48)
+                                        .foregroundColor(recipe.isFavourite ? Color.yellow : Color.gray)
+                                    
+                                    
+                                }
+                            }
+                            
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(recipe.chefName.rawValue)
+                                    .font(.body)
+                                    .foregroundStyle(Color.black)
+                                
+                                Text(recipe.chefUsername.rawValue)
+                                    .font(.body)
+                                    .foregroundStyle(Color.black)
+                            }
                         }
                         .padding(.vertical, 8)
                         .padding(.horizontal, 16)
                         
+                        Divider()
+                        
                         VStack(alignment: .leading, spacing: 16) {
-
+                            
                             Group {
                                 Text(recipe.description)
                                     .font(.body)
@@ -60,7 +79,8 @@ public struct RecipeView: View {
                                 
                                 Divider()
                             }
-
+                            .padding(.top, 8)
+                            
                             Group {
                                 HStack(spacing: 4) {
                                     Text("Serves:")
@@ -74,7 +94,7 @@ public struct RecipeView: View {
                                 
                                 Divider()
                             }
-
+                            
                             Group {
                                 HStack(spacing: 4) {
                                     Text("Time:")
@@ -88,7 +108,7 @@ public struct RecipeView: View {
                                 
                                 Divider()
                             }
-
+                            
                             Group {
                                 HStack(spacing: 4) {
                                     Text("Difficulty:")
@@ -107,7 +127,7 @@ public struct RecipeView: View {
                                 
                                 Divider()
                             }
-
+                            
                             Group {
                                 Text("Ingredients:")
                                     .font(.headline)
@@ -119,7 +139,7 @@ public struct RecipeView: View {
                                 
                                 Divider()
                             }
-
+                            
                             Group {
                                 Text("Method:")
                                     .font(.headline)
@@ -139,7 +159,7 @@ public struct RecipeView: View {
                     Spacer()
                 }
                 .background(.white)
-//                .navigationTitle(recipe.title)
+                //                .navigationTitle(recipe.title)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
