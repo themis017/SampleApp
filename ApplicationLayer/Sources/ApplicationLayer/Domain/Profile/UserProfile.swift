@@ -17,9 +17,21 @@ public struct UserProfile: Identifiable, Equatable, Codable {
     public var username: Username
     public var name: Name
     public var description: Description
-    public var recipesCount: Int
-    public var followersCount: Int
+    public var recipesCount: UInt
+    public var followersCount: UInt
     public var isFollowing: Bool?
+    
+    public func changingIsFollowing(to newValue: Bool) -> UserProfile {
+        var mutableSelf = self
+        mutableSelf.isFollowing = newValue
+        return mutableSelf
+    }
+    
+    public func changingFollowersCount(to newValue: UInt) -> UserProfile {
+        var mutableSelf = self
+        mutableSelf.followersCount = newValue
+        return mutableSelf
+    }
     
     public static var principalUser: UserProfile {
         UserProfile(id: "0",

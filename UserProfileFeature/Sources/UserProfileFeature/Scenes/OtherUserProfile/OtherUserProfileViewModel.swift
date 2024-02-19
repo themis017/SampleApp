@@ -14,8 +14,13 @@ import UILayer
 public class OtherUserProfileViewModel: ViewModel {
     
     public enum Action {
+        case selectedTab(TabBarCategory)
         case dismiss
+        case follow
+        case unfollow
     }
+    
+    var selectedTab: TabBarCategory
     
     @Published
     var userProfile: UserProfile?
@@ -26,6 +31,8 @@ public class OtherUserProfileViewModel: ViewModel {
    
     public init(otherUserProfileUseCase: OtherUserProfileUseCaseProviding) {
         self.otherUserProfileUseCase = otherUserProfileUseCase
+        
+        self.selectedTab = otherUserProfileUseCase.selectedTab.value
         self.userProfile = otherUserProfileUseCase.userProfile.value
         
         bind(\.userProfile, to: otherUserProfileUseCase.userProfile)
@@ -34,8 +41,19 @@ public class OtherUserProfileViewModel: ViewModel {
     
     public func perform(_ action: Action) {
         switch action {
+        case .selectedTab(let tabCategory):
+            guard tabCategory != .upload else {
+                otherUserProfileUseCase.showUpload()
+                return
+            }
+            
+            otherUserProfileUseCase.showPath(for: tabCategory)
         case .dismiss:
             otherUserProfileUseCase.dismiss()
+        case .follow:
+            otherUserProfileUseCase.follow()
+        case .unfollow:
+            otherUserProfileUseCase.unfollow()
         }
     }
 }
