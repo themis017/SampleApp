@@ -15,7 +15,7 @@ public protocol FavouritesUseCaseProviding {
     var userProfile: Observable<UserProfile?> { get }
     var recipes: Observable<[Recipe]?> { get }
     
-    func showRecipe()
+    func showRecipe(_ recipe: Recipe)
     func removeRecipe()
 }
 
@@ -66,8 +66,8 @@ public class FavouritesUseCase: FavouritesUseCaseProviding {
         recipes.value = Recipe.previewFavouritesExamples
     }
     
-    public func showRecipe() {
-        
+    public func showRecipe(_ recipe: Recipe) {
+        favouritesRouter.showRecipe(recipe)
     }
     
     public func removeRecipe() {
@@ -88,7 +88,7 @@ public class PreviewFavouritesUseCase: FavouritesUseCaseProviding {
         self.recipes = Observable(initialValue: Recipe.previewFavouritesExamples)
     }
     
-    public func showRecipe() {}
+    public func showRecipe(_ recipe: Recipe) {}
     public func removeRecipe() {}
 }
 

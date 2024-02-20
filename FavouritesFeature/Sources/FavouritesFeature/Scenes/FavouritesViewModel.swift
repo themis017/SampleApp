@@ -14,7 +14,7 @@ import UILayer
 public class FavouritesViewModel: ViewModel {
     
     public enum Action {
-        case showRecipe
+        case showRecipe(Recipe)
         case removeRecipe
     }
     
@@ -46,8 +46,8 @@ public class FavouritesViewModel: ViewModel {
     
     public func perform(_ action: Action) {
         switch action {
-        case .showRecipe:
-            favouritesUseCase.showRecipe()
+        case .showRecipe(let recipe):
+            favouritesUseCase.showRecipe(recipe)
         case .removeRecipe:
             favouritesUseCase.removeRecipe()
         }

@@ -6,95 +6,41 @@
 //
  
 import SwiftUI
-import ApplicationCore
+import ApplicationLayer
 
-public struct RecipeResultRow<Accessory: View>: View {
+public struct RecipeResultRow: View {
     
-    @Environment(\.showPlaceholders)
-    private var showPlaceholders
+    let recipe: Recipe
     
-    @Environment(\.socialActionsAvailability)
-    private var socialActionsAvailability
-    
-    let result: UserSearchResult
-    let accessory: () -> Accessory
-    
-    public init(result: UserSearchResult) where Accessory == EmptyView {
-        
-        self.result = result
-        self.accessory = { EmptyView() }
-    }
-    
-    public init(result: UserSearchResult,
-                @ViewBuilder accessory: @escaping () -> Accessory) {
-        
-        self.result = result
-        self.accessory = accessory
-    }
-    
-    var name: String {
-        guard let fullname = result.fullname?.rawValue else {
-            let firstname = result.firstname?.rawValue ?? "-"
-            let lastname = result.lastname?.rawValue ?? "-"
-            return firstname + " " + lastname
-        }
-        
-        return fullname
+    public init(recipe: Recipe) {
+        self.recipe = recipe
     }
     
     public var body: some View {
-        HStack(alignment: .top, spacing: 16) {
-            avatar
+        HStack(spacing: 16) {
             
-            Stack(axis: socialActionsAvailability == .all ? .vertical : .horizontal, spacing: 16) {
-                userContent
-                
-                accessory()
-                    .padding(.top, socialActionsAvailability != .all ? 8 : 0)
-            }
-        }
-        .metaInformationContainer()
-        .placeholder()
-        .padding(.horizontal, 16)
-        .padding(.vertical, 8)
-    }
-    
-    @ViewBuilder
-    private var avatar: some View {
-        if showPlaceholders {
-            Circle()
-                .foregroundColor(.placeholderColor)
+            Image(recipe.iconAsseTitle)
+                .resizable()
                 .frame(width: 48, height: 48)
             
-        } else {
-            UserAvatar(
-                size: .medium,
-                userSearchResult: result
-            )
-            .metaInformationContent(.icon)
-        }
-    }
-    
-    @ViewBuilder
-    private var userContent: some View {
-        
-        VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading, spacing: 4) {
+                
+                Text(recipe.title)
+                    .font(.body)
+                    .foregroundStyle(Color.black)
+                
+                Text(recipe.chefName.rawValue)
+                    .font(.body)
+                    .foregroundStyle(Color.black)
+            }
             
-            Text(name)
-                .textStyle(.bodyTitle)
-                .foregroundColor(.textPrimary)
-                .metaInformationContent(.title)
+            Spacer()
             
-            Text(result.username?.rawValue ?? "-")
-                .textStyle(.body)
-                .foregroundColor(.textSecondary)
-                .metaInformationContent(.subtitle)
+            Image(systemName: recipe.isFavourite ? "star.fill" : "star")
+                .resizable()
+                .frame(width: 24, height: 24)
+                .foregroundColor(recipe.isFavourite ? Color.yellow : Color.gray)
+            
         }
-        .metaInformationContainer()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .lineLimit(1)
-        .padding(.top, 8)
-        .background(TransparentTouchTarget())
-        .placeholder()
     }
 }

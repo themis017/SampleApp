@@ -20,23 +20,12 @@ class HomeRouter: BaseRouter, HomeRouting {
     
     @MainActor
     func showRecipe(_ recipe: Recipe) {
-        let homeRouter = HomeRouter(navigationController: navigationController)
+        let recipeRouter = RecipeRouter(navigationController: navigationController)
+        let recipeSceneComposer = RecipeSceneComposer(
+            navigationController: navigationController,
+            recipeRouter: recipeRouter)
         
-        let useCase = RecipeUseCase(
-            selectedTab: .home,
-            recipe: recipe,
-            homeRouter: homeRouter
-        )
-        
-        let viewModel = RecipeViewModel(recipeUseCase: useCase)
-        let view = RecipeView(viewModel: viewModel)
-                
-        let viewController = RoutingUIHostingController(
-            sceneIdentity: RecipeView.sceneIdentity,
-            isRoot: false,
-            tabCategory: .home,
-            view: AnyView(view))
-        
+        let viewController = recipeSceneComposer.createRecipeScene(for: recipe, from: .home)
         append(viewController, for: .home)
         self.navigationController.pushViewController(viewController, animated: true)
     }

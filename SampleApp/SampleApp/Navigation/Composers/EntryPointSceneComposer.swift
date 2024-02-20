@@ -1,5 +1,5 @@
 //
-//  EntryPointComposer.swift
+//  EntryPointSceneComposer.swift
 //  SampleApp
 //
 //  Created by Themis Makedas on 29/1/24.
@@ -9,12 +9,8 @@ import Foundation
 import SwiftUI
 import ApplicationLayer
 import MainFeature
-import HomeFeature
-import SearchFeature
-import FavouritesFeature
-import UserProfileFeature
 
-class EntryPointComposer {
+class EntryPointSceneComposer {
     let navigationController: UINavigationController
     let mainRouter: MainRouter
     

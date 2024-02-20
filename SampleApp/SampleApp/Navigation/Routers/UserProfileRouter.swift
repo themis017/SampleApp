@@ -19,7 +19,7 @@ class UserProfileRouter: BaseRouter, UserProfileRouting {
     @MainActor
     func showEntryPointScene() {
         let mainRouter = MainRouter(navigationController: navigationController)
-        let entryPointSceneComposer = EntryPointComposer(
+        let entryPointSceneComposer = EntryPointSceneComposer(
             navigationController: navigationController,
             mainRouter: mainRouter)
         

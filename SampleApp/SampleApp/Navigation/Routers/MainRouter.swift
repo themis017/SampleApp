@@ -36,7 +36,7 @@ class MainRouter: BaseRouter, MainRouting {
     
     @MainActor
     func showEntryPointScene() {
-        let entryPointSceneComposer = EntryPointComposer(
+        let entryPointSceneComposer = EntryPointSceneComposer(
             navigationController: navigationController,
             mainRouter: self)
         

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UILayer
 
 public struct FavouritesView: View {
     
@@ -28,12 +29,42 @@ public struct FavouritesView: View {
     
     public var body: some View {
         
+//        NavigationView {
+//            if let recipes = viewModel.recipes {
+////                ScrollView {
+//                    List {
+//                        ForEach(recipes) { recipe in
+//                            RecipeResultRow(recipe: recipe)
+//                                .onTapGesture {
+//                                    viewModel.perform(.showRecipe(recipe))
+//                                }
+//                                .swipeActions(edge: .leading, allowsFullSwipe: true) {
+//                                    Button(role: .destructive, action: {
+//                                        
+//                                    }) {
+//                                        Label("Delete", systemImage: "trash")
+//                                    }
+//                                }
+//                        }
+//                    }
+////                    .padding(.horizontal, 16)
+////                }
+//                .flexible()
+//                .background(Color(UIColor.systemGray6))
+//                .navigationTitle("Favourite recipes")
+//                .navigationBarTitleDisplayMode(.inline)
+//            }
+//        }
         NavigationView {
             if let recipes = viewModel.recipes {
                 ScrollView {
-                    VStack(spacing: 0) {
-                                                
-                        Spacer()
+                    LazyVStack(spacing: 16) {
+                        ForEach(recipes) { recipe in
+                            RecipeResultRow(recipe: recipe)
+                                .onTapGesture {
+                                    viewModel.perform(.showRecipe(recipe))
+                                }
+                        }
                     }
                     .padding(.horizontal, 16)
                 }

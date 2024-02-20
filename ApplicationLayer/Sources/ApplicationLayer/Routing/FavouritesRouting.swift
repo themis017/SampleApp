@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol FavouritesRouting: Routing {
-    
+    func showRecipe(_ recipe: Recipe)
 }

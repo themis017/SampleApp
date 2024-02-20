@@ -22,12 +22,16 @@ class RecipeSceneComposer {
     }
     
     @MainActor
-    func createEntryPointScene() -> RoutingUIHostingController<AnyView> {
-        let useCase = EntryPointUseCase(mainRouter: mainRouter)
-        let viewModel = EntryPointViewModel(entryPointUseCase: useCase)
-        let view = AnyView(EntryPointView(viewModel: viewModel))
+    func createRecipeScene(for recipe: Recipe, from selectedTab: TabBarCategory) -> RoutingUIHostingController<AnyView> {
+        
+        let useCase = RecipeUseCase(selectedTab: selectedTab, 
+                                    recipe: recipe,
+                                    recipeRouter: recipeRouter)
+        
+        let viewModel = RecipeViewModel(recipeUseCase: useCase)
+        let view = AnyView(RecipeView(viewModel: viewModel))
         let viewController = RoutingUIHostingController(
-            sceneIdentity: MainView.sceneIdentity,
+            sceneIdentity: RecipeView.sceneIdentity,
             isRoot: false,
             tabCategory: nil,
             view: view)

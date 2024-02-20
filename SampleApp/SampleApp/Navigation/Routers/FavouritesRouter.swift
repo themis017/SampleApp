@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 import ApplicationLayer
 import UILayer
 
@@ -18,24 +19,14 @@ class FavouritesRouter: BaseRouter, FavouritesRouting {
     
     @MainActor
     func showRecipe(_ recipe: Recipe) {
-        let homeRouter = HomeRouter(navigationController: navigationController)
         
-        let useCase = RecipeUseCase(
-            selectedTab: .favourites,
-            recipe: recipe,
-            homeRouter: homeRouter
-        )
+        let recipeRouter = RecipeRouter(navigationController: navigationController)
+        let recipeSceneComposer = RecipeSceneComposer(
+            navigationController: navigationController,
+            recipeRouter: recipeRouter)
         
-        let viewModel = RecipeViewModel(recipeUseCase: useCase)
-        let view = RecipeView(viewModel: viewModel)
-                
-        let viewController = RoutingUIHostingController(
-            sceneIdentity: RecipeView.sceneIdentity,
-            isRoot: false,
-            tabCategory: .home,
-            view: AnyView(view))
-        
-        append(viewController, for: .home)
+        let viewController = recipeSceneComposer.createRecipeScene(for: recipe, from: .favourites)
+        append(viewController, for: .favourites)
         self.navigationController.pushViewController(viewController, animated: true)
     }
 }

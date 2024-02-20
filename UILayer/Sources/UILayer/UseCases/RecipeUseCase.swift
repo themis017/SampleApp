@@ -26,34 +26,34 @@ public class RecipeUseCase: RecipeUseCaseProviding {
     public let selectedTab: Observable<TabBarCategory>
     public let recipe: Observable<Recipe?>
     
-    private let homeRouter: any HomeRouting
+    private let recipeRouter: any RecipeRouting
     
     public init(selectedTab: TabBarCategory,
                 recipe: Recipe,
-                homeRouter: any HomeRouting) {
+                recipeRouter: any RecipeRouting) {
         
-        self.homeRouter = homeRouter
+        self.recipeRouter = recipeRouter
         self.selectedTab = Observable(initialValue: selectedTab)
         self.recipe = Observable(initialValue: recipe)
     }
     
     public func dismiss(animated: Bool) {
-        homeRouter.popScene(animated: animated)
+        recipeRouter.popScene(animated: animated)
     }
     
     public func showUpload() {
-        homeRouter.showUploadScene()
+        recipeRouter.showUploadScene()
     }
     
     public func showPath(for selectedTab: TabBarCategory) {
         if self.selectedTab.value == selectedTab {
-            homeRouter.dismissToRoot(for: selectedTab)
+            recipeRouter.dismissToRoot(for: selectedTab)
         } else {
             let selectedTabEvent = SelectedTabEvent()
             selectedTabEvent.userInfo["tab"] = selectedTab
             EventPipeline.shared.send(selectedTabEvent)
             
-            homeRouter.showPath(for: selectedTab)
+            recipeRouter.showPath(for: selectedTab)
         }
     }
     
