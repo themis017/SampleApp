@@ -15,7 +15,7 @@ public class FavouritesViewModel: ViewModel {
     
     public enum Action {
         case showRecipe(Recipe)
-        case removeRecipe
+        case removeRecipe(Recipe)
     }
     
     @Published
@@ -23,9 +23,6 @@ public class FavouritesViewModel: ViewModel {
     
     @Published
     var recipes: [Recipe]?
-    
-    @Published
-    var showingRemovalAlert = false
     
     private let favouritesUseCase: FavouritesUseCaseProviding
     
@@ -48,8 +45,8 @@ public class FavouritesViewModel: ViewModel {
         switch action {
         case .showRecipe(let recipe):
             favouritesUseCase.showRecipe(recipe)
-        case .removeRecipe:
-            favouritesUseCase.removeRecipe()
+        case .removeRecipe(let recipe):
+            favouritesUseCase.removeRecipe(recipe)
         }
     }
 }

@@ -16,7 +16,7 @@ public protocol FavouritesUseCaseProviding {
     var recipes: Observable<[Recipe]?> { get }
     
     func showRecipe(_ recipe: Recipe)
-    func removeRecipe()
+    func removeRecipe(_ recipe: Recipe)
 }
 
 public class FavouritesUseCase: FavouritesUseCaseProviding {
@@ -70,10 +70,16 @@ public class FavouritesUseCase: FavouritesUseCaseProviding {
         favouritesRouter.showRecipe(recipe)
     }
     
-    public func removeRecipe() {
+    public func removeRecipe(_ recipe: Recipe) {
+        guard var updatedRecipes = recipes.value,
+              let index = updatedRecipes.firstIndex(of: recipe) else {
+            
+            return
+        }
         
+        updatedRecipes.remove(at: index)
+        AppData.shared.save(updatedRecipes, to: .favourites)
     }
-    
 }
 
 #if DEBUG
@@ -89,7 +95,7 @@ public class PreviewFavouritesUseCase: FavouritesUseCaseProviding {
     }
     
     public func showRecipe(_ recipe: Recipe) {}
-    public func removeRecipe() {}
+    public func removeRecipe(_ recipe: Recipe) {}
 }
 
 #endif

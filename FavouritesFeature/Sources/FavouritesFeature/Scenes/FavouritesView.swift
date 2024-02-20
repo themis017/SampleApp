@@ -29,60 +29,28 @@ public struct FavouritesView: View {
     
     public var body: some View {
         
-//        NavigationView {
-//            if let recipes = viewModel.recipes {
-////                ScrollView {
-//                    List {
-//                        ForEach(recipes) { recipe in
-//                            RecipeResultRow(recipe: recipe)
-//                                .onTapGesture {
-//                                    viewModel.perform(.showRecipe(recipe))
-//                                }
-//                                .swipeActions(edge: .leading, allowsFullSwipe: true) {
-//                                    Button(role: .destructive, action: {
-//                                        
-//                                    }) {
-//                                        Label("Delete", systemImage: "trash")
-//                                    }
-//                                }
-//                        }
-//                    }
-////                    .padding(.horizontal, 16)
-////                }
-//                .flexible()
-//                .background(Color(UIColor.systemGray6))
-//                .navigationTitle("Favourite recipes")
-//                .navigationBarTitleDisplayMode(.inline)
-//            }
-//        }
         NavigationView {
             if let recipes = viewModel.recipes {
-                ScrollView {
-                    LazyVStack(spacing: 16) {
-                        ForEach(recipes) { recipe in
-                            RecipeResultRow(recipe: recipe)
-                                .onTapGesture {
-                                    viewModel.perform(.showRecipe(recipe))
+                List {
+                    ForEach(recipes) { recipe in
+                        RecipeResultRow(recipe: recipe)
+                            .onTapGesture {
+                                viewModel.perform(.showRecipe(recipe))
+                            }
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                Button(role: .destructive, action: {
+                                    viewModel.perform(.removeRecipe(recipe))
+                                }) {
+                                    Label("Delete", systemImage: "trash")
                                 }
-                        }
+                            }
                     }
-                    .padding(.horizontal, 16)
                 }
                 .flexible()
                 .background(Color(UIColor.systemGray6))
                 .navigationTitle("Favourite recipes")
                 .navigationBarTitleDisplayMode(.inline)
             }
-        }
-        .alert(isPresented: $viewModel.showingRemovalAlert) {
-            Alert(
-                title: Text("Remove favourite recipe"),
-                message: Text("Are you sure you want to remove this recipe?"),
-                primaryButton: .default(Text("Cancel")),
-                secondaryButton: .destructive(Text("Remove"), action: {
-                    viewModel.perform(.removeRecipe)
-                })
-            )
         }
     }
 }
