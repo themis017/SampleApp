@@ -33,7 +33,7 @@ class RecipeSceneComposer {
         let viewController = RoutingUIHostingController(
             sceneIdentity: RecipeView.sceneIdentity,
             isRoot: false,
-            tabCategory: nil,
+            tabCategory: selectedTab,
             view: view)
         
         return viewController
