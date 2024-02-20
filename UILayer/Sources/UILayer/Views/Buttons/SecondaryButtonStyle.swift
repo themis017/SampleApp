@@ -12,7 +12,6 @@ public struct SecondaryButtonStyle: ButtonStyle {
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.title3)
-            .bold()
             .foregroundColor(.blue)
             .padding(16)
             .background(.white)

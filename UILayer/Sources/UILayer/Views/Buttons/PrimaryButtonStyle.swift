@@ -16,7 +16,6 @@ public struct PrimaryButtonStyle: ButtonStyle {
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.title3)
-            .bold()
             .foregroundColor(.white)
             .padding(16)
             .background(isEnabled ? .blue : Color(UIColor.lightGray))

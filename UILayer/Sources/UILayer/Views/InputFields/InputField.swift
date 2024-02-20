@@ -42,7 +42,7 @@ public struct InputField<ErrorValue: DomainValueError>: View {
                 .font(.body)
             
             HStack(spacing: 0) {
-                TextField(inputPlaceholder, text: $value, axis: .vertical)
+                TextField(inputPlaceholder, text: $value)
                     .textFieldStyle(.plain)
                     .lineLimit(3)
                 
