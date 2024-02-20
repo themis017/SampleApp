@@ -78,7 +78,7 @@ public struct EditProfileView: View {
                             errorValue: $viewModel.nameError
                         )
                         
-                        InputField(
+                        InputEditor(
                             inputPrompt: "Description:",
                             inputPlaceholder: "",
                             value: $viewModel.description,
