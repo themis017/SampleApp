@@ -44,7 +44,7 @@ public struct InputEditor<ErrorValue: DomainValueError>: View {
             HStack(spacing: 0) {
                 TextEditor(text: $value)
                     .textFieldStyle(.plain)
-                    .frame(minHeight: 50)
+                    .frame(minHeight: 42)
                 
                 Spacer()
                 
