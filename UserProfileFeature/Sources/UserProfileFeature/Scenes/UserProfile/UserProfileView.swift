@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UILayer
 
 public struct UserProfileView: View {
     
@@ -14,6 +15,8 @@ public struct UserProfileView: View {
     private var viewModel: UserProfileViewModel
     
     public static let sceneIdentity = "UserProfileView"
+    
+    let amountToPullBeforeRefreshing: CGFloat = 250
     
     public init(viewModel: UserProfileViewModel) {
         self.viewModel = viewModel
@@ -31,6 +34,11 @@ public struct UserProfileView: View {
         NavigationView {
             if let userProfile = viewModel.userProfile {
                 ScrollView {
+                    
+                    if viewModel.isCurrentlyRefreshing {
+                        ProgressView()
+                    }
+                    
                     VStack(spacing: 0) {
                         HStack(spacing: 16) {
                             Image("user")
@@ -87,8 +95,26 @@ public struct UserProfileView: View {
                         Spacer()
                     }
                     .padding(.horizontal, 16)
+                    .overlay(GeometryReader { geo in
+                        let currentScrollViewPosition = -geo.frame(in: .global).origin.y
+                        
+                        if currentScrollViewPosition < -amountToPullBeforeRefreshing && !viewModel.isCurrentlyRefreshing {
+                            Color.clear.preference(key: ViewOffsetPreferenceKey.self, value: -geo.frame(in: .global).origin.y)
+                        }
+                    })
                 }
                 .background(Color(UIColor.systemGray6))
+                .onPreferenceChange(ViewOffsetPreferenceKey.self) { scrollPosition in
+                    if scrollPosition < -amountToPullBeforeRefreshing {// && !viewModel.isCurrentlyRefreshing {
+                        
+//                        if !viewModel.isCurrentlyRefreshing {
+//                            viewModel.isCurrentlyRefreshing = true
+                            viewModel.perform(.refresh)
+//                        }
+                        
+//                        viewModel.isCurrentlyRefreshing = false
+                    }
+                }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {

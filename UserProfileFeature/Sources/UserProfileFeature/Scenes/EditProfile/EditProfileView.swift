@@ -26,6 +26,8 @@ public struct EditProfileView: View {
         
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        
+//        UITextView.appearance().backgroundColor = .clear
     }
     
     public var body: some View {
@@ -84,6 +86,7 @@ public struct EditProfileView: View {
                             value: $viewModel.description,
                             errorValue: $viewModel.descriptionError
                         )
+                        .colorMultiply(Color(UIColor.systemGray6))
                     }
                     .padding(.horizontal, 16)
                 }

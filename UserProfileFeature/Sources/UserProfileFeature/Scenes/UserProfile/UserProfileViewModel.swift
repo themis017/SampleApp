@@ -14,12 +14,16 @@ import UILayer
 public class UserProfileViewModel: ViewModel {
     
     public enum Action {
+        case refresh
         case editProfile
         case logout
     }
     
     @Published
     var userProfile: UserProfile?
+    
+    @Published
+    var isCurrentlyRefreshing: Bool
     
     @Published
     var showingLogoutAlert = false
@@ -31,13 +35,19 @@ public class UserProfileViewModel: ViewModel {
     public init(userProfileUseCase: UserProfileUseCaseProviding) {
         self.userProfileUseCase = userProfileUseCase
         self.userProfile = userProfileUseCase.userProfile.value
+        self.isCurrentlyRefreshing = userProfileUseCase.isCurrentlyRefreshing.value
         
         bind(\.userProfile, to: userProfileUseCase.userProfile)
+            .store(in: &subscriptions)
+        
+        bind(\.isCurrentlyRefreshing, to: userProfileUseCase.isCurrentlyRefreshing)
             .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {
         switch action {
+        case .refresh:
+            userProfileUseCase.refresh()
         case .editProfile:
             userProfileUseCase.showEditProfile()
         case .logout:

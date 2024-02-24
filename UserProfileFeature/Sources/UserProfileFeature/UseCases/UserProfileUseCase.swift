@@ -13,7 +13,9 @@ import UILayer
 public protocol UserProfileUseCaseProviding {
     
     var userProfile: Observable<UserProfile?> { get }
+    var isCurrentlyRefreshing: Observable<Bool> {get }
     
+    func refresh()
     func showEditProfile()
     func logout()
 }
@@ -21,6 +23,7 @@ public protocol UserProfileUseCaseProviding {
 public class UserProfileUseCase: UserProfileUseCaseProviding {
     
     public let userProfile: Observable<UserProfile?>
+    public let isCurrentlyRefreshing: Observable<Bool>
     
     private let userProfileRouter: any UserProfileRouting
     
@@ -30,6 +33,7 @@ public class UserProfileUseCase: UserProfileUseCaseProviding {
         
         self.userProfileRouter = userProfileRouter
         self.userProfile = Observable(initialValue: AppData.shared.value(of: .userProfile))
+        self.isCurrentlyRefreshing = Observable(initialValue: false)
         
         AppData.shared
             .userProfilePublisher
@@ -47,6 +51,19 @@ public class UserProfileUseCase: UserProfileUseCaseProviding {
         userProfile.value = UserProfile.principalUser
     }
     
+    @MainActor
+    public func refresh() {
+        guard !isCurrentlyRefreshing.value else {
+            return
+        }
+        
+        isCurrentlyRefreshing.value = true
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.isCurrentlyRefreshing.value = false
+            }
+    }
+    
     public func showEditProfile() {
         userProfileRouter.showEditProfileScene()
     }
@@ -62,11 +79,14 @@ public class UserProfileUseCase: UserProfileUseCaseProviding {
 public class PreviewUserProfileUseCase: UserProfileUseCaseProviding {
     
     public var userProfile: Observable<UserProfile?>
+    public var isCurrentlyRefreshing: Observable<Bool>
     
     public init() {
         self.userProfile = Observable(initialValue: UserProfile.principalUser)
+        self.isCurrentlyRefreshing = Observable(initialValue: false)
     }
     
+    public func refresh() {}
     public func showEditProfile() {}
     public func logout() {}
 }
