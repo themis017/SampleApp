@@ -27,6 +27,11 @@ public struct SearchView: View {
                 .foregroundColor(.white)
                 .background(Color.yellow)
             
+//            if let temp = viewModel.temp {
+//                Text(String(temp))
+//                    .font(.title)
+//            }
+            
             Spacer()
             
             Button {

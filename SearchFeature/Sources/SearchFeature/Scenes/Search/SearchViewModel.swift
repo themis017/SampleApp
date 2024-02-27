@@ -17,31 +17,25 @@ public class SearchViewModel: ViewModel {
         case nextAction
     }
     
-    @Published
-    var randomProperty: Int
-    
-    @Published
-    var randomText: String = ""
+//    @Published
+//    var temp: Int?
     
     private let searchUseCase: SearchUseCaseProviding
     
     private var subscriptions: Set<AnyCancellable> = []
     
     public init(searchUseCase: SearchUseCaseProviding) {
-        self.randomProperty = searchUseCase.randomProperty.value
+//        self.temp = searchUseCase.temp.value
         self.searchUseCase = searchUseCase
         
-        bind(\.randomProperty, to: searchUseCase.randomProperty)
-            .store(in: &subscriptions)
-        
-        forward($randomText, to: searchUseCase.randomText)
-            .store(in: &subscriptions)
+//        bind(\.temp, to: searchUseCase.temp)
+//            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {
         switch action {
         case .nextAction:
-            searchUseCase.nextAction()
+            searchUseCase.action()
         }
     }
 }

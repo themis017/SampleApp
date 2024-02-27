@@ -11,8 +11,8 @@ import Combine
 public struct AppData {
     
     public enum StorageType: String {
-        case userProfile
         case enableAutoLogin
+        case userProfile
         case favourites
         
         var key: String {
@@ -22,18 +22,8 @@ public struct AppData {
     
     public static let shared = AppData()
     
-    // MARK: userProfile
-    @Storage(storageType: .userProfile, defaultValue: nil)
-    public static var userProfile: UserProfile?
-    
-    private let userProfileSubject: PassthroughSubject<UserProfile?, Never> = PassthroughSubject()
-    
-    public var userProfilePublisher: AnyPublisher<UserProfile?, Never> {
-        userProfileSubject.eraseToAnyPublisher()
-    }
-
     // MARK: enableAutoLogin
-    @Storage(storageType: .enableAutoLogin, defaultValue: false)
+    @UserDefaultsStorage(storageType: .enableAutoLogin, defaultValue: false)
     public static var enableAutoLogin: Bool?
     
     private let enableAutoLoginSubject: PassthroughSubject<Bool?, Never> = PassthroughSubject()
@@ -42,8 +32,18 @@ public struct AppData {
         enableAutoLoginSubject.eraseToAnyPublisher()
     }
     
+    // MARK: userProfile
+    @JSONStorage(fileName: Self.StorageType.userProfile.key, defaultValue: nil)
+    public static var userProfile: UserProfile?
+    
+    private let userProfileSubject: PassthroughSubject<UserProfile?, Never> = PassthroughSubject()
+    
+    public var userProfilePublisher: AnyPublisher<UserProfile?, Never> {
+        userProfileSubject.eraseToAnyPublisher()
+    }
+    
     // MARK: favourites
-    @Storage(storageType: .favourites, defaultValue: nil)
+    @JSONStorage(fileName: Self.StorageType.favourites.key, defaultValue: nil)
     public static var favourites: [Recipe]?
     
     private let favouritesSubject: PassthroughSubject<[Recipe]?, Never> = PassthroughSubject()
@@ -54,10 +54,10 @@ public struct AppData {
     
     public func value<T: Codable>(of storageType: AppData.StorageType) -> T? {
         switch storageType {
-        case .userProfile:
-            return AppData.userProfile as? T
         case .enableAutoLogin:
             return AppData.enableAutoLogin as? T
+        case .userProfile:
+            return AppData.userProfile as? T
         case .favourites:
             return AppData.favourites as? T
         }
@@ -65,13 +65,6 @@ public struct AppData {
     
     public func save<T: Codable>(_ value: T, to storageType: AppData.StorageType) {
         switch storageType {
-        case .userProfile:
-            guard let value = value as? UserProfile else {
-                return
-            }
-            
-            AppData.userProfile = value
-            userProfileSubject.send(value)
         case .enableAutoLogin:
             guard let value = value as? Bool else {
                 return
@@ -79,6 +72,13 @@ public struct AppData {
             
             AppData.enableAutoLogin = value
             enableAutoLoginSubject.send(value)
+        case .userProfile:
+            guard let value = value as? UserProfile else {
+                return
+            }
+            
+            AppData.userProfile = value
+            userProfileSubject.send(value)
         case .favourites:
             guard let value = value as? [Recipe] else {
                 return

@@ -1,5 +1,5 @@
 //
-//  Storage.swift
+//  UserDefaultsStorage.swift
 //
 //
 //  Created by Themis Makedas on 11/1/24.
@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 @propertyWrapper
-public struct Storage<T: Codable> {
+public struct UserDefaultsStorage<T: Codable> {
     
     private let storageType: AppData.StorageType
     private let defaultValue: T?
