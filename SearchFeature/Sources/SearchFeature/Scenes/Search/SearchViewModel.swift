@@ -14,28 +14,44 @@ import UILayer
 public class SearchViewModel: ViewModel {
     
     public enum Action {
-        case nextAction
+        case showRecipe(Recipe)
+        case showUser(UserProfile)
+        case removeUser(UserProfile)
     }
+
+    @Published
+    public var popularRecipes: [Recipe]
     
-//    @Published
-//    var temp: Int?
+    @Published
+    public var popularUsers: [UserProfile]
+    
+    @Published
+    public var searchFilter: SearchFilter = .recipes
     
     private let searchUseCase: SearchUseCaseProviding
     
     private var subscriptions: Set<AnyCancellable> = []
     
     public init(searchUseCase: SearchUseCaseProviding) {
-//        self.temp = searchUseCase.temp.value
         self.searchUseCase = searchUseCase
+        self.popularRecipes = searchUseCase.popularRecipes.value
+        self.popularUsers = searchUseCase.popularUsers.value
         
-//        bind(\.temp, to: searchUseCase.temp)
-//            .store(in: &subscriptions)
+        bind(\.popularRecipes, to: searchUseCase.popularRecipes)
+            .store(in: &subscriptions)
+        
+        bind(\.popularUsers, to: searchUseCase.popularUsers, animatedBy: .default)
+            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {
         switch action {
-        case .nextAction:
-            searchUseCase.action()
+        case .showRecipe(let recipe):
+            searchUseCase.showRecipe(recipe)
+        case .showUser(let userProfile):
+            searchUseCase.showUserProfile(userProfile)
+        case .removeUser(let userProfile):
+            searchUseCase.removeUser(userProfile)
         }
     }
 }

@@ -11,15 +11,19 @@ import ApplicationLayer
 import UILayer
 
 public protocol SearchUseCaseProviding {
-    
-//    var temp: Observable<Int?> { get }
         
-    func action()
+    var popularRecipes: Observable<[Recipe]> { get }
+    var popularUsers: Observable<[UserProfile]> { get }
+        
+    func showRecipe(_ recipe: Recipe)
+    func showUserProfile(_ user: UserProfile)
+    func removeUser(_ user: UserProfile)
 }
 
 public class SearchUseCase: SearchUseCaseProviding {
-    
-//    public let temp: Observable<Int?>
+        
+    public let popularRecipes: Observable<[Recipe]>
+    public let popularUsers: Observable<[UserProfile]>
         
     private var subscriptions: Set<AnyCancellable> = []
     
@@ -27,39 +31,51 @@ public class SearchUseCase: SearchUseCaseProviding {
     
     public init(searchRouter: any SearchRouting) {
         
-        
-//        self.temp = Observable(initialValue: AppData.shared.value(of: .temp))
-//        print("###1 \(self.temp.value)")
-        
+        self.popularRecipes = Observable(initialValue: [])
+        self.popularUsers = Observable(initialValue: [])
+
         self.searchRouter = searchRouter
         
-//        AppData.shared
-//            .tempPublisher
-//            .sink { [weak self] newValue in
-//                print("###2 \(newValue)")
-//            }
-//            .store(in: &subscriptions)
+        loadData()
     }
     
-    public func action() {
-//        let currentValue = temp.value ?? 0
-//        temp.value = currentValue + 1
-//        AppData.shared.save(temp.value, to: .temp)
+    private func loadData() {
+        popularRecipes.value = Recipe.previewHomeExamples
+        popularUsers.value = UserProfile.popularUsers
     }
     
+    public func showRecipe(_ recipe: Recipe) {
+        searchRouter.showRecipe(recipe)
+    }
+    
+    public func showUserProfile(_ user: UserProfile) {
+        searchRouter.showUser(UserReference(id: user.id))
+    }
+    
+    public func removeUser(_ user: UserProfile) {
+        guard let userIndex = popularUsers.value.firstIndex(of: user) else {
+            return
+        }
+        
+        popularUsers.value.remove(at: userIndex)
+    }
 }
 
 #if DEBUG
 
 public class PreviewSearchUseCase: SearchUseCaseProviding {
     
-//    public var temp: Observable<Int?>
+    public var popularRecipes: Observable<[Recipe]>
+    public var popularUsers: Observable<[UserProfile]>
         
     public init() {
-//        self.temp = Observable(initialValue: 0)
+        self.popularRecipes = Observable(initialValue: Recipe.previewHomeExamples)
+        self.popularUsers = Observable(initialValue: UserProfile.popularUsers)
     }
     
-    public func action() {}
+    public func showRecipe(_ recipe: Recipe) {}
+    public func showUserProfile(_ user: UserProfile) {}
+    public func removeUser(_ user: UserProfile) {}
 }
 
 #endif

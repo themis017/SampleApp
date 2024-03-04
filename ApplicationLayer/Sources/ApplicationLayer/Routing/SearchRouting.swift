@@ -9,4 +9,6 @@ import Foundation
 
 public protocol SearchRouting: Routing {
     
+    func showRecipe(_ recipe: Recipe)
+    func showUser(_ user: UserReference)
 }

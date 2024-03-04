@@ -33,6 +33,10 @@ public struct UserProfile: Identifiable, Equatable, Codable {
         return mutableSelf
     }
     
+    public static var popularUsers: [UserProfile] {
+        [user_1, user_2, user_3, user_4, user_5]
+    }
+    
     public static var principalUser: UserProfile {
         UserProfile(id: "0",
                     profileImage: "",
