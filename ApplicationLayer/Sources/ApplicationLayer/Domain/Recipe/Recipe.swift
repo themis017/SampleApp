@@ -52,6 +52,14 @@ public struct Recipe: Identifiable, Equatable, Codable {
         return mutableSelf
     }
     
+    public static var previewHomeExamples: [Recipe] {
+        [recipe_1, recipe_2, recipe_3, recipe_4, recipe_5, recipe_6, recipe_7, recipe_8, recipe_9, recipe_10]
+    }
+    
+    public static var previewFavouritesExamples: [Recipe] {
+        previewHomeExamples.filter({ $0.isFavourite })
+    }
+    
     public static var recipe_1: Recipe {
         Recipe(
             id: "1",
@@ -370,13 +378,5 @@ public struct Recipe: Identifiable, Equatable, Codable {
             chefName: Name(rawValue: "Name_10")!,
             isFavourite: false
         )
-    }
-    
-    public static var previewHomeExamples: [Recipe] {
-        [recipe_1, recipe_2, recipe_3, recipe_4, recipe_5, recipe_6, recipe_7, recipe_8, recipe_9, recipe_10]
-    }
-    
-    public static var previewFavouritesExamples: [Recipe] {
-        previewHomeExamples.filter({ $0.isFavourite })
     }
 }

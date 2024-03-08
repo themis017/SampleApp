@@ -34,13 +34,63 @@ public struct SearchView: View {
         NavigationView {
             
             VStack(spacing: 0) {
-                if viewModel.searchFilter == .recipes {
-                    popularRecipesView
+                
+                if !viewModel.isSearching {
+                    switch viewModel.searchFilter {
+                    case .recipes:
+                        popularRecipesView
+                    case .users:
+                        popularUsersView
+                    }
                 } else {
-                    popularUsersView
+                    switch viewModel.searchFilter {
+                    case .recipes:
+                        searchedRecipesView
+                    case .users:
+                        searchedUsersView
+                    }
                 }
             }
+            .searchable(text: $viewModel.searchQuery)
+            .onSubmit(of: .search) {
+                viewModel.perform(.searchResults)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    menuView
+                }
+            }
+            .navigationTitle(viewModel.searchFilter == .recipes ? "Search recipes" : "Search Users")
             .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+    
+    private var menuView: some View {
+        Menu {
+            Section("Filter results by") {
+                Button {
+                    viewModel.perform(.changeFilter(to: .recipes))
+                } label: {
+                    if viewModel.searchFilter == .recipes {
+                        Label("Recipes", systemImage: "checkmark.circle.fill")
+                    } else {
+                        Text("Recipes")
+                    }
+                }
+                
+                Button {
+                    viewModel.perform(.changeFilter(to: .users))
+                } label: {
+                    if viewModel.searchFilter == .users {
+                        Label("Users", systemImage: "checkmark.circle.fill")
+                    } else {
+                        Text("Users")
+                    }
+                }
+            }
+        } label: {
+            Image(systemName: "ellipsis")
+                .foregroundStyle(Color.black)
         }
     }
     
@@ -79,6 +129,31 @@ public struct SearchView: View {
                     }
                 }
                 .padding(.horizontal, 16)
+            }
+        }
+    }
+    
+    private var searchedRecipesView: some View {
+        ScrollView {
+            LazyVStack(spacing: 16) {
+                ForEach(viewModel.searchedRecipes) { recipe in
+                    
+                    Button {
+                        viewModel.perform(.showRecipe(recipe))
+                    } label: {
+                        Image(recipe.iconAsseTitle)
+                            .resizable()
+                            .aspectRatio(16 / 9, contentMode: .fit)
+                            .overlay(alignment: .bottomLeading) {
+                                Text(recipe.title)
+                                    .font(.title2)
+                                    .foregroundStyle(Color.black)
+                                    .background(Color.white.opacity(0.8))
+                            }
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .padding(.horizontal, 16)
+                }
             }
         }
     }
@@ -137,6 +212,37 @@ public struct SearchView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
                     .padding(.horizontal, 16)
+                }
+            }
+        }
+    }
+    
+    private var searchedUsersView: some View {
+        ScrollView {
+            LazyVStack(spacing: 16) {
+                ForEach(viewModel.searchedUsers) { user in
+                    HStack(spacing: 16) {
+                        Image("user")
+                            .resizable()
+                            .frame(width: 48, height: 48)
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(user.name.rawValue)
+                                .font(.headline)
+                                .foregroundStyle(Color.black)
+                            
+                            Text(user.username.rawValue)
+                                .font(.body)
+                                .foregroundStyle(Color.black)
+                        }
+                        
+                        Spacer()
+                    }
+                    .onTapGesture {
+                        viewModel.perform(.showUser(user))
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
                 }
             }
         }

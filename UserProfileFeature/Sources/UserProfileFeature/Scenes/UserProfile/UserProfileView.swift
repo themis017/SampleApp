@@ -105,14 +105,8 @@ public struct UserProfileView: View {
                 }
                 .background(Color(UIColor.systemGray6))
                 .onPreferenceChange(ViewOffsetPreferenceKey.self) { scrollPosition in
-                    if scrollPosition < -amountToPullBeforeRefreshing {// && !viewModel.isCurrentlyRefreshing {
-                        
-//                        if !viewModel.isCurrentlyRefreshing {
-//                            viewModel.isCurrentlyRefreshing = true
+                    if scrollPosition < -amountToPullBeforeRefreshing {
                             viewModel.perform(.refresh)
-//                        }
-                        
-//                        viewModel.isCurrentlyRefreshing = false
                     }
                 }
                 .toolbar {
