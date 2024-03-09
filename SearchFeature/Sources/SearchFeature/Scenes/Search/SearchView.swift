@@ -211,8 +211,8 @@ public struct SearchView: View {
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
-                    .padding(.horizontal, 16)
                 }
+                .padding(.horizontal, 16)
             }
         }
     }

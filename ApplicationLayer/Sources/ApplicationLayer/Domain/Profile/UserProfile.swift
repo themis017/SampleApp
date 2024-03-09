@@ -34,7 +34,7 @@ public struct UserProfile: Identifiable, Equatable, Codable {
     }
     
     public static var popularUsers: [UserProfile] {
-        [user_1, user_2, user_3, user_4, user_5]
+        [user_1, user_2, user_3, user_4, user_5, user_6, user_7, user_8, user_9, user_10]
     }
     
     public static var principalUser: UserProfile {
@@ -113,5 +113,70 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     recipesCount: 270,
                     followersCount: 190,
                     isFollowing: false)
+    }
+    
+    public static var user_6: UserProfile {
+        UserProfile(id: "6",
+                    profileImage: "",
+                    backgroundImage: "",
+                    email: Email(rawValue: "user_6@gmail.com")!,
+                    username: Username(rawValue: "username_6")!,
+                    name: Name(rawValue: "name_6")!,
+                    description: Description(rawValue: "Description_6")!,
+                    recipesCount: 17,
+                    followersCount: 10,
+                    isFollowing: false)
+    }
+    
+    public static var user_7: UserProfile {
+        UserProfile(id: "7",
+                    profileImage: "",
+                    backgroundImage: "",
+                    email: Email(rawValue: "user_7@gmail.com")!,
+                    username: Username(rawValue: "username_7")!,
+                    name: Name(rawValue: "name_7")!,
+                    description: Description(rawValue: "Description_7")!,
+                    recipesCount: 27,
+                    followersCount: 19,
+                    isFollowing: true)
+    }
+    
+    public static var user_8: UserProfile {
+        UserProfile(id: "8",
+                    profileImage: "",
+                    backgroundImage: "",
+                    email: Email(rawValue: "user_8@gmail.com")!,
+                    username: Username(rawValue: "username_8")!,
+                    name: Name(rawValue: "name_8")!,
+                    description: Description(rawValue: "Description_8")!,
+                    recipesCount: 15,
+                    followersCount: 25,
+                    isFollowing: true)
+    }
+    
+    public static var user_9: UserProfile {
+        UserProfile(id: "9",
+                    profileImage: "",
+                    backgroundImage: "",
+                    email: Email(rawValue: "user_9@gmail.com")!,
+                    username: Username(rawValue: "username_9")!,
+                    name: Name(rawValue: "name_9")!,
+                    description: Description(rawValue: "Description_9")!,
+                    recipesCount: 10,
+                    followersCount: 20,
+                    isFollowing: false)
+    }
+    
+    public static var user_10: UserProfile {
+        UserProfile(id: "10",
+                    profileImage: "",
+                    backgroundImage: "",
+                    email: Email(rawValue: "user_10@gmail.com")!,
+                    username: Username(rawValue: "username_10")!,
+                    name: Name(rawValue: "name_10")!,
+                    description: Description(rawValue: "Description_10")!,
+                    recipesCount: 30,
+                    followersCount: 32,
+                    isFollowing: true)
     }
 }
