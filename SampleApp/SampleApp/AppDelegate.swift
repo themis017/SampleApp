@@ -43,6 +43,7 @@ import SignupFeature
 import LoginFeature
 import HomeFeature
 import SearchFeature
+import UploadFeature
 import FavouritesFeature
 import UserProfileFeature
 
@@ -65,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             LoginFeature(),
             HomeFeature(),
             SearchFeature(),
+            UploadFeature(),
             FavouritesFeature(),
             UserProfileFeature()
         ]

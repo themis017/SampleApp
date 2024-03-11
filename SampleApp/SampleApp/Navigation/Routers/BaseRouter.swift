@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import ApplicationLayer
+import UploadFeature
 
 open class BaseRouter {
     
@@ -19,7 +20,19 @@ open class BaseRouter {
     
     @MainActor
     public func showUploadScene() {
-       
+        let uploadRouter = UploadRouter(navigationController: navigationController)
+        let useCase = UploadRecipeUseCase(uploadRouter: uploadRouter)
+        let viewModel = UploadRecipeImageViewModel(uploadRecipeUseCase: useCase)
+        let view = UploadRecipeImageView(viewModel: viewModel)
+        
+        let viewController = RoutingUIHostingController(
+            sceneIdentity: UploadRecipeImageView.sceneIdentity,
+            isRoot: false,
+            tabCategory: .upload,
+            view: AnyView(view))
+        
+        append(viewController, for: .upload)
+        self.navigationController.present(viewController, animated: true)
     }
     
     @MainActor

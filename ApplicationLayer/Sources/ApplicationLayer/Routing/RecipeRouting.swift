@@ -7,6 +7,4 @@
 
 import Foundation
 
-public protocol RecipeRouting: Routing {
-    
-}
+public protocol RecipeRouting: Routing {}

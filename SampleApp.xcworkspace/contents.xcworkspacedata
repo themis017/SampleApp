@@ -26,6 +26,9 @@
       location = "group:SearchFeature">
    </FileRef>
    <FileRef
+      location = "group:UploadFeature">
+   </FileRef>
+   <FileRef
       location = "group:FavouritesFeature">
    </FileRef>
    <FileRef

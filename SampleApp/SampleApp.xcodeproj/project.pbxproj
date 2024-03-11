@@ -17,12 +17,14 @@
 		412FF9252B3208ED00DCF929 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412FF9242B3208ED00DCF929 /* HomeRouter.swift */; };
 		41624F962B965EB100E8E210 /* ProfileSceneComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41624F952B965EB100E8E210 /* ProfileSceneComposer.swift */; };
 		4162EC052B04233400E4E086 /* ApplicationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 4162EC042B04233400E4E086 /* ApplicationLayer */; };
+		417122842B9F96EA00EF8137 /* UploadRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417122832B9F96EA00EF8137 /* UploadRouter.swift */; };
 		417422B42B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417422B32B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift */; };
 		417B7C9A2B681EA8001E2F21 /* EntryPointSceneComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417B7C992B681EA8001E2F21 /* EntryPointSceneComposer.swift */; };
 		417B7C9C2B682D18001E2F21 /* LoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 417B7C9B2B682D18001E2F21 /* LoginFeature */; };
 		417B7C9E2B682DC8001E2F21 /* SignupFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 417B7C9D2B682DC8001E2F21 /* SignupFeature */; };
 		417B7CA02B682FC2001E2F21 /* SignupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417B7C9F2B682FC2001E2F21 /* SignupRouter.swift */; };
 		417B7CA22B68302D001E2F21 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417B7CA12B68302D001E2F21 /* LoginRouter.swift */; };
+		41863A152B9F88200040F6F3 /* UploadFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 41863A142B9F88200040F6F3 /* UploadFeature */; };
 		4186C0AD2B852F67007DE4FE /* RecipeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4186C0AC2B852F67007DE4FE /* RecipeRouter.swift */; };
 		4186C0AF2B853138007DE4FE /* RecipeSceneComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4186C0AE2B853138007DE4FE /* RecipeSceneComposer.swift */; };
 		41A5C67B2B55B9DE0057A14F /* MainFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 41A5C67A2B55B9DE0057A14F /* MainFeature */; };
@@ -49,6 +51,7 @@
 		412503E02B11E40C001DDCE5 /* iOSApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApplication.swift; sourceTree = "<group>"; };
 		412FF9242B3208ED00DCF929 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		41624F952B965EB100E8E210 /* ProfileSceneComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSceneComposer.swift; sourceTree = "<group>"; };
+		417122832B9F96EA00EF8137 /* UploadRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadRouter.swift; sourceTree = "<group>"; };
 		417422B32B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+UIGestureRecognizer.swift"; sourceTree = "<group>"; };
 		417B7C992B681EA8001E2F21 /* EntryPointSceneComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointSceneComposer.swift; sourceTree = "<group>"; };
 		417B7C9F2B682FC2001E2F21 /* SignupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRouter.swift; sourceTree = "<group>"; };
@@ -82,6 +85,7 @@
 				41D23B902B643AC100624010 /* FavouritesFeature in Frameworks */,
 				410D9A7B2B0D35CA002B284E /* NetworkLayer in Frameworks */,
 				41A5C67B2B55B9DE0057A14F /* MainFeature in Frameworks */,
+				41863A152B9F88200040F6F3 /* UploadFeature in Frameworks */,
 				410D9A792B0D3250002B284E /* UILayer in Frameworks */,
 				417B7C9C2B682D18001E2F21 /* LoginFeature in Frameworks */,
 				410506462B1113BA0015B2FA /* UserProfileFeature in Frameworks */,
@@ -105,6 +109,7 @@
 				417B7C9F2B682FC2001E2F21 /* SignupRouter.swift */,
 				417B7CA12B68302D001E2F21 /* LoginRouter.swift */,
 				4186C0AC2B852F67007DE4FE /* RecipeRouter.swift */,
+				417122832B9F96EA00EF8137 /* UploadRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 				41D23B8F2B643AC100624010 /* FavouritesFeature */,
 				417B7C9B2B682D18001E2F21 /* LoginFeature */,
 				417B7C9D2B682DC8001E2F21 /* SignupFeature */,
+				41863A142B9F88200040F6F3 /* UploadFeature */,
 			);
 			productName = SampleApp;
 			productReference = 41F3A7412B0420DE0059BCB0 /* SampleApp.app */;
@@ -267,6 +273,7 @@
 				4186C0AD2B852F67007DE4FE /* RecipeRouter.swift in Sources */,
 				4186C0AF2B853138007DE4FE /* RecipeSceneComposer.swift in Sources */,
 				41D23B922B643BB500624010 /* FavouritesRouter.swift in Sources */,
+				417122842B9F96EA00EF8137 /* UploadRouter.swift in Sources */,
 				41DDA4CE2B59AFE800EBD99A /* TabBarRoutes.swift in Sources */,
 				41DF41E82B6198F6009A9033 /* SearchRouter.swift in Sources */,
 				417422B42B4557B6009F0146 /* UINavigationController+UIGestureRecognizer.swift in Sources */,
@@ -544,6 +551,10 @@
 		417B7C9D2B682DC8001E2F21 /* SignupFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SignupFeature;
+		};
+		41863A142B9F88200040F6F3 /* UploadFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UploadFeature;
 		};
 		41A5C67A2B55B9DE0057A14F /* MainFeature */ = {
 			isa = XCSwiftPackageProductDependency;
