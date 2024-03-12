@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import AVFoundation
 import ApplicationLayer
 import UILayer
 
@@ -39,6 +40,30 @@ public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
     
     private func loadUserProfile() {
         userProfile.value = UserProfile.principalUser
+    }
+    
+    func getCameraPermission() async {
+        
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        
+        switch status {
+        case .authorized:
+            break
+//            isCameraPermission = true
+        case .notDetermined:
+            await AVCaptureDevice.requestAccess(for: .video)
+//            isCameraPermission = true
+        case .denied:
+            break
+//            isCameraPermission = false
+        case .restricted:
+            break
+//            isCameraPermission = false
+        @unknown default:
+            break
+//            isCameraPermission = false
+        }
+        
     }
     
 }

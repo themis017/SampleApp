@@ -432,6 +432,8 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SampleApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Could you provide access to your camera?";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Could you provide access to your photo library?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
@@ -465,6 +467,8 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SampleApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Could you provide access to your camera?";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Could you provide access to your photo library?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
