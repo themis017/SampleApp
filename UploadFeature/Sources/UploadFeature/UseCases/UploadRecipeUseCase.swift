@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import AVFoundation
+import Photos
 import ApplicationLayer
 import UILayer
 
@@ -42,28 +43,61 @@ public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
         userProfile.value = UserProfile.principalUser
     }
     
-    func getCameraPermission() async {
+    private func checkPhotoLibraryPermission() {
         
-        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        let status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+        var isPhotoLibraryAuthorized = status == .authorized
         
         switch status {
         case .authorized:
             break
-//            isCameraPermission = true
         case .notDetermined:
-            await AVCaptureDevice.requestAccess(for: .video)
-//            isCameraPermission = true
+            requestPhotoLibraryPermission()
+//            isPhotoLibraryAuthorized = await PHPhotoLibrary.requestAuthorization(for: .readWrite)
         case .denied:
             break
-//            isCameraPermission = false
         case .restricted:
             break
-//            isCameraPermission = false
+        case .limited:
+            break
         @unknown default:
             break
-//            isCameraPermission = false
         }
         
+    }
+    
+    private func requestPhotoLibraryPermission() {
+        PHPhotoLibrary.requestAuthorization(for: .readWrite) { authorizationStatus in
+            
+        }
+    }
+    
+    private func checkCameraPermission() async {
+        
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        var isCameraAuthorized = status == .authorized
+        
+        switch status {
+        case .authorized:
+            break
+        case .notDetermined:
+            requestCameraPermission()
+        case .denied:
+            break
+        case .restricted:
+            break
+        @unknown default:
+            break
+        }
+        
+    }
+    
+    private func requestCameraPermission() {
+        AVCaptureDevice.requestAccess(for: .video) { accessGranted in
+            DispatchQueue.main.async {
+//                self.permissionGranted = accessGranted
+            }
+        }
     }
     
 }
