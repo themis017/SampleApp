@@ -27,18 +27,18 @@ public class UploadRecipeImageViewModel: ViewModel {
     var selectedImage: UIImage?
     
     @Published
-    var isImagePickerPresented: Bool = false
+    var isImagePickerPresented: Bool
+    
+    @Published
+    var isUnauthorizedPhotoLibraryPresented: Bool
+    
+    @Published
+    var isUnauthorizedCameraPresented: Bool
     
     @Published
     var isConfirmationDialogPresented: Bool = false
     
     var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
-    
-    @Published
-    var isPhotoLibraryAuthorized: Bool
-                                    
-    @Published
-    var isCameraAuthorized: Bool
     
     @Published
     var showUploadRecipeName: Bool = false
@@ -51,16 +51,20 @@ public class UploadRecipeImageViewModel: ViewModel {
         self.uploadRecipeUseCase = uploadRecipeUseCase
         
         self.userProfile = uploadRecipeUseCase.userProfile.value
-        self.isPhotoLibraryAuthorized = uploadRecipeUseCase.isPhotoLibraryAuthorized.value
-        self.isCameraAuthorized = uploadRecipeUseCase.isCameraAuthorized.value
+        self.isImagePickerPresented = uploadRecipeUseCase.isImagePickerPresented.value
+        self.isUnauthorizedPhotoLibraryPresented = uploadRecipeUseCase.isUnauthorizedPhotoLibraryPresented.value
+        self.isUnauthorizedCameraPresented = uploadRecipeUseCase.isUnauthorizedCameraPresented.value
         
         bind(\.userProfile, to: uploadRecipeUseCase.userProfile)
             .store(in: &subscriptions)
         
-        bind(\.isPhotoLibraryAuthorized, to: uploadRecipeUseCase.isPhotoLibraryAuthorized)
+        bind(\.isImagePickerPresented, to: uploadRecipeUseCase.isImagePickerPresented)
             .store(in: &subscriptions)
         
-        bind(\.isCameraAuthorized, to: uploadRecipeUseCase.isCameraAuthorized)
+        bind(\.isUnauthorizedPhotoLibraryPresented, to: uploadRecipeUseCase.isUnauthorizedPhotoLibraryPresented)
+            .store(in: &subscriptions)
+        
+        bind(\.isUnauthorizedCameraPresented, to: uploadRecipeUseCase.isUnauthorizedCameraPresented)
             .store(in: &subscriptions)
     }
     
@@ -70,12 +74,10 @@ public class UploadRecipeImageViewModel: ViewModel {
             pickerSourceType = .photoLibrary
             isConfirmationDialogPresented = false
             uploadRecipeUseCase.checkPhotoLibraryPermission()
-            isImagePickerPresented = true
         case .selectedCamera:
             pickerSourceType = .camera
             isConfirmationDialogPresented = false
             uploadRecipeUseCase.checkCameraPermission()
-            isImagePickerPresented = true
         case .showUploadRecipeName:
             showUploadRecipeName = true
         }

@@ -16,10 +16,11 @@ public struct UnauthorizedCameraView: View {
     
     public static let sceneIdentity = "UnauthorizedCameraView"
     
-    private let onDismiss: () -> Void
+    @Binding
+    var isUnauthorizedCameraPresented: Bool
     
-    public init(onDismiss: @escaping () -> Void) {
-        self.onDismiss = onDismiss
+    public init(isUnauthorizedCameraPresented: Binding<Bool>) {
+        self._isUnauthorizedCameraPresented = isUnauthorizedCameraPresented
     }
     
     public var body: some View {
@@ -41,8 +42,8 @@ public struct UnauthorizedCameraView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
+                        isUnauthorizedCameraPresented = false
                         presentationMode.wrappedValue.dismiss()
-                        onDismiss()
                     } label: {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.black)
@@ -59,7 +60,7 @@ public struct UnauthorizedCameraView: View {
 struct UnauthorizedCameraView_Previews: PreviewProvider {
     
     static var previews: some View {
-        UnauthorizedCameraView()
+        UnauthorizedCameraView(isUnauthorizedCameraPresented: .constant(true))
     }
 }
 
