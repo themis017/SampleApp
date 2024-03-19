@@ -11,9 +11,8 @@ import UILayer
 
 public struct UploadRecipeImageView: View {
     
-    @State private var selectedImage: UIImage?
-    @State private var isImagePickerPresented: Bool = false
-    @State private var isConfirmationDialogPresented: Bool = false
+    @Environment(\.presentationMode)
+    var presentationMode
     
     @ObservedObject
     private var viewModel: UploadRecipeImageViewModel
@@ -26,45 +25,74 @@ public struct UploadRecipeImageView: View {
     
     public var body: some View {
         
-        NavigationView {
-            VStack(spacing: 16) {
-                Text("UploadRecipeImageView")
-                
-                if isImagePickerPresented {
-                    ImagePickerView(
-                        selectedImage: $selectedImage,
-                        isImagePickerPresented: $isImagePickerPresented)
+        if viewModel.isImagePickerPresented {
+            ImagePickerView(
+                selectedImage: $viewModel.selectedImage,
+                isImagePickerPresented: $viewModel.isImagePickerPresented,
+                sourceType: viewModel.pickerSourceType)
+            .ignoresSafeArea(.all, edges: .bottom)
+            
+        } else {
+            NavigationView {
+                VStack(spacing: 0) {
                     
-                } else {
                     Button {
-                        isConfirmationDialogPresented = true
+                        viewModel.isConfirmationDialogPresented = true
                     } label: {
-                        Text("Select an image")
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(.black, lineWidth: 3)
+                                .frame(maxHeight: 300)
+                                .padding(16)
+                            
+                            Image(systemName: "plus.circle")
+                                .resizable()
+                                .foregroundStyle(Color.black)
+                                .frame(width: 24, height: 24)
+                        }
                     }
-
+                    
+                    Spacer()
+                    
+                    NavigationLink(destination: UploadRecipeNameView(
+                        viewModel: viewModel.makeUploadRecipeNameViewModel())) {
+                            
+                            Text("Continue")
+                                .foregroundColor(.white)
+                                .flexible(.horizontal)
+                                .padding(.vertical, 12)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 16)
+                                }
+                                .padding(.horizontal, 16)
+                        }
                 }
-                
-                NavigationLink(destination: UploadRecipeNameView(
-                    viewModel: viewModel.makeUploadRecipeNameViewModel())) {
-                   
-                    Text("Go To Upload Recipe Name View")
-                        .foregroundColor(.red)
+                .confirmationDialog("Upload a photo from your ?", isPresented: $viewModel.isConfirmationDialogPresented, titleVisibility: .visible) {
+                    Button("Photo library") {
+                        viewModel.perform(.selectedPhotoLibrary)
+                    }
+                    
+                    Button("Camera") {
+                        viewModel.perform(.selectedCamera)
+                    }
+                }
+                .navigationTitle("Add your recipe's image")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            Image(systemName: "xmark")
+                                .resizable()
+                                .frame(width: 16, height: 16)
+                                .foregroundStyle(Color.black)
+                        }
+                    }
                 }
             }
-            .confirmationDialog("Confirmation", isPresented: $isConfirmationDialogPresented, titleVisibility: .visible) {
-                Button("Confirm") {
-                    // Handle confirmation
-//                    isSheetPresented.toggle()
-                }
-                
-                Button("Cancel") {
-                    // Handle cancellation
-//                    isConfirmationDialogPresented.toggle()
-                }
-            }
-            .navigationTitle("Add your recipe's image")
-            .navigationBarTitleDisplayMode(.inline)
         }
+        
     }
 }
 

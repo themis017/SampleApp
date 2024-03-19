@@ -15,12 +15,18 @@ import UILayer
 public protocol UploadRecipeUseCaseProviding {
     
     var userProfile: Observable<UserProfile?> { get }
+    var isPhotoLibraryAuthorized: Observable<Bool> { get }
+    var isCameraAuthorized: Observable<Bool> { get }
        
+    func checkPhotoLibraryPermission()
+    func checkCameraPermission()
 }
 
 public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
     
     public let userProfile: Observable<UserProfile?>
+    public let isPhotoLibraryAuthorized: Observable<Bool>
+    public let isCameraAuthorized: Observable<Bool>
     
     private var subscriptions: Set<AnyCancellable> = []
     
@@ -28,8 +34,10 @@ public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
     
     public init(uploadRouter: any UploadRouting) {
         
-        self.userProfile = Observable(initialValue: AppData.shared.value(of: .userProfile))
         self.uploadRouter = uploadRouter
+        self.userProfile = Observable(initialValue: AppData.shared.value(of: .userProfile))
+        self.isPhotoLibraryAuthorized = Observable(initialValue: false)
+        self.isCameraAuthorized = Observable(initialValue: false)
         
         AppData.shared
             .userProfilePublisher
@@ -43,49 +51,46 @@ public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
         userProfile.value = UserProfile.principalUser
     }
     
-    private func checkPhotoLibraryPermission() {
-        
+    public func checkPhotoLibraryPermission() {
         let status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
-        var isPhotoLibraryAuthorized = status == .authorized
         
         switch status {
-        case .authorized:
-            break
+        case .authorized, .limited:
+            isPhotoLibraryAuthorized.value = true
         case .notDetermined:
             requestPhotoLibraryPermission()
-//            isPhotoLibraryAuthorized = await PHPhotoLibrary.requestAuthorization(for: .readWrite)
-        case .denied:
-            break
-        case .restricted:
-            break
-        case .limited:
-            break
+        case .denied, .restricted:
+            isPhotoLibraryAuthorized.value = false
         @unknown default:
             break
         }
-        
     }
     
     private func requestPhotoLibraryPermission() {
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { authorizationStatus in
-            
+            switch authorizationStatus {
+            case .authorized, .limited:
+                self.isPhotoLibraryAuthorized.value = true
+            case .notDetermined:
+                self.requestPhotoLibraryPermission()
+            case .denied, .restricted:
+                self.isPhotoLibraryAuthorized.value = false
+            @unknown default:
+                break
+            }
         }
     }
     
-    private func checkCameraPermission() async {
-        
+    public func checkCameraPermission() {
         let status = AVCaptureDevice.authorizationStatus(for: .video)
-        var isCameraAuthorized = status == .authorized
         
         switch status {
         case .authorized:
-            break
+            isCameraAuthorized.value = true
         case .notDetermined:
             requestCameraPermission()
-        case .denied:
-            break
-        case .restricted:
-            break
+        case .denied, .restricted:
+            isCameraAuthorized.value = false
         @unknown default:
             break
         }
@@ -95,7 +100,7 @@ public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
     private func requestCameraPermission() {
         AVCaptureDevice.requestAccess(for: .video) { accessGranted in
             DispatchQueue.main.async {
-//                self.permissionGranted = accessGranted
+                self.isCameraAuthorized.value = accessGranted
             }
         }
     }
@@ -107,11 +112,17 @@ public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
 public class PreviewUploadRecipeUseCase: UploadRecipeUseCaseProviding {
     
     public var userProfile: Observable<UserProfile?>
+    public var isPhotoLibraryAuthorized: Observable<Bool>
+    public var isCameraAuthorized: Observable<Bool>
     
     public init() {
         self.userProfile = Observable(initialValue: UserProfile.principalUser)
+        self.isPhotoLibraryAuthorized = Observable(initialValue: true)
+        self.isCameraAuthorized = Observable(initialValue: true)
     }
     
+    public func checkPhotoLibraryPermission() {}
+    public func checkCameraPermission() {}
 }
 
 #endif
