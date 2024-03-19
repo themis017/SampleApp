@@ -34,6 +34,7 @@ public struct UploadRecipeImageView: View {
             
         } else {
             NavigationView {
+                
                 VStack(spacing: 0) {
                     
                     Button {
