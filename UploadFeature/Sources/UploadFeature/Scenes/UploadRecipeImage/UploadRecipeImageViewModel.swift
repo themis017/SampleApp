@@ -51,6 +51,9 @@ public class UploadRecipeImageViewModel: ViewModel {
         bind(\.userProfile, to: uploadRecipeUseCase.userProfile)
             .store(in: &subscriptions)
         
+        forward($selectedImage, to: uploadRecipeUseCase.selectedImage)
+            .store(in: &subscriptions)
+        
         bind(\.uploadRecipeImageScene, to: uploadRecipeUseCase.uploadRecipeImageScene, animatedBy: .default)
             .store(in: &subscriptions)
     }

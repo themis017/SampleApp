@@ -55,21 +55,46 @@ public struct UploadRecipeImageView: View {
             
             VStack(spacing: 0) {
                 
-                Button {
-                    viewModel.isConfirmationDialogPresented = true
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(.black, lineWidth: 3)
+                if let selectedImage = viewModel.selectedImage {
+                    VStack(spacing: 16) {
+                        Image(uiImage: selectedImage)
+                            .resizable()
                             .frame(maxHeight: 300)
+                            .flexible(.horizontal)
                             .padding(16)
                         
-                        Image(systemName: "plus.circle")
-                            .resizable()
-                            .foregroundStyle(Color.black)
-                            .frame(width: 24, height: 24)
+                        Button {
+                            withAnimation {
+                                viewModel.selectedImage = nil
+                            }
+                        } label: {
+                            Text("Clear selection")
+                                .foregroundStyle(Color.blue)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                                .background(Color.gray.opacity(0.4))
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                        }
+                    }
+                    
+                } else {
+                    Button {
+                        viewModel.isConfirmationDialogPresented = true
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(.black, lineWidth: 3)
+                                .frame(maxHeight: 300)
+                                .padding(16)
+                            
+                            Image(systemName: "plus.circle")
+                                .resizable()
+                                .foregroundStyle(Color.black)
+                                .frame(width: 24, height: 24)
+                        }
                     }
                 }
+                
                 
                 Spacer()
                 
