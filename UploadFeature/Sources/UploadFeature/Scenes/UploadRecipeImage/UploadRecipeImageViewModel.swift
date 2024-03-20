@@ -17,6 +17,7 @@ public class UploadRecipeImageViewModel: ViewModel {
     public enum Action {
         case selectedPhotoLibrary
         case selectedCamera
+        case showRecipeImage
         case showUploadRecipeName
     }
     
@@ -27,13 +28,7 @@ public class UploadRecipeImageViewModel: ViewModel {
     var selectedImage: UIImage?
     
     @Published
-    var isImagePickerPresented: Bool
-    
-    @Published
-    var isUnauthorizedPhotoLibraryPresented: Bool
-    
-    @Published
-    var isUnauthorizedCameraPresented: Bool
+    var uploadRecipeImageScene: UploadRecipeImageScene
     
     @Published
     var isConfirmationDialogPresented: Bool = false
@@ -51,20 +46,12 @@ public class UploadRecipeImageViewModel: ViewModel {
         self.uploadRecipeUseCase = uploadRecipeUseCase
         
         self.userProfile = uploadRecipeUseCase.userProfile.value
-        self.isImagePickerPresented = uploadRecipeUseCase.isImagePickerPresented.value
-        self.isUnauthorizedPhotoLibraryPresented = uploadRecipeUseCase.isUnauthorizedPhotoLibraryPresented.value
-        self.isUnauthorizedCameraPresented = uploadRecipeUseCase.isUnauthorizedCameraPresented.value
-        
+        self.uploadRecipeImageScene = uploadRecipeUseCase.uploadRecipeImageScene.value
+
         bind(\.userProfile, to: uploadRecipeUseCase.userProfile)
             .store(in: &subscriptions)
         
-        bind(\.isImagePickerPresented, to: uploadRecipeUseCase.isImagePickerPresented)
-            .store(in: &subscriptions)
-        
-        bind(\.isUnauthorizedPhotoLibraryPresented, to: uploadRecipeUseCase.isUnauthorizedPhotoLibraryPresented)
-            .store(in: &subscriptions)
-        
-        bind(\.isUnauthorizedCameraPresented, to: uploadRecipeUseCase.isUnauthorizedCameraPresented)
+        bind(\.uploadRecipeImageScene, to: uploadRecipeUseCase.uploadRecipeImageScene, animatedBy: .default)
             .store(in: &subscriptions)
     }
     
@@ -78,6 +65,8 @@ public class UploadRecipeImageViewModel: ViewModel {
             pickerSourceType = .camera
             isConfirmationDialogPresented = false
             uploadRecipeUseCase.checkCameraPermission()
+        case .showRecipeImage:
+            uploadRecipeUseCase.showRecipeImage()
         case .showUploadRecipeName:
             showUploadRecipeName = true
         }

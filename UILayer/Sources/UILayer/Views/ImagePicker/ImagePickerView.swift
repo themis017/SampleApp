@@ -9,22 +9,21 @@ import Foundation
 import SwiftUI
 
 public struct ImagePickerView: UIViewControllerRepresentable {
-    
+   
     @Binding
     var selectedImage: UIImage?
     
-    @Binding
-    var isImagePickerPresented: Bool
-    
     let sourceType: UIImagePickerController.SourceType
     
+    private let onDismiss: () -> Void
+    
     public init(selectedImage: Binding<UIImage?>, 
-                isImagePickerPresented: Binding<Bool>,
-                sourceType: UIImagePickerController.SourceType = .photoLibrary) {
+                sourceType: UIImagePickerController.SourceType = .photoLibrary,
+                onDismiss: @escaping () -> Void) {
         
         self._selectedImage = selectedImage
-        self._isImagePickerPresented = isImagePickerPresented
         self.sourceType = sourceType
+        self.onDismiss = onDismiss
     }
 
     public class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -41,11 +40,11 @@ public struct ImagePickerView: UIViewControllerRepresentable {
                 parent.selectedImage = selectedImage
             }
 
-            parent.isImagePickerPresented = false
+            parent.onDismiss()
         }
 
         public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            parent.isImagePickerPresented = false
+            parent.onDismiss()
         }
     }
 

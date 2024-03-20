@@ -11,18 +11,14 @@ import UILayer
 
 public struct UnauthorizedPhotoLibraryView: View {
     
-    @Environment(\.presentationMode)
-    var presentationMode
-    
     public static let sceneIdentity = "UnauthorizedPhotoLibraryView"
     
-    @Binding
-    var isUnauthorizedPhotoLibraryPresented: Bool
+    private let onDismiss: () -> Void
     
-    public init(isUnauthorizedPhotoLibraryPresented: Binding<Bool>) {
-        self._isUnauthorizedPhotoLibraryPresented = isUnauthorizedPhotoLibraryPresented
+    public init(onDismiss: @escaping () -> Void) {
+        self.onDismiss = onDismiss
     }
-    
+
     public var body: some View {
         NavigationView {
             VStack(spacing: 24) {
@@ -42,8 +38,7 @@ public struct UnauthorizedPhotoLibraryView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        isUnauthorizedPhotoLibraryPresented = false
-                        presentationMode.wrappedValue.dismiss()
+                        onDismiss()
                     } label: {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.black)
@@ -60,7 +55,9 @@ public struct UnauthorizedPhotoLibraryView: View {
 struct UnauthorizedPhotoLibraryView_Previews: PreviewProvider {
     
     static var previews: some View {
-        UnauthorizedPhotoLibraryView(isUnauthorizedPhotoLibraryPresented: .constant(true))
+        UnauthorizedPhotoLibraryView {
+            print("Dismiss")
+        }
     }
 }
 

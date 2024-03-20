@@ -11,16 +11,12 @@ import UILayer
 
 public struct UnauthorizedCameraView: View {
     
-    @Environment(\.presentationMode)
-    var presentationMode
-    
     public static let sceneIdentity = "UnauthorizedCameraView"
     
-    @Binding
-    var isUnauthorizedCameraPresented: Bool
+    private let onDismiss: () -> Void
     
-    public init(isUnauthorizedCameraPresented: Binding<Bool>) {
-        self._isUnauthorizedCameraPresented = isUnauthorizedCameraPresented
+    public init(onDismiss: @escaping () -> Void) {
+        self.onDismiss = onDismiss
     }
     
     public var body: some View {
@@ -42,8 +38,7 @@ public struct UnauthorizedCameraView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        isUnauthorizedCameraPresented = false
-                        presentationMode.wrappedValue.dismiss()
+                        onDismiss()
                     } label: {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.black)
@@ -60,7 +55,9 @@ public struct UnauthorizedCameraView: View {
 struct UnauthorizedCameraView_Previews: PreviewProvider {
     
     static var previews: some View {
-        UnauthorizedCameraView(isUnauthorizedCameraPresented: .constant(true))
+        UnauthorizedCameraView {
+            print("Dismiss")
+        }
     }
 }
 

@@ -25,15 +25,18 @@ public struct UploadRecipeImageView: View {
     
     public var body: some View {
         
-        if viewModel.isImagePickerPresented {
+        switch viewModel.uploadRecipeImageScene {
+        case .imagePicker:
             imagePicker
-        } else if viewModel.isUnauthorizedPhotoLibraryPresented {
-            UnauthorizedPhotoLibraryView(
-                isUnauthorizedPhotoLibraryPresented: $viewModel.isUnauthorizedPhotoLibraryPresented)
-        } else if viewModel.isUnauthorizedCameraPresented {
-            UnauthorizedCameraView(
-                isUnauthorizedCameraPresented: $viewModel.isUnauthorizedCameraPresented)
-        } else {
+        case .unauthorizedPhotoLibrary:
+            UnauthorizedPhotoLibraryView {
+                viewModel.perform(.showRecipeImage)
+            }
+        case .unauthorizedCamera:
+            UnauthorizedCameraView {
+                viewModel.perform(.showRecipeImage)
+            }
+        case .recipeImage:
             selectRecipeImage
         }
     }
@@ -41,8 +44,9 @@ public struct UploadRecipeImageView: View {
     private var imagePicker: some View {
         ImagePickerView(
             selectedImage: $viewModel.selectedImage,
-            isImagePickerPresented: $viewModel.isImagePickerPresented,
-            sourceType: viewModel.pickerSourceType)
+            sourceType: viewModel.pickerSourceType) {
+                viewModel.perform(.showRecipeImage)
+            }
         .ignoresSafeArea(.all, edges: .bottom)
     }
     
@@ -75,7 +79,7 @@ public struct UploadRecipeImageView: View {
                         Text("Continue")
                             .foregroundColor(.white)
                             .flexible(.horizontal)
-                            .padding(.vertical, 12)
+                            .padding(.vertical, 16)
                             .background {
                                 RoundedRectangle(cornerRadius: 16)
                             }
