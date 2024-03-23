@@ -10,7 +10,7 @@ import SwiftUI
 
 public struct UserProfile: Identifiable, Equatable, Codable {
     
-    public var id: String
+    public var id: UserID
     public var profileImage: String
     public var backgroundImage: String
     public var email: Email
@@ -37,8 +37,35 @@ public struct UserProfile: Identifiable, Equatable, Codable {
         [user_1, user_2, user_3, user_4, user_5, user_6, user_7, user_8, user_9, user_10]
     }
     
+    public static func findUserProfile(of userId: UserID) -> UserProfile {
+        switch userId {
+        case .zero:
+            return UserProfile.principalUser
+        case .one:
+            return UserProfile.user_1
+        case .two:
+            return UserProfile.user_2
+        case .three:
+            return UserProfile.user_3
+        case .four:
+            return UserProfile.user_4
+        case .five:
+            return UserProfile.user_5
+        case .six:
+            return UserProfile.user_6
+        case .seven:
+            return UserProfile.user_7
+        case .eight:
+            return UserProfile.user_8
+        case .nine:
+            return UserProfile.user_9
+        case .ten:
+            return UserProfile.user_10
+        }
+    }
+    
     public static var principalUser: UserProfile {
-        UserProfile(id: "0",
+        UserProfile(id: .zero,
                     profileImage: "",
                     backgroundImage: "",
                     email: Email(rawValue: "prncipal_user@gmail.com")!,
@@ -50,8 +77,8 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     isFollowing: nil)
     }
     
-    public static var user_1: UserProfile {
-        UserProfile(id: "1",
+    private static var user_1: UserProfile {
+        UserProfile(id: .one,
                     profileImage: "",
                     backgroundImage: "",
                     email: Email(rawValue: "user_1@gmail.com")!,
@@ -63,8 +90,8 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     isFollowing: true)
     }
     
-    public static var user_2: UserProfile {
-        UserProfile(id: "2",
+    private static var user_2: UserProfile {
+        UserProfile(id: .two,
                     profileImage: "",
                     backgroundImage: "",
                     email: Email(rawValue: "user_2@gmail.com")!,
@@ -76,8 +103,8 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     isFollowing: false)
     }
     
-    public static var user_3: UserProfile {
-        UserProfile(id: "3",
+    private static var user_3: UserProfile {
+        UserProfile(id: .three,
                     profileImage: "",
                     backgroundImage: "",
                     email: Email(rawValue: "user_3@gmail.com")!,
@@ -89,8 +116,8 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     isFollowing: true)
     }
     
-    public static var user_4: UserProfile {
-        UserProfile(id: "4",
+    private static var user_4: UserProfile {
+        UserProfile(id: .four,
                     profileImage: "",
                     backgroundImage: "",
                     email: Email(rawValue: "user_4@gmail.com")!,
@@ -102,8 +129,8 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     isFollowing: false)
     }
     
-    public static var user_5: UserProfile {
-        UserProfile(id: "5",
+    private static var user_5: UserProfile {
+        UserProfile(id: .five,
                     profileImage: "",
                     backgroundImage: "",
                     email: Email(rawValue: "user_5@gmail.com")!,
@@ -115,8 +142,8 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     isFollowing: false)
     }
     
-    public static var user_6: UserProfile {
-        UserProfile(id: "6",
+    private static var user_6: UserProfile {
+        UserProfile(id: .six,
                     profileImage: "",
                     backgroundImage: "",
                     email: Email(rawValue: "user_6@gmail.com")!,
@@ -128,8 +155,8 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     isFollowing: false)
     }
     
-    public static var user_7: UserProfile {
-        UserProfile(id: "7",
+    private static var user_7: UserProfile {
+        UserProfile(id: .seven,
                     profileImage: "",
                     backgroundImage: "",
                     email: Email(rawValue: "user_7@gmail.com")!,
@@ -141,8 +168,8 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     isFollowing: true)
     }
     
-    public static var user_8: UserProfile {
-        UserProfile(id: "8",
+    private static var user_8: UserProfile {
+        UserProfile(id: .eight,
                     profileImage: "",
                     backgroundImage: "",
                     email: Email(rawValue: "user_8@gmail.com")!,
@@ -154,8 +181,8 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     isFollowing: true)
     }
     
-    public static var user_9: UserProfile {
-        UserProfile(id: "9",
+    private static var user_9: UserProfile {
+        UserProfile(id: .nine,
                     profileImage: "",
                     backgroundImage: "",
                     email: Email(rawValue: "user_9@gmail.com")!,
@@ -167,8 +194,8 @@ public struct UserProfile: Identifiable, Equatable, Codable {
                     isFollowing: false)
     }
     
-    public static var user_10: UserProfile {
-        UserProfile(id: "10",
+    private static var user_10: UserProfile {
+        UserProfile(id: .ten,
                     profileImage: "",
                     backgroundImage: "",
                     email: Email(rawValue: "user_10@gmail.com")!,

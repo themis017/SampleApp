@@ -40,17 +40,7 @@ public class OtherUserProfileUseCase: OtherUserProfileUseCaseProviding {
     }
     
     private func loadUserProfile(of user: UserReference) {
-        if user.id == "1" {
-            userProfile.value = UserProfile.user_1
-        } else if user.id == "2" {
-            userProfile.value = UserProfile.user_2
-        } else if user.id == "3" {
-            userProfile.value = UserProfile.user_3
-        } else if user.id == "4" {
-            userProfile.value = UserProfile.user_4
-        } else {
-            userProfile.value = UserProfile.user_5
-        }
+        userProfile.value = UserProfile.findUserProfile(of: user.id)
     }
     
     public func dismiss() {
@@ -95,7 +85,7 @@ public class PreviewOtherUserProfileUseCase: OtherUserProfileUseCaseProviding {
     
     public init() {
         self.selectedTab = .init(initialValue: .profile)
-        self.userProfile = Observable(initialValue: UserProfile.user_1)
+        self.userProfile = Observable(initialValue: UserProfile.findUserProfile(of: .one))
     }
     
     public func dismiss() {}

@@ -111,7 +111,7 @@ public struct UploadRecipeImageView: View {
                             .padding(.horizontal, 16)
                     }
             }
-            .confirmationDialog("Upload a photo from your ?", isPresented: $viewModel.isConfirmationDialogPresented, titleVisibility: .visible) {
+            .confirmationDialog("Upload a photo from your ...", isPresented: $viewModel.isConfirmationDialogPresented, titleVisibility: .visible) {
                 Button("Photo library") {
                     viewModel.perform(.selectedPhotoLibrary)
                 }
