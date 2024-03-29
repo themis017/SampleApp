@@ -18,29 +18,31 @@ public struct RecipeResultRow: View {
     
     public var body: some View {
         HStack(spacing: 16) {
-            
-            Image(recipe.iconAsseTitle)
-                .resizable()
-                .frame(width: 48, height: 48)
-            
-            VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: 16) {
                 
-                Text(recipe.title)
-                    .font(.body)
-                    .foregroundStyle(Color.black)
+                Image(recipe.iconAsseTitle)
+                    .resizable()
+                    .frame(width: 48, height: 48)
                 
-                Text(recipe.chefName.rawValue)
-                    .font(.body)
-                    .foregroundStyle(Color.black)
+                VStack(alignment: .leading, spacing: 4) {
+                    
+                    Text(recipe.title)
+                        .font(.body)
+                        .foregroundStyle(Color.black)
+                    
+                    Text(recipe.chefName.rawValue)
+                        .font(.body)
+                        .foregroundStyle(Color.black)
+                }
+                
+                Spacer()
             }
-            
-            Spacer()
+            .background(Color.white)
             
             Image(systemName: recipe.isFavourite ? "star.fill" : "star")
                 .resizable()
                 .frame(width: 24, height: 24)
                 .foregroundColor(recipe.isFavourite ? Color.yellow : Color.gray)
-            
         }
     }
 }
