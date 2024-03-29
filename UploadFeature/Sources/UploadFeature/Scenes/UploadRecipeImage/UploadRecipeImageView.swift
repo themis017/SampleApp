@@ -55,6 +55,10 @@ public struct UploadRecipeImageView: View {
             
             VStack(spacing: 0) {
                 
+                Text("Add your recipe's image")
+                    .font(.title3)
+                    .foregroundStyle(Color.black)
+                
                 if let selectedImage = viewModel.selectedImage {
                     VStack(spacing: 16) {
                         Image(uiImage: selectedImage)
@@ -95,7 +99,6 @@ public struct UploadRecipeImageView: View {
                     }
                 }
                 
-                
                 Spacer()
                 
                 NavigationLink(destination: UploadRecipeNameView(
@@ -120,7 +123,7 @@ public struct UploadRecipeImageView: View {
                     viewModel.perform(.selectedCamera)
                 }
             }
-            .navigationTitle("Add your recipe's image")
+            .navigationTitle("Upload")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
