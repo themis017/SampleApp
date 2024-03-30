@@ -55,7 +55,7 @@ public struct UploadRecipeImageView: View {
             
             VStack(spacing: 0) {
                     
-                SegmentedProgressBar(numberOfSegments: 3, currentSegment: 1)
+                SegmentedProgressBar(numberOfSegments: 4, currentSegment: 1)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 16)
                 
@@ -101,8 +101,8 @@ public struct UploadRecipeImageView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: UploadRecipeNameView(
-                    viewModel: viewModel.makeUploadRecipeNameViewModel())) {
+                NavigationLink(destination: UploadRecipeInfoView(
+                    viewModel: viewModel.makeUploadRecipeInfoViewModel())) {
                         
                         Text("Continue")
                             .foregroundColor(.white)

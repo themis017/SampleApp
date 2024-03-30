@@ -18,7 +18,6 @@ public class UploadRecipeImageViewModel: ViewModel {
         case selectedPhotoLibrary
         case selectedCamera
         case showRecipeImage
-        case showUploadRecipeName
     }
     
     @Published
@@ -34,9 +33,6 @@ public class UploadRecipeImageViewModel: ViewModel {
     var isConfirmationDialogPresented: Bool = false
     
     var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
-    
-    @Published
-    var showUploadRecipeName: Bool = false
     
     private let uploadRecipeUseCase: UploadRecipeUseCaseProviding
     
@@ -70,13 +66,11 @@ public class UploadRecipeImageViewModel: ViewModel {
             uploadRecipeUseCase.checkCameraPermission()
         case .showRecipeImage:
             uploadRecipeUseCase.showRecipeImage()
-        case .showUploadRecipeName:
-            showUploadRecipeName = true
         }
     }
     
-    public func makeUploadRecipeNameViewModel() -> UploadRecipeNameViewModel {
-        UploadRecipeNameViewModel(uploadRecipeUseCase: uploadRecipeUseCase)
+    public func makeUploadRecipeInfoViewModel() -> UploadRecipeInfoViewModel {
+        UploadRecipeInfoViewModel(uploadRecipeUseCase: uploadRecipeUseCase)
     }
 }
 

@@ -30,7 +30,7 @@ public struct RecipeView: View {
                     
                     ScrollView {
                         
-                        Text(recipe.title)
+                        Text(recipe.title.rawValue)
                             .font(.title)
                             .foregroundStyle(Color.black)
                         
@@ -73,7 +73,7 @@ public struct RecipeView: View {
                         VStack(alignment: .leading, spacing: 16) {
                             
                             Group {
-                                Text(recipe.description)
+                                Text(recipe.description.rawValue)
                                     .font(.body)
                                     .foregroundStyle(Color.black)
                                 

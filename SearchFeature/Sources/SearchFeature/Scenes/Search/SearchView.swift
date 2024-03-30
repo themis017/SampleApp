@@ -117,7 +117,7 @@ public struct SearchView: View {
                                 .flexible(.horizontal)
                                 .frame(maxHeight: 150)
                                 .overlay(alignment: .bottomLeading) {
-                                    Text(recipe.title)
+                                    Text(recipe.title.rawValue)
                                         .font(.body)
                                         .foregroundStyle(Color.black)
                                         .padding(.horizontal, 8)
@@ -145,7 +145,7 @@ public struct SearchView: View {
                             .resizable()
                             .aspectRatio(16 / 9, contentMode: .fit)
                             .overlay(alignment: .bottomLeading) {
-                                Text(recipe.title)
+                                Text(recipe.title.rawValue)
                                     .font(.title2)
                                     .foregroundStyle(Color.black)
                                     .background(Color.white.opacity(0.8))

@@ -82,7 +82,7 @@ public class SearchUseCase: SearchUseCaseProviding {
     private func searchRecipes(for query: String) {
         let totalRecipes = Recipe.previewHomeExamples
         
-        searchedRecipes.value = totalRecipes.filter({ $0.title.lowercased().contains(query.lowercased()) })
+        searchedRecipes.value = totalRecipes.filter({ $0.title.rawValue.lowercased().contains(query.lowercased()) })
     }
     
     private func searchUsers(for query: String) {

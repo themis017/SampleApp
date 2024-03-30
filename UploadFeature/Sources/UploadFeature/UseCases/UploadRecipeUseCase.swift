@@ -18,6 +18,7 @@ public protocol UploadRecipeUseCaseProviding {
     var userProfile: Observable<UserProfile?> { get }
     var uploadRecipeImageScene: Observable<UploadRecipeImageScene> { get }
     var selectedImage: Observable<UIImage?> { get }
+    var recipeTitle: Observable<String> { get }
        
     func showRecipeImage()
     func checkPhotoLibraryPermission()
@@ -29,6 +30,7 @@ public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
     public let userProfile: Observable<UserProfile?>
     public let selectedImage: Observable<UIImage?>
     public let uploadRecipeImageScene: Observable<UploadRecipeImageScene>
+    public let recipeTitle: Observable<String>
     
     private var subscriptions: Set<AnyCancellable> = []
     
@@ -40,6 +42,7 @@ public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
         self.userProfile = Observable(initialValue: AppData.shared.value(of: .userProfile))
         self.selectedImage = Observable(initialValue: nil)
         self.uploadRecipeImageScene = Observable(initialValue: .recipeImage)
+        self.recipeTitle = Observable(initialValue: "")
         
         AppData.shared
             .userProfilePublisher
@@ -124,11 +127,13 @@ public class PreviewUploadRecipeUseCase: UploadRecipeUseCaseProviding {
     public var userProfile: Observable<UserProfile?>
     public var selectedImage: Observable<UIImage?>
     public var uploadRecipeImageScene: Observable<UploadRecipeImageScene>
+    public var recipeTitle: Observable<String>
     
     public init() {
         self.userProfile = Observable(initialValue: UserProfile.principalUser)
         self.selectedImage = Observable(initialValue: nil)
         self.uploadRecipeImageScene = Observable(initialValue: .recipeImage)
+        self.recipeTitle = Observable(initialValue: "Recipe Title")
     }
     
     public func showRecipeImage() {}

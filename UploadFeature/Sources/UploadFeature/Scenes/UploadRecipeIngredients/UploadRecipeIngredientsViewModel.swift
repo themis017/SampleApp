@@ -1,8 +1,8 @@
 //
-//  UploadRecipeNameViewModel.swift
+//  UploadRecipeIngredientsViewModel.swift
 //
 //
-//  Created by Themis Makedas on 11/3/24.
+//  Created by Themis  on 30/3/24.
 //
 
 import Foundation
@@ -11,10 +11,10 @@ import ApplicationLayer
 import UILayer
 
 @MainActor
-public class UploadRecipeNameViewModel: ViewModel {
+public class UploadRecipeIngredientsViewModel: ViewModel {
     
     public enum Action {
-        case continueAction
+        case showRecipeMethod
     }
     
     @Published
@@ -35,19 +35,24 @@ public class UploadRecipeNameViewModel: ViewModel {
     
     public func perform(_ action: Action) {
         switch action {
-        case .continueAction:
+        case .showRecipeMethod:
             break
+//            uploadRecipeUseCase.showRecipeMethod()
         }
+    }
+    
+    public func makeUploadRecipeMethodViewModel() -> UploadRecipeMethodViewModel {
+        UploadRecipeMethodViewModel(uploadRecipeUseCase: uploadRecipeUseCase)
     }
 }
 
 #if DEBUG
 
-public extension UploadRecipeNameViewModel {
+public extension UploadRecipeIngredientsViewModel {
     
-    static func previewViewModel() -> UploadRecipeNameViewModel {
+    static func previewViewModel() -> UploadRecipeIngredientsViewModel {
         let previewUseCase = PreviewUploadRecipeUseCase()
-        return UploadRecipeNameViewModel(uploadRecipeUseCase: previewUseCase)
+        return UploadRecipeIngredientsViewModel(uploadRecipeUseCase: previewUseCase)
     }
 }
 

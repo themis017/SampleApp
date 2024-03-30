@@ -26,7 +26,7 @@ public struct RecipeResultRow: View {
                 
                 VStack(alignment: .leading, spacing: 4) {
                     
-                    Text(recipe.title)
+                    Text(recipe.title.rawValue)
                         .font(.body)
                         .foregroundStyle(Color.black)
                     

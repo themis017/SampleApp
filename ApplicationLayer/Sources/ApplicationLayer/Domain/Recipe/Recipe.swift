@@ -12,8 +12,8 @@ public struct Recipe: Identifiable, Equatable, Codable {
     
     public var id: String
     public var iconAsseTitle: String
-    public var title: String
-    public var description: String
+    public var title: RecipeTitle
+    public var description: Description
     public var ingredients: String
     public var method: String
     public var serves: Int
@@ -64,13 +64,13 @@ public struct Recipe: Identifiable, Equatable, Codable {
         Recipe(
             id: "1",
             iconAsseTitle: "Recipe_1",
-            title: "Recipe_1",
-            description: "Description_1",
+            title: RecipeTitle(rawValue: "Recipe_1")!,
+            description: Description(rawValue: "Description_1")!,
             ingredients: """
             \u{2022} 1 x 700 g jar of chickpeas
             \u{2022} ½ a clove of garlic
             \u{2022} ground cumin
-            \u{2022} extra virgin olive oil
+            \u{2022} extra virgDescription(rawValue: in olive oil
             \u{2022} 2 tablespoons tahini
             \u{2022} 2 tablespoons tahini
             \u{2022} 1 lemon
@@ -96,8 +96,8 @@ public struct Recipe: Identifiable, Equatable, Codable {
         Recipe(
             id: "2",
             iconAsseTitle: "Recipe_2",
-            title: "Recipe_2",
-            description: "Description_2",
+            title: RecipeTitle(rawValue: "Recipe_2")!,
+            description: Description(rawValue: "Description_2")!,
             ingredients: """
             \u{2022} 1 x 700 g jar of chickpeas
             \u{2022} ½ a clove of garlic
@@ -128,8 +128,8 @@ public struct Recipe: Identifiable, Equatable, Codable {
         Recipe(
             id: "3",
             iconAsseTitle: "Recipe_3",
-            title: "Recipe_3",
-            description: "Description_3",
+            title: RecipeTitle(rawValue: "Recipe_3")!,
+            description: Description(rawValue: "Description_3")!,
             ingredients: """
         \u{2022} 1 x 700 g jar of chickpeas
         \u{2022} ½ a clove of garlic
@@ -160,8 +160,8 @@ public struct Recipe: Identifiable, Equatable, Codable {
         Recipe(
             id: "4",
             iconAsseTitle: "Recipe_4",
-            title: "Recipe_4",
-            description: "Description_4",
+            title: RecipeTitle(rawValue: "Recipe_4")!,
+            description: Description(rawValue: "Description_4")!,
             ingredients: """
             \u{2022} 1 x 700 g jar of chickpeas
             \u{2022} ½ a clove of garlic
@@ -192,8 +192,8 @@ public struct Recipe: Identifiable, Equatable, Codable {
         Recipe(
             id: "5",
             iconAsseTitle: "Recipe_5",
-            title: "Recipe_5",
-            description: "Description_5",
+            title: RecipeTitle(rawValue: "Recipe_5")!,
+            description: Description(rawValue: "Description_5")!,
             ingredients: """
             \u{2022} 1 x 700 g jar of chickpeas
             \u{2022} ½ a clove of garlic
@@ -224,8 +224,8 @@ public struct Recipe: Identifiable, Equatable, Codable {
         Recipe(
             id: "6",
             iconAsseTitle: "Recipe_6",
-            title: "Recipe_6",
-            description: "Description_6",
+            title: RecipeTitle(rawValue: "Recipe_6")!,
+            description: Description(rawValue: "Description_6")!,
             ingredients: """
             \u{2022} 1 x 700 g jar of chickpeas
             \u{2022} ½ a clove of garlic
@@ -256,8 +256,8 @@ public struct Recipe: Identifiable, Equatable, Codable {
         Recipe(
             id: "7",
             iconAsseTitle: "Recipe_7",
-            title: "Recipe_7",
-            description: "Description_7",
+            title: RecipeTitle(rawValue: "Recipe_7")!,
+            description: Description(rawValue: "Description_7")!,
             ingredients: """
             \u{2022} 1 x 700 g jar of chickpeas
             \u{2022} ½ a clove of garlic
@@ -288,8 +288,8 @@ public struct Recipe: Identifiable, Equatable, Codable {
         Recipe(
             id: "8",
             iconAsseTitle: "Recipe_8",
-            title: "Recipe_8",
-            description: "Description_8",
+            title: RecipeTitle(rawValue: "Recipe_8")!,
+            description: Description(rawValue: "Description_8")!,
             ingredients: """
             \u{2022} 1 x 700 g jar of chickpeas
             \u{2022} ½ a clove of garlic
@@ -320,8 +320,8 @@ public struct Recipe: Identifiable, Equatable, Codable {
         Recipe(
             id: "9",
             iconAsseTitle: "Recipe_9",
-            title: "Recipe_9",
-            description: "Description_9",
+            title: RecipeTitle(rawValue: "Recipe_9")!,
+            description: Description(rawValue: "Description_9")!,
             ingredients: """
             \u{2022} 1 x 700 g jar of chickpeas
             \u{2022} ½ a clove of garlic
@@ -352,8 +352,8 @@ public struct Recipe: Identifiable, Equatable, Codable {
         Recipe(
             id: "10",
             iconAsseTitle: "Recipe_10",
-            title: "Recipe_10",
-            description: "Description_10",
+            title: RecipeTitle(rawValue: "Recipe_10")!,
+            description: Description(rawValue: "Description_10")!,
             ingredients: """
             \u{2022} 1 x 700 g jar of chickpeas
             \u{2022} ½ a clove of garlic
