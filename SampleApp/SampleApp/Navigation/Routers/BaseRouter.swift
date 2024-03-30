@@ -54,6 +54,13 @@ open class BaseRouter {
     }
     
     @MainActor
+    public func dismissSheet(animated: Bool) {
+        DispatchQueue.main.async {
+            self.navigationController.dismiss(animated: animated, completion: nil)
+        }
+    }
+    
+    @MainActor
     public func dismissToRoot(for selectedTab: TabBarCategory) {
         TabBarRoutes.shared.tabBarRoutingControllers[selectedTab] = []
         removeViewControllers(for: selectedTab)

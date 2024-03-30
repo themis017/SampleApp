@@ -28,7 +28,6 @@ public struct UploadRecipeInfoView: View {
         VStack(spacing: 16) {
             
             SegmentedProgressBar(numberOfSegments: 4, currentSegment: 2)
-//                .padding(.horizontal, 16)
                 .padding(.top, 16)
             
             InputField(
@@ -37,7 +36,6 @@ public struct UploadRecipeInfoView: View {
                 value: $viewModel.recipeTitle,
                 errorValue: $viewModel.recipeTitleError
             )
-            
             
             
             Spacer()
@@ -52,7 +50,6 @@ public struct UploadRecipeInfoView: View {
                         .background {
                             RoundedRectangle(cornerRadius: 16)
                         }
-//                        .padding(.horizontal, 16)
                 }
                 .disabled(!viewModel.isContinueEnabled)
         }
@@ -73,7 +70,7 @@ public struct UploadRecipeInfoView: View {
             
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    presentationMode.wrappedValue.dismiss()
+                    viewModel.perform(.dismiss)
                 } label: {
                     Image(systemName: "xmark")
                         .resizable()

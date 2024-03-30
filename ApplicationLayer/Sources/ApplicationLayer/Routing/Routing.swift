@@ -11,6 +11,7 @@ public protocol Routing {
     
     func showUploadScene()
     func popScene(animated: Bool)
+    func dismissSheet(animated: Bool)
     func dismissToRoot(for selectedTab: TabBarCategory)
     func showPath(for selectedTab: TabBarCategory)
 }

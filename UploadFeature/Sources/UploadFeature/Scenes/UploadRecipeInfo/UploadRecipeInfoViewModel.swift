@@ -13,6 +13,10 @@ import UILayer
 @MainActor
 public class UploadRecipeInfoViewModel: ViewModel {
     
+    public enum Action {
+        case dismiss
+    }
+    
     @Published
     var userProfile: UserProfile?
     
@@ -48,6 +52,13 @@ public class UploadRecipeInfoViewModel: ViewModel {
                 self?.recipeTitleError = recipeTitleValueError
             }
             .store(in: &subscriptions)
+    }
+    
+    public func perform(_ action: Action) {
+        switch action {
+        case .dismiss:
+            uploadRecipeUseCase.dismiss()
+        }
     }
     
     public func makeUploadRecipeIngredientsViewModel() -> UploadRecipeIngredientsViewModel {
