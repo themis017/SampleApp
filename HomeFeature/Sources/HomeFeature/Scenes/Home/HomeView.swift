@@ -34,7 +34,7 @@ public struct HomeView: View {
                                 .resizable()
                                 .aspectRatio(16 / 9, contentMode: .fit)
                                 .overlay(alignment: .bottomLeading) {
-                                    Text(recipe.title)
+                                    Text(recipe.title.rawValue)
                                         .font(.title2)
                                         .foregroundStyle(Color.black)
                                         .background(Color.white.opacity(0.8))
