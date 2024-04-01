@@ -15,6 +15,7 @@ public class UploadRecipeInfoViewModel: ViewModel {
     
     public enum Action {
         case dismiss
+        case selectedDifficulty(Int)
     }
     
     @Published
@@ -26,8 +27,24 @@ public class UploadRecipeInfoViewModel: ViewModel {
     @Published
     var recipeTitleError: RecipeTitleValueError? = .emptyValue
     
+    @DescriptionValidated
+    var description: String = ""
+    
+    @Published
+    var descriptionError: DescriptionValueError?
+    
+    @Published
+    var selectedHourIndex: Int = 0
+    
+    @Published
+    var selectedMinuteIndex: Int = 0
+    
+    @Published
+    var recipeDifficulty: RecipeDifficulty = .veryEasy
+    
     public var isContinueEnabled: Bool {
-        recipeTitleError == nil
+        recipeTitleError == nil &&
+        descriptionError == nil
     }
     
     private let uploadRecipeUseCase: UploadRecipeUseCaseProviding
@@ -45,11 +62,25 @@ public class UploadRecipeInfoViewModel: ViewModel {
         forward(_recipeTitle.recipeTitlePublisher, to: uploadRecipeUseCase.recipeTitle)
             .store(in: &subscriptions)
         
+        forward(_description.descriptionPublisher, to: uploadRecipeUseCase.description)
+            .store(in: &subscriptions)
+                
+        forward($recipeDifficulty, to: uploadRecipeUseCase.recipeDifficulty)
+            .store(in: &subscriptions)
+        
         _recipeTitle.recipeTitleErrorPublisher
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] recipeTitleValueError in
                 self?.recipeTitleError = recipeTitleValueError
+            }
+            .store(in: &subscriptions)
+        
+        _description.descriptionErrorPublisher
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] descriptionValueError in
+                self?.descriptionError = descriptionValueError
             }
             .store(in: &subscriptions)
     }
@@ -58,6 +89,12 @@ public class UploadRecipeInfoViewModel: ViewModel {
         switch action {
         case .dismiss:
             uploadRecipeUseCase.dismiss()
+        case .selectedDifficulty(let difficulty):
+            guard let updatedRecipeDifficulty = RecipeDifficulty(rawValue: difficulty) else {
+                return
+            }
+            
+            recipeDifficulty = updatedRecipeDifficulty
         }
     }
     

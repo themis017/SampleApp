@@ -19,6 +19,10 @@ public protocol UploadRecipeUseCaseProviding {
     var uploadRecipeImageScene: Observable<UploadRecipeImageScene> { get }
     var selectedImage: Observable<UIImage?> { get }
     var recipeTitle: Observable<String> { get }
+    var description: Observable<String> { get }
+    var selectedHourIndex: Observable<Int> { get }
+    var selectedMinuteIndex: Observable<Int> { get }
+    var recipeDifficulty: Observable<RecipeDifficulty> { get }
        
     func showRecipeImage()
     func checkPhotoLibraryPermission()
@@ -32,6 +36,10 @@ public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
     public let selectedImage: Observable<UIImage?>
     public let uploadRecipeImageScene: Observable<UploadRecipeImageScene>
     public let recipeTitle: Observable<String>
+    public let description: Observable<String>
+    public let selectedHourIndex: Observable<Int>
+    public let selectedMinuteIndex: Observable<Int>
+    public let recipeDifficulty: Observable<RecipeDifficulty>
     
     private var subscriptions: Set<AnyCancellable> = []
     
@@ -44,6 +52,10 @@ public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
         self.selectedImage = Observable(initialValue: nil)
         self.uploadRecipeImageScene = Observable(initialValue: .recipeImage)
         self.recipeTitle = Observable(initialValue: "")
+        self.description = Observable(initialValue: "")
+        self.selectedHourIndex = Observable(initialValue: 0)
+        self.selectedMinuteIndex = Observable(initialValue: 0)
+        self.recipeDifficulty = Observable(initialValue: .veryEasy)
         
         AppData.shared
             .userProfilePublisher
@@ -133,12 +145,20 @@ public class PreviewUploadRecipeUseCase: UploadRecipeUseCaseProviding {
     public var selectedImage: Observable<UIImage?>
     public var uploadRecipeImageScene: Observable<UploadRecipeImageScene>
     public var recipeTitle: Observable<String>
+    public var description: Observable<String>
+    public var selectedHourIndex: Observable<Int>
+    public var selectedMinuteIndex: Observable<Int>
+    public var recipeDifficulty: Observable<RecipeDifficulty>
     
     public init() {
         self.userProfile = Observable(initialValue: UserProfile.principalUser)
         self.selectedImage = Observable(initialValue: nil)
         self.uploadRecipeImageScene = Observable(initialValue: .recipeImage)
         self.recipeTitle = Observable(initialValue: "Recipe Title")
+        self.description = Observable(initialValue: "Description")
+        self.selectedHourIndex = Observable(initialValue: 1)
+        self.selectedMinuteIndex = Observable(initialValue: 30)
+        self.recipeDifficulty = Observable(initialValue: .medium)
     }
     
     public func showRecipeImage() {}

@@ -28,4 +28,6 @@ public struct Description: RawRepresentable, Equatable, Codable {
         
         return nil
     }
+    
+    public static var empty: Description = Description(rawValue: "")!
 }
