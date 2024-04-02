@@ -14,11 +14,15 @@ import UILayer
 public class UploadRecipeMethodViewModel: ViewModel {
     
     public enum Action {
+        case dismiss
         case upload
     }
     
     @Published
     var userProfile: UserProfile?
+    
+    @Published
+    var method: String = ""
     
     private let uploadRecipeUseCase: UploadRecipeUseCaseProviding
     
@@ -31,13 +35,17 @@ public class UploadRecipeMethodViewModel: ViewModel {
         
         bind(\.userProfile, to: uploadRecipeUseCase.userProfile)
             .store(in: &subscriptions)
+        
+        forward($method, to: uploadRecipeUseCase.method)
+            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {
         switch action {
+        case .dismiss:
+            uploadRecipeUseCase.dismiss()
         case .upload:
-            break
-//            uploadRecipeUseCase.upload()
+            uploadRecipeUseCase.upload()
         }
     }
 }

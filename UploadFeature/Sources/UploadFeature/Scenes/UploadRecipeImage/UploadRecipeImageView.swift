@@ -112,6 +112,7 @@ public struct UploadRecipeImageView: View {
                                 RoundedRectangle(cornerRadius: 16)
                             }
                             .padding(.horizontal, 16)
+                            .padding(.bottom, 16)
                     }
             }
             .confirmationDialog("Upload a photo from your ...", isPresented: $viewModel.isConfirmationDialogPresented, titleVisibility: .visible) {

@@ -17,7 +17,8 @@ public struct UploadRecipeIngredientsView: View {
     @ObservedObject
     private var viewModel: UploadRecipeIngredientsViewModel
     
-    @State var text = "\u{2022} "
+    @State 
+    var text = "\u{2022} "
     
     public static let sceneIdentity = "UploadRecipeIngredientsView"
     
@@ -67,6 +68,7 @@ public struct UploadRecipeIngredientsView: View {
                         .background {
                             RoundedRectangle(cornerRadius: 16)
                         }
+                        .padding(.bottom, 16)
                 }
         }
         .padding(.horizontal, 16)

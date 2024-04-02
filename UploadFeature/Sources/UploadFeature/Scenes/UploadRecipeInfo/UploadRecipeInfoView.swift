@@ -134,6 +134,7 @@ public struct UploadRecipeInfoView: View {
                         }
                 }
                 .disabled(!viewModel.isContinueEnabled)
+                .padding(.bottom, 16)
         }
         .padding(.horizontal, 16)
         .navigationTitle("Info")

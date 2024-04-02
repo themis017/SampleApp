@@ -30,6 +30,7 @@ public protocol UploadRecipeUseCaseProviding {
     func checkPhotoLibraryPermission()
     func checkCameraPermission()
     func dismiss()
+    func upload()
 }
 
 public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
@@ -141,6 +142,12 @@ public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
     public func dismiss() {
         uploadRouter.dismissSheet(animated: true)
     }
+    
+    public func upload() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.uploadRouter.dismissSheet(animated: true)
+        }
+    }
 }
 
 #if DEBUG
@@ -175,6 +182,7 @@ public class PreviewUploadRecipeUseCase: UploadRecipeUseCaseProviding {
     public func checkPhotoLibraryPermission() {}
     public func checkCameraPermission() {}
     public func dismiss() {}
+    public func upload() {}
 }
 
 #endif

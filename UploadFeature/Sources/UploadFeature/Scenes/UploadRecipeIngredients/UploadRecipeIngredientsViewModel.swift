@@ -22,9 +22,6 @@ public class UploadRecipeIngredientsViewModel: ViewModel {
     
     @Published
     var ingredients: String = ""
-        
-    @Published
-    var ingredientsValueError: NoneValueError?
     
     private let uploadRecipeUseCase: UploadRecipeUseCaseProviding
     
