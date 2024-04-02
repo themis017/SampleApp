@@ -14,11 +14,20 @@ import UILayer
 public class UploadRecipeIngredientsViewModel: ViewModel {
     
     public enum Action {
+        case dismiss
         case showRecipeMethod
     }
     
     @Published
     var userProfile: UserProfile?
+    
+    @Published
+    var ingredients: String = "\u{2022}"
+    
+    private var previousIngredients: String = "\u{2022}"
+    
+    @Published
+    var ingredientsValueError: NoneValueError?
     
     private let uploadRecipeUseCase: UploadRecipeUseCaseProviding
     
@@ -31,10 +40,31 @@ public class UploadRecipeIngredientsViewModel: ViewModel {
         
         bind(\.userProfile, to: uploadRecipeUseCase.userProfile)
             .store(in: &subscriptions)
+        
+        forward($ingredients, to: uploadRecipeUseCase.ingredients)
+            .store(in: &subscriptions)
+        
+//        $ingredients
+//            .sink { [weak self] newValue in
+//                                
+//                guard let self = self,
+//                      newValue.suffix(1) == "\n" && newValue > self.previousIngredients else {
+//                    
+////                    self?.ingredients.append("2")
+//                    self?.previousIngredients = newValue
+//                    return
+//                }
+//                
+//                self.ingredients.append("1")//.append("\u{2022}")
+//                self.previousIngredients = self.ingredients
+//            }
+//            .store(in: &subscriptions)
     }
     
     public func perform(_ action: Action) {
         switch action {
+        case .dismiss:
+            uploadRecipeUseCase.dismiss()
         case .showRecipeMethod:
             break
 //            uploadRecipeUseCase.showRecipeMethod()

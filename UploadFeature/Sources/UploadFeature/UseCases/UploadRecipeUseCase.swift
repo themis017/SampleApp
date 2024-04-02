@@ -23,6 +23,8 @@ public protocol UploadRecipeUseCaseProviding {
     var selectedHourIndex: Observable<Int> { get }
     var selectedMinuteIndex: Observable<Int> { get }
     var recipeDifficulty: Observable<RecipeDifficulty> { get }
+    var ingredients: Observable<String> { get }
+    var method: Observable<String> { get }
        
     func showRecipeImage()
     func checkPhotoLibraryPermission()
@@ -40,6 +42,8 @@ public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
     public let selectedHourIndex: Observable<Int>
     public let selectedMinuteIndex: Observable<Int>
     public let recipeDifficulty: Observable<RecipeDifficulty>
+    public let ingredients: Observable<String>
+    public let method: Observable<String>
     
     private var subscriptions: Set<AnyCancellable> = []
     
@@ -56,6 +60,8 @@ public class UploadRecipeUseCase: UploadRecipeUseCaseProviding {
         self.selectedHourIndex = Observable(initialValue: 0)
         self.selectedMinuteIndex = Observable(initialValue: 0)
         self.recipeDifficulty = Observable(initialValue: .veryEasy)
+        self.ingredients = Observable(initialValue: "")
+        self.method = Observable(initialValue: "")
         
         AppData.shared
             .userProfilePublisher
@@ -149,6 +155,8 @@ public class PreviewUploadRecipeUseCase: UploadRecipeUseCaseProviding {
     public var selectedHourIndex: Observable<Int>
     public var selectedMinuteIndex: Observable<Int>
     public var recipeDifficulty: Observable<RecipeDifficulty>
+    public var ingredients: Observable<String>
+    public var method: Observable<String>
     
     public init() {
         self.userProfile = Observable(initialValue: UserProfile.principalUser)
@@ -159,6 +167,8 @@ public class PreviewUploadRecipeUseCase: UploadRecipeUseCaseProviding {
         self.selectedHourIndex = Observable(initialValue: 1)
         self.selectedMinuteIndex = Observable(initialValue: 30)
         self.recipeDifficulty = Observable(initialValue: .medium)
+        self.ingredients = Observable(initialValue: "Ingredients")
+        self.method = Observable(initialValue: "Ingredients")
     }
     
     public func showRecipeImage() {}
