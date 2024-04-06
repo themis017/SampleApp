@@ -22,8 +22,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             let navigationController = UINavigationController(rootViewController: UIHostingController(rootView: ContentView()))
             
-            navigationController.isNavigationBarHidden = true
             navigationController.overrideUserInterfaceStyle = .light
+            navigationController.isNavigationBarHidden = false
+            navigationController.setToolbarHidden(false, animated: false)
+            
+            navigationController.navigationBar.backItem?.title = ""
+            navigationController.navigationBar.backIndicatorImage = UIImage()
+            navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage() 
             
             window = UIWindow(windowScene: windowScene)
             window?.rootViewController = navigationController

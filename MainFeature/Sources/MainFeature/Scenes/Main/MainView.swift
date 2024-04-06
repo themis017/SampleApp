@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UILayer
 import HomeFeature
 import SearchFeature
 import FavouritesFeature
@@ -39,8 +40,12 @@ public struct MainView: View {
                 UserProfileView(viewModel: viewModel.userProfileViewModel)
             }
         }
-        .tabBar(selectedTab: viewModel.selectedTab) { selectedTab in
-            viewModel.perform(.selectedTab(selectedTab))
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                TabBar(selectedTab: viewModel.selectedTab) { selectedTab in
+                    viewModel.perform(.selectedTab(selectedTab))
+                }
+            }
         }
     }
 }

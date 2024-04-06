@@ -31,38 +31,36 @@ public struct SearchView: View {
     
     public var body: some View {
         
-        NavigationView {
+        VStack(spacing: 0) {
             
-            VStack(spacing: 0) {
-                
-                if !viewModel.isSearching {
-                    switch viewModel.searchFilter {
-                    case .recipes:
-                        popularRecipesView
-                    case .users:
-                        popularUsersView
-                    }
-                } else {
-                    switch viewModel.searchFilter {
-                    case .recipes:
-                        searchedRecipesView
-                    case .users:
-                        searchedUsersView
-                    }
+            if !viewModel.isSearching {
+                switch viewModel.searchFilter {
+                case .recipes:
+                    popularRecipesView
+                case .users:
+                    popularUsersView
+                }
+            } else {
+                switch viewModel.searchFilter {
+                case .recipes:
+                    searchedRecipesView
+                case .users:
+                    searchedUsersView
                 }
             }
-            .searchable(text: $viewModel.searchQuery)
-            .onSubmit(of: .search) {
-                viewModel.perform(.searchResults)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    menuView
-                }
-            }
-            .navigationTitle(viewModel.searchFilter == .recipes ? "Search recipes" : "Search Users")
-            .navigationBarTitleDisplayMode(.inline)
         }
+        .searchable(text: $viewModel.searchQuery)
+        .onSubmit(of: .search) {
+            viewModel.perform(.searchResults)
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                menuView
+            }
+        }
+//        .navigationTitle("")
+        .navigationTitle(viewModel.searchFilter == .recipes ? "Search recipes" : "Search Users")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     private var menuView: some View {

@@ -22,41 +22,39 @@ public struct HomeView: View {
     
     public var body: some View {
         
-        NavigationView {
-            ScrollView {
-                LazyVStack(spacing: 16) {
-                    ForEach(viewModel.recipes) { recipe in
-                        
-                        Button {
-                            viewModel.perform(.showRecipe(recipe))
-                        } label: {
-                            Image(recipe.iconAsseTitle)
-                                .resizable()
-                                .aspectRatio(16 / 9, contentMode: .fit)
-                                .overlay(alignment: .bottomLeading) {
-                                    Text(recipe.title.rawValue)
-                                        .font(.title2)
-                                        .foregroundStyle(Color.black)
-                                        .background(Color.white.opacity(0.8))
-                                }
-                        }
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                        .padding(.horizontal, 16)
+        ScrollView {
+            LazyVStack(spacing: 16) {
+                ForEach(viewModel.recipes) { recipe in
+                    
+                    Button {
+                        viewModel.perform(.showRecipe(recipe))
+                    } label: {
+                        Image(recipe.iconAsseTitle)
+                            .resizable()
+                            .aspectRatio(16 / 9, contentMode: .fit)
+                            .overlay(alignment: .bottomLeading) {
+                                Text(recipe.title.rawValue)
+                                    .font(.title2)
+                                    .foregroundStyle(Color.black)
+                                    .background(Color.white.opacity(0.8))
+                            }
                     }
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .padding(.horizontal, 16)
                 }
             }
-//            .navigationBarHidden(false)
-            .navigationBarTitleDisplayMode(.inline)
-            .safeAreaInset(edge: .top,
-                           content: {
-                Color.clear
-                    .frame(height: 0)
-                    .background(.bar)
-                    .border(.black)
-            })
-            .refreshable {
-                viewModel.perform(.refresh)
-            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("")
+        .safeAreaInset(edge: .top,
+                       content: {
+            Color.clear
+                .frame(height: 0)
+                .background(.bar)
+                .border(.black)
+        })
+        .refreshable {
+            viewModel.perform(.refresh)
         }
     }
 }

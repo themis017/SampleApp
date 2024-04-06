@@ -32,100 +32,101 @@ public struct EditProfileView: View {
     
     public var body: some View {
         
-        NavigationView {
+        VStack(spacing: 0) {
             
-            VStack(spacing: 0) {
+            ScrollView {
                 
-                ScrollView {
+                VStack(spacing: 24) {
                     
-                    VStack(spacing: 24) {
-                        
-                        Button {
-                            viewModel.perform(.uplaodImage)
-                        } label: {
-                            Image("user")
-                                .resizable()
-                                .frame(width: 100, height: 100)
-                                .foregroundStyle(Color.black)
-                                .overlay(alignment: .bottomTrailing) {
-                                    Image(systemName: "camera")
-                                        .foregroundStyle(Color.black)
-                                        .padding(2)
-                                        .background(Color.white)
-                                        .cornerRadius(10)
-                                }
-                        }
-                        .padding(.top, 16)
-                        
-                        InputField(
-                            inputPrompt: "Email:",
-                            inputPlaceholder: "",
-                            value: $viewModel.email,
-                            errorValue: $viewModel.emailError,
-                            isValidating: $viewModel.isValidatingEmail
-                        )
-                        
-                        InputField(
-                            inputPrompt: "Username:",
-                            inputPlaceholder: "",
-                            value: $viewModel.username,
-                            errorValue: $viewModel.usernameError,
-                            isValidating: $viewModel.isValidatingUsername
-                        )
-                        
-                        InputField(
-                            inputPrompt: "Name:",
-                            inputPlaceholder: "",
-                            value: $viewModel.name,
-                            errorValue: $viewModel.nameError
-                        )
-                        
-                        InputEditor(
-                            inputPrompt: "Description:",
-                            inputPlaceholder: "",
-                            value: $viewModel.description,
-                            errorValue: $viewModel.descriptionError
-                        )
-                        .colorMultiply(Color(UIColor.systemGray6))
-                    }
-                    .padding(.horizontal, 16)
-                }
-                
-                Spacer()
-                
-                Button {
-                    viewModel.perform(.save)
-                } label: {
-                    Text("Save")
-                        .flexible(.horizontal)
-                }
-                .buttonStyle(.primary)
-                .disabled(!viewModel.isSaveEnabled)
-                .padding(16)
-            }
-            .background(Color(UIColor.systemGray6))
-            .onTapGesture {
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-            }
-            .navigationTitle("Edit profile")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        viewModel.perform(.dismiss)
+                        viewModel.perform(.uplaodImage)
                     } label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.black)
-                            .frame(width: 24, height: 24)
+                        Image("user")
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                            .foregroundStyle(Color.black)
+                            .overlay(alignment: .bottomTrailing) {
+                                Image(systemName: "camera")
+                                    .foregroundStyle(Color.black)
+                                    .padding(2)
+                                    .background(Color.white)
+                                    .cornerRadius(10)
+                            }
                     }
+                    .padding(.top, 16)
+                    
+                    InputField(
+                        inputPrompt: "Email:",
+                        inputPlaceholder: "",
+                        value: $viewModel.email,
+                        errorValue: $viewModel.emailError,
+                        isValidating: $viewModel.isValidatingEmail
+                    )
+                    
+                    InputField(
+                        inputPrompt: "Username:",
+                        inputPlaceholder: "",
+                        value: $viewModel.username,
+                        errorValue: $viewModel.usernameError,
+                        isValidating: $viewModel.isValidatingUsername
+                    )
+                    
+                    InputField(
+                        inputPrompt: "Name:",
+                        inputPlaceholder: "",
+                        value: $viewModel.name,
+                        errorValue: $viewModel.nameError
+                    )
+                    
+                    InputEditor(
+                        inputPrompt: "Description:",
+                        inputPlaceholder: "",
+                        value: $viewModel.description,
+                        errorValue: $viewModel.descriptionError
+                    )
+                    .colorMultiply(Color(UIColor.systemGray6))
+                }
+                .padding(.horizontal, 16)
+            }
+            
+            Spacer()
+            
+            Button {
+                viewModel.perform(.save)
+            } label: {
+                Text("Save")
+                    .flexible(.horizontal)
+            }
+            .buttonStyle(.primary)
+            .disabled(!viewModel.isSaveEnabled)
+            .padding(16)
+        }
+        .background(Color(UIColor.systemGray6))
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationTitle("Edit profile")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    viewModel.perform(.dismiss)
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.black)
+                        .frame(width: 24, height: 24)
                 }
             }
-            .slideBack {
-                viewModel.perform(.dismiss)
+            
+            ToolbarItem(placement: .bottomBar) {
+                TabBar(selectedTab: viewModel.selectedTab) { selectedTab in
+                    viewModel.perform(.selectedTab(selectedTab))
+                }
             }
-            .tabBar(selectedTab: viewModel.selectedTab) { selectedTab in
-                viewModel.perform(.selectedTab(selectedTab))
-            }
+        }
+        .slideBack {
+            viewModel.perform(.dismiss)
         }
     }
 }

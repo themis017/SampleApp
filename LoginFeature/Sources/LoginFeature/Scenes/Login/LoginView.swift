@@ -26,64 +26,61 @@ public struct LoginView: View {
     
     public var body: some View {
         
-        NavigationView {
+        VStack(alignment: .leading, spacing: 0) {
             
-            VStack(alignment: .leading, spacing: 0) {
+            ScrollView {
                 
-                ScrollView {
+                VStack(alignment: .leading, spacing: 24) {
                     
-                    VStack(alignment: .leading, spacing: 24) {
-                        
-                        InputField(
-                            inputPrompt: "Username",
-                            inputPlaceholder: "Enter username",
-                            value: $viewModel.username,
-                            errorValue: $viewModel.usernameError
-                        )
-                        .focused($focusedField, equals: .username)
-                        
-                        PasswordInputField(
-                            inputPrompt: "Password",
-                            inputPlaceholder: "Enter password",
-                            value: $viewModel.password,
-                            errorValue: $viewModel.passwordError
-                        )
-                        .focused($focusedField, equals: .password)
-                    }
+                    InputField(
+                        inputPrompt: "Username",
+                        inputPlaceholder: "Enter username",
+                        value: $viewModel.username,
+                        errorValue: $viewModel.usernameError
+                    )
+                    .focused($focusedField, equals: .username)
+                    
+                    PasswordInputField(
+                        inputPrompt: "Password",
+                        inputPlaceholder: "Enter password",
+                        value: $viewModel.password,
+                        errorValue: $viewModel.passwordError
+                    )
+                    .focused($focusedField, equals: .password)
                 }
-                .padding(.bottom, 16)
-                .onSubmit {
-                    if focusedField == .username {
-                        focusedField = .password
-                    } else {
-                        focusedField = nil
-                    }
-                }
-                
-                Spacer()
-                
-                Button(action: {
-                    viewModel.perform(.login)
-                }) {
-                    Text("Log in")
-                        .flexible(.horizontal)
-                }
-                .buttonStyle(.primary)
-                .disabled(!viewModel.isLoginEnabled)
             }
-            .padding(16)
-            .background(.white)
-            .navigationTitle("Log in")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        viewModel.perform(.dismiss)
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.black)
-                            .frame(width: 24, height: 24)
-                    }
+            .padding(.bottom, 16)
+            .onSubmit {
+                if focusedField == .username {
+                    focusedField = .password
+                } else {
+                    focusedField = nil
+                }
+            }
+            
+            Spacer()
+            
+            Button(action: {
+                viewModel.perform(.login)
+            }) {
+                Text("Log in")
+                    .flexible(.horizontal)
+            }
+            .buttonStyle(.primary)
+            .disabled(!viewModel.isLoginEnabled)
+        }
+        .padding(16)
+        .background(.white)
+        .navigationTitle("Log in")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    viewModel.perform(.dismiss)
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.black)
+                        .frame(width: 24, height: 24)
                 }
             }
         }

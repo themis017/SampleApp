@@ -16,7 +16,7 @@ public struct UserProfileView: View {
     
     public static let sceneIdentity = "UserProfileView"
     
-    let amountToPullBeforeRefreshing: CGFloat = 250
+    let amountToPullBeforeRefreshing: CGFloat = 200
     
     public init(viewModel: UserProfileViewModel) {
         self.viewModel = viewModel
@@ -31,7 +31,7 @@ public struct UserProfileView: View {
     
     public var body: some View {
         
-        NavigationView {
+//        NavigationView {
             if let userProfile = viewModel.userProfile {
                 ScrollView {
                     
@@ -109,6 +109,7 @@ public struct UserProfileView: View {
                             viewModel.perform(.refresh)
                     }
                 }
+                .navigationTitle("")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
@@ -122,18 +123,18 @@ public struct UserProfileView: View {
                         }
                     }
                 }
+                .alert(isPresented: $viewModel.showingLogoutAlert) {
+                    Alert(
+                        title: Text("Log Out"),
+                        message: Text("Are you sure you want to log out?"),
+                        primaryButton: .default(Text("Cancel")),
+                        secondaryButton: .destructive(Text("Log Out"), action: {
+                            viewModel.perform(.logout)
+                        })
+                    )
+                }
             }
-        }
-        .alert(isPresented: $viewModel.showingLogoutAlert) {
-            Alert(
-                title: Text("Log Out"),
-                message: Text("Are you sure you want to log out?"),
-                primaryButton: .default(Text("Cancel")),
-                secondaryButton: .destructive(Text("Log Out"), action: {
-                    viewModel.perform(.logout)
-                })
-            )
-        }
+//        }
     }
     
     private var profileOptions: some View {

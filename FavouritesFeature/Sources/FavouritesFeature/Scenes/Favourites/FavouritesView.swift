@@ -29,28 +29,26 @@ public struct FavouritesView: View {
     
     public var body: some View {
         
-        NavigationView {
-            if let recipes = viewModel.recipes {
-                List {
-                    ForEach(recipes) { recipe in
-                        RecipeResultRow(recipe: recipe)
-                            .onTapGesture {
-                                viewModel.perform(.showRecipe(recipe))
+        if let recipes = viewModel.recipes {
+            List {
+                ForEach(recipes) { recipe in
+                    RecipeResultRow(recipe: recipe)
+                        .onTapGesture {
+                            viewModel.perform(.showRecipe(recipe))
+                        }
+                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                            Button(role: .destructive, action: {
+                                viewModel.perform(.removeRecipe(recipe))
+                            }) {
+                                Label("Delete", systemImage: "trash")
                             }
-                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                                Button(role: .destructive, action: {
-                                    viewModel.perform(.removeRecipe(recipe))
-                                }) {
-                                    Label("Delete", systemImage: "trash")
-                                }
-                            }
-                    }
+                        }
                 }
-                .flexible()
-                .background(Color(UIColor.systemGray6))
-                .navigationTitle("Favourite recipes")
-                .navigationBarTitleDisplayMode(.inline)
             }
+            .flexible()
+            .background(Color(UIColor.systemGray6))
+            .navigationTitle("Favourite recipes")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
