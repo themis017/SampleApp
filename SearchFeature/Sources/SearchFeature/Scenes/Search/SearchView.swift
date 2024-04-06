@@ -55,14 +55,13 @@ public struct SearchView: View {
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text("Temp text")
+                Text(viewModel.searchFilter == .recipes ? "Search recipes" : "Search Users")
             }
             
             ToolbarItem(placement: .navigationBarTrailing) {
                 menuView
             }
         }
-//        .navigationTitle("")
 //        .navigationTitle(viewModel.searchFilter == .recipes ? "Search recipes" : "Search Users")
         .navigationBarTitleDisplayMode(.inline)
     }
