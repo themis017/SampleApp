@@ -54,12 +54,16 @@ public struct SearchView: View {
             viewModel.perform(.searchResults)
         }
         .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Temp text")
+            }
+            
             ToolbarItem(placement: .navigationBarTrailing) {
                 menuView
             }
         }
 //        .navigationTitle("")
-        .navigationTitle(viewModel.searchFilter == .recipes ? "Search recipes" : "Search Users")
+//        .navigationTitle(viewModel.searchFilter == .recipes ? "Search recipes" : "Search Users")
         .navigationBarTitleDisplayMode(.inline)
     }
     
