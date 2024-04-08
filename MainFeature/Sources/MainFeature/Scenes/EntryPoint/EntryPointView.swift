@@ -59,6 +59,8 @@ public struct EntryPointView: View {
             .padding(.horizontal, 16)
         }
         .ignoresSafeArea()
+        .navigationTitle("")
+        .navigationBarBackButtonHidden(true)
     }
 }
 

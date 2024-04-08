@@ -59,7 +59,7 @@ public struct TabBar: View {
                     }
                 }
                 .padding(.vertical, 6)
-                .background(.gray.opacity(0.03))
+//                .background(.gray.opacity(0.03))
             }
             
             Button {

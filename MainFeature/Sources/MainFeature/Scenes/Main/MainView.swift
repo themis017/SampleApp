@@ -40,6 +40,8 @@ public struct MainView: View {
                 UserProfileView(viewModel: viewModel.userProfileViewModel)
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationTitle("")
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
                 TabBar(selectedTab: viewModel.selectedTab) { selectedTab in

@@ -48,8 +48,8 @@ public struct LoginView: View {
                     )
                     .focused($focusedField, equals: .password)
                 }
+                .padding(16)
             }
-            .padding(.bottom, 16)
             .onSubmit {
                 if focusedField == .username {
                     focusedField = .password
@@ -68,12 +68,21 @@ public struct LoginView: View {
             }
             .buttonStyle(.primary)
             .disabled(!viewModel.isLoginEnabled)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 24)
         }
-        .padding(16)
         .background(.white)
-        .navigationTitle("Log in")
+//        .navigationTitle("Log in")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
         .toolbar {
+            
+            ToolbarItem(placement: .principal) {
+                Text("Log in")
+                    .font(.title3)
+                    .foregroundStyle(Color.black)
+            }
+            
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
                     viewModel.perform(.dismiss)
@@ -90,6 +99,7 @@ public struct LoginView: View {
         .onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
+        .ignoresSafeArea(.container, edges: .bottom)
     }
 }
 
@@ -98,7 +108,9 @@ public struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     
     static var previews: some View {
-        LoginView(viewModel: .previewViewModel())
+        NavigationView {
+            LoginView(viewModel: .previewViewModel())
+        }
     }
 }
 

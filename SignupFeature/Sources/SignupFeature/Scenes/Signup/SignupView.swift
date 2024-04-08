@@ -74,8 +74,8 @@ public struct SignupView: View {
                     )
                     .focused($focusedField, equals: .retypedPassword)
                 }
+                .padding(16)
             }
-            .padding(.bottom, 16)
             .onSubmit {
                 if focusedField == .email {
                     focusedField = .username
@@ -100,13 +100,21 @@ public struct SignupView: View {
             }
             .buttonStyle(.primary)
             .disabled(!viewModel.isSignupEnabled)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 24)
         }
-        .padding(16)
         .background(.white)
-        .navigationTitle("Sign up")
+//        .navigationTitle("Sign up")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
+            
+            ToolbarItem(placement: .principal) {
+                Text("Sign up")
+                    .font(.title3)
+                    .foregroundStyle(Color.black)
+            }
+            
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
                     viewModel.perform(.dismiss)
@@ -123,6 +131,7 @@ public struct SignupView: View {
         .onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
+        .ignoresSafeArea(.container, edges: .bottom)
     }
 }
 
@@ -131,7 +140,9 @@ public struct SignupView: View {
 struct SignupView_Previews: PreviewProvider {
     
     static var previews: some View {
-        SignupView(viewModel: .previewViewModel())
+        NavigationView {
+            SignupView(viewModel: .previewViewModel())
+        }
     }
 }
 

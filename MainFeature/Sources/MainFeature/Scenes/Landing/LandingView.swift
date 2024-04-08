@@ -40,6 +40,8 @@ public struct LandingView: View {
                     .resizable()
                     .frame(width: 150, height: 150)
             )
+            .navigationTitle("")
+            .navigationBarBackButtonHidden(true)
     }
 }
 
