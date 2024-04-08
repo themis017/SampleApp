@@ -110,6 +110,7 @@ public struct UserProfileView: View {
                     }
                 }
                 .navigationTitle("")
+                .navigationBarBackButtonHidden(true)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {

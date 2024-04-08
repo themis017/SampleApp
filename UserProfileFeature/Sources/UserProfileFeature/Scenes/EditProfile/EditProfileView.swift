@@ -106,9 +106,16 @@ public struct EditProfileView: View {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         .navigationBarBackButtonHidden(true)
-        .navigationTitle("Edit profile")
+//        .navigationTitle("Edit profile")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            
+            ToolbarItem(placement: .principal) {
+                Text("Edit profile")
+                    .font(.title3)
+                    .foregroundStyle(Color.black)
+            }
+            
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
                     viewModel.perform(.dismiss)

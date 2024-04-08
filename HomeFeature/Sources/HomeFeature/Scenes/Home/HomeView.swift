@@ -46,6 +46,7 @@ public struct HomeView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("")
+        .navigationBarBackButtonHidden(true)
         .safeAreaInset(edge: .top,
                        content: {
             Color.clear

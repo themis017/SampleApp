@@ -112,6 +112,7 @@ public struct OtherUserProfileView: View {
         .background(Color(UIColor.systemGray6))
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {

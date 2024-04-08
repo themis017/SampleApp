@@ -53,6 +53,8 @@ public struct SearchView: View {
         .onSubmit(of: .search) {
             viewModel.perform(.searchResults)
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Text(viewModel.searchFilter == .recipes ? "Search recipes" : "Search Users")
@@ -63,7 +65,6 @@ public struct SearchView: View {
             }
         }
 //        .navigationTitle(viewModel.searchFilter == .recipes ? "Search recipes" : "Search Users")
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     private var menuView: some View {

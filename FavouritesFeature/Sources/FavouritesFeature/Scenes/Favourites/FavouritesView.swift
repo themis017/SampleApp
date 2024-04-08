@@ -47,8 +47,17 @@ public struct FavouritesView: View {
             }
             .flexible()
             .background(Color(UIColor.systemGray6))
-            .navigationTitle("Favourite recipes")
+//            .navigationTitle("Favourite recipes")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                
+                ToolbarItem(placement: .principal) {
+                    Text("Favourite recipes")
+                        .font(.title3)
+                        .foregroundStyle(Color.black)
+                }
+            }
         }
     }
 }
