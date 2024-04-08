@@ -101,7 +101,7 @@ public struct SignupView: View {
             .buttonStyle(.primary)
             .disabled(!viewModel.isSignupEnabled)
             .padding(.horizontal, 16)
-            .padding(.bottom, 24)
+            .padding(.bottom, 8)
         }
         .background(.white)
 //        .navigationTitle("Sign up")

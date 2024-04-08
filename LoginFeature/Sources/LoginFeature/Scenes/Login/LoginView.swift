@@ -69,7 +69,7 @@ public struct LoginView: View {
             .buttonStyle(.primary)
             .disabled(!viewModel.isLoginEnabled)
             .padding(.horizontal, 16)
-            .padding(.bottom, 24)
+            .padding(.bottom, 8)
         }
         .background(.white)
 //        .navigationTitle("Log in")

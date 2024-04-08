@@ -23,7 +23,7 @@ extension UINavigationController: UIGestureRecognizerDelegate {
         }
         
         guard let lastViewController = viewControllers.last as? RoutingUIHostingController<AnyView>,
-              !lastViewController.isRoot else {
+              lastViewController.tabCategory == nil else {
             return false
         }
         

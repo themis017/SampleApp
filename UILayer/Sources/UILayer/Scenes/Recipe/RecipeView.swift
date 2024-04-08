@@ -184,8 +184,14 @@ public struct RecipeView: View {
                     .background(.bar)
                     .border(.black)
             })
+            .slideBack {
+                viewModel.perform(.dismiss(animated: true))
+            }
         } else {
             EmptyView()
+                .slideBack {
+                    viewModel.perform(.dismiss(animated: true))
+                }
         }
     }
 }
