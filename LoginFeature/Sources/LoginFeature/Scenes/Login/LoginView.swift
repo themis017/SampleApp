@@ -99,7 +99,6 @@ public struct LoginView: View {
         .onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
-        .ignoresSafeArea(.container, edges: .bottom)
     }
 }
 
