@@ -50,7 +50,9 @@ public struct LandingView: View {
 struct LandingView_Previews: PreviewProvider {
     
     static var previews: some View {
-        LandingView(viewModel: .previewViewModel())
+        NavigationView {
+            LandingView(viewModel: .previewViewModel())
+        }
     }
 }
 

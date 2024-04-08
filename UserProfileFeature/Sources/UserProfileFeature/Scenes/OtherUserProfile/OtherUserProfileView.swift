@@ -141,7 +141,9 @@ public struct OtherUserProfileView: View {
 struct OtherUserProfileView_Previews: PreviewProvider {
     
     static var previews: some View {
-        OtherUserProfileView(viewModel: .previewViewModel())
+        NavigationView {
+            OtherUserProfileView(viewModel: .previewViewModel())
+        }
     }
 }
 

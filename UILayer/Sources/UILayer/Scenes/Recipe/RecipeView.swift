@@ -201,7 +201,9 @@ public struct RecipeView: View {
 struct RecipeView_Previews: PreviewProvider {
     
     static var previews: some View {
-        RecipeView(viewModel: .previewViewModel())
+        NavigationView {
+            RecipeView(viewModel: .previewViewModel())
+        }
     }
 }
 

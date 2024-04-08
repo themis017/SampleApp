@@ -67,7 +67,9 @@ public struct FavouritesView: View {
 struct FavouritesView_Previews: PreviewProvider {
     
     static var previews: some View {
-        FavouritesView(viewModel: .previewViewModel())
+        NavigationView {
+            FavouritesView(viewModel: .previewViewModel())
+        }
     }
 }
 

@@ -65,7 +65,9 @@ public struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     
     static var previews: some View {
-        HomeView(viewModel: .previewViewModel())
+        NavigationView {
+            HomeView(viewModel: .previewViewModel())
+        }
     }
 }
 

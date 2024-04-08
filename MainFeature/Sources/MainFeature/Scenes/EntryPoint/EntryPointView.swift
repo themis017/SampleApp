@@ -69,7 +69,9 @@ public struct EntryPointView: View {
 struct EntryPointView_Previews: PreviewProvider {
     
     static var previews: some View {
-        EntryPointView(viewModel: .previewViewModel())
+        NavigationView {
+            EntryPointView(viewModel: .previewViewModel())
+        }
     }
 }
 
