@@ -29,36 +29,40 @@ public struct FavouritesView: View {
     
     public var body: some View {
         
-        if let recipes = viewModel.recipes {
-            List {
-                ForEach(recipes) { recipe in
-                    RecipeResultRow(recipe: recipe)
-                        .onTapGesture {
-                            viewModel.perform(.showRecipe(recipe))
-                        }
-                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                            Button(role: .destructive, action: {
-                                viewModel.perform(.removeRecipe(recipe))
-                            }) {
-                                Label("Delete", systemImage: "trash")
+        NavigationView {
+            
+            if let recipes = viewModel.recipes {
+                List {
+                    ForEach(recipes) { recipe in
+                        RecipeResultRow(recipe: recipe)
+                            .onTapGesture {
+                                viewModel.perform(.showRecipe(recipe))
                             }
-                        }
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                Button(role: .destructive, action: {
+                                    viewModel.perform(.removeRecipe(recipe))
+                                }) {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
+                    }
                 }
-            }
-            .flexible()
-            .background(Color(UIColor.systemGray6))
-//            .navigationTitle("Favourite recipes")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                
-                ToolbarItem(placement: .principal) {
-                    Text("Favourite recipes")
-                        .font(.title3)
-                        .foregroundStyle(Color.black)
+                .flexible()
+                .background(Color(UIColor.systemGray6))
+                //            .navigationTitle("Favourite recipes")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarBackButtonHidden(true)
+                .toolbar {
+                    
+                    ToolbarItem(placement: .principal) {
+                        Text("Favourite recipes")
+                            .font(.title3)
+                            .foregroundStyle(Color.black)
+                    }
                 }
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
@@ -67,9 +71,7 @@ public struct FavouritesView: View {
 struct FavouritesView_Previews: PreviewProvider {
     
     static var previews: some View {
-        NavigationView {
-            FavouritesView(viewModel: .previewViewModel())
-        }
+        FavouritesView(viewModel: .previewViewModel())
     }
 }
 

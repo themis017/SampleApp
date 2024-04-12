@@ -22,45 +22,49 @@ public struct EntryPointView: View {
     
     public var body: some View {
         
-        ZStack {
-            Color.white
+        NavigationView {
             
-            VStack(spacing: 0) {
-                Text("Welcome to SampleApp")
-                    .font(.title)
-                    .foregroundStyle(.black)
-                    .flexible(.horizontal)
+            ZStack {
+                Color.white
                 
-                Text("Find out what will you cook today!")
-                    .font(.title3)
-                    .foregroundStyle(.black)
-                    .flexible(.horizontal)
-                    .padding(.top, 8)
-                
-                Button {
-                    viewModel.perform(.showSignup)
-                } label: {
-                    Text("Sign up")
+                VStack(spacing: 0) {
+                    Text("Welcome to SampleApp")
+                        .font(.title)
+                        .foregroundStyle(.black)
                         .flexible(.horizontal)
-                }
-                .buttonStyle(.primary)
-                .padding(.top, 48)
-                
-                Button {
-                    viewModel.perform(.showLogin)
-                } label: {
-                    Text("Log in")
+                    
+                    Text("Find out what will you cook today!")
+                        .font(.title3)
+                        .foregroundStyle(.black)
                         .flexible(.horizontal)
+                        .padding(.top, 8)
+                    
+                    Button {
+                        viewModel.perform(.showSignup)
+                    } label: {
+                        Text("Sign up")
+                            .flexible(.horizontal)
+                    }
+                    .buttonStyle(.primary)
+                    .padding(.top, 48)
+                    
+                    Button {
+                        viewModel.perform(.showLogin)
+                    } label: {
+                        Text("Log in")
+                            .flexible(.horizontal)
+                    }
+                    .buttonStyle(.secondary)
+                    .padding(.top, 16)
+                    
                 }
-                .buttonStyle(.secondary)
-                .padding(.top, 16)
-
+                .padding(.horizontal, 16)
             }
-            .padding(.horizontal, 16)
+            .ignoresSafeArea()
+            .navigationTitle("")
+            .navigationBarBackButtonHidden(true)
         }
-        .ignoresSafeArea()
-        .navigationTitle("")
-        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 
@@ -69,9 +73,7 @@ public struct EntryPointView: View {
 struct EntryPointView_Previews: PreviewProvider {
     
     static var previews: some View {
-        NavigationView {
-            EntryPointView(viewModel: .previewViewModel())
-        }
+        EntryPointView(viewModel: .previewViewModel())
     }
 }
 

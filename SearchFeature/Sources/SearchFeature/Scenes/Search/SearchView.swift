@@ -31,39 +31,43 @@ public struct SearchView: View {
     
     public var body: some View {
         
-        VStack(spacing: 0) {
+        NavigationView {
             
-            if !viewModel.isSearching {
-                switch viewModel.searchFilter {
-                case .recipes:
-                    popularRecipesView
-                case .users:
-                    popularUsersView
+            VStack(spacing: 0) {
+                
+                if !viewModel.isSearching {
+                    switch viewModel.searchFilter {
+                    case .recipes:
+                        popularRecipesView
+                    case .users:
+                        popularUsersView
+                    }
+                } else {
+                    switch viewModel.searchFilter {
+                    case .recipes:
+                        searchedRecipesView
+                    case .users:
+                        searchedUsersView
+                    }
                 }
-            } else {
-                switch viewModel.searchFilter {
-                case .recipes:
-                    searchedRecipesView
-                case .users:
-                    searchedUsersView
+            }
+            .searchable(text: $viewModel.searchQuery)
+            .onSubmit(of: .search) {
+                viewModel.perform(.searchResults)
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(viewModel.searchFilter == .recipes ? "Search recipes" : "Search Users")
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    menuView
                 }
             }
         }
-        .searchable(text: $viewModel.searchQuery)
-        .onSubmit(of: .search) {
-            viewModel.perform(.searchResults)
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text(viewModel.searchFilter == .recipes ? "Search recipes" : "Search Users")
-            }
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-                menuView
-            }
-        }
+        .navigationBarHidden(true)
 //        .navigationTitle(viewModel.searchFilter == .recipes ? "Search recipes" : "Search Users")
     }
     
@@ -256,9 +260,7 @@ public struct SearchView: View {
 struct SearchView_Previews: PreviewProvider {
     
     static var previews: some View {
-        NavigationView {
-            SearchView(viewModel: .previewViewModel())
-        }
+        SearchView(viewModel: .previewViewModel())
     }
 }
 

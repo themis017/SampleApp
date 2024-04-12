@@ -27,114 +27,118 @@ public struct EditProfileView: View {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         
-//        UITextView.appearance().backgroundColor = .clear
+        //        UITextView.appearance().backgroundColor = .clear
     }
     
     public var body: some View {
         
-        VStack(spacing: 0) {
+        NavigationView {
             
-            ScrollView {
+            VStack(spacing: 0) {
                 
-                VStack(spacing: 24) {
+                ScrollView {
                     
-                    Button {
-                        viewModel.perform(.uplaodImage)
-                    } label: {
-                        Image("user")
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .foregroundStyle(Color.black)
-                            .overlay(alignment: .bottomTrailing) {
-                                Image(systemName: "camera")
-                                    .foregroundStyle(Color.black)
-                                    .padding(2)
-                                    .background(Color.white)
-                                    .cornerRadius(10)
-                            }
+                    VStack(spacing: 24) {
+                        
+                        Button {
+                            viewModel.perform(.uplaodImage)
+                        } label: {
+                            Image("user")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                                .foregroundStyle(Color.black)
+                                .overlay(alignment: .bottomTrailing) {
+                                    Image(systemName: "camera")
+                                        .foregroundStyle(Color.black)
+                                        .padding(2)
+                                        .background(Color.white)
+                                        .cornerRadius(10)
+                                }
+                        }
+                        .padding(.top, 16)
+                        
+                        InputField(
+                            inputPrompt: "Email:",
+                            inputPlaceholder: "",
+                            value: $viewModel.email,
+                            errorValue: $viewModel.emailError,
+                            isValidating: $viewModel.isValidatingEmail
+                        )
+                        
+                        InputField(
+                            inputPrompt: "Username:",
+                            inputPlaceholder: "",
+                            value: $viewModel.username,
+                            errorValue: $viewModel.usernameError,
+                            isValidating: $viewModel.isValidatingUsername
+                        )
+                        
+                        InputField(
+                            inputPrompt: "Name:",
+                            inputPlaceholder: "",
+                            value: $viewModel.name,
+                            errorValue: $viewModel.nameError
+                        )
+                        
+                        InputEditor(
+                            inputPrompt: "Description:",
+                            inputPlaceholder: "",
+                            value: $viewModel.description,
+                            errorValue: $viewModel.descriptionError
+                        )
+                        .colorMultiply(Color(UIColor.systemGray6))
                     }
-                    .padding(.top, 16)
-                    
-                    InputField(
-                        inputPrompt: "Email:",
-                        inputPlaceholder: "",
-                        value: $viewModel.email,
-                        errorValue: $viewModel.emailError,
-                        isValidating: $viewModel.isValidatingEmail
-                    )
-                    
-                    InputField(
-                        inputPrompt: "Username:",
-                        inputPlaceholder: "",
-                        value: $viewModel.username,
-                        errorValue: $viewModel.usernameError,
-                        isValidating: $viewModel.isValidatingUsername
-                    )
-                    
-                    InputField(
-                        inputPrompt: "Name:",
-                        inputPlaceholder: "",
-                        value: $viewModel.name,
-                        errorValue: $viewModel.nameError
-                    )
-                    
-                    InputEditor(
-                        inputPrompt: "Description:",
-                        inputPlaceholder: "",
-                        value: $viewModel.description,
-                        errorValue: $viewModel.descriptionError
-                    )
-                    .colorMultiply(Color(UIColor.systemGray6))
+                    .padding(.horizontal, 16)
                 }
-                .padding(.horizontal, 16)
-            }
-            
-            Spacer()
-            
-            Button {
-                viewModel.perform(.save)
-            } label: {
-                Text("Save")
-                    .flexible(.horizontal)
-            }
-            .buttonStyle(.primary)
-            .disabled(!viewModel.isSaveEnabled)
-            .padding(16)
-        }
-        .background(Color(UIColor.systemGray6))
-        .onTapGesture {
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        }
-        .navigationBarBackButtonHidden(true)
-//        .navigationTitle("Edit profile")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            
-            ToolbarItem(placement: .principal) {
-                Text("Edit profile")
-                    .font(.title3)
-                    .foregroundStyle(Color.black)
-            }
-            
-            ToolbarItem(placement: .navigationBarLeading) {
+                
+                Spacer()
+                
                 Button {
-                    viewModel.perform(.dismiss)
+                    viewModel.perform(.save)
                 } label: {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.black)
-                        .frame(width: 24, height: 24)
+                    Text("Save")
+                        .flexible(.horizontal)
+                }
+                .buttonStyle(.primary)
+                .disabled(!viewModel.isSaveEnabled)
+                .padding(16)
+            }
+            .background(Color(UIColor.systemGray6))
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
+            .navigationBarBackButtonHidden(true)
+            //        .navigationTitle("Edit profile")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                
+                ToolbarItem(placement: .principal) {
+                    Text("Edit profile")
+                        .font(.title3)
+                        .foregroundStyle(Color.black)
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        viewModel.perform(.dismiss)
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.black)
+                            .frame(width: 24, height: 24)
+                    }
+                }
+                
+                ToolbarItem(placement: .bottomBar) {
+                    TabBar(selectedTab: viewModel.selectedTab) { selectedTab in
+                        viewModel.perform(.selectedTab(selectedTab))
+                    }
                 }
             }
-            
-            ToolbarItem(placement: .bottomBar) {
-                TabBar(selectedTab: viewModel.selectedTab) { selectedTab in
-                    viewModel.perform(.selectedTab(selectedTab))
-                }
+            .slideBack {
+                viewModel.perform(.dismiss)
             }
         }
-        .slideBack {
-            viewModel.perform(.dismiss)
-        }
+        .navigationBarHidden(true)
     }
 }
 
@@ -143,9 +147,7 @@ public struct EditProfileView: View {
 struct EditProfileView_Previews: PreviewProvider {
     
     static var previews: some View {
-        NavigationView {
-            EditProfileView(viewModel: .previewViewModel())
-        }
+        EditProfileView(viewModel: .previewViewModel())
     }
 }
 

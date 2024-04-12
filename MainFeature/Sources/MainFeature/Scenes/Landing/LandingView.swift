@@ -32,16 +32,18 @@ public struct LandingView: View {
 //                    .foregroundColor(.black)
 //            )
         
-        
-        Color.white
-            .ignoresSafeArea()
-            .overlay(
-                Image("chef-hat-waving")
-                    .resizable()
-                    .frame(width: 150, height: 150)
-            )
-            .navigationTitle("")
-            .navigationBarBackButtonHidden(true)
+        NavigationView {
+            Color.white
+                .ignoresSafeArea()
+                .overlay(
+                    Image("chef-hat-waving")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                )
+                .navigationTitle("")
+                .navigationBarBackButtonHidden(true)
+        }
+        .navigationBarHidden(true)
     }
 }
 
@@ -50,9 +52,7 @@ public struct LandingView: View {
 struct LandingView_Previews: PreviewProvider {
     
     static var previews: some View {
-        NavigationView {
-            LandingView(viewModel: .previewViewModel())
-        }
+        LandingView(viewModel: .previewViewModel())
     }
 }
 

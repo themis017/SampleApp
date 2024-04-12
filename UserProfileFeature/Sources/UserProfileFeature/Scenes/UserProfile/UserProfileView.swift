@@ -20,18 +20,12 @@ public struct UserProfileView: View {
     
     public init(viewModel: UserProfileViewModel) {
         self.viewModel = viewModel
-        
-        //        let appearance = UINavigationBarAppearance()
-        //        appearance.configureWithOpaqueBackground()
-        //        appearance.backgroundColor = UIColor.systemGray6
-        //        
-        //        UINavigationBar.appearance().standardAppearance = appearance
-        //        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
     public var body: some View {
         
-//        NavigationView {
+        NavigationView {
+            
             if let userProfile = viewModel.userProfile {
                 ScrollView {
                     
@@ -135,7 +129,8 @@ public struct UserProfileView: View {
                     )
                 }
             }
-//        }
+        }
+        .navigationBarHidden(true)
     }
     
     private var profileOptions: some View {
@@ -197,9 +192,7 @@ public struct UserProfileView: View {
 struct UserProfileView_Previews: PreviewProvider {
     
     static var previews: some View {
-        NavigationView {
-            UserProfileView(viewModel: .previewViewModel())
-        }
+        UserProfileView(viewModel: .previewViewModel())
     }
 }
 

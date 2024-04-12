@@ -23,37 +23,31 @@ public struct TabBar: View {
     
     public var body: some View {
         
-        VStack(spacing: 0) {
-            
-            Divider()
-                .foregroundColor(.gray)
-            
-            HStack(spacing: 0) {
-                ForEach(TabBarCategory.allCases, id: \.self) { tabBarCategory in
-                    Button {
-                        withAnimation {
-                            action(tabBarCategory)
-                        }
-                    } label: {
-                        if tabBarCategory != .upload {
-                            VStack(spacing: 4) {
-                                
-                                Image(systemName: tabBarCategory.iconTitle)
-                                    .frame(width: 24, height: 24)
-                                
-                                Text(tabBarCategory.title)
-                                    .font(.caption)
-                            }
-                            .foregroundColor(selectedTab == tabBarCategory ? .blue : .gray)
-                        } else {
-                            Image("colorful_bowl")
-                                .resizable()
-                                .frame(width: 64, height: 64)
-                                .clipShape(Circle())
-                        }
+        HStack(spacing: 0) {
+            ForEach(TabBarCategory.allCases, id: \.self) { tabBarCategory in
+                Button {
+                    withAnimation {
+                        action(tabBarCategory)
                     }
-                    .flexible(.horizontal)
+                } label: {
+                    if tabBarCategory != .upload {
+                        VStack(spacing: 4) {
+                            
+                            Image(systemName: tabBarCategory.iconTitle)
+                                .frame(width: 24, height: 24)
+                            
+                            Text(tabBarCategory.title)
+                                .font(.caption)
+                        }
+                        .foregroundColor(selectedTab == tabBarCategory ? .blue : .gray)
+                    } else {
+                        Image("colorful_bowl")
+                            .resizable()
+                            .frame(width: 64, height: 64)
+                            .clipShape(Circle())
+                    }
                 }
+                .flexible(.horizontal)
             }
         }
     }
