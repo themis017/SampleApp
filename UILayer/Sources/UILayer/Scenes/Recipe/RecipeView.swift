@@ -22,181 +22,180 @@ public struct RecipeView: View {
     
     public var body: some View {
         
-        NavigationView {
+        if let recipe = viewModel.recipe {
             
-            if let recipe = viewModel.recipe {
+            VStack(spacing: 0) {
                 
-                VStack(spacing: 8) {
+                NavigationView {
                     
-                    ScrollView {
+                    VStack(spacing: 8) {
                         
-                        Text(recipe.title.rawValue)
-                            .font(.title)
-                            .foregroundStyle(Color.black)
-                        
-                        VStack(alignment: .leading, spacing: 8) {
+                        ScrollView {
                             
-                            HStack(spacing: 0) {
-                                Image(recipe.iconAsseTitle)
-                                    .resizable()
-                                    .frame(width: 300, height: 170)
+                            Text(recipe.title.rawValue)
+                                .font(.title)
+                                .foregroundStyle(Color.black)
+                            
+                            VStack(alignment: .leading, spacing: 8) {
                                 
-                                Spacer()
-                                
-                                Button {
-                                    viewModel.perform(.favourite(recipe))
-                                } label: {
-                                    Image(systemName: recipe.isFavourite ? "star.fill" : "star")
+                                HStack(spacing: 0) {
+                                    Image(recipe.iconAsseTitle)
                                         .resizable()
-                                        .frame(width: 48, height: 48)
-                                        .foregroundColor(recipe.isFavourite ? Color.yellow : Color.gray)
+                                        .frame(width: 300, height: 170)
                                     
+                                    Spacer()
                                     
-                                }
-                            }
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(recipe.chefName.rawValue)
-                                    .font(.body)
-                                    .foregroundStyle(Color.black)
-                                
-                                Text(recipe.chefUsername.rawValue)
-                                    .font(.body)
-                                    .foregroundStyle(Color.black)
-                            }
-                        }
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
-                        
-                        Divider()
-                        
-                        VStack(alignment: .leading, spacing: 16) {
-                            
-                            Group {
-                                Text(recipe.description.rawValue)
-                                    .font(.body)
-                                    .foregroundStyle(Color.black)
-                                
-                                Divider()
-                            }
-                            .padding(.top, 8)
-                            
-                            Group {
-                                HStack(spacing: 4) {
-                                    Text("Serves:")
-                                        .font(.body)
-                                        .foregroundStyle(Color.black)
-                                    
-                                    Text(String(recipe.serves))
-                                        .font(.body)
-                                        .foregroundStyle(Color.black)
-                                }
-                                
-                                Divider()
-                            }
-                            
-                            Group {
-                                HStack(spacing: 4) {
-                                    Text("Time:")
-                                        .font(.body)
-                                        .foregroundStyle(Color.black)
-                                    
-                                    Text(String(recipe.totalTime))
-                                        .font(.body)
-                                        .foregroundStyle(Color.black)
-                                }
-                                
-                                Divider()
-                            }
-                            
-                            Group {
-                                HStack(spacing: 4) {
-                                    Text("Difficulty:")
-                                        .font(.body)
-                                        .foregroundStyle(Color.black)
-                                    
-                                    if let difficulty = recipe.difficulty {
-                                        HStack(spacing: 2) {
-                                            ForEach(1..<6) { number in
-                                                Image(systemName: "star.fill")
-                                                    .foregroundColor(number > difficulty.rawValue ? Color.white : Color.yellow)
-                                            }
-                                        }
+                                    Button {
+                                        viewModel.perform(.favourite(recipe))
+                                    } label: {
+                                        Image(systemName: recipe.isFavourite ? "star.fill" : "star")
+                                            .resizable()
+                                            .frame(width: 48, height: 48)
+                                            .foregroundColor(recipe.isFavourite ? Color.yellow : Color.gray)
+                                        
+                                        
                                     }
                                 }
                                 
-                                Divider()
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(recipe.chefName.rawValue)
+                                        .font(.body)
+                                        .foregroundStyle(Color.black)
+                                    
+                                    Text(recipe.chefUsername.rawValue)
+                                        .font(.body)
+                                        .foregroundStyle(Color.black)
+                                }
                             }
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
                             
-                            Group {
-                                Text("Ingredients:")
-                                    .font(.headline)
-                                    .foregroundStyle(Color.black)
+                            Divider()
+                            
+                            VStack(alignment: .leading, spacing: 16) {
                                 
-                                Text(recipe.ingredients)
-                                    .font(.body)
-                                    .foregroundStyle(Color.black)
+                                Group {
+                                    Text(recipe.description.rawValue)
+                                        .font(.body)
+                                        .foregroundStyle(Color.black)
+                                    
+                                    Divider()
+                                }
+                                .padding(.top, 8)
                                 
-                                Divider()
+                                Group {
+                                    HStack(spacing: 4) {
+                                        Text("Serves:")
+                                            .font(.body)
+                                            .foregroundStyle(Color.black)
+                                        
+                                        Text(String(recipe.serves))
+                                            .font(.body)
+                                            .foregroundStyle(Color.black)
+                                    }
+                                    
+                                    Divider()
+                                }
+                                
+                                Group {
+                                    HStack(spacing: 4) {
+                                        Text("Time:")
+                                            .font(.body)
+                                            .foregroundStyle(Color.black)
+                                        
+                                        Text(String(recipe.totalTime))
+                                            .font(.body)
+                                            .foregroundStyle(Color.black)
+                                    }
+                                    
+                                    Divider()
+                                }
+                                
+                                Group {
+                                    HStack(spacing: 4) {
+                                        Text("Difficulty:")
+                                            .font(.body)
+                                            .foregroundStyle(Color.black)
+                                        
+                                        if let difficulty = recipe.difficulty {
+                                            HStack(spacing: 2) {
+                                                ForEach(1..<6) { number in
+                                                    Image(systemName: "star.fill")
+                                                        .foregroundColor(number > difficulty.rawValue ? Color.white : Color.yellow)
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                                    Divider()
+                                }
+                                
+                                Group {
+                                    Text("Ingredients:")
+                                        .font(.headline)
+                                        .foregroundStyle(Color.black)
+                                    
+                                    Text(recipe.ingredients)
+                                        .font(.body)
+                                        .foregroundStyle(Color.black)
+                                    
+                                    Divider()
+                                }
+                                
+                                Group {
+                                    Text("Method:")
+                                        .font(.headline)
+                                        .foregroundStyle(Color.black)
+                                    
+                                    Text(recipe.method)
+                                        .font(.body)
+                                        .foregroundStyle(Color.black)
+                                    
+                                    Divider()
+                                }
                             }
-                            
-                            Group {
-                                Text("Method:")
-                                    .font(.headline)
-                                    .foregroundStyle(Color.black)
-                                
-                                Text(recipe.method)
-                                    .font(.body)
-                                    .foregroundStyle(Color.black)
-                                
-                                Divider()
+                            .padding(.horizontal, 16)
+                        }
+                        .padding(.bottom, 16)
+                        
+                        Spacer()
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button {
+                                viewModel.perform(.dismiss(animated: true))
+                            } label: {
+                                Image(systemName: "chevron.left")
+                                    .foregroundColor(.black)
+                                    .frame(width: 24, height: 24)
                             }
                         }
-                        .padding(.horizontal, 16)
                     }
-                    .padding(.bottom, 16)
-                    
-                    Spacer()
                 }
-                .background(.white)
-                .navigationBarBackButtonHidden(true)
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle("")
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button {
-                            viewModel.perform(.dismiss(animated: true))
-                        } label: {
-                            Image(systemName: "chevron.left")
-                                .foregroundColor(.black)
-                                .frame(width: 24, height: 24)
+                    ToolbarItem(placement: .bottomBar) {
+                        TabBar(selectedTab: viewModel.selectedTab) { selectedTab in
+                            viewModel.perform(.selectedTab(selectedTab))
                         }
                     }
-                    
-//                    ToolbarItem(placement: .bottomBar) {
-//                        TabBar(selectedTab: viewModel.selectedTab) { selectedTab in
-//                            viewModel.perform(.selectedTab(selectedTab))
-//                        }
-//                    }
                 }
-//                .safeAreaInset(edge: .top,
-//                               content: {
-//                    Color.clear
-//                        .frame(height: 0)
-//                        .background(.bar)
-//                        .border(.black)
-//                })
-                .slideBack {
-                    viewModel.perform(.dismiss(animated: true))
-                }
-            } else {
+            }
+        } else {
+            NavigationView {
                 EmptyView()
-                    .slideBack {
-                        viewModel.perform(.dismiss(animated: true))
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button {
+                                viewModel.perform(.dismiss(animated: true))
+                            } label: {
+                                Image(systemName: "chevron.left")
+                                    .foregroundColor(.black)
+                                    .frame(width: 24, height: 24)
+                            }
+                        }
                     }
             }
         }
-//        .navigationBarHidden(true)
     }
 }
 
