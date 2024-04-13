@@ -102,12 +102,13 @@ public struct SearchView: View {
     
     private var popularRecipesView: some View {
         VStack(spacing: 8) {
-//            Text("Most popular recipes")
-//                .font(.headline)
-//                .flexible(.horizontal, alignment: .leading)
-//                .padding(.horizontal, 16)
             
             ScrollView {
+                
+                Text("Most popular recipes")
+                    .font(.headline)
+                    .flexible(.horizontal, alignment: .leading)
+                    .padding(.horizontal, 16)
                 
                 LazyVGrid(
                     columns: recipesColumns,
@@ -167,12 +168,14 @@ public struct SearchView: View {
     
     private var popularUsersView: some View {
         VStack(spacing: 8) {
-            Text("Most popular users")
-                .font(.headline)
-                .flexible(.horizontal, alignment: .leading)
-                .padding(.horizontal, 16)
             
             ScrollView {
+                
+                Text("Most popular users")
+                    .font(.headline)
+                    .flexible(.horizontal, alignment: .leading)
+                    .padding(.horizontal, 16)
+                
                 LazyVGrid(
                     columns: usersColumns,
                     alignment: .center,
