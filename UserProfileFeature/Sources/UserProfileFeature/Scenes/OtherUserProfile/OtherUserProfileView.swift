@@ -22,11 +22,10 @@ public struct OtherUserProfileView: View {
     
     public var body: some View {
         
-        NavigationView {
-            
-            VStack(spacing: 0) {
+        if let userProfile = viewModel.userProfile {
+            NavigationView {
                 
-                if let userProfile = viewModel.userProfile {
+                VStack(spacing: 0) {
                     
                     ScrollView {
                         
@@ -103,22 +102,44 @@ public struct OtherUserProfileView: View {
                         .padding(.horizontal, 16)
                     }
                 }
-            }
-            .background(Color(UIColor.systemGray6))
-            .navigationBarBackButtonHidden(true)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        viewModel.perform(.dismiss)
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.black)
-                            .frame(width: 24, height: 24)
+                .background(Color(UIColor.systemGray6))
+                .toolbar {
+                    
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            viewModel.perform(.dismiss)
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.black)
+                                .frame(width: 24, height: 24)
+                        }
                     }
                 }
-                
+            }
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    TabBar(selectedTab: viewModel.selectedTab) { selectedTab in
+                        viewModel.perform(.selectedTab(selectedTab))
+                    }
+                }
+            }
+        } else {
+            NavigationView {
+                EmptyView()
+                    .toolbar {
+                        
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button {
+                                viewModel.perform(.dismiss)
+                            } label: {
+                                Image(systemName: "chevron.left")
+                                    .foregroundColor(.black)
+                                    .frame(width: 24, height: 24)
+                            }
+                        }
+                    }
+            }
+            .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     TabBar(selectedTab: viewModel.selectedTab) { selectedTab in
                         viewModel.perform(.selectedTab(selectedTab))
@@ -126,7 +147,6 @@ public struct OtherUserProfileView: View {
                 }
             }
         }
-        .navigationBarHidden(true)
     }
 }
 
