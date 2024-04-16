@@ -19,13 +19,13 @@ public struct EditProfileView: View {
     
     public init(viewModel: EditProfileViewModel) {
         self.viewModel = viewModel
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.systemGray6
-        
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+//        
+//        let appearance = UINavigationBarAppearance()
+//        appearance.configureWithOpaqueBackground()
+//        appearance.backgroundColor = UIColor.systemGray6
+//        
+//        UINavigationBar.appearance().standardAppearance = appearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
         
         //        UITextView.appearance().backgroundColor = .clear
     }
@@ -107,9 +107,6 @@ public struct EditProfileView: View {
             .onTapGesture {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
-            .navigationBarBackButtonHidden(true)
-            //        .navigationTitle("Edit profile")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 
                 ToolbarItem(placement: .principal) {
@@ -127,15 +124,15 @@ public struct EditProfileView: View {
                             .frame(width: 24, height: 24)
                     }
                 }
-                
-                ToolbarItem(placement: .bottomBar) {
-                    TabBar(selectedTab: viewModel.selectedTab) { selectedTab in
-                        viewModel.perform(.selectedTab(selectedTab))
-                    }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                TabBar(selectedTab: viewModel.selectedTab) { selectedTab in
+                    viewModel.perform(.selectedTab(selectedTab))
                 }
             }
         }
-        .navigationBarHidden(true)
     }
 }
 
