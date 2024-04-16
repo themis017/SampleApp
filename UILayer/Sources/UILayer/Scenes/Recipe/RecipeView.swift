@@ -179,6 +179,11 @@ public struct RecipeView: View {
                         }
                     }
                 }
+                .navigationBarHidden(true)
+                .safeAreaInset(edge: .bottom) {
+                    Divider()
+                        .background(Color(UIColor(red: 0.8, green: 0.9, blue: 1.0, alpha: 1.0)))
+                }
             }
         } else {
             NavigationView {
