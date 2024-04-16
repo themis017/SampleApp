@@ -19,15 +19,6 @@ public struct EditProfileView: View {
     
     public init(viewModel: EditProfileViewModel) {
         self.viewModel = viewModel
-//        
-//        let appearance = UINavigationBarAppearance()
-//        appearance.configureWithOpaqueBackground()
-//        appearance.backgroundColor = UIColor.systemGray6
-//        
-//        UINavigationBar.appearance().standardAppearance = appearance
-//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        
-        //        UITextView.appearance().backgroundColor = .clear
     }
     
     public var body: some View {
@@ -132,6 +123,11 @@ public struct EditProfileView: View {
                     viewModel.perform(.selectedTab(selectedTab))
                 }
             }
+        }
+        .navigationBarHidden(true)
+        .safeAreaInset(edge: .bottom) {
+            Divider()
+                .background(Color.tabBarBackgroundColor)
         }
     }
 }

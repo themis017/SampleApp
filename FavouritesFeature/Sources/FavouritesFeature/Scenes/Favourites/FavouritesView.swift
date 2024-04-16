@@ -63,15 +63,9 @@ public struct FavouritesView: View {
             }
         }
         .navigationBarHidden(true)
-//        .ignoresSafeArea()
-//        .safeAreaInset(edge: .bottom, alignment: .center, spacing: 0) {
-//            Color.red
-//                .frame(height: 20)
-//                .background(Material.bar)
-//        }
         .safeAreaInset(edge: .bottom) {
             Divider()
-                .background(Color(UIColor(red: 0.8, green: 0.9, blue: 1.0, alpha: 1.0)))
+                .background(Color.tabBarBackgroundColor)
         }
     }
 }

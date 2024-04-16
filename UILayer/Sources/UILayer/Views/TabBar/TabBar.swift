@@ -39,7 +39,7 @@ public struct TabBar: View {
                             Text(tabBarCategory.title)
                                 .font(.caption)
                         }
-                        .foregroundColor(selectedTab == tabBarCategory ? .blue : .gray)
+                        .foregroundColor(selectedTab == tabBarCategory ? .white : Color.tabBarUnselectedColor)
                     } else {
                         Image("colorful_bowl")
                             .resizable()
@@ -61,6 +61,7 @@ struct TabBar_Previews: PreviewProvider {
         TabBar(selectedTab: .home) { selectedTab in
             
         }
+        .background(Color.tabBarBackgroundColor)
     }
 }
 

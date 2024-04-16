@@ -123,6 +123,11 @@ public struct OtherUserProfileView: View {
                     }
                 }
             }
+            .navigationBarHidden(true)
+            .safeAreaInset(edge: .bottom) {
+                Divider()
+                    .background(Color.tabBarBackgroundColor)
+            }
         } else {
             NavigationView {
                 EmptyView()
@@ -145,6 +150,11 @@ public struct OtherUserProfileView: View {
                         viewModel.perform(.selectedTab(selectedTab))
                     }
                 }
+            }
+            .navigationBarHidden(true)
+            .safeAreaInset(edge: .bottom) {
+                Divider()
+                    .background(Color.tabBarBackgroundColor)
             }
         }
     }

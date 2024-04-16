@@ -131,6 +131,10 @@ public struct UserProfileView: View {
             }
         }
         .navigationBarHidden(true)
+        .safeAreaInset(edge: .bottom) {
+            Divider()
+                .background(Color.tabBarBackgroundColor)
+        }
     }
     
     private var profileOptions: some View {

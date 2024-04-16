@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationController.navigationBar.backIndicatorImage = UIImage()
             navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage() 
             navigationController.toolbar.isTranslucent = true
-            navigationController.toolbar.barTintColor = UIColor(red: 0.8, green: 0.9, blue: 1.0, alpha: 1.0)
+            navigationController.toolbar.barTintColor = UIColor.tabBarBackgroundColor
             
             window = UIWindow(windowScene: windowScene)
             window?.rootViewController = navigationController
