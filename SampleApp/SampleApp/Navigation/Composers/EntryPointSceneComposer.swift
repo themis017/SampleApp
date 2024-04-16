@@ -27,7 +27,7 @@ class EntryPointSceneComposer {
         let viewModel = EntryPointViewModel(entryPointUseCase: useCase)
         let view = AnyView(EntryPointView(viewModel: viewModel))
         let viewController = RoutingUIHostingController(
-            sceneIdentity: MainView.sceneIdentity,
+            sceneIdentity: EntryPointView.sceneIdentity,
             isRoot: false,
             tabCategory: nil,
             view: view)

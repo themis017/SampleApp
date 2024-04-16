@@ -134,9 +134,6 @@ public struct EditProfileView: View {
                     }
                 }
             }
-            .slideBack {
-                viewModel.perform(.dismiss)
-            }
         }
         .navigationBarHidden(true)
     }

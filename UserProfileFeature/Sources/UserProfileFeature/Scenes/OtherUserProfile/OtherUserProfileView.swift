@@ -125,9 +125,6 @@ public struct OtherUserProfileView: View {
                     }
                 }
             }
-            .slideBack {
-                viewModel.perform(.dismiss)
-            }
         }
         .navigationBarHidden(true)
     }

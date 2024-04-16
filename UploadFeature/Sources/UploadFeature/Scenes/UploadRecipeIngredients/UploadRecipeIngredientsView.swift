@@ -97,9 +97,6 @@ public struct UploadRecipeIngredientsView: View {
                 }
             }
         }
-        .slideBack {
-            presentationMode.wrappedValue.dismiss()
-        }
     }
 }
 

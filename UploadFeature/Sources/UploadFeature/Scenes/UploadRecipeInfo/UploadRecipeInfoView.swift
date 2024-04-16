@@ -162,9 +162,6 @@ public struct UploadRecipeInfoView: View {
                 }
             }
         }
-        .slideBack {
-            presentationMode.wrappedValue.dismiss()
-        }
     }
 }
 

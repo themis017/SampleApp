@@ -69,6 +69,8 @@ open class BaseRouter {
     @MainActor
     public func showPath(for selectedTab: TabBarCategory) {
         
+        updateTabBarCategoriesControllers()
+        
         guard var routingViewControllers = TabBarRoutes.shared.tabBarRoutingControllers[selectedTab] else {
             return
         }
@@ -100,6 +102,28 @@ open class BaseRouter {
         }
         
         insertOtherTabBarCategoriesControllers(of: selectedTab)
+    }
+    
+    private func updateTabBarCategoriesControllers() {
+        
+        for tabBarCategory in TabBarCategory.allCases {
+            if tabBarCategory == .upload {
+                continue
+            }
+            
+            let tabBarCategoryControllers = self.navigationController.viewControllers.filter { viewController in
+                guard let routingUIHostingController = viewController as? RoutingUIHostingController<AnyView>,
+                      routingUIHostingController.tabCategory == tabBarCategory else {
+                    return false
+                }
+                
+                return true
+            }
+            
+            if !tabBarCategoryControllers.isEmpty {
+                TabBarRoutes.shared.tabBarRoutingControllers[tabBarCategory] = tabBarCategoryControllers.map({ $0 as? RoutingUIHostingController<AnyView>}).compactMap({ $0 })
+            }
+        }
     }
     
     private func insertOtherTabBarCategoriesControllers(of selectedTab: TabBarCategory) {
