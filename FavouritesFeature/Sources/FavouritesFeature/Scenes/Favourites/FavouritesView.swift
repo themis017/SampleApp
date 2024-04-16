@@ -18,13 +18,6 @@ public struct FavouritesView: View {
     
     public init(viewModel: FavouritesViewModel) {
         self.viewModel = viewModel
-        
-        //        let appearance = UINavigationBarAppearance()
-        //        appearance.configureWithOpaqueBackground()
-        //        appearance.backgroundColor = UIColor.systemGray6
-        //
-        //        UINavigationBar.appearance().standardAppearance = appearance
-        //        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
     public var body: some View {
@@ -48,10 +41,7 @@ public struct FavouritesView: View {
                     }
                 }
                 .flexible()
-//                .background(Color(UIColor.red))
-                //            .navigationTitle("Favourite recipes")
                 .navigationBarTitleDisplayMode(.inline)
-//                .navigationBarBackButtonHidden(true)
                 .toolbar {
                     
                     ToolbarItem(placement: .principal) {
