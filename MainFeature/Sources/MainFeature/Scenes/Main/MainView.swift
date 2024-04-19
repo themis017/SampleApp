@@ -27,7 +27,7 @@ public struct MainView: View {
     public var body: some View {
         
         ZStack {
-            Color.tabBarBackgroundColor
+            Color.white
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {

@@ -22,16 +22,6 @@ public struct LandingView: View {
     
     public var body: some View {
         
-//        Color.red
-//            .ignoresSafeArea()
-//            .overlay(
-//                Image("chef-hat")
-//                    .resizable()
-//                    .frame(width: 150, height: 150)
-//                    .background(Color.yellow)
-//                    .foregroundColor(.black)
-//            )
-        
         NavigationView {
             Color.white
                 .ignoresSafeArea()

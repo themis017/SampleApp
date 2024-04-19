@@ -25,7 +25,7 @@ public struct RecipeView: View {
         if let recipe = viewModel.recipe {
             
             ZStack {
-                Color.tabBarBackgroundColor
+                Color.white
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) {
