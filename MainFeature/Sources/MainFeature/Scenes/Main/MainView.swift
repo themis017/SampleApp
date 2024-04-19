@@ -26,19 +26,25 @@ public struct MainView: View {
     
     public var body: some View {
         
-        VStack(spacing: 0) {
-            switch viewModel.selectedTab {
-            case .home:
-                HomeView(viewModel: viewModel.homeViewModel)
-            case .search:
-                SearchView(viewModel: viewModel.searchViewModel)
-            case .upload:
-                EmptyView()
-            case .favourites:
-                FavouritesView(viewModel: viewModel.favouritesViewModel)
-            case .profile:
-                UserProfileView(viewModel: viewModel.userProfileViewModel)
+        ZStack {
+            Color.tabBarBackgroundColor
+                .ignoresSafeArea()
+            
+            VStack(spacing: 0) {
+                switch viewModel.selectedTab {
+                case .home:
+                    HomeView(viewModel: viewModel.homeViewModel)
+                case .search:
+                    SearchView(viewModel: viewModel.searchViewModel)
+                case .upload:
+                    EmptyView()
+                case .favourites:
+                    FavouritesView(viewModel: viewModel.favouritesViewModel)
+                case .profile:
+                    UserProfileView(viewModel: viewModel.userProfileViewModel)
+                }
             }
+            
         }
         .navigationBarBackButtonHidden(true)
         .navigationTitle("")
