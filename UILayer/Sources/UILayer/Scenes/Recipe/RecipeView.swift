@@ -154,15 +154,10 @@ public struct RecipeView: View {
                                         Text(recipe.method)
                                             .font(.body)
                                             .foregroundStyle(Color.black)
-                                        
-                                        Divider()
                                     }
                                 }
                                 .padding(.horizontal, 16)
                             }
-                            .padding(.bottom, 16)
-                            
-                            Spacer()
                         }
                         .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {
