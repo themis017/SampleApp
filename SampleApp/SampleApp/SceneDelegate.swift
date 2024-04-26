@@ -20,22 +20,50 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let windowScene = scene as? UIWindowScene {
             
-            let navigationController = UINavigationController(rootViewController: UIHostingController(rootView: ContentView()))
+            
+            let navigationController = CustomNavigationController(rootViewController: UIHostingController(rootView: ContentView()))
             
             navigationController.overrideUserInterfaceStyle = .light
-            navigationController.isNavigationBarHidden = false
+//            navigationController.isNavigationBarHidden = false
             navigationController.setToolbarHidden(false, animated: false)
             
-            navigationController.navigationBar.backItem?.title = ""
-            navigationController.navigationBar.backIndicatorImage = UIImage()
-            navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage() 
-            navigationController.toolbar.isTranslucent = true
-            navigationController.toolbar.barTintColor = UIColor.tabBarBackgroundColor
+//            let appearance = UINavigationBarAppearance()
+//            appearance.configureWithDefaultBackground()
+//            appearance.backgroundColor = UIColor.red
+//
+//            navigationController.navigationBar.standardAppearance = appearance
+//            navigationController.navigationBar.scrollEdgeAppearance = navigationController.navigationBar.standardAppearance
+            
+//            navigationController.navigationBar.backItem?.title = ""
+//            navigationController.navigationBar.backIndicatorImage = UIImage()
+//            navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage() 
+            navigationController.toolbar.isTranslucent = false
+//            navigationController.toolbar.barTintColor = UIColor.tabBarBackgroundColor
+            navigationController.toolbar.backgroundColor = .red
+            
+//            // Adjust toolbar frame to cover the entire safe area
+//            if let rootView = window?.rootViewController?.view {
+//                let safeAreaBottomInset = rootView.safeAreaInsets.bottom
+//                navigationController.toolbar.frame = CGRect(x: 0, y: rootView.bounds.height - navigationController.toolbar.frame.height - safeAreaBottomInset, width: rootView.bounds.width, height: navigationController.toolbar.frame.height + safeAreaBottomInset)
+//            }
+            
+//            let temp = UIToolbarAppearance()
+//            temp.backgroundColor = .red
+//            
+//            navigationController.toolbar.standardAppearance = temp
+//            navigationController.toolbar.compactAppearance = temp
             
             window = UIWindow(windowScene: windowScene)
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
-                        
+            
+//            // Adjust toolbar frame to cover the entire safe area
+//                    if let window = window {
+//                        let safeAreaInsets = window.safeAreaInsets
+//                        let toolbarHeight = navigationController.toolbar.frame.height
+//                        navigationController.toolbar.frame = CGRect(x: 0, y: window.bounds.height - toolbarHeight - safeAreaInsets.bottom, width: window.bounds.width, height: toolbarHeight + safeAreaInsets.bottom)
+//                    }
+            
             let mainRouter = MainRouter(navigationController: navigationController)
             mainRouter.showLandingScene()
         }
@@ -67,5 +95,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+}
+
+class CustomNavigationController: UINavigationController {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // Adjust toolbar frame to cover the entire safe area
+        if let toolbar = toolbar {
+            let safeAreaInsets = view.safeAreaInsets
+            let toolbarHeight = toolbar.frame.height
+            toolbar.frame = CGRect(x: 0, y: view.bounds.height - toolbarHeight - safeAreaInsets.bottom, width: view.bounds.width, height: toolbarHeight + safeAreaInsets.bottom)
+        }
     }
 }
