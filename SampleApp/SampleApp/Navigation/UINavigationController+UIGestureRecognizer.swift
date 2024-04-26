@@ -32,6 +32,12 @@ extension UINavigationController: UIGestureRecognizerDelegate {
             removeTopController(of: tabBarCategory)
         }
         
+//        if let toolbar = toolbar {
+//            let safeAreaInsets = view.safeAreaInsets
+//            let toolbarHeight = toolbar.frame.height
+//            toolbar.frame = CGRect(x: 0, y: view.bounds.height - toolbarHeight - safeAreaInsets.bottom, width: view.bounds.width, height: toolbarHeight + safeAreaInsets.bottom)
+//        }
+        
         return true
     }
     

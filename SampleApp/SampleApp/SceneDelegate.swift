@@ -53,9 +53,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            navigationController.toolbar.standardAppearance = temp
 //            navigationController.toolbar.compactAppearance = temp
             
+//            let topPadding = window?.safeAreaInsets.top
+//                    let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: topPadding ?? 0.0))
+//                    statusBar.backgroundColor = UIColor(named: "AppPrimaryColor")
+//                    UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.addSubview(statusBar)
+////            UIWindowScene.windows.f
+            
             window = UIWindow(windowScene: windowScene)
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
+            
+//            let topPadding = window?.safeAreaInsets.top
+//                    let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: topPadding ?? 0.0))
+//            statusBar.backgroundColor = .green
+//                    UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.addSubview(statusBar)
+//            UIWindowScene.windows.f
+            
+//            CGRect(x: 0, y: view.bounds.height - toolbarHeight - safeAreaInsets.bottom, width: view.bounds.width, height: toolbarHeight + safeAreaInsets.bottom - 10)
+            
+            let bottomPadding = window?.safeAreaInsets.bottom ?? 0
+            let statusBar = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - bottomPadding, width: UIScreen.main.bounds.size.width, height: bottomPadding))
+            statusBar.backgroundColor = .yellow
+            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.addSubview(statusBar)
             
 //            // Adjust toolbar frame to cover the entire safe area
 //                    if let window = window {
@@ -102,11 +121,11 @@ class CustomNavigationController: UINavigationController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        // Adjust toolbar frame to cover the entire safe area
-        if let toolbar = toolbar {
-            let safeAreaInsets = view.safeAreaInsets
-            let toolbarHeight = toolbar.frame.height
-            toolbar.frame = CGRect(x: 0, y: view.bounds.height - toolbarHeight - safeAreaInsets.bottom, width: view.bounds.width, height: toolbarHeight + safeAreaInsets.bottom)
-        }
+//        // Adjust toolbar frame to cover the entire safe area
+//        if let toolbar = toolbar {
+//            let safeAreaInsets = view.safeAreaInsets
+//            let toolbarHeight = toolbar.frame.height
+//            toolbar.frame = CGRect(x: 0, y: view.bounds.height - toolbarHeight - safeAreaInsets.bottom, width: view.bounds.width, height: toolbarHeight + safeAreaInsets.bottom - 10)
+//        }
     }
 }
