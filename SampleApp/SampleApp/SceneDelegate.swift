@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let navigationController = CustomNavigationController(rootViewController: UIHostingController(rootView: ContentView()))
             
             navigationController.overrideUserInterfaceStyle = .light
-//            navigationController.isNavigationBarHidden = false
+            navigationController.isNavigationBarHidden = false
             navigationController.setToolbarHidden(false, animated: false)
             
 //            let appearance = UINavigationBarAppearance()

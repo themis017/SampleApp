@@ -50,6 +50,7 @@ public struct TabBar: View {
                 .flexible(.horizontal)
             }
         }
+        .padding(.bottom, 10)
     }
 }
 
