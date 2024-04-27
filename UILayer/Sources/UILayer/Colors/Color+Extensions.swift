@@ -11,5 +11,6 @@ import SwiftUI
 public extension Color {
     
     static let tabBarBackgroundColor = Color(uiColor: UIColor.tabBarBackgroundColor)
-    static let tabBarUnselectedColor = Color(uiColor: UIColor.tabBarUnselectedColor)
+    static let tabBarCategoryPrimaryColor = Color(uiColor: UIColor.tabBarCategoryPrimaryColor)
+    static let tabBarCategorySecondaryColor = Color(uiColor: UIColor.tabBarCategorySecondaryColor)
 }

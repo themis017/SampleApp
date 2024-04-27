@@ -79,7 +79,7 @@ class MainSceneComposer {
                     height: bottomPadding)
                 )
                 
-                statusBar.backgroundColor = .yellow
+                statusBar.backgroundColor = .tabBarBackgroundColor
                 window.addSubview(statusBar)
             }
         }

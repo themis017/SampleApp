@@ -29,9 +29,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            navigationController.navigationBar.backItem?.title = ""
 //            navigationController.navigationBar.backIndicatorImage = UIImage()
 //            navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage() 
-            navigationController.toolbar.isTranslucent = false
 //            navigationController.toolbar.barTintColor = UIColor.tabBarBackgroundColor
-            navigationController.toolbar.backgroundColor = .red
+            navigationController.toolbar.isTranslucent = false
+            navigationController.toolbar.backgroundColor = UIColor.tabBarBackgroundColor
             
             window = UIWindow(windowScene: windowScene)
             window?.rootViewController = navigationController

@@ -47,7 +47,7 @@ class EntryPointSceneComposer {
                     height: bottomPadding)
                 )
                 
-                statusBar.backgroundColor = .clear
+                statusBar.backgroundColor = .white
                 window.addSubview(statusBar)
             }
         }

@@ -39,7 +39,7 @@ public struct TabBar: View {
                             Text(tabBarCategory.title)
                                 .font(.caption)
                         }
-                        .foregroundColor(selectedTab == tabBarCategory ? .white : Color.tabBarUnselectedColor)
+                        .foregroundColor(selectedTab == tabBarCategory ? Color.tabBarCategoryPrimaryColor : Color.tabBarCategorySecondaryColor)
                     } else {
                         Image("colorful_bowl")
                             .resizable()
@@ -50,7 +50,6 @@ public struct TabBar: View {
                 .flexible(.horizontal)
             }
         }
-        .padding(.bottom, 10)
     }
 }
 

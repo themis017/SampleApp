@@ -18,6 +18,7 @@ public extension UIColor {
 }
 
 public extension UIColor {
-    static let tabBarBackgroundColor = UIColor(red: 153, green: 204, blue: 255)
-    static let tabBarUnselectedColor = UIColor(red: 160, green: 160, blue: 160)
+    static let tabBarBackgroundColor = UIColor(red: 71, green: 120, blue: 255)
+    static let tabBarCategoryPrimaryColor = UIColor(red: 255, green: 255, blue: 255)
+    static let tabBarCategorySecondaryColor = UIColor(red: 195, green: 195, blue: 195)
 }
