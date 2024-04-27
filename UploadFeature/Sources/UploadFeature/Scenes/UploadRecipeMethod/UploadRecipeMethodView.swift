@@ -67,7 +67,6 @@ public struct UploadRecipeMethodView: View {
                     .flexible(.horizontal)
             }
             .buttonStyle(.primary)
-            .padding(.bottom, 16)
         }
         .padding(.horizontal, 16)
         .navigationTitle("Info")

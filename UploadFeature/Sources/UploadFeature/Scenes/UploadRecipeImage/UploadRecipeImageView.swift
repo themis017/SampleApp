@@ -73,10 +73,10 @@ public struct UploadRecipeImageView: View {
                             }
                         } label: {
                             Text("Clear selection")
-                                .foregroundStyle(Color.blue)
+                                .foregroundStyle(Color.primaryButtonEnabledColor)
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 8)
-                                .background(Color.gray.opacity(0.4))
+                                .background(Color.primaryButtonDisabledColor)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
                     }
@@ -105,14 +105,13 @@ public struct UploadRecipeImageView: View {
                     viewModel: viewModel.makeUploadRecipeInfoViewModel())) {
                         
                         Text("Continue")
+                            .font(.title3)
                             .foregroundColor(.white)
                             .flexible(.horizontal)
                             .padding(.vertical, 16)
-                            .background {
-                                RoundedRectangle(cornerRadius: 16)
-                            }
+                            .background(Color.accentColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
                             .padding(.horizontal, 16)
-                            .padding(.bottom, 16)
                     }
             }
             .confirmationDialog("Upload a photo from your ...", isPresented: $viewModel.isConfirmationDialogPresented, titleVisibility: .visible) {

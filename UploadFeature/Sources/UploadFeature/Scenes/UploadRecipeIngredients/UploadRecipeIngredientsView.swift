@@ -62,13 +62,12 @@ public struct UploadRecipeIngredientsView: View {
                 viewModel: viewModel.makeUploadRecipeMethodViewModel())) {
                     
                     Text("Continue")
+                        .font(.title3)
                         .foregroundColor(.white)
                         .flexible(.horizontal)
                         .padding(.vertical, 16)
-                        .background {
-                            RoundedRectangle(cornerRadius: 16)
-                        }
-                        .padding(.bottom, 16)
+                        .background(Color.accentColor)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
         }
         .padding(.horizontal, 16)

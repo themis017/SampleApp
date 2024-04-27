@@ -25,7 +25,7 @@ public struct SegmentedProgressBar: View {
             HStack(spacing: spaceBetweenSteps) {
                 ForEach(0..<numberOfSegments, id: \.self) { index in
                     Rectangle()
-                        .foregroundColor(index < currentSegment ? .blue : .gray.opacity(0.3))
+                        .foregroundColor(index < currentSegment ? .accentColor : Color.primaryButtonDisabledColor)
                         .frame(width: (geometry.size.width - CGFloat(numberOfSegments) * spaceBetweenSteps) / CGFloat(numberOfSegments))
                 }
             }

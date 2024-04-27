@@ -122,19 +122,28 @@ public struct UploadRecipeInfoView: View {
                 
             }
             
-            NavigationLink(destination: UploadRecipeIngredientsView(
-                viewModel: viewModel.makeUploadRecipeIngredientsViewModel())) {
-                    
-                    Text("Continue")
-                        .foregroundColor(.white)
-                        .flexible(.horizontal)
-                        .padding(.vertical, 16)
-                        .background {
-                            RoundedRectangle(cornerRadius: 16)
-                        }
-                }
-                .disabled(!viewModel.isContinueEnabled)
-                .padding(.bottom, 16)
+            if viewModel.isContinueEnabled {
+                NavigationLink(destination: UploadRecipeIngredientsView(
+                    viewModel: viewModel.makeUploadRecipeIngredientsViewModel())) {
+                        
+                        Text("Continue")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                            .flexible(.horizontal)
+                            .padding(.vertical, 16)
+                            .background(Color.accentColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                    }
+            } else {
+                Text("Continue")
+                    .font(.title3)
+                    .foregroundColor(.white)
+                    .flexible(.horizontal)
+                    .padding(.vertical, 16)
+                    .background(Color.primaryButtonDisabledColor)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+            }
+            
         }
         .padding(.horizontal, 16)
         .navigationTitle("Info")
