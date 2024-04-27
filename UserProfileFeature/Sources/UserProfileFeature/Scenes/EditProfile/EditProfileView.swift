@@ -125,10 +125,6 @@ public struct EditProfileView: View {
             }
         }
         .navigationBarHidden(true)
-        .safeAreaInset(edge: .bottom) {
-            Divider()
-                .background(Color.tabBarBackgroundColor)
-        }
     }
 }
 

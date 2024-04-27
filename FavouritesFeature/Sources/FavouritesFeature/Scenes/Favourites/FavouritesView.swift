@@ -53,10 +53,6 @@ public struct FavouritesView: View {
             }
         }
         .navigationBarHidden(true)
-        .safeAreaInset(edge: .bottom) {
-            Divider()
-                .background(Color.tabBarBackgroundColor)
-        }
     }
 }
 

@@ -56,10 +56,6 @@ public struct HomeView: View {
                 .background(.bar)
                 .border(.black)
         })
-        .safeAreaInset(edge: .bottom) {
-            Divider()
-                .background(Color.tabBarBackgroundColor)
-        }
         .refreshable {
             viewModel.perform(.refresh)
         }

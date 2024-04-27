@@ -181,10 +181,6 @@ public struct RecipeView: View {
                 }
             }
             .navigationBarHidden(true)
-            .safeAreaInset(edge: .bottom) {
-                Divider()
-                    .background(Color.tabBarBackgroundColor)
-            }
         } else {
             NavigationView {
                 Text("")
@@ -208,10 +204,6 @@ public struct RecipeView: View {
                 }
             }
             .navigationBarHidden(true)
-            .safeAreaInset(edge: .bottom) {
-                Divider()
-                    .background(Color.tabBarBackgroundColor)
-            }
         }
     }
 }

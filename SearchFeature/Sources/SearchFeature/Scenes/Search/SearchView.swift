@@ -68,11 +68,6 @@ public struct SearchView: View {
             }
         }
         .navigationBarHidden(true)
-        .safeAreaInset(edge: .bottom) {
-            Divider()
-                .background(Color.tabBarBackgroundColor)
-        }
-//        .navigationTitle(viewModel.searchFilter == .recipes ? "Search recipes" : "Search Users")
     }
     
     private var menuView: some View {
