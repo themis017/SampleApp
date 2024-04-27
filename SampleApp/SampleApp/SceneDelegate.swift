@@ -20,19 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let windowScene = scene as? UIWindowScene {
             
-            
-            let navigationController = CustomNavigationController(rootViewController: UIHostingController(rootView: ContentView()))
+            let navigationController = UINavigationController(rootViewController: UIHostingController(rootView: ContentView()))
             
             navigationController.overrideUserInterfaceStyle = .light
             navigationController.isNavigationBarHidden = false
-            navigationController.setToolbarHidden(false, animated: false)
-            
-//            let appearance = UINavigationBarAppearance()
-//            appearance.configureWithDefaultBackground()
-//            appearance.backgroundColor = UIColor.red
-//
-//            navigationController.navigationBar.standardAppearance = appearance
-//            navigationController.navigationBar.scrollEdgeAppearance = navigationController.navigationBar.standardAppearance
+            navigationController.setToolbarHidden(true, animated: false)
             
 //            navigationController.navigationBar.backItem?.title = ""
 //            navigationController.navigationBar.backIndicatorImage = UIImage()
@@ -41,47 +33,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            navigationController.toolbar.barTintColor = UIColor.tabBarBackgroundColor
             navigationController.toolbar.backgroundColor = .red
             
-//            // Adjust toolbar frame to cover the entire safe area
-//            if let rootView = window?.rootViewController?.view {
-//                let safeAreaBottomInset = rootView.safeAreaInsets.bottom
-//                navigationController.toolbar.frame = CGRect(x: 0, y: rootView.bounds.height - navigationController.toolbar.frame.height - safeAreaBottomInset, width: rootView.bounds.width, height: navigationController.toolbar.frame.height + safeAreaBottomInset)
-//            }
-            
-//            let temp = UIToolbarAppearance()
-//            temp.backgroundColor = .red
-//            
-//            navigationController.toolbar.standardAppearance = temp
-//            navigationController.toolbar.compactAppearance = temp
-            
-//            let topPadding = window?.safeAreaInsets.top
-//                    let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: topPadding ?? 0.0))
-//                    statusBar.backgroundColor = UIColor(named: "AppPrimaryColor")
-//                    UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.addSubview(statusBar)
-////            UIWindowScene.windows.f
-            
             window = UIWindow(windowScene: windowScene)
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
-            
-//            let topPadding = window?.safeAreaInsets.top
-//                    let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: topPadding ?? 0.0))
-//            statusBar.backgroundColor = .green
-//                    UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.addSubview(statusBar)
-//            UIWindowScene.windows.f
-            
-//            CGRect(x: 0, y: view.bounds.height - toolbarHeight - safeAreaInsets.bottom, width: view.bounds.width, height: toolbarHeight + safeAreaInsets.bottom - 10)
-            
-            let bottomPadding = window?.safeAreaInsets.bottom ?? 0
-            let statusBar = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - bottomPadding, width: UIScreen.main.bounds.size.width, height: bottomPadding))
-            statusBar.backgroundColor = .yellow
-            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.addSubview(statusBar)
-            
-//            // Adjust toolbar frame to cover the entire safe area
-//                    if let window = window {
-//                        let safeAreaInsets = window.safeAreaInsets
-//                        let toolbarHeight = navigationController.toolbar.frame.height
-//                        navigationController.toolbar.frame = CGRect(x: 0, y: window.bounds.height - toolbarHeight - safeAreaInsets.bottom, width: window.bounds.width, height: toolbarHeight + safeAreaInsets.bottom)
-//                    }
             
             let mainRouter = MainRouter(navigationController: navigationController)
             mainRouter.showLandingScene()
@@ -114,18 +68,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
-    }
-}
-
-class CustomNavigationController: UINavigationController {
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-//        // Adjust toolbar frame to cover the entire safe area
-//        if let toolbar = toolbar {
-//            let safeAreaInsets = view.safeAreaInsets
-//            let toolbarHeight = toolbar.frame.height
-//            toolbar.frame = CGRect(x: 0, y: view.bounds.height - toolbarHeight - safeAreaInsets.bottom, width: view.bounds.width, height: toolbarHeight + safeAreaInsets.bottom - 10)
-//        }
     }
 }

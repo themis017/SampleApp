@@ -23,8 +23,6 @@ class SignupRouter: BaseRouter, SignupRouting {
             mainRouter: mainRouter)
         
         let mainViewController = mainSceneComposer.createMainScene(for: .home)
-        
-        self.navigationController.viewControllers.removeAll()
-        self.navigationController.pushViewController(mainViewController, animated: true)
+        mainSceneComposer.pushScene(mainViewController)
     }
 }

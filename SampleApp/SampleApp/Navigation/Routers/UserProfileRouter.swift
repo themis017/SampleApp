@@ -24,9 +24,7 @@ class UserProfileRouter: BaseRouter, UserProfileRouting {
             mainRouter: mainRouter)
         
         let entryPointViewController = entryPointSceneComposer.createEntryPointScene()
-        
-        self.navigationController.viewControllers.removeAll()
-        self.navigationController.pushViewController(entryPointViewController, animated: true)
+        entryPointSceneComposer.pushScene(entryPointViewController)
     }
     
     @MainActor

@@ -34,4 +34,26 @@ class EntryPointSceneComposer {
         
         return viewController
     }
+    
+    func pushScene(_ entryPointViewController: RoutingUIHostingController<AnyView>) {
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if let window = windowScene.windows.first(where: { $0.isKeyWindow }) {
+                let bottomPadding = window.safeAreaInsets.bottom
+                let statusBar = UIView(frame: CGRect(
+                    x: 0,
+                    y: UIScreen.main.bounds.size.height - bottomPadding,
+                    width: UIScreen.main.bounds.size.width,
+                    height: bottomPadding)
+                )
+                
+                statusBar.backgroundColor = .clear
+                window.addSubview(statusBar)
+            }
+        }
+        
+        self.navigationController.setToolbarHidden(true, animated: false)
+        self.navigationController.viewControllers.removeAll()
+        self.navigationController.pushViewController(entryPointViewController, animated: true)
+    }
 }
