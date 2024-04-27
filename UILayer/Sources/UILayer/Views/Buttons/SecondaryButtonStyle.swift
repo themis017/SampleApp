@@ -9,15 +9,19 @@ import Foundation
 import SwiftUI
 
 public struct SecondaryButtonStyle: ButtonStyle {
+    
+    @Environment(\.isEnabled)
+    private var isEnabled: Bool
+    
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.title3)
-            .foregroundColor(.blue)
+            .foregroundColor(isEnabled ? Color.secondaryButtonEnabledColor : Color.secondaryButtonDisabledColor)
             .padding(16)
             .background(.white)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(.blue, lineWidth: 2)
+                    .stroke(isEnabled ? Color.secondaryButtonEnabledColor : Color.secondaryButtonDisabledColor, lineWidth: 2)
             )
     }
 }

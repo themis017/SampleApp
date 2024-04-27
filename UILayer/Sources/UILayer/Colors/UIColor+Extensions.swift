@@ -18,6 +18,19 @@ public extension UIColor {
 }
 
 public extension UIColor {
+    
+    // MARK: Primary Button
+    
+    static let primaryButtonEnabledColor = UIColor(red: 71, green: 120, blue: 255)
+    static let primaryButtonDisabledColor = UIColor(red: 210, green: 210, blue: 210)
+    
+    // MARK: Secondary Button
+    
+    static let secondaryButtonEnabledColor = UIColor(red: 71, green: 120, blue: 255)
+    static let secondaryButtonDisabledColor = UIColor(red: 210, green: 210, blue: 210)
+    
+    // MARK: Tab bar
+    
     static let tabBarBackgroundColor = UIColor(red: 71, green: 120, blue: 255)
     static let tabBarCategoryPrimaryColor = UIColor(red: 255, green: 255, blue: 255)
     static let tabBarCategorySecondaryColor = UIColor(red: 195, green: 195, blue: 195)
