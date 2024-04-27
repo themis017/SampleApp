@@ -21,13 +21,11 @@ public struct SegmentedProgressBar: View {
     }
     
     public var body: some View {
-        GeometryReader { geometry in
-            HStack(spacing: spaceBetweenSteps) {
-                ForEach(0..<numberOfSegments, id: \.self) { index in
-                    Rectangle()
-                        .foregroundColor(index < currentSegment ? .accentColor : Color.primaryButtonDisabledColor)
-                        .frame(width: (geometry.size.width - CGFloat(numberOfSegments) * spaceBetweenSteps) / CGFloat(numberOfSegments))
-                }
+        HStack(spacing: spaceBetweenSteps) {
+            ForEach(0..<numberOfSegments, id: \.self) { index in
+                Rectangle()
+                    .foregroundColor(index < currentSegment ? .accentColor : Color.primaryButtonDisabledColor)
+                    .flexible(.horizontal)
             }
         }
         .frame(height: 5)
