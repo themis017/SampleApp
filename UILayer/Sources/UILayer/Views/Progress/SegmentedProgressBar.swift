@@ -21,6 +21,7 @@ public struct SegmentedProgressBar: View {
     }
     
     public var body: some View {
+        
         HStack(spacing: spaceBetweenSteps) {
             ForEach(0..<numberOfSegments, id: \.self) { index in
                 Rectangle()
