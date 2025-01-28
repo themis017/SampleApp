@@ -25,11 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationController.overrideUserInterfaceStyle = .light
             navigationController.isNavigationBarHidden = false
             navigationController.setToolbarHidden(true, animated: false)
-            
-//            navigationController.navigationBar.backItem?.title = ""
-//            navigationController.navigationBar.backIndicatorImage = UIImage()
-//            navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage() 
-//            navigationController.toolbar.barTintColor = UIColor.tabBarBackgroundColor
             navigationController.toolbar.isTranslucent = false
             navigationController.toolbar.backgroundColor = UIColor.tabBarBackgroundColor
             

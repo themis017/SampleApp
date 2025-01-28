@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		410506462B1113BA0015B2FA /* UserProfileFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 410506452B1113BA0015B2FA /* UserProfileFeature */; };
 		410506492B111AB40015B2FA /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 410506482B111AB40015B2FA /* Resolver */; };
-		410D9A752B0D2A4E002B284E /* SampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410D9A742B0D2A4E002B284E /* SampleApp.swift */; };
 		410D9A772B0D2C76002B284E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410D9A762B0D2C76002B284E /* ContentView.swift */; };
 		410D9A792B0D3250002B284E /* UILayer in Frameworks */ = {isa = PBXBuildFile; productRef = 410D9A782B0D3250002B284E /* UILayer */; };
 		410D9A7B2B0D35CA002B284E /* NetworkLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 410D9A7A2B0D35CA002B284E /* NetworkLayer */; };
@@ -46,7 +45,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		410D9A742B0D2A4E002B284E /* SampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleApp.swift; sourceTree = "<group>"; };
 		410D9A762B0D2C76002B284E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		412503E02B11E40C001DDCE5 /* iOSApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApplication.swift; sourceTree = "<group>"; };
 		412FF9242B3208ED00DCF929 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
@@ -169,7 +167,6 @@
 				41F3A7442B0420DE0059BCB0 /* AppDelegate.swift */,
 				41F3A7462B0420DE0059BCB0 /* SceneDelegate.swift */,
 				412503E02B11E40C001DDCE5 /* iOSApplication.swift */,
-				410D9A742B0D2A4E002B284E /* SampleApp.swift */,
 				410D9A762B0D2C76002B284E /* ContentView.swift */,
 				41F3A74F2B0420DF0059BCB0 /* LaunchScreen.storyboard */,
 				41F3A7522B0420DF0059BCB0 /* Info.plist */,
@@ -265,7 +262,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				41624F962B965EB100E8E210 /* ProfileSceneComposer.swift in Sources */,
-				410D9A752B0D2A4E002B284E /* SampleApp.swift in Sources */,
 				41B4E93C2B3A3D4D00DFF8BB /* BaseRouter.swift in Sources */,
 				41F3A7452B0420DE0059BCB0 /* AppDelegate.swift in Sources */,
 				412FF9252B3208ED00DCF929 /* HomeRouter.swift in Sources */,

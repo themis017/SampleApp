@@ -84,15 +84,23 @@ open class BaseRouter {
             return false
         }
                     
-        guard let topViewController = routingViewControllers.last else {
-            return
-        }
+        routingViewControllers = routingViewControllers.reversed()
+        var viewControllersCount = routingViewControllers.count
         
-        self.navigationController.pushViewController(topViewController, animated: false)
-        let otherRoutingViewControllers = routingViewControllers.dropLast()
-        
-        for otherRoutingViewController in otherRoutingViewControllers {
-            self.navigationController.viewControllers.insert(otherRoutingViewController, at: 1)
+        for routingViewController in routingViewControllers {
+            if viewControllersCount == routingViewControllers.count {
+                self.navigationController.pushViewController(routingViewController, animated: false)
+                viewControllersCount -= 1
+                continue
+            }
+            
+            if viewControllersCount == 0 {
+                break
+            } else {
+                self.navigationController.viewControllers.insert(routingViewController, at: 1)
+            }
+            
+            viewControllersCount -= 1
         }
         
         insertOtherTabBarCategoriesControllers(of: selectedTab)
